@@ -2,54 +2,54 @@
 #include <SDL.h>
 #include "Game.h"
 
-/*	Die Präprozessor-Makros 
+/*	Die PrÃ¤prozessor-Makros 
 *	(so nennt man die "Variablen" (oder "Funktionen") mit #define)
-*	sind nur zum Debuggen da. Sie werden später evtl. ersetzt
+*	sind nur zum Debuggen da. Sie werden spÃ¤ter evtl. ersetzt
 */
 
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
 
-//	für die smoothness 
+//	fÃ¼r die smoothness 
 const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char** argv)
 {
 	/*	Um die Zeit zu messen, 
-	*	die für einen Durchlauf benötigt wurde
+	*	die fÃ¼r einen Durchlauf benÃ¶tigt wurde
 	*	
-	*	Uin32 - weil SDL_GetTicks diesen Datentypen zurückgibt
+	*	Uint32 - weil SDL_GetTicks diesen Datentypen zurÃ¼ckgibt
 	*		  - ist einfach ein 32-bit Integer
 	*/
 	Uint32 startTime, frameTime;
 
 	/*	Das Programm/Spiel wird initialisiert
-	*	Gleichzeitig wird geprüft ob alles gut lief
+	*	Gleichzeitig wird geprÃ¼ft ob alles gut lief
 	*/
 	if ((TheGame::Instance()->init("Koramu", 
 		WINDOW_WIDTH, WINDOW_HEIGHT, 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 		0)))
 	{
-		/*	Solange das Spiel noch läuft...
-		*	Der Gameover-Zustand wird dies ändern können
+		/*	Solange das Spiel noch lÃ¤uft...
+		*	Der Gameover-Zustand wird dies Ã¤ndern kÃ¶nnen
 		*/
 		while (TheGame::Instance()->isRunning())
 		{
-			//	Anzahl der Ticks am Anfang wird gespeichert (für den übernächsten Schritt)
+			//	Anzahl der Ticks am Anfang wird gespeichert (fÃ¼r den Ã¼bernÃ¤chsten Schritt)
 			startTime = SDL_GetTicks();
 
 			/*	Immer nacheinander den Input auswerten, 
 			*	dann "Back-End"-Sachen laufen lassen
-			*	und schließlich alles auf den Schirm schmeißen
+			*	und schlieÃŸlich alles auf den Schirm schmeiÃŸen
 			*/
 			TheGame::Instance()->handleInput();			
 			TheGame::Instance()->update();
 			TheGame::Instance()->render();
 
 			/*	Die Zeit, die nun gewartet werden muss, damit eine konstante 60-FPS performance
-			*	entsteht, wird nun ausgerechnet und 'SDL_Delay()' übergeben.
+			*	entsteht, wird jetzt ausgerechnet und 'SDL_Delay()' Ã¼bergeben.
 			*	(vorrausgesetzt der obige Prozess hat nicht zu lang gedauert)
 			*/
 			frameTime = SDL_GetTicks() - startTime;
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 				SDL_Delay((int)(DELAY_TIME - frameTime));
 		}
 
-		//	Sobald das Spiel nicht mehr läuft wird aufgeräumt
+		//	Sobald das Spiel nicht mehr lÃ¤uft wird aufgerÃ¤umt
 		TheGame::Instance()->destroy();
 	}
 
