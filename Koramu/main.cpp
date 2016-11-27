@@ -63,6 +63,10 @@ int main(int argc, char** argv)
 	}
 
 	std::cout << "ByeBye" << std::endl;
+
+	// Damit lesen kann, was ausgegeben wird und das Fenster nicht sofort verschwindet:
+	system("PAUSE"); 
+
 	SDL_Delay(1000);
 	return 0;
 }

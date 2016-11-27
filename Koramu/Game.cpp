@@ -36,8 +36,35 @@ Game::~Game()								//	Destruktor
 
 bool Game::init(std::string title, int width, int height, int xPos, int yPos, int flags)
 {
-	//	Wenn wir hier angekommen sind ist nichts schief gelaufen
-	return true;
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+		//	Die Initialisierung von SDL ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
+		return false;
+	}
+	else {
+		// Die initialiesierung von SDL war erfolgreich!
+		std::cout << "SDL wurde erfolgreich intiialisiert!" << std::endl;
+
+		// Fenster mit erstellen. Es werden Parameter, die Game::init mitgegeben worden sind an SDL_CreateWindow() weitergegeben:
+		m_pWindow = SDL_CreateWindow(title.c_str(), xPos, yPos, width, height, flags);
+
+		// Überprüfen, ob das Fenster erfolgreich erstellt wurde:
+		if (!m_pWindow) {
+			// Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+			std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
+			return false;
+		}
+		else {
+			// Das Fenster wurde erfolgreich erstellt
+			std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
+
+			//m_running = true; vorerst auskommentiert lassen (sonst läuft das Programm in einer Endlosschleife)
+
+			//	Wenn wir hier angekommen sind ist nichts schief gelaufen
+			return true;
+		}
+	}
+	
 }
 
 void Game::handleInput()
