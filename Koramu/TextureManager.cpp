@@ -20,7 +20,26 @@ TextureManager::~TextureManager()	//	Destruktor
 	//	Destruktor bitte befüllen, falls obiges zutrifft
 }
 
-//	Wichtif für Singleton Klasse
+
+bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pRenderer)
+{
+	//	muss noch befüllt werden
+	
+	return false;
+}
+
+void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer)
+{
+	//	muss noch befüllt werden
+}
+
+void TextureManager::clearFromTextureMap(std::string id) 
+{
+	//	muss noch befüllt werden
+}
+
+
+//	Wichtig für Singleton Klasse
 TextureManager* TextureManager::Instance()
 {
 	/*	Checken ob die Instanz schon existiert.
