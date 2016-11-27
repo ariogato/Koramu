@@ -5,9 +5,9 @@
 #include <map>
 #include <SDL_image.h>
 
-/*	TextureManager soll eine Singleton Klasse sein. da wir während des gesamten Programmablaufes nur eine einzige 
+/*	TextureManager soll eine Singleton Klasse sein, da wir während des gesamten Programmablaufes nur eine einzige 
 *	Instanz dieser Klasse benötigen(und haben dürfen). Für genauere Informationen zu Singleton Klassen sind die 
-*	Kommentare in "Game.h" zu beachten
+*	Kommentare in "Game.h" zu beachten.
 */
 
 class TextureManager {
@@ -46,5 +46,6 @@ public:
 /*	Ein typedef ist nur dazu da um einer Klasse einen anderen
 *	(evtl. cooleren Namen zuzuweisen).
 */
-//	TODO: eventuell noch cooleren Namen finden
-typedef TextureManager TheTexManager;
+//	TODO: eventuell noch cooleren Namen finden -> coolerer Name gefunden! Gruß Ario.
+typedef TextureManager TheTextureManager;
+
