@@ -71,6 +71,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	
 }
 
+
 void Game::handleInput()
 {
 
@@ -85,6 +86,7 @@ void Game::render()
 {
 
 }
+
 
 //	Wichtig für Singleton-Klasse
 Game* Game::Instance()
