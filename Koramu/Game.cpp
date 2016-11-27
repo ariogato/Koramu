@@ -36,12 +36,14 @@ Game::~Game()								//	Destruktor
 
 bool Game::init(std::string title, int width, int height, int xPos, int yPos, int flags)
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
+	{
 		//	Die Initialisierung von SDL ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
 		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
-	else {
+	else 
+	{
 		// Die initialiesierung von SDL war erfolgreich!
 		std::cout << "SDL wurde erfolgreich intiialisiert!" << std::endl;
 
@@ -49,12 +51,14 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		m_pWindow = SDL_CreateWindow(title.c_str(), xPos, yPos, width, height, flags);
 
 		// Überprüfen, ob das Fenster erfolgreich erstellt wurde:
-		if (!m_pWindow) {
+		if (!m_pWindow) 
+		{
 			// Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
 			std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
 			return false;
 		}
-		else {
+		else 
+		{
 			// Das Fenster wurde erfolgreich erstellt
 			std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
 
