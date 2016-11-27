@@ -5,9 +5,12 @@
 #include <map>
 #include <SDL_image.h>
 
-/*	TextureManager soll eine Singleton Klasse sein, da wir während des gesamten Programmablaufes nur eine einzige 
-*	Instanz dieser Klasse benötigen(und haben dürfen). Für genauere Informationen zu Singleton Klassen sind die 
-*	Kommentare in "Game.h" zu beachten.
+
+/*	TextureManager soll eine Singleton Klasse sein. da wir während des gesamten Programmablaufes nur eine einzige 
+*	Instanz dieser Klasse benötigen(und haben dürfen). 
+*	
+*	Für genauere Informationen zu Singleton Klassen sind die 
+*	Kommentare in "Game.h" zu beachten
 */
 
 class TextureManager {
@@ -20,7 +23,7 @@ private:
 	static TextureManager* s_pInstance;
 
 	//	Membervariablen
-	std::map<std::string, SDL_Texture*> m_textureMap;	//	Klassenkarte im Ticket vestehen. std::map???
+	std::map<std::string, SDL_Texture*> m_textureMap;
 
 public:
 	//	Memberfunktionen
@@ -46,6 +49,6 @@ public:
 /*	Ein typedef ist nur dazu da um einer Klasse einen anderen
 *	(evtl. cooleren Namen zuzuweisen).
 */
-//	TODO: eventuell noch cooleren Namen finden -> coolerer Name gefunden! Gruß Ario.
+//	TODO: eventuell noch cooleren Namen finden -> coolerer Name gefunden! GruÃŸ Ario.
 typedef TextureManager TheTextureManager;
 
