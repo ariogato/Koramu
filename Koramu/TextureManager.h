@@ -49,6 +49,6 @@ public:
 /*	Ein typedef ist nur dazu da um einer Klasse einen anderen
 *	(evtl. cooleren Namen zuzuweisen).
 */
-//	TODO: eventuell noch cooleren Namen finden -> coolerer Name gefunden! GruÃŸ Ario.
+//	TODO: eventuell noch cooleren Namen finden -> coolerer Name gefunden! Gruß Ario.
 typedef TextureManager TheTextureManager;
 
