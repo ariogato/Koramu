@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>160</y>
+      <w>300</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+m_pWindow : SDL_Window*
+m_pRenderer : SDL_Renderer*
+m_running : bool
+m_gameWidth : int
+m_gameHeight : int
+m_gameXPos : int
+m_gameXPos : int
+--
+init (title : string, width : int, height : int, xPos : int, yPos : int, flags : int) : bool
+handleInput() : void
+update() : void
+render() : void
+isRunning() : bool
+getGameWidth() : int
+getGameHeight() : int
+getGameXPos() : int
+getGameYPos() : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>280</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>/GameState/
+--
+- stateID : GameStateIDs
+- gameObjects : GameObject
+--
+/+ handleInput() : void/
+/+ update() : void/
+/+ render() : void/
+
+/+ onEnter() : void/
+/+ onExit() : void/
+
+/+ getStateID() : GameStateIDs/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>0</x>
+      <y>90</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>bg=blue
+Singleteon 
+--
+(Singleton-spezifische Sachen
+ wurden ignoriert)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1030</x>
+      <y>280</y>
+      <w>120</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+GameStateIDs
+--
+menuState
+playState
+puaseState
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>430</x>
+      <y>250</y>
+      <w>940</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>FiniteStateMachine
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>280</y>
+      <w>290</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>GameStateMachine
+--
+
+--
++ pushState(newState : GameState) : void
++ popState() : void
++ changeState(newState : GameState) : void
+
++ getCurrentState() : GameState</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>320</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>550</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>MenuState
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
