@@ -35,7 +35,7 @@
     <ClInclude Include="GameObject.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="gameState.h">
+    <ClInclude Include="GameState.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
