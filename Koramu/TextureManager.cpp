@@ -23,19 +23,86 @@ TextureManager::~TextureManager()	//	Destruktor
 
 bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pRenderer)
 {
-	//	muss noch befüllt werden
-	
-	return false;
+
+	/*	Wir versichern, dass der Renderer nicht nullptr ist, 
+	*	denn das kann schon mal passieren bei pass-by-pointer
+	*/
+	if (!pRenderer)
+	{
+		std::cerr << "TextureManager::load():\nEs wurde kein gültiger Renderer übergeben!" << std::endl;
+		return false;
+	}
+	//	Gibt es schon eine Textur mit dieser id?
+	if (m_textureMap.count(id))
+	{
+		std::cerr << "TextureManager::load():\nEine Textur mit der id: " << id << " existiert bereits!" << std::endl;
+		return false;
+	}
+
+	//	Eine Surface erstellen
+	SDL_Surface* tempSurface = IMG_Load(fileName.c_str());
+
+	//	Falls die Datei nicht gefunden wurde
+	if (!tempSurface)
+	{
+		std::cerr << "TextureManager::load():\n" << SDL_GetError();
+		return false;
+	}
+
+	//	Nun erstellen wir die Textur, die wir dann auch speichern wollen 
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(pRenderer, tempSurface);
+
+	//	Den Speicherplatz für die Surface wieder freigeben, da wir sie nicht länger brauchen.
+	SDL_FreeSurface(tempSurface);
+
+	//	Nun muss die Textur auch gespeichert werden
+	m_textureMap.insert( std::pair<std::string, SDL_Texture*>(id, texture) );
+
+	//	Sobald wir hier angekommen sind, ist sicher, dass alles gut verlief
+	return true;
 }
 
 void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer)
 {
-	//	muss noch befüllt werden
+	/*	Um etwas bei SDL zu rendern, brauchen wir zwei Rechtecke.
+	*		1. Source Rectangle:
+				- Ein Rechteck, das eine gewisse Fläche auf einem Bild (PNG Datei) beschreibt
+				  (mit Höhe, Breite, x- & y-Position)
+				- Man kann sich vorstellen, dass dieses Rechteck einfach einen Teil aus dem Bild ausschneidet
+			2. Destination Rectangle:
+				- Dieses Rechteck beschreibt, wo und wie der ausgeschnittene Teil des Bildes 
+				  auf dem Bildschirm erscheinen soll (wieder die gleichen Parameter)
+				- Das Bild wird, wenn nötig auch gestreckt und gestaucht
+	*/
+
+	/*	Da wir nie Stauchen oder Strecken wollen, 
+	*	sind Höhe und Breite immer gleich
+	*/
+	SDL_Rect destRect;
+	SDL_Rect srcRect;
+
+	srcRect.w = destRect.w = width;
+	srcRect.h = destRect.h = height;
+
+	srcRect.x = srcRect.y = 0;
+	
+	//	Hier wird die Postition im Fenster gesetzt
+	destRect.x = x;
+	destRect.y = y;
+
+	//	Jetzt müssen wir die gewünschte Textur noch in den Renderer stecken
+	SDL_RenderCopy(pRenderer, m_textureMap[id], &srcRect, &destRect);
 }
 
 void TextureManager::clearFromTextureMap(std::string id) 
 {
-	//	muss noch befüllt werden
+	/*	std::map::erase gibt die Anzahl an gelöschten Elementen
+	*	zurück, also checken wir ob etwas gelöscht wurde.
+	*/
+	if (!m_textureMap.erase(id))
+	{
+		std::cerr << "TextureManager::clearFromTextureMap():\nEs wurde keine Textur mit der id: " << id << " gefunden" << std::endl;
+	}
 }
 
 

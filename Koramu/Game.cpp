@@ -32,8 +32,10 @@ Game::Game()								//	Konstruktor
 */
 Game::~Game()								//	Destruktor
 {
-	SDL_DestroyWindow(m_pWindow);
-	SDL_DestroyRenderer(m_pRenderer);
+	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
+	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
+	IMG_Quit;									//	SDL_image beenden
+	SDL_Quit();									//	SDL beenden
 }
 
 
@@ -45,10 +47,22 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
+	else if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
+	{ 
+		/*	Das Zeug in der obigen Zeile bedeutet nur,
+		*	dass man checkt ob das was man initialisieren wollte auch wirklich
+		*	erfolgreich initialisiert wurde.
+		*/
+
+		//	Falls wir hier ankommen, ist etwas kaputt gegangen
+		std::cerr << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
+		return false;
+	}
 	else 
 	{
-		//	Die initialiesierung von SDL war erfolgreich!
-		std::cout << "SDL wurde erfolgreich intiialisiert!" << std::endl;
+		//	Die initialisierung von SDL & SDL_image war erfolgreich!
+		std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl << 
+						"SDL_image wurde erfolgreich initialisiert!" << std::endl;
 
 
 		//	Fenster erstellen. Es werden Parameter, die Game::init mitgegeben worden sind an SDL_CreateWindow() weitergegeben:
@@ -78,9 +92,13 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		//	Der Renderer wurde erfolgreich erstellt
 		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
+		//	Das lässt die main-Schleife laufen
+		m_running = true;
 
-		//	m_running = true; vorerst auskommentiert lassen (sonst läuft das Programm in einer Endlosschleife)
-
+#pragma region testStuff
+		//	eine Textur hinzufügen
+		TheTextureManager::Instance()->load("test", "../assets/test.png", m_pRenderer);
+#pragma endregion
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;
@@ -92,7 +110,20 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 void Game::handleInput()
 {
+	/*	Eine provisorische Implementation, die es
+	*	ermöglicht das Fenster zu schließen.
+	*	Das Ganze muss später in die InputHandler Klasse verschoben werden
+	*/
 
+	SDL_Event e;
+
+	while (SDL_PollEvent(&e))
+	{
+		if (e.type == SDL_QUIT)
+		{
+			m_running = false;
+		}
+	}
 }
 
 void Game::update() 
@@ -102,7 +133,18 @@ void Game::update()
 
 void Game::render()
 {
+	/*	Das was bis jetzt im Renderer ist soll 
+	*	rausgehauen werden.
+	*	Sonst würde man jeden Frame immer wieder sehen. 
+	*/
+	SDL_RenderClear(m_pRenderer);
 
+#pragma region testStuff
+	TheTextureManager::Instance()->draw("test", 100, 100, 128, 82, m_pRenderer);
+#pragma endregion
+
+	//	Jetzt wird alles auf den Bildschirm geschmissen
+	SDL_RenderPresent(m_pRenderer);
 }
 
 

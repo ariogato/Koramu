@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>147</x>
-      <y>91</y>
+      <y>210</y>
       <w>203</w>
       <h>224</h>
     </coordinates>
@@ -34,15 +34,15 @@ getGameYPos() : int</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>539</x>
-      <y>532</y>
-      <w>140</w>
+      <x>518</x>
+      <y>651</y>
+      <w>168</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>/GameState/
 --
-- stateID : GameStateIDs
-- gameObjects : GameObject
+- m_stateID : GameStateIDs
+- m_gameObjects : GameObject[0..*]
 --
 /+ handleInput() : void/
 /+ update() : void/
@@ -58,7 +58,7 @@ getGameYPos() : int</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>147</x>
-      <y>42</y>
+      <y>161</y>
       <w>98</w>
       <h>49</h>
     </coordinates>
@@ -73,7 +73,7 @@ Singleteon
     <id>UMLClass</id>
     <coordinates>
       <x>1155</x>
-      <y>133</y>
+      <y>252</y>
       <w>84</w>
       <h>77</h>
     </coordinates>
@@ -90,7 +90,7 @@ puaseState
     <id>UMLPackage</id>
     <coordinates>
       <x>420</x>
-      <y>112</y>
+      <y>231</y>
       <w>854</w>
       <h>721</h>
     </coordinates>
@@ -104,7 +104,7 @@ layer=-1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>434</x>
-      <y>147</y>
+      <y>266</y>
       <w>203</w>
       <h>147</h>
     </coordinates>
@@ -127,7 +127,7 @@ layer=-1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>441</x>
-      <y>721</y>
+      <y>840</y>
       <w>105</w>
       <h>91</h>
     </coordinates>
@@ -141,7 +141,7 @@ layer=-1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>511</x>
-      <y>665</y>
+      <y>784</y>
       <w>105</w>
       <h>70</h>
     </coordinates>
@@ -152,7 +152,7 @@ layer=-1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>679</x>
-      <y>721</y>
+      <y>840</y>
       <w>105</w>
       <h>91</h>
     </coordinates>
@@ -166,7 +166,7 @@ layer=-1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>721</y>
+      <y>840</y>
       <w>105</w>
       <h>91</h>
     </coordinates>
@@ -180,7 +180,7 @@ layer=-1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>602</x>
-      <y>665</y>
+      <y>784</y>
       <w>21</w>
       <h>70</h>
     </coordinates>
@@ -191,7 +191,7 @@ layer=-1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>609</x>
-      <y>665</y>
+      <y>784</y>
       <w>112</w>
       <h>70</h>
     </coordinates>
@@ -202,7 +202,7 @@ layer=-1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1386</x>
-      <y>77</y>
+      <y>196</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -213,7 +213,7 @@ layer=-1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>749</x>
-      <y>154</y>
+      <y>273</y>
       <w>175</w>
       <h>119</h>
     </coordinates>
@@ -229,7 +229,7 @@ layer=-1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
-      <y>182</y>
+      <y>301</y>
       <w>133</w>
       <h>35</h>
     </coordinates>
@@ -243,7 +243,7 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>742</x>
-      <y>322</y>
+      <y>441</y>
       <w>126</w>
       <h>56</h>
     </coordinates>
@@ -259,7 +259,7 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>889</x>
-      <y>322</y>
+      <y>441</y>
       <w>119</w>
       <h>56</h>
     </coordinates>
@@ -275,7 +275,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>854</x>
-      <y>266</y>
+      <y>385</y>
       <w>77</w>
       <h>70</h>
     </coordinates>
@@ -286,7 +286,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>763</x>
-      <y>266</y>
+      <y>385</y>
       <w>98</w>
       <h>70</h>
     </coordinates>
@@ -297,7 +297,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>679</x>
-      <y>371</y>
+      <y>490</y>
       <w>238</w>
       <h>224</h>
     </coordinates>
@@ -311,7 +311,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>917</x>
-      <y>203</y>
+      <y>322</y>
       <w>168</w>
       <h>147</h>
     </coordinates>
@@ -324,8 +324,45 @@ m2=0,1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>154</x>
-      <y>434</y>
+      <x>350</x>
+      <y>21</y>
+      <w>371</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;singleton&gt;&gt;
+TextureManager
+--
+- m_textureMap : map&lt;string, SDL_Texture*&gt;
+--
++ load(id : string, fileName : string, pRenderer, SDL_Rendere*) : bool
++ draw(id : string, x : int, y : int, width : int, height : int, pRenderer : SDL_Renderer*) : void
++ clearFromTEctureMap(id : string) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>147</x>
+      <y>539</y>
+      <w>161</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>/GameObject/
+--
+--
+/+ load() : void/
+/+ update() : void/
+/+ draw() : void/
+/+ destroy() : void/
+//
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>945</x>
+      <y>84</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
