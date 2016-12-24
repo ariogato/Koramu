@@ -34,7 +34,7 @@ Game::~Game()								//	Destruktor
 {
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
-	IMG_Quit;									//	SDL_image beenden
+	IMG_Quit();									//	SDL_image beenden
 	SDL_Quit();									//	SDL beenden
 }
 
