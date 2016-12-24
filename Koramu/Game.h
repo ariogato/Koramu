@@ -5,6 +5,7 @@
 #include <string>
 #include <SDL_image.h>
 #include "TextureManager.h"
+#include "Logger.h"
 
 class Game
 {
@@ -41,6 +42,10 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
+	//	Logger Variablen
+	Logger* standardLog;
+	Logger* errorLog;
+
 	bool m_running;
 	int m_gameWidth;
 	int m_gameHeight;
@@ -65,6 +70,12 @@ public:
 	int getGameHeight() { return m_gameHeight; }
 	int getGameXPos() { return m_gameXPos; }
 	int getGameYPos() { return m_gameYPos; }
+
+	/*	Log Objekte werden zurückgegeben, damit man mit einem
+	*	Stream Operator auf sie zugreifen kann.
+	*/
+	Logger* log() { return standardLog; }
+	Logger* logError() { return errorLog; }
 
 
 	/*	Wichtig für Singleton-Klasse

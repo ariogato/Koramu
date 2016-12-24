@@ -13,10 +13,18 @@
 class Logger
 {
 private:
-	std::ostream& outputStream;		//	Der Stream, dem die Nachricht übergeben wird (kann auch ofstream sein)
+	std::ostream* m_outputStream;			//	Der Stream, dem die Nachricht übergeben wird (kann auch ofstream sein)
+	bool heap;								//	Gibt an ob wir outputStream selber befüllt haben oder nicht (wichtig für Destruktor)
 
 public:
-	Logger();						//	Konstruktor ohne Parameter
-	Logger(std::string);						//	Konstruktor mit Parametern
-	~Logger();						//	Destruktor
+	Logger(std::ostream& = std::cout);						//	Konstruktor für cout
+	Logger(std::string);						//	Konstruktor für eine Logdatei
+	~Logger();									//	Destruktor
+	
+	template<typename T>
+	friend Logger& operator<<(Logger&, const T&);
+
 };
+
+template<typename T>
+Logger& operator<<(Logger&, const T&);

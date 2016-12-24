@@ -92,6 +92,10 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		//	Der Renderer wurde erfolgreich erstellt
 		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
+		//	Die Logger initialisieren
+		standardLog = new Logger();
+		errorLog = new Logger("../logs/errors.txt");
+
 		//	Das lässt die main-Schleife laufen
 		m_running = true;
 
@@ -122,6 +126,7 @@ void Game::handleInput()
 		if (e.type == SDL_QUIT)
 		{
 			m_running = false;
+			*(this->logError()) << 12;
 		}
 	}
 }
