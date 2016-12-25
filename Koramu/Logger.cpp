@@ -37,14 +37,16 @@ Logger::Logger(std::string filename)
 		//	Auch speichern, dass outputStream mit std::cout initialisiert wurde
 		heap = false;
 	}
+	else
+	{
+		/*	Ab hier ist klar, dass die Datei geöffnet wurde.
+		*	Nun müssen wir outputStream mit ofs initialisieren.
+		*/
+		m_pOutputStream = ofs;
 
-	/*	Ab hier ist klar, dass die Datei geöffnet wurde.
-	*	Nun müssen wir outputStream mit ofs initialisieren.
-	*/
-	m_pOutputStream = ofs;
-
-	//	Speichern, dass outputStream selber befüllt wurde
-	heap = true;
+		//	Speichern, dass outputStream selber befüllt wurde
+		heap = true;
+	}
 }
 
 Logger::~Logger()
