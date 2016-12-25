@@ -13,6 +13,10 @@ Game* Game::s_pInstance = nullptr;
 
 Game::Game()								//	Konstruktor
 {
+	//	Die Logger initialisieren
+	m_pStandardLog = new Logger();
+	m_pErrorLog = new Logger("../logs/errors.txt");
+
 	// Pointer mit nullptr initialisieren (best practice)
 	m_pWindow = nullptr;
 	m_pRenderer = nullptr;
@@ -95,10 +99,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		}
 		//	Der Renderer wurde erfolgreich erstellt
 		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
-
-		//	Die Logger initialisieren
-		m_pStandardLog = new Logger();
-		m_pErrorLog = new Logger("../logs/errors.txt");
 
 		//	Das lässt die main-Schleife laufen
 		m_running = true;
