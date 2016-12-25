@@ -26,17 +26,26 @@ public:
 	*	D.h. wir können in Zukunft unser log Objekt wie std::cout verwenden.
 	*	Bsp.:
 	*		TheGame::Instance()->logError() << 12 << std::endl << "geil!" << std::endl;
+	*
+	*	Das Ganze muss in der Headerdatei gemacht werden, weil templates sonst meckern
 	*/
 	template<class T>
 	Logger& operator<<(const T& msg)								//	Hier wird der Operator für alle klassischen Datentypen überladen.
 	{
+		//	die message wird in dem Stream (Datei oder cout) übergeben
 		*(this->m_pOutputStream) << msg;
+
+		/*	damit Verkettungen funktionieren
+		*	Bsp.:
+		*		... << 12 << 13 << 14 << 15 << 16 << ...;
+		*/
 		return *this;
 	}
 
 
 	std::ostream& operator<<(std::ostream& (*f)(std::ostream&))		//	Hier wird der Operator für z.B. std::endl überladen
 	{
+		//	std::endl ist eigentlich eine Funktion, die bei std::cout auch immer aufgerufen wird
 		return f(*m_pOutputStream);
 	}
 
