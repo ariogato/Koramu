@@ -131,13 +131,30 @@ void Game::handleInput()
 		{
 			m_running = false;
 #pragma region testStuff
+			//	Erster Durchlauf
 			auto start = std::chrono::high_resolution_clock::now();
 			this->logError() << "test" << std::endl;
 			auto finish = std::chrono::high_resolution_clock::now();
 
 			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
 
-			this->logError() << duration.count() << std::endl;
+			this->logStandard() << "Duration: "<< duration.count() << std::endl << std::endl;
+
+			//	Zweiter test-durchlauf
+			auto start1 = std::chrono::high_resolution_clock::now();
+			std::cout << "test" << std::endl;
+			auto finish1 = std::chrono::high_resolution_clock::now();
+
+			auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(finish1 - start1);
+
+			this->logStandard() << "Duration: " << duration1.count() << std::endl << std::endl;
+
+			/*	Ergebnisse:
+			*		1. Unser logError() (in eine Datei) ist in der Regel schneller als std::cerr (oft auch gleich schnell).
+			*		2. Unser logError() (in den std::cerr stream) ist in der Regel ca. zehn mal langsamer als der normale std::cerr Aufruf.
+			*		3. Gleiches gilt für logStandard().
+			*		4. Ohne std::endl geht das Loggen um einiges schneller! Also immer "\n".
+			*/
 
 #pragma endregion
 		}
