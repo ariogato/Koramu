@@ -130,6 +130,16 @@ void Game::handleInput()
 		if (e.type == SDL_QUIT)
 		{
 			m_running = false;
+#pragma region testStuff
+			auto start = std::chrono::high_resolution_clock::now();
+			this->logError() << "test" << std::endl;
+			auto finish = std::chrono::high_resolution_clock::now();
+
+			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
+
+			this->logError() << duration.count() << std::endl;
+
+#pragma endregion
 		}
 	}
 }

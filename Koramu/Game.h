@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <SDL.h>
 #include <iostream>
 #include <string>
@@ -74,7 +75,7 @@ public:
 	/*	Log Objekte werden zurückgegeben, damit man mit einem
 	*	Stream Operator auf sie zugreifen kann.
 	*/
-	Logger& log() { return *m_pStandardLog; }
+	Logger& logStandard() { return *m_pStandardLog; }
 	Logger& logError() { return *m_pErrorLog; }
 
 
