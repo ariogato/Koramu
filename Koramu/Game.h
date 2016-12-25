@@ -43,8 +43,8 @@ private:
 	SDL_Renderer* m_pRenderer;
 
 	//	Logger Variablen
-	Logger* standardLog;
-	Logger* errorLog;
+	Logger* m_pStandardLog;
+	Logger* m_pErrorLog;
 
 	bool m_running;
 	int m_gameWidth;
@@ -74,8 +74,8 @@ public:
 	/*	Log Objekte werden zurückgegeben, damit man mit einem
 	*	Stream Operator auf sie zugreifen kann.
 	*/
-	Logger* log() { return standardLog; }
-	Logger* logError() { return errorLog; }
+	Logger& log() { return *m_pStandardLog; }
+	Logger& logError() { return *m_pErrorLog; }
 
 
 	/*	Wichtig für Singleton-Klasse

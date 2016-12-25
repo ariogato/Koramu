@@ -13,7 +13,7 @@
 class Logger
 {
 private:
-	std::ostream* m_outputStream;			//	Der Stream, dem die Nachricht übergeben wird (kann auch ofstream sein)
+	std::ostream* m_pOutputStream;			//	Der Stream, dem die Nachricht übergeben wird (kann auch ofstream sein)
 	bool heap;								//	Gibt an ob wir outputStream selber befüllt haben oder nicht (wichtig für Destruktor)
 
 public:
@@ -21,10 +21,24 @@ public:
 	Logger(std::string);						//	Konstruktor für eine Logdatei
 	~Logger();									//	Destruktor
 	
-	template<typename T>
-	friend Logger& operator<<(Logger&, const T&);
+
+	/*	Ab hier wird der Stream Operator überladen.
+	*	D.h. wir können in Zukunft unser log Objekt wie std::cout verwenden.
+	*	Bsp.:
+	*		TheGame::Instance()->logError() << 12 << std::endl << "geil!" << std::endl;
+	*/
+	template<class T>
+	Logger& operator<<(const T& msg)								//	Hier wird der Operator für alle klassischen Datentypen überladen.
+	{
+		*(this->m_pOutputStream) << msg;
+		return *this;
+	}
+
+
+	std::ostream& operator<<(std::ostream& (*f)(std::ostream&))		//	Hier wird der Operator für z.B. std::endl überladen
+	{
+		return f(*m_pOutputStream);
+	}
 
 };
 
-template<typename T>
-Logger& operator<<(Logger&, const T&);

@@ -1,7 +1,7 @@
 #include "Logger.h"
 
 Logger::Logger(std::ostream& os)
-	: m_outputStream(&os), heap(false)
+	: m_pOutputStream(&os), heap(false)
 {
 	/*	Der Funktion kann ein ostream Objekt übergeben werden.
 	*	Wenn nichts übergeben wird, wird einfach std::cout verwendet.
@@ -32,7 +32,7 @@ Logger::Logger(std::string filename)
 				  << std::endl << "std::cout wird nun als Logersatz verwendet!" << std::endl;
 
 		//	outputStream mit std::cout initialisieren
-		m_outputStream = &std::cout;
+		m_pOutputStream = &std::cout;
 
 		//	Auch speichern, dass outputStream mit std::cout initialisiert wurde
 		heap = false;
@@ -41,7 +41,7 @@ Logger::Logger(std::string filename)
 	/*	Ab hier ist klar, dass die Datei geöffnet wurde.
 	*	Nun müssen wir outputStream mit ofs initialisieren.
 	*/
-	m_outputStream = ofs;
+	m_pOutputStream = ofs;
 
 	//	Speichern, dass outputStream selber befüllt wurde
 	heap = true;
@@ -54,12 +54,7 @@ Logger::~Logger()
 	*	Sonst zeigt outputStream auf cout und um cout kümmert sich schon jemand anderes
 	*/
 
-	if (heap) delete m_outputStream;
+	if (heap) delete m_pOutputStream;
 }
 
-template<typename T>
-Logger& operator<<(Logger& log, const T& msg)
-{
-	*(log.m_outputStream) << msg;
-	return log;
-}
+

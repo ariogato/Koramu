@@ -32,6 +32,10 @@ Game::Game()								//	Konstruktor
 */
 Game::~Game()								//	Destruktor
 {
+	//	Dynamisch allozierte Objeke löschen
+	delete m_pStandardLog;
+	delete m_pErrorLog;
+
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
 	IMG_Quit();									//	SDL_image beenden
@@ -93,8 +97,8 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
 		//	Die Logger initialisieren
-		standardLog = new Logger();
-		errorLog = new Logger("../logs/errors.txt");
+		m_pStandardLog = new Logger();
+		m_pErrorLog = new Logger("../logs/errors.txt");
 
 		//	Das lässt die main-Schleife laufen
 		m_running = true;
@@ -126,7 +130,6 @@ void Game::handleInput()
 		if (e.type == SDL_QUIT)
 		{
 			m_running = false;
-			*(this->logError()) << 12;
 		}
 	}
 }
