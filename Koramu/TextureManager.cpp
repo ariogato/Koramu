@@ -132,6 +132,9 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 
 void TextureManager::clearFromTextureMap(std::string id) 
 {
+	//	Zuerst wird der Speicherplatz der Textur freigegeben
+	SDL_DestroyTexture(m_textureMap[id]);
+
 	/*	std::map::erase gibt die Anzahl an gelöschten Elementen
 	*	zurück, also checken wir ob etwas gelöscht wurde.
 	*/
