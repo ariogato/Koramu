@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>572</x>
+      <x>363</x>
       <y>297</y>
       <w>319</w>
       <h>385</h>
@@ -36,15 +36,15 @@ logError(msg : template&lt;typename T&gt;) : void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1155</x>
+      <x>946</x>
       <y>990</y>
       <w>264</w>
       <h>220</h>
     </coordinates>
     <panel_attributes>/GameState/
 --
-- m_stateID : GameStateIDs
-- m_gameObjects : GameObject[0..*]
+# m_stateID : GameStateIDs
+# m_gameObjects : GameObject[0..*]
 --
 /+ handleInput() : void/
 /+ update() : void/
@@ -59,7 +59,7 @@ logError(msg : template&lt;typename T&gt;) : void</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>572</x>
+      <x>363</x>
       <y>220</y>
       <w>154</w>
       <h>77</h>
@@ -74,7 +74,7 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2156</x>
+      <x>1947</x>
       <y>363</y>
       <w>132</w>
       <h>121</h>
@@ -91,7 +91,7 @@ puaseState
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1001</x>
+      <x>792</x>
       <y>330</y>
       <w>1342</w>
       <h>1133</h>
@@ -105,7 +105,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1023</x>
+      <x>814</x>
       <y>385</y>
       <w>319</w>
       <h>231</h>
@@ -128,7 +128,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1034</x>
+      <x>825</x>
       <y>1287</y>
       <w>165</w>
       <h>143</h>
@@ -142,7 +142,7 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1144</x>
+      <x>935</x>
       <y>1199</y>
       <w>165</w>
       <h>110</h>
@@ -153,7 +153,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1408</x>
+      <x>1199</x>
       <y>1287</y>
       <w>165</w>
       <h>143</h>
@@ -167,7 +167,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1221</x>
+      <x>1012</x>
       <y>1287</y>
       <w>165</w>
       <h>143</h>
@@ -181,7 +181,7 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1287</x>
+      <x>1078</x>
       <y>1199</y>
       <w>33</w>
       <h>110</h>
@@ -192,7 +192,7 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1298</x>
+      <x>1089</x>
       <y>1199</y>
       <w>176</w>
       <h>110</h>
@@ -203,7 +203,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1518</x>
+      <x>1309</x>
       <y>396</y>
       <w>275</w>
       <h>187</h>
@@ -219,7 +219,7 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1331</x>
+      <x>1122</x>
       <y>440</y>
       <w>209</w>
       <h>55</h>
@@ -233,7 +233,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1507</x>
+      <x>1298</x>
       <y>660</y>
       <w>198</w>
       <h>88</h>
@@ -249,7 +249,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1738</x>
+      <x>1529</x>
       <y>660</y>
       <w>187</w>
       <h>88</h>
@@ -265,7 +265,7 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1683</x>
+      <x>1474</x>
       <y>572</y>
       <w>121</w>
       <h>110</h>
@@ -276,7 +276,7 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1540</x>
+      <x>1331</x>
       <y>572</y>
       <w>154</w>
       <h>110</h>
@@ -287,7 +287,7 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1408</x>
+      <x>1199</x>
       <y>737</y>
       <w>374</w>
       <h>352</h>
@@ -301,7 +301,7 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1782</x>
+      <x>1573</x>
       <y>473</y>
       <w>264</w>
       <h>231</h>
@@ -315,7 +315,7 @@ m2=0,1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>891</x>
+      <x>682</x>
       <y>0</y>
       <w>583</w>
       <h>154</h>
@@ -333,7 +333,7 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>572</x>
+      <x>363</x>
       <y>814</y>
       <w>253</w>
       <h>253</h>
@@ -352,7 +352,7 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>209</x>
+      <x>0</x>
       <y>352</y>
       <w>264</w>
       <h>121</h>
@@ -368,7 +368,7 @@ print(msg : template&lt;typename T&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>462</x>
+      <x>253</x>
       <y>374</y>
       <w>132</w>
       <h>55</h>
@@ -382,7 +382,7 @@ has</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>671</x>
       <y>440</y>
       <w>165</w>
       <h>55</h>
