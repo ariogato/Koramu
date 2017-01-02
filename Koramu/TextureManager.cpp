@@ -84,6 +84,10 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 	srcRect.w = destRect.w = width;
 	srcRect.h = destRect.h = height;
 
+	/*	Die Position auf der Textur ist hier (0|0), weil 
+	*	wir immer beim Aufruf dieser Funktion das ganze Bild rendern wollen.
+	*	Falls mal nicht das ganze Bild gerendert werden soll, muss hier was geändert werden.
+	*/
 	srcRect.x = srcRect.y = 0;
 	
 	//	Hier wird die Postition im Fenster gesetzt
@@ -91,6 +95,38 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 	destRect.y = y;
 
 	//	Jetzt müssen wir die gewünschte Textur noch in den Renderer stecken
+	SDL_RenderCopy(pRenderer, m_textureMap[id], &srcRect, &destRect);
+}
+
+void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int frameRow, int frameCol, SDL_Renderer* pRenderer)
+{
+	/*	Für mehr Info siehe Kommentare in TextureManager::draw
+	*/
+
+	SDL_Rect destRect;
+	SDL_Rect srcRect;
+
+	srcRect.w = destRect.w = width;
+	srcRect.h = destRect.h = height;
+
+	/*	Wir wollen nur ein Bild in dem Spritesheet erfassen.
+	*	Um das zu erreichen wird die x- & y-Position des Source Rectangles
+	*	variieren. 
+	*
+	*	frameRow (Reihe):
+	*		- y-Position... wird mit der Höhe der einzelnen Bilder (Frames) multipliziert,
+	*		  damit die nächste Reihe erreicht wird.
+	*	frameCol (Spalte):
+	*		- Das Gleiche wie frameRow in grün.
+	*
+	*	--> Man fängt bei 0 an zu zählen.
+	*/
+	srcRect.x = frameCol * width;
+	srcRect.y = frameRow * height;
+
+	destRect.x = x;
+	destRect.y = y;
+
 	SDL_RenderCopy(pRenderer, m_textureMap[id], &srcRect, &destRect);
 }
 

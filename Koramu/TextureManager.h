@@ -12,6 +12,8 @@
 *	
 *	Für genauere Informationen zu Singleton Klassen sind die 
 *	Kommentare in "Game.h" zu beachten
+*
+*	Diese Klasse soll uns helfen mit Texturen (bzw. defacto PNG-Dateien) umzugehen.
 */
 
 class TextureManager {
@@ -28,11 +30,17 @@ private:
 
 public:
 	//	Memberfunktionen
-	bool load(std::string id, std::string fileName, SDL_Renderer* pRenderer);
-	void draw(std::string id, 
+	bool load(std::string id, std::string fileName, SDL_Renderer* pRenderer);			//	Die Texturen in die map laden
+
+	void draw(std::string id,															//	Eine bestimmte Textur zeichnen
 		int x, int y, int width, int height, 
 		SDL_Renderer* pRenderer);
-	void clearFromTextureMap(std::string id);
+	void drawFrame(std::string id,														//	Einen Teil einer Textur zeichnen
+		int x, int y, int width, int height,
+		int frameRow, int frameCol,
+		SDL_Renderer* pRenderer);
+	
+	void clearFromTextureMap(std::string id);											//	Die Texturen von der map löschen
 
 
 	/*	Funktion 'Instance()', die bei Aufruf die statische(ebenfalls 'private')
