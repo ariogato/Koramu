@@ -175,7 +175,8 @@ void Game::render()
 	SDL_RenderClear(m_pRenderer);
 
 #pragma region testStuff
-	TheTextureManager::Instance()->draw("test", 100, 100, 128, 82, m_pRenderer);
+	int frame = (int)(SDL_GetTicks() / 100) % 6;
+	TheTextureManager::Instance()->drawFrame("test", 100, 100, 128, 82, 0, frame, m_pRenderer);
 #pragma endregion
 
 	//	Jetzt wird alles auf den Bildschirm geschmissen
