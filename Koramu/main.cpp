@@ -60,7 +60,6 @@ int main(int argc, char** argv)
 
 		//	Sobald das Spiel nicht mehr läuft wird aufgeräumt
 		TheGame::Instance()->destroy();
-		TheTextureManager::Instance()->destroy();
 	}
 
 	std::cout << "ByeBye" << std::endl;

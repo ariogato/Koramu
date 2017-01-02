@@ -201,6 +201,9 @@ Game* Game::Instance()
 //	Wichtig für Singleton-Klasse
 void Game::destroy()
 {
+	//	Den TextureManager bei Beendigung des Spiels zerstören
+	TheTextureManager::Instance()->destroy();
+
 	//	Den Destruktor aufrufen
 	delete s_pInstance;
 
