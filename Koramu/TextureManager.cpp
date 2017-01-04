@@ -1,4 +1,5 @@
 #include "TextureManager.h"
+#include "Game.h"
 
 //	Wichtig für Singleton-Klasse
 
@@ -29,13 +30,14 @@ bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pR
 	*/
 	if (!pRenderer)
 	{
-		std::cerr << "TextureManager::load():\nEs wurde kein gültiger Renderer übergeben!" << std::endl;
+		TheGame::Instance()->logError() << "TextureManager::load():\nEs wurde kein gültiger Renderer übergeben!" << std::endl;
 		return false;
 	}
 	//	Gibt es schon eine Textur mit dieser id?
 	if (m_textureMap.count(id))
 	{
-		std::cerr << "TextureManager::load():\nEine Textur mit der id: " << id << " existiert bereits!" << std::endl;
+
+		TheGame::Instance()->logError() << "TextureManager::load():\nEine Textur mit der id: " << id << " existiert bereits!" << std::endl;
 		return false;
 	}
 
@@ -45,7 +47,7 @@ bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pR
 	//	Falls die Datei nicht gefunden wurde
 	if (!tempSurface)
 	{
-		std::cerr << "TextureManager::load():\n" << SDL_GetError();
+		TheGame::Instance()->logError() << "TextureManager::load():\n" << SDL_GetError();
 		return false;
 	}
 
@@ -140,7 +142,7 @@ void TextureManager::clearFromTextureMap(std::string id)
 	*/
 	if (!m_textureMap.erase(id))
 	{
-		std::cerr << "TextureManager::clearFromTextureMap():\nEs wurde keine Textur mit der id: " << id << " gefunden" << std::endl;
+		TheGame::Instance()->logError() << "TextureManager::clearFromTextureMap():\nEs wurde keine Textur mit der id: " << id << " gefunden" << std::endl;
 	}
 }
 

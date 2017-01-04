@@ -52,6 +52,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
 	{
 		//	Die Initialisierung von SDL ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+
 		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
@@ -63,13 +64,15 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		*/
 
 		//	Falls wir hier ankommen, ist etwas kaputt gegangen
-		std::cerr << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
+
+		std::cerr<< "IMG_Init failed: \n" << IMG_GetError() << std::endl;
 		return false;
 	}
 	else 
 	{
 		//	Die initialisierung von SDL & SDL_image war erfolgreich!
-		std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl << 
+
+		std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
 						"SDL_image wurde erfolgreich initialisiert!" << std::endl;
 
 
@@ -80,10 +83,12 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		if (!m_pWindow) 
 		{
 			//	Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+
 			std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
 			return false;
 		}
 		//	Das Fenster wurde erfolgreich erstellt
+
 		std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
 
 
@@ -94,10 +99,12 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		if (!m_pRenderer)
 		{
 			//	Die Erstellung des Renderers ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+
 			std::cerr << "Could not create renderer: \n" << SDL_GetError() << std::endl;
 			return false;
 		}
 		//	Der Renderer wurde erfolgreich erstellt
+
 		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
 		//	Das lässt die main-Schleife laufen
@@ -142,7 +149,7 @@ void Game::handleInput()
 
 			//	Zweiter test-durchlauf
 			auto start1 = std::chrono::high_resolution_clock::now();
-			std::cout << "test" << std::endl;
+			TheGame::Instance()->logStandard() << "test" << std::endl;
 			auto finish1 = std::chrono::high_resolution_clock::now();
 
 			auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(finish1 - start1);
