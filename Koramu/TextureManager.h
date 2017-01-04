@@ -33,12 +33,10 @@ public:
 	bool load(std::string id, std::string fileName, SDL_Renderer* pRenderer);			//	Die Texturen in die map laden
 
 	void draw(std::string id,															//	Eine bestimmte Textur zeichnen
-		int x, int y, int width, int height, 
-		SDL_Renderer* pRenderer);
+		int x, int y, int width, int height);
 	void drawFrame(std::string id,														//	Einen Teil einer Textur zeichnen
 		int x, int y, int width, int height,
-		int frameRow, int frameCol,
-		SDL_Renderer* pRenderer);
+		int frameRow, int frameCol);
 	
 	void clearFromTextureMap(std::string id);											//	Die Texturen von der map löschen
 

@@ -64,7 +64,7 @@ bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pR
 	return true;
 }
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer)
+void TextureManager::draw(std::string id, int x, int y, int width, int height)
 {
 	/*	Um etwas bei SDL zu rendern, brauchen wir zwei Rechtecke.
 	*		1. Source Rectangle:
@@ -97,10 +97,10 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 	destRect.y = y;
 
 	//	Jetzt müssen wir die gewünschte Textur noch in den Renderer stecken
-	SDL_RenderCopy(pRenderer, m_textureMap[id], &srcRect, &destRect);
+	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int frameRow, int frameCol, SDL_Renderer* pRenderer)
+void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int frameRow, int frameCol)
 {
 	/*	Für mehr Info siehe Kommentare in TextureManager::draw
 	*/
@@ -129,7 +129,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	destRect.x = x;
 	destRect.y = y;
 
-	SDL_RenderCopy(pRenderer, m_textureMap[id], &srcRect, &destRect);
+	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect);
 }
 
 void TextureManager::clearFromTextureMap(std::string id) 
