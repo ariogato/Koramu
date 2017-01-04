@@ -7,8 +7,8 @@
 *	sind nur zum Debuggen da. Sie werden später evtl. ersetzt
 */
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 800
 
 //	für die smoothness 
 const int FPS = 60;

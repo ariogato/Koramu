@@ -106,7 +106,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 #pragma region testStuff
 		//	eine Textur hinzufügen
-		TheTextureManager::Instance()->load("test", "../assets/test.png", m_pRenderer);
+		TheTextureManager::Instance()->load("test", "../assets/Player.png", m_pRenderer);
 #pragma endregion
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
@@ -176,8 +176,8 @@ void Game::render()
 	SDL_RenderClear(m_pRenderer);
 
 #pragma region testStuff
-	int frame = (int)(SDL_GetTicks() / 100) % 6;
-	TheTextureManager::Instance()->drawFrame("test", 100, 100, 128, 82, 0, frame);
+	int frame = (int)(SDL_GetTicks() / 200) % 4;
+	TheTextureManager::Instance()->drawFrame("test", 100, 100, 70, 180, 3, frame);
 #pragma endregion
 
 	//	Jetzt wird alles auf den Bildschirm geschmissen
