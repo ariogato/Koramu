@@ -36,5 +36,5 @@ public:
 
 	//	set-Funnktionen
 	void setX(float x) { m_xComponent = x; }
-	void setY(float y) { m_xComponent = y; }
+	void setY(float y) { m_yComponent = y; }
 };
