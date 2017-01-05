@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ParamLoader.h"
+
 /*	Abstrakte Klasse von der jede Klasse, die etwas auf dem 
 *	Bildschirm macht erbt.
 */
@@ -17,7 +19,7 @@ protected:
 
 public:
 	//	Folgende Memberfunktionen werden erst in der abgeleiteten Klasse definiert
-	virtual void load() = 0;
+	virtual void load(const ParamLoader&) = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
 	
