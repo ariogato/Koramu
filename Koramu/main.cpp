@@ -2,6 +2,12 @@
 #include <SDL.h>
 #include "Game.h"
 
+#define DEBUG 1
+
+#if DEBUG
+#include "Test.h"
+#endif
+
 /*	Die Präprozessor-Makros 
 *	(so nennt man die "Variablen" (oder "Funktionen") mit #define)
 *	sind nur zum Debuggen da. Sie werden später evtl. ersetzt
@@ -47,6 +53,11 @@ int main(int argc, char** argv)
 			TheGame::Instance()->handleInput();			
 			TheGame::Instance()->update();
 			TheGame::Instance()->render();
+
+#if DEBUG
+			//	Ein Aufruf aller Funktionen, die zu testen sind
+			TheTester::Instance()->testFunctions();
+#endif 
 
 			/*	Die Zeit, die nun gewartet werden muss, damit eine konstante 60-FPS performance
 			*	entsteht, wird jetzt ausgerechnet und 'SDL_Delay()' übergeben.

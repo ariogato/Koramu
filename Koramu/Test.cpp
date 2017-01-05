@@ -4,7 +4,7 @@ Test* Test::s_pInstance = nullptr;	//Wichtig für Singleteon-Klasse
 
 Test::Test()						//Konstruktor
 {
-	
+	v = new Vector2D(3.0f, 3.0f);
 };
 
 Test::~Test()						//Destruktor
@@ -14,7 +14,15 @@ Test::~Test()						//Destruktor
 
 void Test::testFunctions()
 {
-	
+	//	Damit nur am Ende ab GameOver ausgegeben wird
+	if (!TheGame::Instance()->isRunning())
+	{
+		Vector2D v2(1.0f, 2.0f);
+
+		*v = v2;
+
+		TheGame::Instance()->logStandard() << v->getX() << std::endl << v->getY() << std::endl;
+	}
 };
 
 //	Wichtig für Singleton-Klasse

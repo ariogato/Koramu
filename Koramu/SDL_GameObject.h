@@ -18,7 +18,7 @@
 class SDL_GameObject : protected GameObject
 {
 private:
-	//TODO: 
+	//	TODO: Vector2D als Ortsvektor
 	int m_numFrames;								//	Die Anzahl der Frames auf dem Spritesheet (in einer Reihe)
 	int m_animSpeed;								//	Die Animationsgeschwindigkeit (Wie schnell die Bilder hintereinander abgespielt werden)
 	std::string m_textureId;						//	Die Id, unter der die Textur im TextureManager gespeichert wurde
