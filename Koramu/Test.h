@@ -2,7 +2,9 @@
 
 //	Header von zu testenden Klassen müssen immer einbezogen werden
 #include "Game.h"
-#include "Vector2D.h"
+#include "TextureManager.h"
+#include "SDL_GameObject.h"
+#include "ParamLoader.h"
 
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
@@ -19,8 +21,8 @@ private:
 	Test();		//	Konstruktor
 	~Test();	//	Destruktor
 
-#pragma region TestAttribute
-	Vector2D* v;
+#pragma region TestAttributes
+	SDL_GameObject* player;
 #pragma endregion
 
 public:
