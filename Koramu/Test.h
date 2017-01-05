@@ -1,6 +1,8 @@
 #pragma once
 
 //	Header von zu testenden Klassen müssen immer einbezogen werden
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include "Game.h"
 #include "TextureManager.h"
 #include "SDL_GameObject.h"
@@ -23,6 +25,10 @@ private:
 
 #pragma region TestAttributes
 	SDL_GameObject* player;
+	Mix_Music* backgroundMusic;
+
+	TTF_Font* font;
+	SDL_Texture* message;
 #pragma endregion
 
 public:

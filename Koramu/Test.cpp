@@ -4,6 +4,7 @@ Test* Test::s_pInstance = nullptr;	//Wichtig für Singleteon-Klasse
 
 Test::Test()						//Konstruktor
 {
+#pragma region SDL_GameObjectTest
 	//	eine Textur hinzufügen
 	TheTextureManager::Instance()->load("player", "../assets/Player.png", TheGame::Instance()->getRenderer());
 
@@ -20,12 +21,40 @@ Test::Test()						//Konstruktor
 	params.setY(100.0f);
 
 	player->load(params);
+#pragma endregion
+
+#pragma region testMusic
+	Mix_Init(MIX_INIT_OGG);
+
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+	backgroundMusic = Mix_LoadMUS("../assets/undertale_example.ogg");
+#pragma endregion
+
+#pragma region fontTest
+	TTF_Init();
+
+	font = TTF_OpenFont("../assets/testFont.TTF", 28);
+
+	SDL_Color white = {255, 255, 255};
+
+	SDL_Surface* tempMessage = TTF_RenderText_Solid(font, "Koramu", white);
+
+	message = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), tempMessage);
+#pragma endregion
 
 };
 
 Test::~Test()						//Destruktor
 {
+#pragma region testMusic
+	Mix_FreeMusic(backgroundMusic);
+	Mix_Quit();
+#pragma endregion
 
+#pragma region fontTest
+	TTF_Quit();
+#pragma endregion
 };
 
 
@@ -67,9 +96,29 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region SDL_GameObjectTest
-	player->update();
-	
-	player->draw();
+	if (player->getPosition().getX() >= -200.0f)
+	{
+		player->update();
+
+		player->draw();
+	}
+#pragma endregion
+
+#pragma region testMusic
+	if (!Mix_PlayingMusic())
+		Mix_PlayMusic(backgroundMusic, -1);
+		
+#pragma endregion
+
+#pragma region fontTest
+	if (player->getPosition().getX() >= -200.0f)
+	{
+		SDL_Rect messageRect = { 400, 300, 200, 200 };
+
+		messageRect.x = player->getPosition().getX();
+
+		SDL_RenderCopy(TheGame::Instance()->getRenderer(), message, NULL, &messageRect);
+	}
 #pragma endregion
 };
 
