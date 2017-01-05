@@ -27,6 +27,9 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -45,6 +48,7 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SDL_GameObject.h">
+    <ClInclude Include="Test.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
