@@ -48,8 +48,8 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SDL_GameObject.h">
-	  <Filter>Headerdateien</Filter>
-	</ClInclude>
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
     <ClInclude Include="Test.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
