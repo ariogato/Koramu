@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -26,3 +26,5 @@ private:
 	//	Notwendig für Singleton-Klasse
 	static Test* s_pInstance;
 };
+
+typedef Test TheTester;
