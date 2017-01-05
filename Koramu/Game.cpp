@@ -104,10 +104,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		//	Das lässt die main-Schleife laufen
 		m_running = true;
 
-#pragma region testStuff
-		//	eine Textur hinzufügen
-		TheTextureManager::Instance()->load("test", "../assets/Player.png", m_pRenderer);
-#pragma endregion
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;
@@ -131,33 +127,6 @@ void Game::handleInput()
 		if (e.type == SDL_QUIT)
 		{
 			m_running = false;
-#pragma region testStuff
-			//	Erster Durchlauf
-			auto start = std::chrono::high_resolution_clock::now();
-			this->logError() << "test" << std::endl;
-			auto finish = std::chrono::high_resolution_clock::now();
-
-			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
-
-			this->logStandard() << "Duration: "<< duration.count() << std::endl << std::endl;
-
-			//	Zweiter test-durchlauf
-			auto start1 = std::chrono::high_resolution_clock::now();
-			std::cout << "test" << std::endl;
-			auto finish1 = std::chrono::high_resolution_clock::now();
-
-			auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(finish1 - start1);
-
-			this->logStandard() << "Duration: " << duration1.count() << std::endl << std::endl;
-
-			/*	Ergebnisse:
-			*		1. Unser logError() (in eine Datei) ist in der Regel schneller als std::cerr (oft auch gleich schnell).
-			*		2. Unser logError() (in den std::cerr stream) ist in der Regel ca. zehn mal langsamer als der normale std::cerr Aufruf.
-			*		3. Gleiches gilt für logStandard().
-			*		4. Ohne std::endl geht das Loggen um einiges schneller! Also immer "\n".
-			*/
-
-#pragma endregion
 		}
 	}
 }
@@ -176,8 +145,7 @@ void Game::render()
 	SDL_RenderClear(m_pRenderer);
 
 #pragma region testStuff
-	int frame = (int)(SDL_GetTicks() / 200) % 4;
-	TheTextureManager::Instance()->drawFrame("test", 100, 100, 70, 180, 3, frame);
+	TheTester::Instance()->testFunctions();
 #pragma endregion
 
 	//	Jetzt wird alles auf den Bildschirm geschmissen

@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 #include "TextureManager.h"
 #include "Logger.h"
+#include "Test.h"
 
 class Game
 {
