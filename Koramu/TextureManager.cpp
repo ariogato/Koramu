@@ -18,7 +18,7 @@ TextureManager::~TextureManager()	//	Destruktor
 	*	der diese löscht. Sonst entsteht ein übles Speicherleck!!!
 	*/
 
-	//	Destruktor bitte befüllen, falls obiges zutrifft
+	//	Destruktor bitte befüllen, sobald obiges zutrifft
 }
 
 
@@ -113,7 +113,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 
 	/*	Wir wollen nur ein Bild in dem Spritesheet erfassen.
 	*	Um das zu erreichen wird die x- & y-Position des Source Rectangles
-	*	variieren. 
+	*	variiert. 
 	*
 	*	frameRow (Reihe):
 	*		- y-Position... wird mit der Höhe der einzelnen Bilder (Frames) multipliziert,

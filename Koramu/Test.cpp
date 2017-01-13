@@ -1,5 +1,11 @@
 #include "Test.h"
 
+/* 
+*	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
+*	(eher letzteres)
+*	Wäre wichtig für mein Verständnis dafür, wie wir mit Texturen und Musik arbeiten.
+*/
+
 Test* Test::s_pInstance = nullptr;	//Wichtig für Singleteon-Klasse
 
 Test::Test()						//Konstruktor

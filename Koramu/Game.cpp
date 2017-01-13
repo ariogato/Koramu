@@ -58,7 +58,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	else if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
 	{ 
 		/*	Das Zeug in der obigen Zeile bedeutet nur,
-		*	dass man checkt ob das was man initialisieren wollte auch wirklich
+		*	dass man checkt, ob das, was man initialisieren wollte auch wirklich
 		*	erfolgreich initialisiert wurde.
 		*/
 

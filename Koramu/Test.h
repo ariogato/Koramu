@@ -23,6 +23,7 @@ private:
 	Test();		//	Konstruktor
 	~Test();	//	Destruktor
 
+//	TODO: erklären bzw. kommentieren
 #pragma region TestAttributes
 	SDL_GameObject* player;
 	Mix_Music* backgroundMusic;

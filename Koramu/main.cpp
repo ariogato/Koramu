@@ -25,8 +25,8 @@ int main(int argc, char** argv)
 	/*	Um die Zeit zu messen, 
 	*	die für einen Durchlauf benötigt wurde
 	*	
-	*	Uint32 - weil SDL_GetTicks diesen Datentypen zurückgibt
-	*		  - ist einfach ein 32-bit Integer
+	*	Uint32 (weil SDL_GetTicks diesen Datentypen zurückgibt)
+	*	ist einfach ein 32-bit Integer
 	*/
 	Uint32 startTime, frameTime;
 
