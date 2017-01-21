@@ -14,7 +14,7 @@ class Logger
 {
 private:
 	std::ostream* m_pOutputStream;			//	Der Stream, dem die Nachricht übergeben wird (kann auch ofstream sein)
-	bool heap;								//	Gibt an ob wir outputStream selber befüllt haben oder nicht (wichtig für Destruktor)
+	bool m_heap;							//	Gibt an ob wir outputStream selber befüllt haben oder nicht (wichtig für Destruktor)
 
 public:
 	Logger(std::ostream& = std::cout);						//	Konstruktor für cout

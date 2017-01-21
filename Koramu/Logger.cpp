@@ -1,7 +1,7 @@
 #include "Logger.h"
 
 Logger::Logger(std::ostream& os)
-	: m_pOutputStream(&os), heap(false)
+	: m_pOutputStream(&os), m_heap(false)
 {
 	/*	Der Funktion kann ein ostream Objekt übergeben werden.
 	*	Wenn nichts übergeben wird, wird einfach std::cout verwendet.
@@ -35,7 +35,7 @@ Logger::Logger(std::string filename)
 		m_pOutputStream = &std::cout;
 
 		//	Auch speichern, dass outputStream mit std::cout initialisiert wurde
-		heap = false;
+		m_heap = false;
 	}
 	else
 	{
@@ -45,7 +45,7 @@ Logger::Logger(std::string filename)
 		m_pOutputStream = ofs;
 
 		//	Speichern, dass outputStream selber befüllt wurde
-		heap = true;
+		m_heap = true;
 	}
 }
 
@@ -56,7 +56,7 @@ Logger::~Logger()
 	*	Sonst zeigt outputStream auf cout und um cout kümmert sich schon jemand anderes
 	*/
 
-	if (heap) delete m_pOutputStream;
+	if (m_heap) delete m_pOutputStream;
 }
 
 
