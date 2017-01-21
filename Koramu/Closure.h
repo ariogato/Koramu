@@ -2,7 +2,6 @@
 
 #include "StackElement.h"
 #include "Node.h"
-#include "Data.h"
 
 /*	Teil unseres Stapels. Entspricht dem "Abschluss" aus dem Infounterricht.
 *	Erbt von StackElement.

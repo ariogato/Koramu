@@ -71,9 +71,6 @@
     <ClInclude Include="StackElement.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Closure.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>

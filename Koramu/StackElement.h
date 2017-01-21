@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Data.h"
-
 /*	Teil unseres Stapels. Entspricht dem "Stapelelement" aus dem Infounterricht.
 *	
 *	Von dieser Klasse erben "Abschluss"("Closure") und "Knoten"("Node").

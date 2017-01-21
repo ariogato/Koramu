@@ -1,7 +1,6 @@
 #pragma once
 
 #include "StackElement.h"
-#include "Data.h"
 
 /*	Teil unseres Stapels. Entspricht dem "Knoten" aus dem Infounterricht.
 *	Erbt von StackElement.
