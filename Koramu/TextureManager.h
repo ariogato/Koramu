@@ -16,7 +16,8 @@
 *	Diese Klasse soll uns helfen mit Texturen (bzw. defacto PNG-Dateien) umzugehen.
 */
 
-class TextureManager {
+class TextureManager 
+{
 private:
 	TextureManager();	//	Konstruktor
 	~TextureManager();	//	Destruktor

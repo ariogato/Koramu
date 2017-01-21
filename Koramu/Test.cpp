@@ -126,6 +126,10 @@ void Test::testFunctions()
 		SDL_RenderCopy(TheGame::Instance()->getRenderer(), message, NULL, &messageRect);
 	}
 #pragma endregion
+
+#pragma region stackTest
+
+#pragma endregion
 };
 
 

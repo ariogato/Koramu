@@ -80,7 +80,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		if (!m_pWindow) 
 		{
 			//	Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-
 			std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
 			return false;
 		}

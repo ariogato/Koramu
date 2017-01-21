@@ -36,8 +36,8 @@ logError(msg : template&lt;typename T&gt;) : void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>946</x>
-      <y>990</y>
+      <x>1309</x>
+      <y>1342</y>
       <w>264</w>
       <h>220</h>
     </coordinates>
@@ -74,8 +74,8 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1947</x>
-      <y>363</y>
+      <x>1760</x>
+      <y>1276</y>
       <w>132</w>
       <h>121</h>
     </coordinates>
@@ -91,10 +91,10 @@ puaseState
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>792</x>
-      <y>330</y>
-      <w>1342</w>
-      <h>1133</h>
+      <x>1122</x>
+      <y>1155</y>
+      <w>891</w>
+      <h>704</h>
     </coordinates>
     <panel_attributes>FiniteStateMachine
 --
@@ -105,7 +105,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>814</x>
+      <x>759</x>
       <y>385</y>
       <w>319</w>
       <h>231</h>
@@ -128,8 +128,8 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>825</x>
-      <y>1287</y>
+      <x>1188</x>
+      <y>1639</y>
       <w>165</w>
       <h>143</h>
     </coordinates>
@@ -142,8 +142,8 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>935</x>
-      <y>1199</y>
+      <x>1298</x>
+      <y>1551</y>
       <w>165</w>
       <h>110</h>
     </coordinates>
@@ -153,8 +153,8 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1199</x>
-      <y>1287</y>
+      <x>1562</x>
+      <y>1639</y>
       <w>165</w>
       <h>143</h>
     </coordinates>
@@ -167,8 +167,8 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1012</x>
-      <y>1287</y>
+      <x>1375</x>
+      <y>1639</y>
       <w>165</w>
       <h>143</h>
     </coordinates>
@@ -181,8 +181,8 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1078</x>
-      <y>1199</y>
+      <x>1441</x>
+      <y>1551</y>
       <w>33</w>
       <h>110</h>
     </coordinates>
@@ -192,8 +192,8 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1089</x>
-      <y>1199</y>
+      <x>1452</x>
+      <y>1551</y>
       <w>176</w>
       <h>110</h>
     </coordinates>
@@ -203,114 +203,100 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1309</x>
+      <x>1584</x>
       <y>396</y>
-      <w>275</w>
+      <w>319</w>
       <h>187</h>
     </coordinates>
     <panel_attributes>/StackElement/
 --
 --
-/+ push() : StackElement/
-/+ pop() : StackElement/
-/+ getData() : GameState/</panel_attributes>
+/+ push(newNode : Node) : StackElement/
+/+ getData() : Data/
+/+ getSuccessor() : StackElement*/</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1122</x>
-      <y>440</y>
-      <w>209</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;
-currentState
-m1=0,1
-m2=1</panel_attributes>
-    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1298</x>
+      <x>1386</x>
       <y>660</y>
-      <w>198</w>
+      <w>297</w>
       <h>88</h>
     </coordinates>
     <panel_attributes>Closure
 --
 --
-+ push() : StackElement
-+ pop() : StackElement
-+ getData() : GameState</panel_attributes>
++ push(newNode : Node) : StackElement
++ getData() : Data
+/+ getSuccessor() : StackElement*/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1529</x>
+      <x>1694</x>
       <y>660</y>
-      <w>187</w>
+      <w>297</w>
       <h>88</h>
     </coordinates>
     <panel_attributes>Node
 --
 --
-+ push() : StackElement
-+ pop() : StackElement
-+ getData() : GameState</panel_attributes>
++ push(newNode : Node) : StackElement
++ getData() : Data
++ getSuccessor() : StackElement*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1474</x>
+      <x>1760</x>
       <y>572</y>
-      <w>121</w>
+      <w>110</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;80.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1331</x>
+      <x>1606</x>
       <y>572</y>
-      <w>154</w>
+      <w>99</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>70.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1199</x>
+      <x>1606</x>
       <y>737</y>
-      <w>374</w>
-      <h>352</h>
+      <w>242</w>
+      <h>275</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 handles
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>10.0;290.0;320.0;290.0;320.0;10.0</additional_attributes>
+    <additional_attributes>10.0;220.0;200.0;220.0;200.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1573</x>
+      <x>1892</x>
       <y>473</y>
-      <w>264</w>
+      <w>220</w>
       <h>231</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 successor
 m1=1
 m2=0,1</panel_attributes>
-    <additional_attributes>10.0;10.0;160.0;10.0;160.0;180.0;130.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0;120.0;180.0;90.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -384,13 +370,87 @@ has</panel_attributes>
     <coordinates>
       <x>671</x>
       <y>440</y>
-      <w>165</w>
+      <w>110</w>
       <h>55</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=1
 m2=1
 controls</panel_attributes>
-    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;80.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1375</x>
+      <y>902</y>
+      <w>242</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>/Data/
+--
+--
+/+ handleInput() : void/
+/+ update() : void/
+/+ render() : void/
+
+/+ onEnter() : void/
+/+ onExit() : void/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1166</x>
+      <y>330</y>
+      <w>1001</w>
+      <h>781</h>
+    </coordinates>
+    <panel_attributes>DataStructure
+--
+bg=green
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1551</x>
+      <y>1056</y>
+      <w>33</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1199</x>
+      <y>407</y>
+      <w>264</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Stack
+--
+--
++ push(newNode : Node) : void	
++ pop() : void
++ getFirstNodeData : Data*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1452</x>
+      <y>440</y>
+      <w>154</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+firstNode</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>

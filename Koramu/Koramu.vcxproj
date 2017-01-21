@@ -141,21 +141,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Closure.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="SDL_GameObject.cpp" />
+    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Closure.h" />
+    <ClInclude Include="Data.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="ParamLoader.h" />
     <ClInclude Include="SDL_GameObject.h" />
+    <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackElement.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Vector2D.h" />

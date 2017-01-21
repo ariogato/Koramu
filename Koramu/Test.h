@@ -7,7 +7,7 @@
 #include "TextureManager.h"
 #include "SDL_GameObject.h"
 #include "ParamLoader.h"
-
+#include "Stack.h"
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -30,6 +30,8 @@ private:
 
 	TTF_Font* font;
 	SDL_Texture* message;
+
+	DataStructure::Stack stack;
 #pragma endregion
 
 public:
