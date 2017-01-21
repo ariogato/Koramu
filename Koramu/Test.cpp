@@ -49,6 +49,9 @@ Test::Test()						//Konstruktor
 	message = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), tempMessage);
 #pragma endregion
 
+#pragma region stackTest
+	stack1.push(&a);
+#pragma endregion
 };
 
 Test::~Test()						//Destruktor
@@ -128,7 +131,10 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region stackTest
-
+	/*std::cout << *(stack1.getTopNodeData()) << std::endl;
+	stack1.push(&b);
+	std::cout << *(stack1.getTopNodeData()) << std::endl;
+	stack1.pop();*/
 #pragma endregion
 };
 

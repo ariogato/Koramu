@@ -31,7 +31,9 @@ private:
 	TTF_Font* font;
 	SDL_Texture* message;
 
-	DataStructure::Stack stack;
+	DataStructure::Stack<int> stack1;
+	int a = 1;
+	int b = 2;
 #pragma endregion
 
 public:

@@ -11,13 +11,14 @@
 
 namespace DataStructure
 {
+	template <typename T>
 	class StackElement
 	{
 	public:
-		virtual StackElement* push(Data*) = 0;			//	Abstrakte Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
+		virtual StackElement<T>* push(T*) = 0;			//	Abstrakte Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
 
 		//	getter-Funktionen
-		virtual StackElement* getSuccessor() = 0;	//	Gibt den Nachfolger eines Knotens zurück
-		virtual Data* getData() = 0;				//	Gibt das Datenelement eines Knotens zurück
+		virtual StackElement<T>* getSuccessor() = 0;	//	Gibt den Nachfolger eines Knotens zurück
+		virtual T* getData() = 0;					//	Gibt das Datenelement eines Knotens zurück
 	};
 }

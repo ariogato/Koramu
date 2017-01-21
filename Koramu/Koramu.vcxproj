@@ -141,13 +141,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Closure.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Node.cpp" />
     <ClCompile Include="SDL_GameObject.cpp" />
-    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Vector2D.cpp" />

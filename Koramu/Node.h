@@ -12,23 +12,45 @@
 
 namespace DataStructure
 {
-	class Node : public StackElement
+	template <typename T>
+	class Node : public StackElement<T>
 	{
 	private:
-		StackElement* m_pSuccessor;				//	Entspricht dem Attribut "nachfolger" aus dem Infounterricht
-		Data* m_pData;							//	Entspricht dem Attribut "daten" aus dem Infounterricht
+		StackElement<T>* m_pSuccessor;				//	Entspricht dem Attribut "nachfolger" aus dem Infounterricht
+		T* m_pData;							//	Entspricht dem Attribut "daten" aus dem Infounterricht
 
 	public:
-		Node(Data*);				//	Sack
-		~Node();					//	Konstruktor
+		Node(T* pData)								//	Sack
+			: m_pData(pData), m_pSuccessor(nullptr)
+		{}
+		~Node()										//	Konstruktor
+		{
+			/*	Hier wird nur das Datenelement des Knotens gelöscht,
+			*	da das Löschen von "m_pSuccessor" den Nachfolger
+			*	ebenfalls löschen würde und somit die Struktur des Stapels
+			*	komplett zerstört werden würde.
+			*/
 
-		StackElement* push(Data*);					//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
+			delete m_pData;
+		}
+
+		StackElement<T>* push(T* pNewNodeData)					//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
+		{
+			//	Neuen Knoten mit den einzufügenden Daten erstellen
+			Node<T>* newNode = new Node<T>(pNewNodeData);
+
+			//	Dieser Knoten (aktuell oberstes Stapelelement) wird als Nachfolger des neuen Knotens gesetzt
+			newNode->setSuccessor(this);
+
+			//	Der neue Knoten wird zurückgegeben und damit zum obersten Stapelelement (m_pTopNode)
+			return newNode;
+		}
 
 		//	getter-Funktionen
-		StackElement* getSuccessor() { return m_pSuccessor; }		//	Gibt seinen Nachfolger zurück
-		Data* getData() { return m_pData; }							//	Gibt sein Datenelement zurück
+		StackElement<T>* getSuccessor() { return m_pSuccessor; }		//	Gibt seinen Nachfolger zurück
+		T* getData() { return m_pData; }							//	Gibt sein Datenelement zurück
 
 		//	setter-Funktionen
-		void setSuccessor(StackElement* pNewSuccessor) { m_pSuccessor = pNewSuccessor; }
+		void setSuccessor(StackElement<T>* pNewSuccessor) { m_pSuccessor = pNewSuccessor; }
 	};
 }
