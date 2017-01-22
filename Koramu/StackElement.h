@@ -17,7 +17,7 @@ namespace DataStructure
 
 		//	getter-Funktionen
 		virtual StackElement<T>* getSuccessor() = 0;	//	Gibt den Nachfolger eines Knotens zurück
-		virtual T* getData() = 0;					//	Gibt das Datenelement eines Knotens zurück
+		virtual T* getData() = 0;						//	Gibt das Datenelement eines Knotens zurück
 	
 		//	killer-Funktionen
 		virtual void destroy() = 0;

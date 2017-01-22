@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Headerdateien\GameObjects">
       <UniqueIdentifier>{277eb48b-1583-4d15-8d47-c27678240a5b}</UniqueIdentifier>
     </Filter>
@@ -33,6 +29,9 @@
     </Filter>
     <Filter Include="Quelldateien\StateMachine">
       <UniqueIdentifier>{fe70fbf0-55ab-4856-8927-eb90d01866f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\DataStructures">
+      <UniqueIdentifier>{9a120265-3da2-42c4-9e89-e9566ca09316}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +68,15 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
+    <ClCompile Include="StackDefinitions.cpp">
+      <Filter>Quelldateien\DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeDefinitions.cpp">
+      <Filter>Quelldateien\DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="ClosureDefinitions.cpp">
+      <Filter>Quelldateien\DataStructures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -85,15 +93,6 @@
     </ClInclude>
     <ClInclude Include="ParamLoader.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Closure.h">
-      <Filter>Headerdateien\DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Headerdateien\DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>Headerdateien\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="StackElement.h">
       <Filter>Headerdateien\DataStructures</Filter>
@@ -121,6 +120,24 @@
     </ClInclude>
     <ClInclude Include="PauseState.h">
       <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackDeclarations.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeDeclarations.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="ClosureDeclarations.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Closure.h">
+      <Filter>Headerdateien\DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

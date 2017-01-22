@@ -135,7 +135,7 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region stackTest
-	//stack1.pop();
+	stack1.pop();
 #pragma endregion
 };
 
