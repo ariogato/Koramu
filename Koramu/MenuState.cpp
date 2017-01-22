@@ -1,12 +1,10 @@
 #include "MenuState.h"
 
-FiniteStateMachine::MenuState::MenuState()
-{
-}
+FiniteStateMachine::MenuState::MenuState()		//	Konstruktor
+{}
 
-FiniteStateMachine::MenuState::~MenuState()
-{
-}
+FiniteStateMachine::MenuState::~MenuState()		//	Destruktor
+{}
 
 void FiniteStateMachine::MenuState::onEnter()
 {

@@ -4,13 +4,12 @@
 
 /*	Einen Vektor benutzen wir um z.B. die Geschwindigkeit oder Beschleunigung eines Objektes zu beschreiben.
 *	(Aber auch als Ortsvektor)
-*
 */
 
 class Vector2D
 {
 private:
-	float m_xComponent;				//	Die beiden Komponente (x | y)
+	float m_xComponent;					//	Die beiden Komponenten (x | y)
 	float m_yComponent;
 
 public:
@@ -29,12 +28,12 @@ public:
 	Vector2D& operator*=(const float);						//	Zuweisungsoperator *= (Skalarmultiplikation)
 	Vector2D& operator=(const Vector2D&);					//	Zuweisungsoperator =
 
-	//	get-Funktionen
+	//	getter-Funktionen
 	float getX() const { return m_xComponent; }
 	float getY() const { return m_yComponent; }
 	float getLength() const;
 
-	//	set-Funnktionen
+	//	setter-Funnktionen
 	void setX(float x) { m_xComponent = x; }
 	void setY(float y) { m_yComponent = y; }
 };

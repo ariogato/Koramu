@@ -11,7 +11,7 @@
 */
 Game* Game::s_pInstance = nullptr;
 
-Game::Game()								//	Konstruktor
+Game::Game()									//	Konstruktor
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
@@ -34,7 +34,8 @@ Game::Game()								//	Konstruktor
 *
 *	Gruß Ario
 */
-Game::~Game()								//	Destruktor
+
+Game::~Game()									//	Destruktor
 {
 	//	Dynamisch allozierte Objeke löschen
 	delete m_pStandardLog;
@@ -117,9 +118,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 void Game::handleInput()
 {
-	/*	Eine provisorische Implementation, die es
+	/*	Eine provisorische Implementierung, die es
 	*	ermöglicht das Fenster zu schließen.
-	*	Das Ganze muss später in die InputHandler Klasse verschoben werden
+	*	Das Ganze muss später in die "InputHandler"-Klasse verschoben werden
 	*/
 
 	SDL_Event e;

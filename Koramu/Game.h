@@ -35,8 +35,8 @@ class Game
 	*/
 
 private:
-	Game();
-	~Game();
+	Game();			//	Konstruktor
+	~Game();		//	Destruktor
 
 private:
 	//	Notwendig für Singleton-Klasse

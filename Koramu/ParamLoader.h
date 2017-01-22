@@ -27,7 +27,7 @@ private:
 
 public:
 
-	//	get-Funktionen
+	//	getter-Funktionen
 	float getX() const { return m_xPos; }
 	float getY() const { return m_yPos; }
 	int getWidth() const { return m_width; }
@@ -36,7 +36,7 @@ public:
 	int getAnimSpeed() const { return m_animSpeed; }
 	std::string getTextureId() const { return m_textureId; }
 
-	//	set-Funktionen
+	//	setter-Funktionen
 	void setX(float x) { m_xPos = x; }
 	void setY(float y) { m_yPos = y; }
 	void setWidth(int width) { m_width = width; }

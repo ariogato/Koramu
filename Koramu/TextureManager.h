@@ -31,7 +31,7 @@ private:
 
 public:
 	//	Memberfunktionen
-	bool load(std::string id, std::string fileName, SDL_Renderer* pRenderer);			//	Die Texturen in die map laden
+	bool load(std::string id, std::string fileName, SDL_Renderer* pRenderer);			//	Die Texturen in die Map laden
 
 	void draw(std::string id,															//	Eine bestimmte Textur zeichnen
 		int x, int y, int width, int height);

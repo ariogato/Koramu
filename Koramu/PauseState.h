@@ -11,11 +11,11 @@ namespace FiniteStateMachine
 	class PauseState : public GameState
 	{
 	public:
-		PauseState();
-		~PauseState();
+		PauseState();			//	Konstruktor
+		~PauseState();			//	Destruktor
 
-		void onEnter();		//	Wird aufgerufen sobald dieser Zustand eintritt
-		void onExit();		//	Wird aufgerufen sobald dieser Zustand verlassen wird
+		void onEnter();			//	Wird aufgerufen sobald dieser Zustand eintritt
+		void onExit();			//	Wird aufgerufen sobald dieser Zustand verlassen wird
 
 		void handleInput();		//	Eingaben bearbeiten
 		void update();			//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen

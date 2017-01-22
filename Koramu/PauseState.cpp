@@ -1,12 +1,10 @@
 #include "PauseState.h"
 
-FiniteStateMachine::PauseState::PauseState()
-{
-}
+FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
+{}
 
-FiniteStateMachine::PauseState::~PauseState()
-{
-}
+FiniteStateMachine::PauseState::~PauseState()		//	Destruktor
+{}
 
 void FiniteStateMachine::PauseState::onEnter()
 {

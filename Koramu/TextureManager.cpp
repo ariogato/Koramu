@@ -2,12 +2,10 @@
 #include "Game.h"
 
 //	Wichtig für Singleton-Klasse
-
 TextureManager* TextureManager::s_pInstance = nullptr;
 
 TextureManager::TextureManager()	//	Konstruktor
-{
-}
+{}
 
 TextureManager::~TextureManager()	//	Destruktor
 {
@@ -102,8 +100,7 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height)
 
 void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int frameRow, int frameCol)
 {
-	/*	Für mehr Info siehe Kommentare in TextureManager::draw
-	*/
+	//	Für mehr Info siehe Kommentare in TextureManager::draw
 
 	SDL_Rect destRect;
 	SDL_Rect srcRect;

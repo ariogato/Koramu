@@ -4,7 +4,7 @@
 #include "Stack.h"
 
 /*	Diese Klasse verwaltet die verschiedenen Spielzustände/"GameStates" (Play, Pause, Menu) mithilfe eines Stapels.
-*	Wir wollen nämlich die Informationen eines alten Spielzustandes nicht verlieren nur, weil wir uns kurzzeitig in einem 
+*	Wir wollen nämlich die Informationen eines alten Spielzustandes nicht verlieren, nur, weil wir uns kurzzeitig in einem 
 *	anderen befinden.
 */
 
@@ -24,9 +24,9 @@ namespace FiniteStateMachine
 		void render();				//	Alles auf den Bildschirm schmeißen
 
 		//	Hat alles mit dem Stack zu tun
-		void pushState(GameState*);		//	Einen neuen Spielzustand aufstapeln	
+		void pushState(GameState*);					//	Einen neuen Spielzustand aufstapeln	
 		void popState();							//	Den aktuellen Spielzustand entfernen (der vorherige wird "aktiv")
-		void changeState(GameState*);		//	Den aktuellen Spielzustand entfernen und einen Neuen aufstapeln
+		void changeState(GameState*);				//	Den aktuellen Spielzustand entfernen und einen Neuen aufstapeln
 		
 		//	getter-Funktionen:
 		GameState* getCurrentState() { return m_stateStack.getTopNodeData(); }		//	Den aktuellen Spielzustand zurückgeben

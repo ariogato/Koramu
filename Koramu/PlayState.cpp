@@ -1,12 +1,10 @@
 #include "PlayState.h"
 
-FiniteStateMachine::PlayState::PlayState()
-{
-}
+FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
+{}
 
-FiniteStateMachine::PlayState::~PlayState()
-{
-}
+FiniteStateMachine::PlayState::~PlayState()		//	Konstruktor
+{}
 
 void FiniteStateMachine::PlayState::onEnter()
 {

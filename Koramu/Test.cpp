@@ -6,7 +6,7 @@
 *	Wäre wichtig für mein Verständnis dafür, wie wir mit Texturen und Musik arbeiten.
 */
 
-Test* Test::s_pInstance = nullptr;	//Wichtig für Singleteon-Klasse
+Test* Test::s_pInstance = nullptr;	//Wichtig für Singleton-Klasse
 
 Test::Test()						//Konstruktor
 {

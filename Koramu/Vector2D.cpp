@@ -1,13 +1,12 @@
 #include "Vector2D.h"
 
-Vector2D::Vector2D(float x, float y)
-	: m_xComponent(x), m_yComponent(y)
+Vector2D::Vector2D(float x, float y)		//	Konstruktor
+	: m_xComponent(x), m_yComponent(y)		//	Liste von Elementinitialisierungen
 {
 }
 
-Vector2D::~Vector2D()
-{
-}
+Vector2D::~Vector2D()						//	Destruktor
+{}
 
 Vector2D Vector2D::normalize()
 {
