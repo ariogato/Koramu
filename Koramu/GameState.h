@@ -13,6 +13,10 @@ namespace FiniteStateMachine
 	*/
 	enum class GameStateIDs
 	{
+		/*	Mögliche Zustände:
+		*	Wir können im Menü unseren Spiels sein (MenuState), das Spiel tatsächlich spielen (PlayState),
+		*	oder eine Pause machen (PauseState).
+		*/
 		menuState, playState, pauseState
 	};
 
