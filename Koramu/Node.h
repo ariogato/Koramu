@@ -51,5 +51,12 @@ namespace DataStructure
 		//	setter-Funktionen
 		void setSuccessor(StackElement<T>* pNewSuccessor) { m_pSuccessor = pNewSuccessor; }
 
+		//	killer-Funktionen
+		void destroy() { delete this; }					//	#selbstmord
+		void destroyAll()								//	#massenselbstmord
+		{
+			m_pSuccessor->destroyAll();
+			delete this;
+		}
 	};
 }

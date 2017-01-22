@@ -61,13 +61,13 @@
       <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="MenuState.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="PauseState.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="PlayState.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

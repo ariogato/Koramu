@@ -28,6 +28,7 @@ namespace DataStructure
 		}
 		~Stack()					//	Destruktor
 		{
+			m_pTopNode->destroyAll();
 		}
 
 		void push(T* pNewNodeData)					//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)
@@ -52,7 +53,7 @@ namespace DataStructure
 			m_pTopNode = m_pTopNode->getSuccessor();
 
 			//	Hier wird der Speicherplatz des alten obersten Knoten freigegeben
-			delete tempTop;
+			tempTop->destroy();
 
 		}
 

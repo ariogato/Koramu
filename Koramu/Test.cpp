@@ -50,10 +50,11 @@ Test::Test()						//Konstruktor
 #pragma endregion
 
 #pragma region stackTest
-	stack1.push(&a);
-	stack1.push(&b);
-	stack1.push(&c);
-	stack1.push(&d);
+	stack1.push(new FiniteStateMachine::PauseState());
+	stack1.push(new FiniteStateMachine::PlayState());
+	stack1.push(new FiniteStateMachine::PlayState());
+	std::cout << std::endl;
+	{}
 #pragma endregion
 };
 

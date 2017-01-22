@@ -8,6 +8,8 @@
 #include "SDL_GameObject.h"
 #include "ParamLoader.h"
 #include "Stack.h"
+#include "PauseState.h"
+#include "PlayState.h"
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -31,11 +33,7 @@ private:
 	TTF_Font* font;
 	SDL_Texture* message;
 
-	int a = 1;
-	int b = 2;
-	int c = 3;
-	int d = 4;
-	DataStructure::Stack<int> stack1;
+	DataStructure::Stack<FiniteStateMachine::GameState> stack1;
 #pragma endregion
 
 public:

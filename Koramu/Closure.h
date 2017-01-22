@@ -33,5 +33,8 @@ namespace DataStructure
 		StackElement<T>* getSuccessor() { return this; }		//	Gibt sich selber zurück (Bei Fragen: An Romolus oder Ario wenden)
 		T* getData() { return nullptr; }					//	Der Abschluss hat keine Daten, deshalb nullptr
 
+		//	killer-Funktionen
+		void destroy() {}
+		void destroyAll() { delete this; }
 	};
 }
