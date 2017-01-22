@@ -1,13 +1,13 @@
 #include "NodeDeclarations.h"
 
 template <typename T>
-DataStructure::Node<T>::Node(T* pData)
-	: m_pData(pData), m_pSuccessor(nullptr)
+DataStructure::Node<T>::Node(T* pData)							//	Konstruktor
+	: m_pData(pData), m_pSuccessor(nullptr)						//	Elementinitialisierer
 {}
 
 template <typename T>
-DataStructure::Node<T>::~Node()
-{
+DataStructure::Node<T>::~Node()									//	Destruktor
+{	
 	/*	Hier wird nur das Datenelement des Knotens gelöscht,
 	*	da das Löschen von "m_pSuccessor" den Nachfolger
 	*	ebenfalls löschen würde und somit die Struktur des Stapels
@@ -56,6 +56,9 @@ void DataStructure::Node<T>::destroy()
 template <typename T>
 void DataStructure::Node<T>::destroyAll()
 {
+	//	rekursiver Aufruf der Methode bei allen Stapelelementen (Aufruf zum Selbstmord)
 	m_pSuccessor->destroyAll();
+
+	//	der Knoten begeht Selbstmord 	
 	delete this;
 }

@@ -2,13 +2,14 @@
 
 template <typename T>
 DataStructure::Stack<T>::Stack()
-	: m_pTopNode(new Closure<T>())
+	: m_pTopNode(new Closure<T>())				//	Elementinitialisierer 
 {}
 
 template <typename T>
 DataStructure::Stack<T>::~Stack()
 {
-	m_pTopNode->destroyAll();
+	//	Der gesamte Stapel soll gelöscht (nicht nur der oberste Knoten) und damit der Speicherplatz freigegeben werden
+	m_pTopNode->destroyAll();	
 }
 
 template <typename T>

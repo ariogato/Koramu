@@ -9,6 +9,7 @@
 
 namespace DataStructure
 {
+	//	Klassen-Template. Für Erklärungen siehe "StackDeclarations.h"
 	template <typename T>
 	class StackElement
 	{
@@ -20,7 +21,7 @@ namespace DataStructure
 		virtual T* getData() = 0;						//	Gibt das Datenelement eines Knotens zurück
 	
 		//	killer-Funktionen
-		virtual void destroy() = 0;
-		virtual void destroyAll() = 0;
+		virtual void destroy() = 0;						//	Zerstört/löscht einen einzelnen Knoten (der Abschluss soll hier nicht gelöscht werden können)	#selbstmord
+		virtual void destroyAll() = 0;					//	Zerstört/löscht alle Stapelemente	#massenselbstmord
 	};
 }

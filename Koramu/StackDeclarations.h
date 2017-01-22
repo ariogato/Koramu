@@ -14,9 +14,30 @@
 
 namespace DataStructure
 {
-	//	TODO: Die Klasse für alle Datentypen sicher machen (und optimieren)
+	/*	!!!
+	*	
+	*	Unser Stapel wird als Klassen-Template (Klassen-Vorlage) implementiert. 
+	*	Dadadurch ist unser Stapel typsicher. Er kann verschiedene Datentypen managen/stapeln, man kann aber nie mehrere Datentypen in einen einzigen Stapel einfügen.
+	*	Dies ist wichtig für uns, da wir den Stapel benötigen, um GameStates und Maps getrennt voneinander zu stapeln und zu verwalten.
+	*	Es steht uns eine Reihe von Standardfunktionen zur verfügung, unabhängig davon, welcher Datentyp (Argumenttyp in den spitzen Klammern) angegeben wird.
+	*	Damit das funktioniert müssen auch alle weiteren Klassen, die mit dem in Verbindung stehen (Stapelelement, Abschluss und Knoten) als Klassen-Template implementiert werden.
+	*	
+	*	Weitere Erklärung anhand eines Beispiels:
+	*	Die C++-Standardbibliothek enthät einen Container, der eine verkettete Liste implementiert. 
+	*	Um eine verkettete Liste von int zu erstellen, schreibt man std::list<int>. 
+	*	Eine verkettete Liste von Objekten des Datentypes std::string wird zu std::list<std::string>. 
+	*	Mit list ist ein Satz von Standardfunktionen definiert, die immer verfügbar sind, unabhängig davon, was man als Argumenttyp in den spitzen Klammern angibt. 
+	*	Die Werte in spitzen Klammern werden Parameter genannt. Wenn ein Klassen-Template mit seinen Parametern dem Compiler übergeben wird, so kann dieser das Template ausprägen. 
+	*	Er erzeugt hierbei zu jedem Parametertyp eine eigene Template-Klasse. Diese ist eine gewöhnliche Klasse, wie jede andere auch. 
+	*	Die Begriffe Klassen-Template und Template-Klasse sind hier voneinander zu unterscheiden. 
+	*	Wie Objekt und Klasse ist die Template-Klasse eine Ausprägung eines Klassen-Templates.
+	*
+	*	!!!
+	*/	
 
-	template <typename T>
+	//	TODO: Die Klasse für alle Datentypen (auch für int) sicher machen (und optimieren)
+
+	template <typename T>							//	"T" ist nun Platzhalter für den Datentyp
 	class Stack
 	{
 	private:

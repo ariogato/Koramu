@@ -11,29 +11,31 @@
 
 namespace DataStructure
 {
+	//	Klassen-Template. Für Erklärungen siehe "StackDeclarations.h"
 	template <typename T>
 	class Node : public StackElement<T>
 	{
 	private:
 		StackElement<T>* m_pSuccessor;				//	Entspricht dem Attribut "nachfolger" aus dem Infounterricht
-		T* m_pData;									//	Entspricht dem Attribut "daten" aus dem Infounterricht
+		T* m_pData;									//	Entspricht dem Attribut "daten" aus dem Infounterricht. 
+													//	Dank der Implementierung des Stapels als Klassentemplate, können beliebige Datentypen verwaltet werden
 
 	public:
-		Node(T* pData);								//	Sack
-		~Node();									//	Konstruktor
+		Node(T* pData);								//	Konstruktor (R.I.P Sack ... you won't be forgotten)
+		~Node();									//	Destruktor
 		//Node(const Node<T>&)						//	Kopierkonstruktor
 
 		StackElement<T>* push(T*);					//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
 
 		//	getter-Funktionen
-		StackElement<T>* getSuccessor();			//	Gibt seinen Nachfolger zurück
-		T* getData();								//	Gibt sein Datenelement zurück
+		StackElement<T>* getSuccessor();			//	Gibt den Nachfolger des Knotens zurück
+		T* getData();								//	Gibt das Datenelement des Knotens zurück
 
 		//	setter-Funktionen
-		void setSuccessor(StackElement<T>*);
+		void setSuccessor(StackElement<T>*);		//	Den Nachfolger eines Knotens setzen
 
 		//	killer-Funktionen
-		void destroy();				//	#selbstmord
-		void destroyAll();								//	#massenselbstmord
+		void destroy();								//	#selbstmord
+		void destroyAll();							//	#massenselbstmord
 	};
 }
