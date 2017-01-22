@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include "GameObject.h"
+
 /*	In diesen namespace gehört alles, was mit dem Zustandsautomaten
 *	des Spiels zu tun hat.
 */
@@ -17,14 +20,15 @@ namespace FiniteStateMachine
 	/*	Diese Klasse ist Basis für alle Zustände, die 
 	*	man in unserem Spiel erreichen kann.
 	*	Sie stellt das "Datenelement" in unserem Entwurfsmuster
-	*	des Kompositums für einen Stapel von Spielzuständen dar	
+	*	des Kompositums für einen Stapel von Spielzuständen dar.	
 	*/
 	class GameState
 	{
-	private:
-		GameStateIDs m_stateID;						//	Um den Zustand identifizieren zu können
-
 	protected:
+		GameStateIDs m_stateID;							//	Um den Zustand identifizieren zu können
+		std::vector<GameObject*> m_gameObjects;			//	Array der GameObjects eines Spielzustandes
+
+	public:
 		GameState() {}
 		virtual ~GameState() {}
 		
@@ -36,6 +40,7 @@ namespace FiniteStateMachine
 	public:
 		virtual void onEnter() = 0;					//	Wird aufgerufen sobald der Zustand eintritt
 		virtual void onExit() = 0;					//	Wird aufgerufen sobald der Zustand verlassen wird
+		
 		virtual void handleInput() = 0;				//	Eingaben bearbeiten
 		virtual void update() = 0;					//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 		virtual void render() = 0;					//	Alles auf den Bildschirm schmeißen

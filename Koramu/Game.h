@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 #include "TextureManager.h"
 #include "Logger.h"
+#include "GameStateMachine.h"
 #include "Test.h"
 
 class Game
@@ -43,6 +44,9 @@ private:
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+	
+	//	Zustandsmaschine
+	FiniteStateMachine::GameStateMachine* m_pStateMachine;
 
 	//	Logger Variablen
 	Logger* m_pStandardLog;

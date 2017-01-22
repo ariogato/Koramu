@@ -13,15 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\GameObjects">
+      <UniqueIdentifier>{277eb48b-1583-4d15-8d47-c27678240a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\DataStructures">
+      <UniqueIdentifier>{0c1201df-85b1-40d7-b337-4455cd930538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Textures">
+      <UniqueIdentifier>{e20cfbec-f63d-424a-a2c0-1a3e77b6ca3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\GameObjects">
+      <UniqueIdentifier>{fe074ea9-35bd-4fed-b9bc-a4df5db232bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Textures">
+      <UniqueIdentifier>{c6abd12b-782d-434b-a514-a84995420f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\StateMachine">
+      <UniqueIdentifier>{46496c56-6fa2-4bb7-93d6-32ee2ac50d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\StateMachine">
+      <UniqueIdentifier>{fe70fbf0-55ab-4856-8927-eb90d01866f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Logger.cpp">
@@ -34,6 +52,21 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="SDL_GameObject.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Quelldateien\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateMachine.cpp">
+      <Filter>Quelldateien\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,19 +74,7 @@
     <ClInclude Include="Game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Logger.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL_GameObject.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Test.h">
@@ -65,17 +86,41 @@
     <ClInclude Include="ParamLoader.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="StackElement.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Closure.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="StackElement.h">
+      <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Headerdateien\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_GameObject.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateMachine.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

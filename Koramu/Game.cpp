@@ -100,6 +100,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		//	Der Renderer wurde erfolgreich erstellt
 		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
+		//	Zustandsmaschine initialisieren
+		m_pStateMachine = new FiniteStateMachine::GameStateMachine();
+
 		//	Das lässt die main-Schleife laufen
 		m_running = true;
 

@@ -29,7 +29,6 @@ namespace DataStructure
 			*	ebenfalls löschen würde und somit die Struktur des Stapels
 			*	komplett zerstört werden würde.
 			*/
-
 			delete m_pData;
 		}
 
@@ -51,5 +50,6 @@ namespace DataStructure
 
 		//	setter-Funktionen
 		void setSuccessor(StackElement<T>* pNewSuccessor) { m_pSuccessor = pNewSuccessor; }
+
 	};
 }

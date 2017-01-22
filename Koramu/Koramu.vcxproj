@@ -144,6 +144,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDL_GameObject.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -154,9 +158,13 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="ParamLoader.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="SDL_GameObject.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackElement.h" />

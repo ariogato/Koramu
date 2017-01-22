@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include "StackElement.h"
 #include "Node.h"
 #include "Closure.h"
@@ -27,7 +28,6 @@ namespace DataStructure
 		}
 		~Stack()					//	Destruktor
 		{
-			
 		}
 
 		void push(T* pNewNodeData)					//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)
@@ -53,6 +53,7 @@ namespace DataStructure
 
 			//	Hier wird der Speicherplatz des alten obersten Knoten freigegeben
 			delete tempTop;
+
 		}
 
 

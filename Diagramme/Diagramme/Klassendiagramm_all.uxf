@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>11</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>363</x>
-      <y>297</y>
-      <w>319</w>
-      <h>385</h>
+      <x>240</x>
+      <y>260</y>
+      <w>250</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 Game
@@ -36,10 +36,10 @@ logError(msg : template&lt;typename T&gt;) : void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1309</x>
-      <y>1342</y>
-      <w>264</w>
-      <h>220</h>
+      <x>980</x>
+      <y>720</y>
+      <w>120</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>/GameState/
 --
@@ -59,10 +59,10 @@ logError(msg : template&lt;typename T&gt;) : void</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>363</x>
-      <y>220</y>
-      <w>154</w>
-      <h>77</h>
+      <x>350</x>
+      <y>225</y>
+      <w>70</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>bg=blue
 Singleteon 
@@ -74,10 +74,10 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1760</x>
-      <y>1276</y>
-      <w>132</w>
-      <h>121</h>
+      <x>1135</x>
+      <y>690</y>
+      <w>60</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 GameStateIDs
@@ -91,10 +91,10 @@ puaseState
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1122</x>
-      <y>1155</y>
-      <w>891</w>
-      <h>704</h>
+      <x>540</x>
+      <y>650</y>
+      <w>665</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>FiniteStateMachine
 --
@@ -105,10 +105,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>759</x>
-      <y>385</y>
-      <w>319</w>
-      <h>231</h>
+      <x>565</x>
+      <y>680</y>
+      <w>145</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>GameStateMachine
 --
@@ -128,10 +128,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1188</x>
-      <y>1639</y>
-      <w>165</w>
-      <h>143</h>
+      <x>925</x>
+      <y>855</y>
+      <w>75</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>MenuState
 --
@@ -142,10 +142,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1298</x>
-      <y>1551</y>
-      <w>165</w>
-      <h>110</h>
+      <x>975</x>
+      <y>815</y>
+      <w>75</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;80.0</additional_attributes>
@@ -153,10 +153,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1562</x>
-      <y>1639</y>
-      <w>165</w>
-      <h>143</h>
+      <x>1095</x>
+      <y>855</y>
+      <w>75</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>PauseState
 --
@@ -167,10 +167,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1375</x>
-      <y>1639</y>
-      <w>165</w>
-      <h>143</h>
+      <x>1010</x>
+      <y>855</y>
+      <w>75</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>PlayState
 --
@@ -181,10 +181,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1441</x>
-      <y>1551</y>
-      <w>33</w>
-      <h>110</h>
+      <x>1040</x>
+      <y>815</y>
+      <w>15</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -192,10 +192,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1452</x>
-      <y>1551</y>
-      <w>176</w>
-      <h>110</h>
+      <x>1045</x>
+      <y>815</y>
+      <w>80</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;140.0;80.0</additional_attributes>
@@ -203,10 +203,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1584</x>
-      <y>396</y>
-      <w>319</w>
-      <h>187</h>
+      <x>905</x>
+      <y>305</y>
+      <w>145</w>
+      <h>85</h>
     </coordinates>
     <panel_attributes>/StackElement/
 --
@@ -219,10 +219,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1386</x>
-      <y>660</y>
-      <w>297</w>
-      <h>88</h>
+      <x>815</x>
+      <y>425</y>
+      <w>135</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>Closure
 --
@@ -235,10 +235,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1694</x>
-      <y>660</y>
-      <w>297</w>
-      <h>88</h>
+      <x>955</x>
+      <y>425</y>
+      <w>135</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>Node
 --
@@ -251,10 +251,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1760</x>
-      <y>572</y>
-      <w>110</w>
-      <h>110</h>
+      <x>985</x>
+      <y>385</y>
+      <w>50</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;80.0</additional_attributes>
@@ -262,10 +262,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1606</x>
-      <y>572</y>
-      <w>99</w>
-      <h>110</h>
+      <x>915</x>
+      <y>385</y>
+      <w>45</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;80.0</additional_attributes>
@@ -273,24 +273,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1606</x>
-      <y>737</y>
-      <w>242</w>
-      <h>275</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-handles
-m1=1
-m2=1</panel_attributes>
-    <additional_attributes>10.0;220.0;200.0;220.0;200.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1892</x>
-      <y>473</y>
-      <w>220</w>
-      <h>231</h>
+      <x>1045</x>
+      <y>340</y>
+      <w>100</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 successor
@@ -301,10 +287,10 @@ m2=0,1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>682</x>
-      <y>0</y>
-      <w>583</w>
-      <h>154</h>
+      <x>495</x>
+      <y>125</y>
+      <w>265</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 TextureManager
@@ -319,16 +305,16 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>363</x>
-      <y>814</y>
-      <w>253</w>
-      <h>253</h>
+      <x>350</x>
+      <y>495</y>
+      <w>110</w>
+      <h>115</h>
     </coordinates>
     <panel_attributes>/GameObject/
 --
 --
 /+ load() : void/
-/+ update() : void/
+/+ update(map : Map*) : void/
 /+ draw() : void/
 /+ destroy() : void/
 //
@@ -338,10 +324,10 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>352</y>
-      <w>264</w>
-      <h>121</h>
+      <x>70</x>
+      <y>285</y>
+      <w>120</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>Logger
 --
@@ -354,58 +340,38 @@ print(msg : template&lt;typename T&gt;)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>253</x>
-      <y>374</y>
-      <w>132</w>
-      <h>55</h>
+      <x>185</x>
+      <y>295</y>
+      <w>65</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=3
 m2=1
 has</panel_attributes>
-    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>671</x>
-      <y>440</y>
-      <w>110</w>
-      <h>55</h>
+      <x>485</x>
+      <y>325</y>
+      <w>130</w>
+      <h>365</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=1
 m2=1
 controls</panel_attributes>
-    <additional_attributes>10.0;20.0;80.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1375</x>
-      <y>902</y>
-      <w>242</w>
-      <h>165</h>
-    </coordinates>
-    <panel_attributes>/Data/
---
---
-/+ handleInput() : void/
-/+ update() : void/
-/+ render() : void/
-
-/+ onEnter() : void/
-/+ onExit() : void/
-</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>10.0;20.0;240.0;20.0;240.0;710.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1166</x>
-      <y>330</y>
-      <w>1001</w>
-      <h>781</h>
+      <x>715</x>
+      <y>275</y>
+      <w>455</w>
+      <h>355</h>
     </coordinates>
     <panel_attributes>DataStructure
 --
@@ -414,28 +380,17 @@ layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1551</x>
-      <y>1056</y>
-      <w>33</w>
-      <h>308</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1199</x>
-      <y>407</y>
-      <w>264</w>
-      <h>154</h>
+      <x>730</x>
+      <y>310</y>
+      <w>125</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Stack
 --
 --
-+ push(newNode : Node) : void	
++ push(pNewNodeData : Data*) : void	
 + pop() : void
 + getFirstNodeData : Data*
 </panel_attributes>
@@ -444,13 +399,36 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1452</x>
-      <y>440</y>
-      <w>154</w>
-      <h>44</h>
+      <x>850</x>
+      <y>325</y>
+      <w>65</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 firstNode</panel_attributes>
-    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>705</x>
+      <y>375</y>
+      <w>100</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+has</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;680.0;10.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>1630</x>
+      <y>275</y>
+      <w>30</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Actor</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

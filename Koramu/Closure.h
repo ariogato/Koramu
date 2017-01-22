@@ -32,5 +32,6 @@ namespace DataStructure
 		//	getter-Funktionen
 		StackElement<T>* getSuccessor() { return this; }		//	Gibt sich selber zurück (Bei Fragen: An Romolus oder Ario wenden)
 		T* getData() { return nullptr; }					//	Der Abschluss hat keine Daten, deshalb nullptr
+
 	};
 }

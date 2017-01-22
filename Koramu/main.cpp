@@ -75,6 +75,8 @@ int main(int argc, char** argv)
 
 	std::cout << "ByeBye" << std::endl;
 
+	Test::Instance()->destroy();
+
 	// Damit man lesen kann, was ausgegeben wird und das Fenster nicht sofort verschwindet.
 	system("PAUSE"); 
 	return 0;

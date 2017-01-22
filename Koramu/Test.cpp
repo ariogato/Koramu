@@ -51,6 +51,9 @@ Test::Test()						//Konstruktor
 
 #pragma region stackTest
 	stack1.push(&a);
+	stack1.push(&b);
+	stack1.push(&c);
+	stack1.push(&d);
 #pragma endregion
 };
 
@@ -131,10 +134,7 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region stackTest
-	/*std::cout << *(stack1.getTopNodeData()) << std::endl;
-	stack1.push(&b);
-	std::cout << *(stack1.getTopNodeData()) << std::endl;
-	stack1.pop();*/
+	//stack1.pop();
 #pragma endregion
 };
 
