@@ -86,7 +86,7 @@
     <ClCompile Include="InputHandler.cpp">
       <Filter>Quelldateien\Input</Filter>
 	</ClCompile>
-    <ClCompile Include="FPS.cpp">
+    <ClCompile Include="Fps.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -154,7 +154,7 @@
     <ClInclude Include="InputHandler.h">
       <Filter>Headerdateien\Input</Filter>
 	</ClInclude>
-    <ClInclude Include="FPS.h">
+    <ClInclude Include="Fps.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

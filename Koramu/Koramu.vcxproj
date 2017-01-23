@@ -142,7 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClosureDefinitions.cpp" />
-    <ClCompile Include="FPS.cpp" />
+    <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -161,7 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
-    <ClInclude Include="FPS.h" />
+    <ClInclude Include="Fps.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
