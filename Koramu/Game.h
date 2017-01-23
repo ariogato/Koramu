@@ -9,6 +9,7 @@
 #include "Logger.h"
 #include "GameStateMachine.h"
 #include "Test.h"
+#include "InputHandler.h"
 
 class Game
 {
@@ -66,16 +67,17 @@ public:
 	void handleInput();					//	Eingaben bearbeiten
 	void update();						//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 	void render();						//	Alles auf den Bildschirm schmeißen
+	void setGameOver();					//	Um z.B. vom InputHandler das Spiel zu beenden
 
 
 	//	Einfache getter-Funktionen
 	SDL_Window* getWindow() { return m_pWindow; }
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
-	bool isRunning() { return m_running; }
-	int getGameWidth() { return m_gameWidth; }
-	int getGameHeight() { return m_gameHeight; }
-	int getGameXPos() { return m_gameXPos; }
-	int getGameYPos() { return m_gameYPos; }
+	bool isRunning() const { return m_running; }
+	int getGameWidth() const { return m_gameWidth; }
+	int getGameHeight() const { return m_gameHeight; }
+	int getGameXPos() const { return m_gameXPos; }
+	int getGameYPos() const { return m_gameYPos; }
 
 	/*	Log Objekte werden zurückgegeben, damit man mit einem
 	*	Stream Operator auf sie zugreifen kann.

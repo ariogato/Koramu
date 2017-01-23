@@ -118,20 +118,12 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 void Game::handleInput()
 {
-	/*	Eine provisorische Implementierung, die es
-	*	ermöglicht das Fenster zu schließen.
-	*	Das Ganze muss später in die "InputHandler"-Klasse verschoben werden
+	/*	Wir haben eine eigene Klasse, die den Input für uns händelt.
+	*	Folglich wird hier nur die "handleInput" Methode dieser aufgerufen.
+	*
+	*	Diese Methode prüft auch ob das Fenster geschlossen werden soll. (X gedrückt)
 	*/
-
-	SDL_Event e;
-
-	while (SDL_PollEvent(&e))
-	{
-		if (e.type == SDL_QUIT)
-		{
-			m_running = false;
-		}
-	}
+	TheInputHandler::Instance()->handleInput();
 }
 
 void Game::update() 
@@ -155,6 +147,11 @@ void Game::render()
 	SDL_RenderPresent(m_pRenderer);
 }
 
+void Game::setGameOver()
+{
+	m_running = false;
+}
+
 
 //	Wichtig für Singleton-Klasse
 Game* Game::Instance()
@@ -175,6 +172,9 @@ void Game::destroy()
 {
 	//	Den TextureManager bei Beendigung des Spiels zerstören
 	TheTextureManager::Instance()->destroy();
+
+	//	Den InputHandler bei Beendigung des Spiels zerstören
+	TheInputHandler::Instance()->destroy();
 
 	//	Den Destruktor aufrufen
 	delete s_pInstance;
