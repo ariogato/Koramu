@@ -17,7 +17,7 @@ namespace DataStructure
 	{
 	private:
 		StackElement<T>* m_pSuccessor;				//	Entspricht dem Attribut "nachfolger" aus dem Infounterricht
-		T* m_pData;									//	Entspricht dem Attribut "daten" aus dem Infounterricht. 
+		T* m_pData;									//	Entspricht dem Attribut "daten" aus dem Infounterricht 
 													//	Dank der Implementierung des Stapels als Klassentemplate, können beliebige Datentypen verwaltet werden
 
 	public:

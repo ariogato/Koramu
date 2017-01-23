@@ -17,9 +17,9 @@ namespace DataStructure
 	/*	!!!
 	*	
 	*	Unser Stapel wird als Klassen-Template (Klassen-Vorlage) implementiert. 
-	*	Dadadurch ist unser Stapel typsicher. Er kann verschiedene Datentypen managen/stapeln, man kann aber nie mehrere Datentypen in einen einzigen Stapel einfügen.
+	*	Dadurch ist unser Stapel typsicher. Er kann verschiedene Datentypen managen/stapeln, man kann aber nie mehrere Datentypen in einen einzigen Stapel einfügen.
 	*	Dies ist wichtig für uns, da wir den Stapel benötigen, um GameStates und Maps getrennt voneinander zu stapeln und zu verwalten.
-	*	Es steht uns eine Reihe von Standardfunktionen zur verfügung, unabhängig davon, welcher Datentyp (Argumenttyp in den spitzen Klammern) angegeben wird.
+	*	Es steht uns eine Reihe von Standardfunktionen zur Verfügung, unabhängig davon, welcher Datentyp (Argumenttyp in den spitzen Klammern) angegeben wird.
 	*	Damit das funktioniert müssen auch alle weiteren Klassen, die mit dem in Verbindung stehen (Stapelelement, Abschluss und Knoten) als Klassen-Template implementiert werden.
 	*	
 	*	Weitere Erklärung anhand eines Beispiels:
