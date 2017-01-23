@@ -77,6 +77,9 @@
     <ClCompile Include="ClosureDefinitions.cpp">
       <Filter>Quelldateien\DataStructures</Filter>
     </ClCompile>
+    <ClCompile Include="FPS.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -138,6 +141,9 @@
     </ClInclude>
     <ClInclude Include="Closure.h">
       <Filter>Headerdateien\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="FPS.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
