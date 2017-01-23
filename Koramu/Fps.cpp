@@ -3,23 +3,26 @@
 
 void Fps::calculateFPS()
 {
-	static const int NUM_SAMPLES = 10;			//Anzahl der Frames aus denen ein Durchschnitt errechnet wird
+	static const int NUM_SAMPLES = 10;						//	Anzahl der Frames, aus denen ein Durchschnitt errechnet wird
 	static float frameTimes[NUM_SAMPLES];
 	static int currentFrame = 0;
 
-	static float previousTicks = SDL_GetTicks();			//vorherige Frames
+	//	SDL_GetTicks() gibt in ms an wie viel Zeit seit der Initialisierung von SDL vergangen ist
+	
+	static float previousTicks = SDL_GetTicks();			//	Vorherige Frames
 
-	float currentTicks;										//jetziger Frame
+	float currentTicks;										//	Jetziger Frame
 	currentTicks = SDL_GetTicks();							
 
-	frameTime = currentTicks - previousTicks;				//Dauer des Frames
-	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;
+	frameTime = currentTicks - previousTicks;				//	Dauer des Frames
+	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;		//	Was macht das?
 
 	previousTicks = currentTicks;							
 
-	int count;												//Anzahl aus Frames aus welchen die Durschschnittszahl ausgerechnet wird
+	int count;												//	Anzahl aus Frames, aus welchen die Durschschnittszahl ausgerechnet wird
 
-	if (currentFrame < NUM_SAMPLES)							//Durchschnitt aus nur den schon gezeigten Frames
+	//	Durchschnitt aus nur den schon gezeigten Frames:
+	if (currentFrame < NUM_SAMPLES)							
 	{
 		count = currentFrame;
 	}
@@ -34,19 +37,19 @@ void Fps::calculateFPS()
 		frameTimeAverage += frameTimes[i];					
 	}
 
-	frameTimeAverage /= count;					//durchschnittliche Frametime
+	frameTimeAverage /= count;					//	Durchschnittliche Frametime
 
 	if (frameTimeAverage > 0)
 	{
-		fps = 1000.0f / frameTimeAverage;		//Anzahl der Frames die per Sekunde ausgegeben werden 
+		fps = 1000.0f / frameTimeAverage;		//	Anzahl der Frames die pro Sekunde ausgegeben werden 
 	}
-	else										//Durch null teilen geht nicht 
+	else										//	Durch null teilen geht nicht 
 	{
-		fps = 60.0;								//Deswegen wir ein beliebeiger
+		fps = 60.0;								//	Deswegen wird ein beliebeiger Wert angegeben
 	}
 
-	currentFrame++;								//nächster 
+	currentFrame++;								//	Nächster Frame
 
-	std::cout << fps << std::endl;
+	std::cout << fps << std::endl;				//	FPS ausgeben (zum Testen)
 }
 
