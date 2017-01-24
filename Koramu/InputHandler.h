@@ -1,7 +1,9 @@
 #pragma once
 
 #include <SDL.h>
+#include <vector>
 #include "Game.h"
+#include "Vector2D.h"
 
 /*	Diese Klasse, welche als Singleton implementiert wird 
 *	(um diverse Probleme prophylaktisch auszurotten. Bei Fragen an Ario wenden),
@@ -24,26 +26,34 @@ private:
 	*/
 
 	const Uint8* m_aKeyboardState;					//	Array zur Speicherung des Zustands der Tastatur
+	Vector2D* m_pMousePosition;						//	Ortsvektor der Mausposition
+	std::vector<bool> m_mouseButtonStates;			//	Array (Vektor) zur Speicherung des Zustands der Maustasten
 
 private:
 	InputHandler();									//	Konstruktor
 	~InputHandler();								//	Destruktor
 
 public:
-	bool isKeyDown(SDL_Scancode);					//	Wird aufgerufen um zu prüfen ob eine bestimmte Taste gedrückt wurde
+	void handleInput();								//	Im Grunde werden hier nur Ereignisse gepollt
 
-	void handleInput();								//	
 
-	/*	Sowohl "onKeyDown" als auch "onKeyUp" speichern den Zustand der Tastatur,
-	*	aber trotzdem haben beide Funktionen eine Daseinsberechtigung, da wir in 
-	*	Zukunft vielleicht noch mehr machen wollen, wenn eine Taste gedrückt wurde.
-	*
-	*	Beide Funktionen werden in "handleInput" aufgerufen falls eine Taste
-	*	gedrückt bzw. losgelassen wurde.
-	*/
+	void onKeyDown();								//	Wird aufgerufen, sobald eine Taste gedrückt wird
+	void onKeyUp();									//	Wird aufgerufen, sobald eine Taste losgelassen wird
+	void onMouseMotion(const SDL_Event&);			//	Wird aufgerufen, sobald die Maus bewegt wird
+	void onMouseButtonDown(const SDL_Event&);		//	Wird aufgerufen, sobald eine Maustaste gedrückt wird
+	void onMouseButtonUp(const SDL_Event&);			//	Wird aufgerufen, sobald eine Maustaste losgelassen wird
 
-	void onKeyDown();
-	void onKeyUp();
+
+	//	getter-Funktionen
+	bool isKeyDown(SDL_Scancode);					//	Prüft ob eine bestimmte Taste gedrückt wurde
+	Vector2D* getMousePosition();					//	Gibt den Ortsvektor der Maus zurück
+
+	std::vector<bool> getMouseButtonState() { return m_mouseButtonStates; }
+
+	bool getLeftMouseButtonState() { return m_mouseButtonStates[0]; }
+	bool getMiddleMouseButtonState() { return m_mouseButtonStates[1]; }
+	bool getRightMouseButtonState() { return m_mouseButtonStates[2]; }
+
 
 	/*	Wichtig für Singleton-Klasse
 	*	'destroy()' ist der "Ersatz-Desktruktor"

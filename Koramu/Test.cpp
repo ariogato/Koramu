@@ -48,14 +48,6 @@ Test::Test()						//Konstruktor
 
 	message = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), tempMessage);
 #pragma endregion
-
-#pragma region stackTest
-	stack1.push(new FiniteStateMachine::PauseState());
-	stack1.push(new FiniteStateMachine::PlayState());
-	stack1.push(new FiniteStateMachine::PlayState());
-	std::cout << std::endl;
-	{}
-#pragma endregion
 };
 
 Test::~Test()						//Destruktor
@@ -78,8 +70,8 @@ Test::~Test()						//Destruktor
 void Test::testFunctions()
 {
 #pragma region logTest
-	//	Damit es nur am Ende durchgeführt wird
-	if (!TheGame::Instance()->isRunning())
+	//	Damit es nicht mehr
+	if (false)
 	{
 		//	Erster Durchlauf
 		auto start = std::chrono::high_resolution_clock::now();
@@ -134,8 +126,22 @@ void Test::testFunctions()
 	}
 #pragma endregion
 
-#pragma region stackTest
-	stack1.pop();
+#pragma region inputTest
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+		TheGame::Instance()->logStandard() << "right!" << std::endl;
+	if (TheInputHandler::Instance()->getLeftMouseButtonState())
+		TheGame::Instance()->logStandard() << "click left!" << std::endl;
+	if (TheInputHandler::Instance()->getRightMouseButtonState())
+		TheGame::Instance()->logStandard() << "click right!" << std::endl;
+	if (TheInputHandler::Instance()->getMiddleMouseButtonState())
+	{
+		//TheGame::Instance()->logStandard() << "click middle!" << std::endl;
+		TheGame::Instance()->logStandard()
+			<< TheInputHandler::Instance()->getMousePosition()->getX()
+			<< " : "
+			<< TheInputHandler::Instance()->getMousePosition()->getY()
+			<< std::endl;
+	}
 #pragma endregion
 };
 
