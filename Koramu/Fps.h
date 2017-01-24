@@ -13,4 +13,7 @@ private:
 
 public:
 	void calculateFPS();		//	FPS berechnen
+
+	//	getter-Funktionen
+	int getFps() { return fps; }
 };

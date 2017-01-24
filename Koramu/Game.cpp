@@ -107,6 +107,11 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		//	Das lässt die main-Schleife laufen
 		m_running = true;
 
+		//	Informationen über das Fenster speichern
+		m_gameWidth = width;
+		m_gameHeight = height;
+		m_gameXPos = xPos;
+		m_gameYPos = yPos;
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;

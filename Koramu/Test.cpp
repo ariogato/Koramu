@@ -41,12 +41,6 @@ Test::Test()						//Konstruktor
 	TTF_Init();
 
 	font = TTF_OpenFont("../assets/testFont.TTF", 28);
-
-	SDL_Color white = {255, 255, 255};
-
-	SDL_Surface* tempMessage = TTF_RenderText_Solid(font, "Koramu", white);
-
-	message = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), tempMessage);
 #pragma endregion
 };
 
@@ -115,17 +109,6 @@ void Test::testFunctions()
 		
 #pragma endregion
 
-#pragma region fontTest
-	if (player->getPosition().getX() >= -200.0f)
-	{
-		SDL_Rect messageRect = { 400, 300, 200, 200 };
-
-		messageRect.x = player->getPosition().getX();
-
-		SDL_RenderCopy(TheGame::Instance()->getRenderer(), message, NULL, &messageRect);
-	}
-#pragma endregion
-
 #pragma region inputTest
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 		TheGame::Instance()->logStandard() << "right!" << std::endl;
@@ -142,6 +125,24 @@ void Test::testFunctions()
 			<< TheInputHandler::Instance()->getMousePosition()->getY()
 			<< std::endl;
 	}
+#pragma endregion
+
+#pragma region fpsTest
+	fps.calculateFPS();
+
+	SDL_Color white = { 255, 255, 255 };
+
+	SDL_Surface* tempMessage = TTF_RenderText_Solid(font, std::to_string(fps.getFps()).c_str(), white);
+
+	message = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), tempMessage);
+
+	SDL_FreeSurface(tempMessage);
+#pragma endregion
+
+#pragma region fontTest
+		SDL_Rect messageRect = { TheGame::Instance()->getGameWidth() - 100, 0, 50, 25 };
+
+		SDL_RenderCopy(TheGame::Instance()->getRenderer(), message, NULL, &messageRect);
 #pragma endregion
 };
 

@@ -35,7 +35,7 @@ void SDL_GameObject::update()
 	m_currentRow = 3;
 	m_currentCol = (int)(SDL_GetTicks() / m_animSpeed) % m_numFrames;
 
-	Vector2D temp(2.0f, 0.0f);
+	Vector2D temp(1.0f, 0.0f);
 
 	m_positionVector -= temp;
 #pragma endregion

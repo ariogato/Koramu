@@ -11,6 +11,7 @@
 #include "PauseState.h"
 #include "PlayState.h"
 #include "InputHandler.h"
+#include "Fps.h"
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -33,6 +34,8 @@ private:
 
 	TTF_Font* font;
 	SDL_Texture* message;
+
+	Fps fps;
 #pragma endregion
 
 public:

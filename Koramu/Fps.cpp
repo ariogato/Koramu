@@ -50,6 +50,9 @@ void Fps::calculateFPS()
 
 	currentFrame++;								//	Nächster Frame
 
-	std::cout << fps << std::endl;				//	FPS ausgeben (zum Testen)
+	//std::cout << fps << std::endl;				//	FPS ausgeben (zum Testen)
+
+	if (fps < 50)
+		std::cout << "Low FPS! \t" << fps << std::endl;
 }
 
