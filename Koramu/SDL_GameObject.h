@@ -35,9 +35,9 @@ public:
 	SDL_GameObject();
 	~SDL_GameObject();
 
-	virtual void load(const ParamLoader&);
-	virtual void update();
-	virtual void draw();
+	virtual void load(const ParamLoader&);			//	Hier wird das Objekt geladen
+	virtual void update();							//	Hier werden die Membervariablen aktualisiert
+	virtual void draw();							//	Hier wird das Objekt auf den Bildschirm geschmissen
 
 	virtual void destroy();
 

@@ -12,6 +12,7 @@
 #include "PlayState.h"
 #include "InputHandler.h"
 #include "Fps.h"
+#include "Player.h"
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -31,11 +32,6 @@ private:
 #pragma region TestAttributes
 	SDL_GameObject* player;
 	Mix_Music* backgroundMusic;
-
-	TTF_Font* font;
-	SDL_Texture* message;
-
-	Fps fps;
 #pragma endregion
 
 public:

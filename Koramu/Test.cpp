@@ -14,7 +14,7 @@ Test::Test()						//Konstruktor
 	//	eine Textur hinzufügen
 	TheTextureManager::Instance()->load("player", "../assets/Player.png", TheGame::Instance()->getRenderer());
 
-	player = new SDL_GameObject();
+	player = new Player();
 
 	ParamLoader params;
 
@@ -23,7 +23,7 @@ Test::Test()						//Konstruktor
 	params.setWidth(70);
 	params.setNumFrames(4);
 	params.setTextureId("player");
-	params.setX(900.0f);
+	params.setX(500.0f);
 	params.setY(100.0f);
 
 	player->load(params);
@@ -37,11 +37,6 @@ Test::Test()						//Konstruktor
 	backgroundMusic = Mix_LoadMUS("../assets/undertale_example.ogg");
 #pragma endregion
 
-#pragma region fontTest
-	TTF_Init();
-
-	font = TTF_OpenFont("../assets/testFont.TTF", 28);
-#pragma endregion
 };
 
 Test::~Test()						//Destruktor
@@ -51,9 +46,6 @@ Test::~Test()						//Destruktor
 	Mix_Quit();
 #pragma endregion
 
-#pragma region fontTest
-	TTF_Quit();
-#pragma endregion
 };
 
 
@@ -110,8 +102,6 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region inputTest
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-		TheGame::Instance()->logStandard() << "right!" << std::endl;
 	if (TheInputHandler::Instance()->getLeftMouseButtonState())
 		TheGame::Instance()->logStandard() << "click left!" << std::endl;
 	if (TheInputHandler::Instance()->getRightMouseButtonState())
@@ -125,24 +115,6 @@ void Test::testFunctions()
 			<< TheInputHandler::Instance()->getMousePosition()->getY()
 			<< std::endl;
 	}
-#pragma endregion
-
-#pragma region fpsTest
-	fps.calculateFPS();
-
-	SDL_Color white = { 255, 255, 255 };
-
-	SDL_Surface* tempMessage = TTF_RenderText_Solid(font, std::to_string(fps.getFps()).c_str(), white);
-
-	message = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), tempMessage);
-
-	SDL_FreeSurface(tempMessage);
-#pragma endregion
-
-#pragma region fontTest
-		SDL_Rect messageRect = { TheGame::Instance()->getGameWidth() - 100, 0, 50, 25 };
-
-		SDL_RenderCopy(TheGame::Instance()->getRenderer(), message, NULL, &messageRect);
 #pragma endregion
 };
 

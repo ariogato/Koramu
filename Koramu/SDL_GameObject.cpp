@@ -31,14 +31,8 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 
 void SDL_GameObject::update()
 {
-#pragma region testStuff
-	m_currentRow = 3;
+	//	Der anzuzeigende Frame wird berechnet
 	m_currentCol = (int)(SDL_GetTicks() / m_animSpeed) % m_numFrames;
-
-	Vector2D temp(1.0f, 0.0f);
-
-	m_positionVector -= temp;
-#pragma endregion
 }
 
 void SDL_GameObject::draw()

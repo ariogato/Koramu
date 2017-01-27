@@ -33,14 +33,14 @@ private:
 	InputHandler();									//	Konstruktor
 	~InputHandler();								//	Destruktor
 
-public:
-	void handleInput();								//	Im Grunde werden hier nur Ereignisse gepollt
-
 	void onKeyDown();								//	Wird aufgerufen, sobald eine Taste gedrückt wird
 	void onKeyUp();									//	Wird aufgerufen, sobald eine Taste losgelassen wird
 	void onMouseMotion(const SDL_Event&);			//	Wird aufgerufen, sobald die Maus bewegt wird
 	void onMouseButtonDown(const SDL_Event&);		//	Wird aufgerufen, sobald eine Maustaste gedrückt wird
 	void onMouseButtonUp(const SDL_Event&);			//	Wird aufgerufen, sobald eine Maustaste losgelassen wird
+
+public:
+	void handleInput();								//	Im Grunde werden hier nur Ereignisse gepollt
 
 	//	getter-Funktionen
 	bool isKeyDown(SDL_Scancode);					//	Prüft, ob eine bestimmte Taste gedrückt wurde
