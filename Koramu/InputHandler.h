@@ -5,8 +5,8 @@
 #include "Game.h"
 #include "Vector2D.h"
 
-/*	Diese Klasse, welche als Singleton implementiert wird 
-*	(um diverse Probleme prophylaktisch auszurotten. Bei Fragen an Ario wenden),
+/*	Diese Klasse, welche als Singleton implementiert wird, 
+*	um diversen Problemen prophylaktisch vorzubeugen (bei Fragen an Ario wenden),
 *	existiert um sämtliche Eingaben vom User (Tastatur, Maus, etc.) entgegenzunehmen,
 *	damit die jeweiligen anderen Klassen (wie z.B. "Player"), etwas damit anfangen können.
 */
@@ -19,10 +19,10 @@ private:
 
 
 	/*	Warum const "Uint8*"?
-	*		->	Die Funktion "SDL_GetKeyboardState" gibt einen Zeiger auf einen Array 
-	*			von "unsigned char"s zurück, welcher sich immer an der selben Adresse im Speicher befindet. 
+	*		->	Die Funktion "SDL_GetKeyboardState" gibt einen Zeiger auf ein Array 
+	*			von "unsigned char"s zurück, welches sich immer an der selben Adresse im Speicher befindet. 
 	*			Hierbei repräsentiert jedes Element des Arrays eine Taste auf der Tastatur 
-	*			(0 wenn sie nicht gedrückt wird & 1 wenn sie gedrückt wird). 
+	*			(0, wenn sie nicht gedrückt wird, und 1, wenn sie gedrückt wird). 
 	*/
 
 	const Uint8* m_aKeyboardState;					//	Array zur Speicherung des Zustands der Tastatur
@@ -36,16 +36,14 @@ private:
 public:
 	void handleInput();								//	Im Grunde werden hier nur Ereignisse gepollt
 
-
 	void onKeyDown();								//	Wird aufgerufen, sobald eine Taste gedrückt wird
 	void onKeyUp();									//	Wird aufgerufen, sobald eine Taste losgelassen wird
 	void onMouseMotion(const SDL_Event&);			//	Wird aufgerufen, sobald die Maus bewegt wird
 	void onMouseButtonDown(const SDL_Event&);		//	Wird aufgerufen, sobald eine Maustaste gedrückt wird
 	void onMouseButtonUp(const SDL_Event&);			//	Wird aufgerufen, sobald eine Maustaste losgelassen wird
 
-
 	//	getter-Funktionen
-	bool isKeyDown(SDL_Scancode);					//	Prüft ob eine bestimmte Taste gedrückt wurde
+	bool isKeyDown(SDL_Scancode);					//	Prüft, ob eine bestimmte Taste gedrückt wurde
 	Vector2D* getMousePosition();					//	Gibt den Ortsvektor der Maus zurück
 
 	std::vector<bool> getMouseButtonState() { return m_mouseButtonStates; }

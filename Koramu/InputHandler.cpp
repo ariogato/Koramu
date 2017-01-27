@@ -15,7 +15,7 @@ InputHandler::InputHandler()
 InputHandler::~InputHandler()
 {
 	/*	Es ist schon sinnvoll, dass "m_aKeyboardState" hier drinnen nicht steht.
-	*	Der Array, auf den "m_aKeyboardState" zeigt ist ein SDL-interner Array
+	*	Der Array, auf den "m_aKeyboardState" zeigt ist ein SDL-internes Array
 	*	und wird von SDL selber zum Schluss freigegeben.
 	*/
 	delete m_pMousePosition;
@@ -36,7 +36,7 @@ void InputHandler::handleInput()
 		{
 		//	Beim Schließen des Fensters
 		case SDL_QUIT:
-			//	Der Gameover-Zustand wird in "Game" gesetzt
+			//	Der "Gameover-Zustand" wird in "Game" gesetzt
 			TheGame::Instance()->setGameOver();
 			break;
 
@@ -99,7 +99,7 @@ void InputHandler::onMouseButtonDown(const SDL_Event& event)
 	*		2 - Rechts
 	*/
 
-	//	Prüfen welche Taste gedrückt wurde
+	//	Prüfen, welche Taste gedrückt wurde
 	switch (event.button.button)
 	{
 	//	Beim Drücken der linken Maustaste
@@ -121,22 +121,22 @@ void InputHandler::onMouseButtonDown(const SDL_Event& event)
 
 void InputHandler::onMouseButtonUp(const SDL_Event& event)
 {
-	//	Details: Siehe "onMouseButtonDown"
+	//	Details: siehe "onMouseButtonDown"
 
-	//	Prüfen welche Taste lsogelassen wurde
+	//	Prüfen, welche Taste lsogelassen wurde
 	switch (event.button.button)
 	{
-		//	Beim Loslassen der linken Maustaste
+	//	Beim Loslassen der linken Maustaste
 	case SDL_BUTTON_LEFT:
 		m_mouseButtonStates[0] = false;
 		break;
 
-		//	Beim Loslassen der mittleren Maustaste (Scrollrad)
+	//	Beim Loslassen der mittleren Maustaste (Scrollrad)
 	case SDL_BUTTON_MIDDLE:
 		m_mouseButtonStates[1] = false;
 		break;
 
-		//	Beim Loslassen der rechten Maustaste 
+	//	Beim Loslassen der rechten Maustaste 
 	case SDL_BUTTON_RIGHT:
 		m_mouseButtonStates[2] = false;
 		break;
@@ -164,7 +164,7 @@ Vector2D* InputHandler::getMousePosition()
 	return m_pMousePosition;
 }
 
-InputHandler * InputHandler::Instance()
+InputHandler* InputHandler::Instance()
 {
 	/*	Checken ob die Instanz schon existiert.
 	*	wenn nein:

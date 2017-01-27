@@ -124,9 +124,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 void Game::handleInput()
 {
 	/*	Wir haben eine eigene Klasse, die den Input für uns händelt.
-	*	Folglich wird hier nur die "handleInput" Methode dieser aufgerufen.
+	*	Folglich wird hier nur die "handleInput"-Methode dieser aufgerufen.
 	*
-	*	Diese Methode prüft auch ob das Fenster geschlossen werden soll. (X gedrückt)
+	*	Diese Methode prüft auch, ob das Fenster geschlossen werden soll. (X gedrückt)
 	*/
 	TheInputHandler::Instance()->handleInput();
 }

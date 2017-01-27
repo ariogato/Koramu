@@ -67,7 +67,7 @@ public:
 	void handleInput();					//	Eingaben bearbeiten
 	void update();						//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 	void render();						//	Alles auf den Bildschirm schmeiﬂen
-	void setGameOver();					//	Um z.B. vom InputHandler das Spiel zu beenden
+	void setGameOver();					//	Um z.B. vom InputHandler aus das Spiel zu beenden
 
 
 	//	Einfache getter-Funktionen
