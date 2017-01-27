@@ -3,23 +3,28 @@
 
 void Fps::calculateFPS()
 {
-	static const int NUM_SAMPLES = 10;						//	Anzahl der Frames, aus denen ein Durchschnitt errechnet wird
+	//	Anzahl der Frames, aus denen ein Durchschnitt errechnet wird
+	static const int NUM_SAMPLES = 10;						
 	static float frameTimes[NUM_SAMPLES];
 	static int currentFrame = 0;
 
 	//	SDL_GetTicks() gibt in ms an wie viel Zeit seit der Initialisierung von SDL vergangen ist
 	
-	static float previousTicks = SDL_GetTicks();			//	Vorherige Frames
+	//	Vorherige Frames
+	static float previousTicks = SDL_GetTicks();			
 
-	float currentTicks;										//	Jetziger Frame
+	//	Jetziger Frame
+	float currentTicks;										
 	currentTicks = SDL_GetTicks();							
 
-	frameTime = currentTicks - previousTicks;				//	Dauer des Frames
+	//	Dauer des Frames
+	frameTime = currentTicks - previousTicks;				
 	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;		
 
 	previousTicks = currentTicks;							
 
-	int count;												//	Anzahl aus Frames, aus welchen die Durschschnittszahl ausgerechnet wird
+	//	Anzahl aus Frames, aus welchen die Durschschnittszahl ausgerechnet wird
+	int count;												
 
 	//	Durchschnitt aus nur den schon gezeigten Frames:
 	if (currentFrame < NUM_SAMPLES)							
@@ -37,18 +42,21 @@ void Fps::calculateFPS()
 		frameTimeAverage += frameTimes[i];					
 	}
 
-	frameTimeAverage /= count;					//	Durchschnittliche Frametime
+	frameTimeAverage /= count;					
 
+	//	Anzahl der Frames die pro Sekunde ausgegeben werden
 	if (frameTimeAverage > 0)
 	{
-		fps = 1000.0f / frameTimeAverage;		//	Anzahl der Frames die pro Sekunde ausgegeben werden 
+		fps = 1000.0f / frameTimeAverage;		 
 	}
-	else										//	Durch null teilen geht nicht 
+	//	Durch null teilen geht nicht, deswegen wird ein beliebeiger Wert angegeben
+	else										 
 	{
-		fps = 60.0;								//	Deswegen wird ein beliebeiger Wert angegeben
+		fps = 60.0;								
 	}
-
-	currentFrame++;								//	Nächster Frame
+    
+	//	Nächster Frame
+	currentFrame++;								
 
 	//std::cout << fps << std::endl;				//	FPS ausgeben (zum Testen)
 
