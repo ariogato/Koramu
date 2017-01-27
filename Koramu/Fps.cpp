@@ -15,7 +15,7 @@ void Fps::calculateFPS()
 	currentTicks = SDL_GetTicks();							
 
 	frameTime = currentTicks - previousTicks;				//	Dauer des Frames
-	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;		//	Was macht das?
+	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;		
 
 	previousTicks = currentTicks;							
 
@@ -53,6 +53,6 @@ void Fps::calculateFPS()
 	//std::cout << fps << std::endl;				//	FPS ausgeben (zum Testen)
 
 	if (fps < 50)
-		std::cout << "Low FPS! \t" << fps << std::endl;
+		std::cout << "Low FPS! \t" << fps << std::endl;		
 }
 

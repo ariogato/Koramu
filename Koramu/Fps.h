@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SDL.h>
 
-/*	Dies Klasse dafür da, die FPS (Frames Per Second) zu berechnen. Es ist einfach wunderbar, 
+/*	Diese Klasse ist dafür da, die FPS (Frames Per Second) zu berechnen. Es ist einfach wunderbar, 
 *	wenn man die FPS als Spieler angezeigt bekommt :).
 */
 class Fps
@@ -12,7 +12,7 @@ private:
 	float frameTime;			//	Dauer eines Frames
 
 public:
-	void calculateFPS();		//	FPS berechnen
+	void calculateFPS();		//	Methode um FPS zu berechnen
 
 	//	getter-Funktionen
 	int getFps() { return fps; }
