@@ -15,5 +15,5 @@ public:
 	void calculateFPS();		//	Methode um FPS zu berechnen
 
 	//	getter-Funktionen
-	int getFps() { return fps; }
+	int getFPS() { return fps; }
 };
