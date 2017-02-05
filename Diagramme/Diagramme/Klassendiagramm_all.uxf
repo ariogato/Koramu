@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>7</zoom_level>
+  <zoom_level>4</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>245</x>
-      <y>112</y>
-      <w>357</w>
-      <h>364</h>
+      <x>536</x>
+      <y>172</y>
+      <w>204</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 Game
@@ -47,10 +47,10 @@ Game
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1295</x>
-      <y>833</y>
-      <w>168</w>
-      <h>140</h>
+      <x>1136</x>
+      <y>584</y>
+      <w>96</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>/GameState/
 --
@@ -70,10 +70,10 @@ Game
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>357</x>
-      <y>63</y>
-      <w>98</w>
-      <h>49</h>
+      <x>600</x>
+      <y>144</y>
+      <w>56</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>bg=blue
 Singleteon 
@@ -85,10 +85,10 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1512</x>
-      <y>791</y>
-      <w>84</w>
-      <h>77</h>
+      <x>1260</x>
+      <y>560</y>
+      <w>48</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 GameStateIDs
@@ -102,10 +102,10 @@ puaseState
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>679</x>
-      <y>735</y>
-      <w>938</w>
-      <h>448</h>
+      <x>784</x>
+      <y>528</y>
+      <w>536</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>FiniteStateMachine
 --
@@ -116,10 +116,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>714</x>
-      <y>777</y>
-      <w>203</w>
-      <h>140</h>
+      <x>804</x>
+      <y>552</y>
+      <w>116</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>GameStateMachine
 --
@@ -140,10 +140,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1218</x>
-      <y>1022</y>
-      <w>105</w>
-      <h>105</h>
+      <x>1092</x>
+      <y>692</y>
+      <w>60</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>MenuState
 --
@@ -160,10 +160,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1288</x>
-      <y>966</y>
-      <w>105</w>
-      <h>70</h>
+      <x>1132</x>
+      <y>660</y>
+      <w>60</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;80.0</additional_attributes>
@@ -171,10 +171,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1456</x>
-      <y>1022</y>
-      <w>105</w>
-      <h>105</h>
+      <x>1228</x>
+      <y>692</y>
+      <w>60</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>PauseState
 --
@@ -191,10 +191,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1337</x>
-      <y>1022</y>
-      <w>105</w>
-      <h>105</h>
+      <x>1160</x>
+      <y>692</y>
+      <w>60</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>PlayState
 --
@@ -211,10 +211,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1379</x>
-      <y>966</y>
-      <w>21</w>
-      <h>70</h>
+      <x>1184</x>
+      <y>660</y>
+      <w>12</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -222,10 +222,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1386</x>
-      <y>966</y>
-      <w>112</w>
-      <h>70</h>
+      <x>1188</x>
+      <y>660</y>
+      <w>64</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;140.0;80.0</additional_attributes>
@@ -233,10 +233,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1302</x>
-      <y>392</y>
-      <w>98</w>
-      <h>77</h>
+      <x>1140</x>
+      <y>332</y>
+      <w>56</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;120.0;90.0</additional_attributes>
@@ -244,10 +244,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1169</x>
-      <y>392</y>
-      <w>119</w>
-      <h>77</h>
+      <x>1064</x>
+      <y>332</y>
+      <w>68</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;90.0</additional_attributes>
@@ -255,10 +255,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1414</x>
-      <y>315</y>
-      <w>210</w>
-      <h>224</h>
+      <x>1204</x>
+      <y>288</y>
+      <w>120</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 successor
@@ -269,10 +269,10 @@ m2=0,1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>616</x>
-      <y>0</y>
-      <w>371</w>
-      <h>91</h>
+      <x>748</x>
+      <y>108</y>
+      <w>228</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 TextureManager
@@ -287,10 +287,10 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>413</x>
-      <y>518</y>
-      <w>154</w>
-      <h>77</h>
+      <x>632</x>
+      <y>404</y>
+      <w>88</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>/GameObject/
 --
@@ -306,26 +306,27 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>7</x>
-      <y>147</y>
-      <w>168</w>
-      <h>70</h>
+      <x>336</x>
+      <y>192</y>
+      <w>160</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>Logger
 --
 - m_outputStream : ostream*
 - heap : bool
 --
-+ print(msg : template&lt;typename T&gt;)</panel_attributes>
++ operator&lt;&lt;(msg : T) : Logger&amp;
++ operator&lt;&lt;((*f)(std::ostream&amp;) : std::ostream&amp;) : std::ostream&amp;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>168</x>
-      <y>161</y>
-      <w>91</w>
-      <h>35</h>
+      <x>492</x>
+      <y>200</y>
+      <w>52</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=2
@@ -336,10 +337,10 @@ has</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>595</x>
-      <y>203</y>
-      <w>189</w>
-      <h>588</h>
+      <x>736</x>
+      <y>224</y>
+      <w>108</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=1
@@ -351,9 +352,9 @@ controls</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>924</x>
-      <y>210</y>
-      <w>693</w>
-      <h>497</h>
+      <y>228</y>
+      <w>396</w>
+      <h>284</h>
     </coordinates>
     <panel_attributes>DataStructure
 --
@@ -364,10 +365,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1113</x>
-      <y>301</y>
-      <w>98</w>
-      <h>35</h>
+      <x>1032</x>
+      <y>280</y>
+      <w>56</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 topNode
@@ -377,10 +378,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>910</x>
-      <y>357</y>
-      <w>126</w>
-      <h>462</h>
+      <x>916</x>
+      <y>312</y>
+      <w>72</w>
+      <h>264</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 
@@ -395,10 +396,10 @@ m2=1
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>2205</x>
-      <y>210</y>
-      <w>42</w>
-      <h>77</h>
+      <x>1656</x>
+      <y>228</y>
+      <w>24</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>Actor</panel_attributes>
     <additional_attributes/>
@@ -406,10 +407,10 @@ m2=1
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1204</x>
-      <y>175</y>
-      <w>175</w>
-      <h>49</h>
+      <x>1084</x>
+      <y>208</y>
+      <w>100</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>Der Stapel wurde als 
 Klassen-Template implementiert
@@ -420,10 +421,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>266</y>
-      <w>182</w>
-      <h>98</h>
+      <x>936</x>
+      <y>260</y>
+      <w>104</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>template=T
 Stack
@@ -439,10 +440,10 @@ Stack
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1197</x>
-      <y>280</y>
-      <w>231</w>
-      <h>119</h>
+      <x>1080</x>
+      <y>268</y>
+      <w>132</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>template=T
 /StackElement/
@@ -460,10 +461,10 @@ Stack
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1029</x>
-      <y>448</y>
-      <w>231</w>
-      <h>119</h>
+      <x>984</x>
+      <y>364</y>
+      <w>132</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>template=T
 Closure
@@ -482,10 +483,10 @@ Closure
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1281</x>
-      <y>448</y>
-      <w>273</w>
-      <h>133</h>
+      <x>1128</x>
+      <y>364</y>
+      <w>156</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>template=T
 Node
@@ -508,10 +509,10 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>196</x>
-      <y>749</y>
-      <w>126</w>
-      <h>56</h>
+      <x>508</x>
+      <y>536</y>
+      <w>72</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Player 
 --
@@ -524,10 +525,10 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>385</x>
-      <y>658</y>
-      <w>210</w>
-      <h>224</h>
+      <x>616</x>
+      <y>484</y>
+      <w>120</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>SDL_GameObject
 --
@@ -556,10 +557,10 @@ Node
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>483</x>
-      <y>588</y>
-      <w>21</w>
-      <h>84</h>
+      <x>672</x>
+      <y>444</y>
+      <w>12</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -567,10 +568,10 @@ Node
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>315</x>
-      <y>770</y>
-      <w>84</w>
-      <h>21</h>
+      <x>576</x>
+      <y>548</y>
+      <w>48</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
@@ -578,10 +579,10 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>70</x>
-      <y>861</y>
-      <w>189</w>
-      <h>161</h>
+      <x>436</x>
+      <y>600</y>
+      <w>108</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>Vector2D
 --
@@ -603,10 +604,10 @@ ToDo: Überladene Operatoren darstellen
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>490</y>
-      <w>280</w>
-      <h>231</h>
+      <x>396</x>
+      <y>388</y>
+      <w>160</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 InputHandler
@@ -635,10 +636,10 @@ InputHandler
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>70</x>
-      <y>434</y>
-      <w>98</w>
-      <h>56</h>
+      <x>436</x>
+      <y>356</y>
+      <w>56</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>bg=blue
 Singleteon 
@@ -650,10 +651,10 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>357</x>
-      <y>945</y>
-      <w>133</w>
-      <h>84</h>
+      <x>600</x>
+      <y>648</y>
+      <w>76</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Fps
 --
@@ -668,13 +669,15 @@ Singleteon
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>28</x>
-      <y>217</y>
-      <w>105</w>
-      <h>21</h>
+      <x>368</x>
+      <y>232</y>
+      <w>104</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>bg=blue
-Stimmt das so noch?</panel_attributes>
+letztere Methode sieht so komisch aus, 
+weil als Parameter ein Pointer auf eine
+Funktion übergeben wird</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
