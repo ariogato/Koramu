@@ -105,9 +105,10 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	SDL_Rect destRect;
 	SDL_Rect srcRect;
 
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
-
+	srcRect.w = width;
+	srcRect.h = height;
+	destRect.w = 64;
+	destRect.h = 165;
 	/*	Wir wollen nur ein Bild in dem Spritesheet erfassen.
 	*	Um das zu erreichen wird die x- & y-Position des Source Rectangles
 	*	variiert. 
