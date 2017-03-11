@@ -45,6 +45,9 @@
     <Filter Include="Headerdateien\Parser\ObjectParser">
       <UniqueIdentifier>{0bb497c1-a017-4b7e-940f-c84d9ba50711}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xmlFiles">
+      <UniqueIdentifier>{0b5dad66-feb9-4e48-82b5-9a72a0b3baa2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -169,5 +172,10 @@
     <ClInclude Include="Player.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="xmlFiles\states.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

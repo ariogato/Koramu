@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Texturen werden seperat geladen (unabh�ngig von den States)-->
+<textures>
+	<texture />
+</textures>
+
+<states> 
+	<menu>
+		
+	</menu>
+	<play>
+	
+	</play>
+	<pause>
+	
+	</pause>
+</states>
