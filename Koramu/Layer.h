@@ -10,8 +10,8 @@ namespace Environment
 	class Layer
 	{
 	public:
-		Layer();
-		virtual ~Layer();
+		Layer() {}
+		virtual ~Layer() {}
 
 		virtual void update() = 0;		//	Layer aktualisieren
 		virtual void render() = 0;		//	Layer rendern
