@@ -42,11 +42,17 @@
     <Filter Include="Headerdateien\Parser">
       <UniqueIdentifier>{4d0881e6-54e2-4278-b9e1-40620f02eac4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Parser\ObjectParser">
-      <UniqueIdentifier>{0bb497c1-a017-4b7e-940f-c84d9ba50711}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xmlFiles">
       <UniqueIdentifier>{0b5dad66-feb9-4e48-82b5-9a72a0b3baa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Parser\StateParser">
+      <UniqueIdentifier>{0bb497c1-a017-4b7e-940f-c84d9ba50711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Parser">
+      <UniqueIdentifier>{930af4d8-4893-4be4-acd2-bb4e672f2bab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Parser\StateParser">
+      <UniqueIdentifier>{411bce94-36f1-4baf-8097-857f6e4004aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="StateParser.cpp">
+      <Filter>Quelldateien\Parser\StateParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +183,12 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="StateParser.h">
+      <Filter>Headerdateien\Parser\StateParser</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

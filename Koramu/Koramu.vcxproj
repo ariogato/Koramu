@@ -155,8 +155,10 @@
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDL_GameObject.cpp" />
     <ClCompile Include="StackDefinitions.cpp" />
+    <ClCompile Include="StateParser.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,8 +182,10 @@
     <ClInclude Include="SDL_GameObject.h" />
     <ClInclude Include="StackDeclarations.h" />
     <ClInclude Include="StackElement.h" />
+    <ClInclude Include="StateParser.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>

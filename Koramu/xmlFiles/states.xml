@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Texturen werden seperat geladen (unabh�ngig von den States)-->
-<textures>
-	<texture />
-</textures>
 
-<states> 
-	<menu>
-		
+<states>
+  <!-- Texturen werden seperat geladen (unabhängig vom Spielzustand)-->
+  <textures>
+    <!-- Buttons-->
+    <texture id="buttonStart" path="../assets/Button_Start.png"/>
+    <texture id="buttonHowtoplay" path="../assets/Button_Howtoplay.png"/>
+    <texture id="buttonExit" path="../assets/Button_Exit.png"/>
+
+    <!-- keine Buttons-->
+    <texture id="koramu" path="../assets/Koramu.png"/>
+    <texture id="player" path="../assets/Player.png"/>
+  </textures>
+
+  <menu>
+    <gameObjects>
+      <gameObject type="button" textureId="buttonStart"
+                  xPos="460" yPos="293" width="360" height="120"
+                  numRows="1" numCols="3"/>
+      <gameObject type="button" textureId="buttonHowtoplay"
+                  xPos="460" yPos="438" width="360" height="120"
+                  numRows="1" numCols="3"/>
+      <gameObject type="button" textureId="buttonExit"
+                  xPos="460" yPos="583" width="360" height="120"
+                  numRows="1" numCols="3"/>
+      <gameObject type="text" textureId="koramu"
+                  xPos="202" yPos="31" width="877" height="181"
+                  numRows="1" numCols="1"/>
+
+      <gameObject type="animation" textureId="player"
+                  xPos="460" yPos="374" width="24" height="62"
+                  numRows="4" numCols="4"/>
+    </gameObjects>
 	</menu>
+  
 	<play>
-	
+    <gameObjects>
+
+    </gameObjects>
 	</play>
-	<pause>
 	
+  <pause>
+    <gameObjects>
+
+    </gameObjects>
 	</pause>
 </states>
