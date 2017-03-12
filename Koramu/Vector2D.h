@@ -10,7 +10,7 @@ class Vector2D
 {
 private:
 	float m_xComponent;					//	Die beiden Komponenten (x | y)
-	float m_yComponent;
+	float m_yComponent;		
 
 public:
 	Vector2D(float, float);				//	Konstruktor

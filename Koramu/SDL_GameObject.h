@@ -41,7 +41,7 @@ public:
 
 	virtual void destroy();
 
-	//get-Funktionen
+	//geter-Funktionen
 	Vector2D getPosition() { return m_positionVector; }
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }

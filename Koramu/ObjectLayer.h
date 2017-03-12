@@ -1,15 +1,25 @@
 #pragma once
 #include "Layer.h"
-#include "Vector2D.h"
 #include "Player.h"
+#include "vector"
 
-class ObjectLayer : public Layer
+namespace Environment
 {
-private:
-	Vector2D m_gameObjects;
-	Player m_Player;
+	/*	Diese Klasse managed unsere "GameObjects".
+	 */
+	class ObjectLayer : public Layer
+	{
+	private:
+		std::vector<GameObject*> m_gameObjects;		//	Array der GameObjects 
+		Player m_Player;							//	Der Spieler ist Teil des ObjectLayers und wird von diesem gerendert.
 
-public:
-	void update() {};
-	void render() {};
-};
+	public:
+		ObjectLayer();
+		~ObjectLayer();
+
+		void update() {};							//	Aktualisiern
+		void render() {};							//	Rendern
+	};
+
+	
+}

@@ -1,11 +1,19 @@
 #include "Map.h"
 
-void Map::render()
-{
 
+Environment::Map::Map()
+	: m_positionVector(0.0f, 0.0f)
+{
 }
 
-void Map::update()
+Environment::Map::~Map()
 {
+}
 
+void Environment::Map::update()
+{
+}
+
+void Environment::Map::render()
+{
 }

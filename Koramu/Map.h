@@ -1,15 +1,23 @@
 #pragma once
 #include "Vector2D.h"
-#include <string>
+#include "Layer.h"
+#include "map"
 
-
-class Map
+//	Alles bezüglich der Map befindet sich im Namenraum "Environment"
+namespace Environment
 {
-private:
-	Vector2D m_positionVector;
-	std::string m_layers;
-	
-public:
-	void render();
-	void update();
-};
+	//	Instanzen dieser Klasse repräsentieren unsere Maps.
+	class Map
+	{
+	private:
+		Vector2D m_positionVector;					//	Ortsvektor
+		std::map<std::string, Layer> m_layers;		//	Dictionary/Map aus zur Map gehörigen Layern
+
+	public:
+		Map();
+		~Map();
+
+		void update();			//	Aktualisieren
+		void render();			//	Rendern
+	};
+}

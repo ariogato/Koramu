@@ -2,26 +2,37 @@
 #include "Vector2D.h"
 #include <string>
 
-class Tile
-{
-private:
-	std::string m_tileTextureID;
-	Vector2D m_positionVector;
-	std::string m_message;
-	int m_width;
-	int m_height;
+namespace Environment
+{ 
+	/*	Unsere Map besteht aus Tiles (64x64 großen Bildern).
+	 *	Instanzen der Klasse "Tile" repräsentieren einzelne Tiles.  
+	 */
+	class Tile
+	{
+	private:
+		Tile();				
+		~Tile();		
 
-public:
-	void load();
-	void update();
-	void render();
+		std::string m_tileTextureID;	//	ID der zugehörigen Textur
+		Vector2D m_positionVector;		//	Ortsvektor des Tiles 
+		std::string m_message;			//	Jedes Tile hat eine "Nachricht", die dem User angezeigt werden können soll.
+	
+		int m_width;					//	Breite des Tiles
+		int m_height;					//	Höhe des Tiles
 
-	std::string getTileTextureID() const { return m_tileTextureID; }
-	std::string getMessage() const { return m_message; }
-	int getHeight() const { return m_height; }
-	int getWidth() const { return m_width; }
-	Vector2D getPostionVector() const { return m_positionVector; }
+	public:
+		void load();					//	Laden des Tiles
+		void update();					//	Membervariablen aktualisieren
+		void render();					//	Rendern
+
+		//	getter-Funktionen
+		std::string getTileTextureID() const { return m_tileTextureID; }
+		std::string getMessage() const { return m_message; }
+		int getHeight() const { return m_height; }
+		int getWidth() const { return m_width; }
+		Vector2D getPostionVector() const { return m_positionVector; }
 
 	
 
-};
+	};
+}

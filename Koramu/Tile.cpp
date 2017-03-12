@@ -1,16 +1,25 @@
 #include "Tile.h"
 
-void Tile::load()
+Environment::Tile::Tile()
+	: m_positionVector(0.0f, 0.0f), m_width(64), m_height(64)
+{
+}
+
+Environment::Tile::~Tile()
+{
+}
+
+void Environment::Tile::load()
 {
 
 }
 
-void Tile::update()
+void Environment::Tile::update()
 {
 
 }
 
-void Tile::render()
+void Environment::Tile::render()
 {
 
 }

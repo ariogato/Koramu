@@ -1,13 +1,21 @@
 #pragma once
 #include "Layer.h"
-#include "Vector2D.h"
+#include "vector"
+#include "Tile.h"
 
-class TileLayer : public Layer
+namespace Environment
 {
-private:
-	Vector2D m_tiles;
+	class TileLayer : public Layer
+	{
+	private:
+		std::vector<std::vector<Tile*>> m_tiles;		//	Mehrdimensionaler Vector aus zu dem Layer gehörigen Tiles
 
-public:
-	void update() {};
-	void render() {};
-};
+	public:
+		TileLayer();
+		~TileLayer();
+
+		void update();				//	Aktualisieren
+		void render();				//	Rendern
+	};
+}
+
