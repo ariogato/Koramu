@@ -17,8 +17,8 @@ namespace Environment
 		ObjectLayer();
 		~ObjectLayer();
 
-		void update() {};							//	Aktualisiern
-		void render() {};							//	Rendern
+		void update();							//	Aktualisiern
+		void render();							//	Rendern
 	};
 
 	
