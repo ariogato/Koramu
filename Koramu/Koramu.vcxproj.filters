@@ -54,6 +54,12 @@
     <Filter Include="Quelldateien\Parser\StateParser">
       <UniqueIdentifier>{411bce94-36f1-4baf-8097-857f6e4004aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Environment">
+      <UniqueIdentifier>{da5ed21d-e8ea-4306-bae3-50281b67cfc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Environment">
+      <UniqueIdentifier>{91836f7b-198e-4e94-ae27-29eb99baa035}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -112,6 +118,18 @@
     </ClCompile>
     <ClCompile Include="StateParser.cpp">
       <Filter>Quelldateien\Parser\StateParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Quelldateien\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Quelldateien\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLayer.cpp">
+      <Filter>Quelldateien\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>Quelldateien\Environment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +207,21 @@
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Headerdateien\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Headerdateien\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLayer.h">
+      <Filter>Headerdateien\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Headerdateien\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
+      <Filter>Headerdateien\Environment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -148,8 +148,10 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
@@ -158,6 +160,8 @@
     <ClCompile Include="StateParser.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
@@ -170,7 +174,10 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Logger.h" />
@@ -185,6 +192,8 @@
     <ClInclude Include="StateParser.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileLayer.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
