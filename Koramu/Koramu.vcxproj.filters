@@ -131,6 +131,9 @@
     <ClCompile Include="TileLayer.cpp">
       <Filter>Quelldateien\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationLayer.cpp">
+      <Filter>Quelldateien\Environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -221,6 +224,9 @@
       <Filter>Headerdateien\Environment</Filter>
     </ClInclude>
     <ClInclude Include="TileLayer.h">
+      <Filter>Headerdateien\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationLayer.h">
       <Filter>Headerdateien\Environment</Filter>
     </ClInclude>
   </ItemGroup>
