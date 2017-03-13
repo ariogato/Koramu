@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
-#include "GameObject.h"
+#include "Stack.h"
+#include "Map.h"
 
 /*	In diesen namespace gehört alles, was mit dem Zustandsautomaten
 *	des Spiels zu tun hat.
@@ -29,8 +29,8 @@ namespace FiniteStateMachine
 	class GameState
 	{
 	protected:
-		GameStateIDs m_stateID;							//	Um den Zustand identifizieren zu können
-		std::vector<GameObject*> m_gameObjects;			//	Array der GameObjects eines Spielzustandes
+		GameStateIDs m_stateID;									//	Um den Zustand identifizieren zu können
+		DataStructure::Stack<Environment::Map> m_maps;			//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
 
 	public:
 		GameState() {}
@@ -50,6 +50,6 @@ namespace FiniteStateMachine
 		virtual void render() = 0;					//	Alles auf den Bildschirm schmeißen
 
 		//	getter-Funktionen
-		GameStateIDs getStateID() { return m_stateID; }
+		GameStateIDs getStateID() const { return m_stateID; }
 	};
 };
