@@ -11,7 +11,7 @@ namespace Environment
 	{
 	private:
 		Vector2D m_positionVector;					//	Ortsvektor
-		std::map<std::string, Layer> m_layers;		//	Dictionary/Map aus zur Map gehörigen Layern
+		std::map<std::string, Layer*> m_layerMap;		//	Dictionary/Map aus zur Map gehörigen Layern
 
 	public:
 		Map();

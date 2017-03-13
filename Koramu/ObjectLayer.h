@@ -11,7 +11,7 @@ namespace Environment
 	{
 	private:
 		std::vector<GameObject*> m_gameObjects;		//	Array der GameObjects 
-		Player m_Player;							//	Der Spieler ist Teil des ObjectLayers und wird von diesem gerendert.
+		Player m_player;							//	Der Spieler ist Teil des ObjectLayers und wird von diesem gerendert.
 
 	public:
 		ObjectLayer();
