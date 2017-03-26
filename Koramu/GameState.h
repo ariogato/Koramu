@@ -55,6 +55,6 @@ namespace FiniteStateMachine
 		virtual void render() = 0;					//	Alles auf den Bildschirm schmeißen
 
 		//	getter-Funktionen
-		GameStateIDs getStateID() const { return m_stateID; }
+		GameStateID getStateID() const { return m_stateID; }
 	};
 };
