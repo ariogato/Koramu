@@ -2,7 +2,7 @@
 #include "Game.h"
 
 StateParser::StateParser()
-	: m_pDocument(nullptr)
+	: m_pDocument(new XMLDocument())
 {
 }
 
@@ -11,33 +11,43 @@ StateParser::~StateParser()
 	delete m_pDocument;
 }
 
-bool StateParser::parse(const char* filename)
+bool StateParser::parse(std::string filename, FiniteStateMachine::GameStateID stateID)
 {
-	if(!m_pDocument->LoadFile(filename))
+	if(m_pDocument->LoadFile(filename.c_str()))
 	{
-		TheGame::Instance()->logError() << "StateParser: 'states.xml' konnte nicht geladen werden." << std::endl;
+		TheGame::Instance()->logError() << "StateParser::parse(): " << filename << " konnte nicht geladen werden. " << m_pDocument->ErrorName() << std::endl;
 		return false;
 	}
 
-	XMLNode* stateRoot = m_pDocument->FirstChildElement();
+	XMLElement* stateRoot = m_pDocument->RootElement();
 	if (stateRoot == nullptr)
 	{
-		TheGame::Instance()->logError() << "StateParser: die angegebene Datei hat kein <states>-Element." << std::endl;
-		m_pDocument->Clear();
+		TheGame::Instance()->logError() << "StateParser::parse(): " << filename << " hat kein <states>-Element." << std::endl;
 		return false;
 	}
-	loadTextures();
-	loadGameObjects(stateRoot);
+
+	if(!loadTextures(stateRoot->FirstChildElement("textures")))
+	{
+		TheGame::Instance()->logError() << "StateParser::parse(): " << filename << " hat kein <textures>-Element." << std::endl;
+	}
+
+	if(!loadGameObjects(stateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID])))
+	{
+		TheGame::Instance()->logError() << "StateParser::parse(): " << filename << " hat kein " << FiniteStateMachine::stateNames[stateID] << "-Element." << std::endl;
+	}
 	return true;
-	
 }
 
-bool StateParser::loadTextures()
+bool StateParser::loadTextures(XMLElement* pTextureNode)
 {
+	if (pTextureNode == nullptr) return false;
+	std::cout << "huiiii" << std::endl;
 	return false;
 }
 
-bool StateParser::loadGameObjects(XMLNode*)
+bool StateParser::loadGameObjects(XMLElement* pStateNode)
 {
+	if (pStateNode == nullptr) return false;
+	std::cout << "huiiii42" << std::endl;
 	return false;
 }

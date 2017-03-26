@@ -11,14 +11,19 @@ namespace FiniteStateMachine
 	/*	Dies ist ein Datentyp für unsere Zustände.
 	*	Neue Zustände müssen erstmal in der enum definiert werden.
 	*/
-	enum class GameStateIDs
+	enum GameStateID
 	{
 		/*	Mögliche Zustände:
 		*	Wir können im Menü unseren Spiels sein (MenuState), das Spiel tatsächlich spielen (PlayState),
 		*	oder eine Pause machen (PauseState).
 		*/
-		menuState, playState, pauseState
+		menuState = 0, playState, pauseState
 	};
+
+	/*	!!! Bei einer Erweiterung der Enumeration, muss der neue Spielzustand auch in dieses Array aufgenommen werden. !!! 	
+	 *	Ein statisches Array zur Zuordnung der GameStateID (sonst kann der Parser nichts damit anfangen).
+	 */
+	static const char* stateNames[] = { "menu", "play", "pause" };
 
 
 	/*	Diese Klasse ist Basis für alle Zustände, die 
@@ -29,7 +34,7 @@ namespace FiniteStateMachine
 	class GameState
 	{
 	protected:
-		GameStateIDs m_stateID;									//	Um den Zustand identifizieren zu können
+		GameStateID m_stateID;									//	Um den Zustand identifizieren zu können
 		DataStructure::Stack<Environment::Map> m_maps;			//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
 
 	public:

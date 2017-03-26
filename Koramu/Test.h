@@ -13,6 +13,7 @@
 #include "InputHandler.h"
 #include "Fps.h"
 #include "Player.h"
+#include "StateParser.h"
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -32,6 +33,7 @@ private:
 #pragma region TestAttributes
 	SDL_GameObject* player;
 	Mix_Music* backgroundMusic;
+	StateParser stateParser;
 #pragma endregion
 
 public:

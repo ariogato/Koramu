@@ -5,6 +5,7 @@
 #include "Logger.h"
 #include "GameStateMachine.h"
 #include "MenuState.h"
+//	#include "GameState.h"
 #include <iostream>
 
 /*	Diese Klasse hat den Zweck Spielzustände aus der "states.xml" Datei auszulesen.
@@ -22,8 +23,7 @@ public:
 	StateParser();			//	Konstruktor
 	~StateParser();			//	Destruktor
 
-	bool parse(const char*);					//	Parsen initialisieren
-	bool loadTextures();						//	Texturen laden
-	bool loadGameObjects(XMLNode*);				//	GameObjects laden
-	
+	bool parse(std::string, FiniteStateMachine::GameStateID);					//	Parsen initialisieren
+	bool loadTextures(XMLElement*);						//	Texturen laden
+	bool loadGameObjects(XMLElement*);				//	GameObjects laden
 };

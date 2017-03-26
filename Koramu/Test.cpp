@@ -37,7 +37,10 @@ Test::Test()						//Konstruktor
 	backgroundMusic = Mix_LoadMUS("../assets/undertale_example.ogg");
 #pragma endregion
 
-};
+#pragma region stateParserTest
+	stateParser.parse("xmlFiles/states.xml", FiniteStateMachine::menuState);
+#pragma endregion 
+}
 
 Test::~Test()						//Destruktor
 {
@@ -46,7 +49,7 @@ Test::~Test()						//Destruktor
 	Mix_Quit();
 #pragma endregion
 
-};
+}
 
 
 
@@ -116,7 +119,7 @@ void Test::testFunctions()
 			<< std::endl;
 	}
 #pragma endregion
-};
+}
 
 
 

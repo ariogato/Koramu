@@ -234,5 +234,8 @@
     <Xml Include="xmlFiles\states.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
+    <Xml Include="xmlFiles\stinker.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

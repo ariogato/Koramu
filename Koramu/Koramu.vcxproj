@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml" />
+    <Xml Include="xmlFiles\stinker.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
