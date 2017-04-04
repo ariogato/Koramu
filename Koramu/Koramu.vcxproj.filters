@@ -134,6 +134,9 @@
     <ClCompile Include="AnimationLayer.cpp">
       <Filter>Quelldateien\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -228,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="AnimationLayer.h">
       <Filter>Headerdateien\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
