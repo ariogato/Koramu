@@ -24,6 +24,6 @@ public:
 	~StateParser();			//	Destruktor
 
 	bool parse(std::string, FiniteStateMachine::GameStateID);					//	Parsen initialisieren
-	bool loadTextures(XMLElement*);						//	Texturen laden
-	bool loadGameObjects(XMLElement*);				//	GameObjects laden
+	bool loadTextures(XMLElement*);												//	Texturen laden
+	bool loadGameObjects(XMLElement*);											//	GameObjects laden
 };
