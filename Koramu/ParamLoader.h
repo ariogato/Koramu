@@ -21,7 +21,8 @@ private:
 	float m_yPos;
 	int m_width;
 	int m_height;
-	int m_numFrames;
+	int m_numCols;
+	int m_numRows;
 	int m_animSpeed;
 	std::string m_textureId;
 
@@ -32,7 +33,8 @@ public:
 	float getY() const { return m_yPos; }
 	int getWidth() const { return m_width; }
 	int getHeight() const { return m_height; }
-	int getNumFrames() const { return m_numFrames; }
+	int getNumCols() const { return m_numCols; }
+	int getNumRows() const { return m_numRows; }
 	int getAnimSpeed() const { return m_animSpeed; }
 	std::string getTextureId() const { return m_textureId; }
 
@@ -41,7 +43,8 @@ public:
 	void setY(float y) { m_yPos = y; }
 	void setWidth(int width) { m_width = width; }
 	void setHeight(int height) { m_height = height; }
-	void setNumFrames(int num) { m_numFrames = num; }
+	void setNumCols(int num) { m_numCols = num; }
+	void setNumRows(int num) { m_numRows = num; }
 	void setAnimSpeed(int animspeed) { m_animSpeed = animspeed; }
 	void setTextureId(std::string id) { m_textureId = id; }
 };

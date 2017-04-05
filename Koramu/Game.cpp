@@ -20,6 +20,7 @@ Game::Game()									//	Konstruktor
 	// Pointer mit nullptr initialisieren (best practice)
 	m_pWindow = nullptr;
 	m_pRenderer = nullptr;
+	m_pStateMachine = nullptr;
 }
 
 /*	!! WICHTIG !!

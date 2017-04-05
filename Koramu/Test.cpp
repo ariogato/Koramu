@@ -21,7 +21,8 @@ Test::Test()						//Konstruktor
 	params.setAnimSpeed(200);
 	params.setHeight(180);
 	params.setWidth(70);
-	params.setNumFrames(4);
+	params.setNumRows(4);
+	params.setNumCols(4);
 	params.setTextureId("player");
 	params.setX(500.0f);
 	params.setY(100.0f);
@@ -118,6 +119,13 @@ void Test::testFunctions()
 			<< TheInputHandler::Instance()->getMousePosition()->getY()
 			<< std::endl;
 	}
+#pragma endregion
+
+#pragma region textureTest
+	TheTextureManager::Instance()->draw("koramu", 203, 31, 875, 180);
+	TheTextureManager::Instance()->draw("buttonStart", 460, 293, 360, 120);
+	TheTextureManager::Instance()->draw("buttonHowtoplay", 460, 438, 360, 120);
+	TheTextureManager::Instance()->draw("buttonExit", 460, 583, 360, 120);
 #pragma endregion
 }
 

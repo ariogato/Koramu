@@ -27,7 +27,8 @@ protected:
 	int m_height;									//	Höhe des Objektes (sowohl srcRect als auch destRect)
 	int m_currentRow;								//	Reihe im Spritesheet
 	int m_currentCol;								//	Spalte im Spritesheet
-	int m_numFrames;								//	Die Anzahl der Frames auf dem Spritesheet (in einer Reihe)
+	int m_numCols;									//	Die Anzahl der Spalten auf dem Spritesheet (horizontal)
+	int m_numRows;									//	Die Anzahl der Reihen auf dem Spritesheet (vertikal)
 	int m_animSpeed;								//	Die Animationsgeschwindigkeit (Wie schnell die Bilder hintereinander abgespielt werden)
 	std::string m_textureId;						//	Die Id, unter der die Textur im TextureManager gespeichert wurde
 
@@ -42,7 +43,7 @@ public:
 	virtual void destroy();
 
 	//geter-Funktionen
-	Vector2D getPosition() { return m_positionVector; }
-	int getWidth() { return m_width; }
-	int getHeight() { return m_height; }
+	Vector2D getPosition() const { return m_positionVector; }
+	int getWidth() const { return m_width; }
+	int getHeight() const { return m_height; }
 };

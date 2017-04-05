@@ -24,7 +24,8 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	m_positionVector.setY(parameters.getY());
 	m_width = parameters.getWidth();
 	m_height = parameters.getHeight();
-	m_numFrames = parameters.getNumFrames();
+	m_numCols = parameters.getNumCols();
+	m_numRows = parameters.getNumRows();
 	m_animSpeed = parameters.getAnimSpeed();
 	m_textureId = parameters.getTextureId();
 }
@@ -32,7 +33,7 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 void SDL_GameObject::update()
 {
 	//	Der anzuzeigende Frame wird berechnet
-	m_currentCol = (int)(SDL_GetTicks() / m_animSpeed) % m_numFrames;
+	m_currentCol = (int)(SDL_GetTicks() / m_animSpeed) % m_numCols;
 }
 
 void SDL_GameObject::draw()

@@ -14,6 +14,7 @@
 #include "Fps.h"
 #include "Player.h"
 #include "StateParser.h"
+class StateParser;
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -22,6 +23,7 @@
 *	Klasse erstellen (Idealerweise als Pointer mit Initialisierung im Konstruktor).
 *	Anschlieﬂend in der Funktion Test::testFunctions arbeiten.
 */
+
 
 class Test
 {

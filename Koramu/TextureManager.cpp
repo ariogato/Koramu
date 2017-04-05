@@ -20,7 +20,7 @@ TextureManager::~TextureManager()	//	Destruktor
 }
 
 
-bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pRenderer)
+bool TextureManager::load(std::string id, std::string path, SDL_Renderer* pRenderer)
 {
 
 	/*	Wir versichern, dass der Renderer nicht nullptr ist, 
@@ -28,24 +28,24 @@ bool TextureManager::load(std::string id, std::string fileName, SDL_Renderer* pR
 	*/
 	if (!pRenderer)
 	{
-		TheGame::Instance()->logError() << "TextureManager::load():\nEs wurde kein gültiger Renderer übergeben!" << std::endl;
+		TheGame::Instance()->logError() << "TextureManager::load(): \n\tEs wurde kein gültiger Renderer übergeben!" << std::endl << std::endl;
 		return false;
 	}
 	//	Gibt es schon eine Textur mit dieser id?
 	if (m_textureMap.count(id))
 	{
 
-		TheGame::Instance()->logError() << "TextureManager::load():\nEine Textur mit der id: " << id << " existiert bereits!" << std::endl;
+		TheGame::Instance()->logError() << "TextureManager::load(): \n\tEine Textur mit der id: " << id << " existiert bereits!" << std::endl << std::endl;
 		return false;
 	}
 
 	//	Eine Surface erstellen
-	SDL_Surface* tempSurface = IMG_Load(fileName.c_str());
+	SDL_Surface* tempSurface = IMG_Load(path.c_str());
 
 	//	Falls die Datei nicht gefunden wurde
 	if (!tempSurface)
 	{
-		TheGame::Instance()->logError() << "TextureManager::load():\n" << SDL_GetError();
+		TheGame::Instance()->logError() << "TextureManager::load():\n\t" << SDL_GetError() << std:: endl << std::endl;
 		return false;
 	}
 
@@ -140,7 +140,7 @@ void TextureManager::clearFromTextureMap(std::string id)
 	*/
 	if (!m_textureMap.erase(id))
 	{
-		TheGame::Instance()->logError() << "TextureManager::clearFromTextureMap():\nEs wurde keine Textur mit der id: " << id << " gefunden" << std::endl;
+		TheGame::Instance()->logError() << "TextureManager::clearFromTextureMap():\n\tEs wurde keine Textur mit der id: " << id << " gefunden" << std::endl << std::endl;
 	}
 }
 
@@ -162,6 +162,8 @@ TextureManager* TextureManager::Instance()
 //	Wichtig für Singleton-Klasse
 void TextureManager::destroy()
 {
+
+
 	//	Den Destruktor aufrufen
 	delete s_pInstance;
 
