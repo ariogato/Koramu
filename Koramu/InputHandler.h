@@ -2,7 +2,6 @@
 
 #include <SDL.h>
 #include <vector>
-#include "Game.h"
 #include "Vector2D.h"
 
 /*	Diese Klasse, welche als Singleton implementiert wird, 
@@ -46,11 +45,11 @@ public:
 	bool isKeyDown(SDL_Scancode);					//	Prüft, ob eine bestimmte Taste gedrückt wurde
 	Vector2D* getMousePosition();					//	Gibt den Ortsvektor der Maus zurück
 
-	std::vector<bool> getMouseButtonState() { return m_mouseButtonStates; }
+	std::vector<bool> getMouseButtonState() const { return m_mouseButtonStates; }
 
-	bool getLeftMouseButtonState() { return m_mouseButtonStates[0]; }
-	bool getMiddleMouseButtonState() { return m_mouseButtonStates[1]; }
-	bool getRightMouseButtonState() { return m_mouseButtonStates[2]; }
+	bool getLeftMouseButtonState() const { return m_mouseButtonStates[0]; }
+	bool getMiddleMouseButtonState() const { return m_mouseButtonStates[1]; }
+	bool getRightMouseButtonState() const { return m_mouseButtonStates[2]; }
 
 
 	/*	Wichtig für Singleton-Klasse

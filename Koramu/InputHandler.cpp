@@ -1,4 +1,5 @@
 #include "InputHandler.h"
+#include "Game.h"
 
 //	Wichtig für Singleton-Klasse
 InputHandler* InputHandler::s_pInstance = nullptr;

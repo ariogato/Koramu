@@ -1,13 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include "tinyxml2.h"
-#include "TextureManager.h"
-#include "Logger.h"
-#include "GameStateMachine.h"
-#include "MenuState.h"
-//	#include "GameState.h"
-#include "Game.h"
+#include "GameState.h"
 
 /*	Diese Klasse hat den Zweck Spielzustände aus der "states.xml" Datei auszulesen.
 *	Methoden geben bei Erfolg "true", andernfalls "false" zurück.

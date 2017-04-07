@@ -1,8 +1,8 @@
 #pragma once
 
 #include "SDL_GameObject.h"
-#include "ParamLoader.h"
-#include "InputHandler.h"
+
+class ParamLoader;
 
 /*	Die Klasse Player repräsentiert unseren Haptcharakter, welchen wir als Spieler steuern können.
 *	Player ist ein GameObject, erbt also von der Klasse "SDL_GameObject"

@@ -1,10 +1,8 @@
 #pragma once
 
 #include <string>
-#include "TextureManager.h"
 #include "GameObject.h"
 #include "Vector2D.h"
-#include "ParamLoader.h"
 
 /*	Diese Klasse erbt von der abstrakten Klasse GameObject.
 *	Andere Klassen wie der Player wiederum erben von SDL_GameObject

@@ -1,4 +1,5 @@
 #include "GameObjectFactory.h"
+#include "Game.h"
 
 GameObjectFactory* GameObjectFactory::s_pInstance = nullptr;
 

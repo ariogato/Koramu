@@ -1,15 +1,13 @@
 #pragma once
 
-#include <chrono>
-#include <SDL.h>
-#include <iostream>
 #include <string>
-#include <SDL_image.h>
-#include "TextureManager.h"
+#include <SDL.h>
 #include "Logger.h"
-#include "GameStateMachine.h"
-#include "Test.h"
-#include "InputHandler.h"
+
+namespace FiniteStateMachine
+{
+	class GameStateMachine;
+}
 
 class Game
 {

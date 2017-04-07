@@ -1,5 +1,6 @@
 #include "Fps.h"
-
+#include <iostream>
+#include <SDL.h>
 
 void Fps::calculateFPS()
 {

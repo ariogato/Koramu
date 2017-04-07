@@ -1,19 +1,9 @@
 #pragma once
 
 //	Header von zu testenden Klassen müssen immer einbezogen werden
-#include <SDL_ttf.h>
 #include <SDL_mixer.h>
-#include "Game.h"
-#include "TextureManager.h"
-#include "SDL_GameObject.h"
-#include "ParamLoader.h"
-#include "Stack.h"
-#include "PauseState.h"
-#include "PlayState.h"
-#include "InputHandler.h"
-#include "Fps.h"
-#include "Player.h"
-#include "StateParser.h"
+
+class Player;
 class StateParser;
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
@@ -33,9 +23,9 @@ private:
 
 //	TODO: erklären bzw. kommentieren
 #pragma region TestAttributes
-	SDL_GameObject* player;
+	Player* player;
 	Mix_Music* backgroundMusic;
-	StateParser stateParser;
+	StateParser* stateParser;
 #pragma endregion
 
 public:

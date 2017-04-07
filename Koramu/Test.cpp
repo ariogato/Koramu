@@ -1,4 +1,11 @@
 #include "Test.h"
+#include "TextureManager.h"
+#include "InputHandler.h"
+#include "Game.h"
+#include "StateParser.h"
+#include "ParamLoader.h"
+#include "Player.h"
+#include <chrono>
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -10,7 +17,7 @@ Test* Test::s_pInstance = nullptr;	//Wichtig für Singleton-Klasse
 
 Test::Test()						//Konstruktor
 {
-#pragma region SDL_GameObjectTest
+#pragma region PlayerTest
 	//	eine Textur hinzufügen
 	TheTextureManager::Instance()->load("player", "../assets/Player.png", TheGame::Instance()->getRenderer());
 
@@ -39,17 +46,25 @@ Test::Test()						//Konstruktor
 #pragma endregion
 
 #pragma region stateParserTest
-	stateParser.parse("xmlFiles/states.xml", FiniteStateMachine::menuState);
+	stateParser = new StateParser();
+	stateParser->parse("xmlFiles/states.xml", FiniteStateMachine::menuState);
 #pragma endregion 
 }
 
 Test::~Test()						//Destruktor
 {
+#pragma region PlayerTest
+	delete player;
+#pragma endregion
+
 #pragma region testMusic
 	Mix_FreeMusic(backgroundMusic);
 	Mix_Quit();
 #pragma endregion
 
+#pragma region stateParserTest
+	delete stateParser;
+#pragma endregion 
 }
 
 
@@ -90,14 +105,14 @@ void Test::testFunctions()
 	}
 #pragma endregion
 
-#pragma region SDL_GameObjectTest
+#pragma region PlayerTest
 	if (player->getPosition().getX() >= -200.0f)
 	{
 		player->update();
 
 		player->draw();
 	}
-#pragma endregion
+#pragma endregion 
 
 #pragma region testMusic
 	if (!Mix_PlayingMusic())

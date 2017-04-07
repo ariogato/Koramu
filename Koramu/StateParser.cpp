@@ -1,4 +1,7 @@
 #include "StateParser.h"
+#include "TextureManager.h"
+#include "Game.h"
+#include "ParamLoader.h"
 
 StateParser::StateParser()
 	: m_pDocument(new XMLDocument())

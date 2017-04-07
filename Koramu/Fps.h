@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include <SDL.h>
 
 /*	Diese Klasse ist dafür da, die FPS (Frames Per Second) zu berechnen. Es ist einfach wunderbar, 
 *	wenn man die FPS als Spieler angezeigt bekommt :).

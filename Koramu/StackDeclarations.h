@@ -1,9 +1,6 @@
 #pragma once
 
-#include <iostream>
 #include "StackElement.h"
-#include "Node.h"
-#include "Closure.h"
 
 /*	Ein Stapel wie im Unterricht. Bei Fragen bitte an Herrn Kutschenreuter wenden ;)
 *

@@ -2,7 +2,7 @@
 
 template <typename T>
 DataStructure::Node<T>::Node(T* pData)							//	Konstruktor
-	: m_pData(pData), m_pSuccessor(nullptr)						//	Elementinitialisierer
+	: m_pSuccessor(nullptr), m_pData(pData)						//	Elementinitialisierer
 {}
 
 template <typename T>

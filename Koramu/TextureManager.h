@@ -1,10 +1,8 @@
 #pragma once
 
-#include <iostream>
 #include <SDL.h>
 #include <string>
 #include <map>
-#include <SDL_image.h>
 
 
 /*	TextureManager soll eine Singleton Klasse sein. da wir während des gesamten Programmablaufes nur eine einzige 

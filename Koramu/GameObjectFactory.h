@@ -2,7 +2,8 @@
 
 #include <string>
 #include <map>
-#include "Game.h"
+
+class GameObject;
 
 class BaseCreator
 {

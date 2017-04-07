@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ParamLoader.h"
+class ParamLoader;
 
 /*	Abstrakte Klasse von der jede Klasse, die etwas auf dem 
 *	Bildschirm macht erbt.

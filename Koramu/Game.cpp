@@ -1,4 +1,10 @@
 #include "Game.h"
+#include "TextureManager.h"
+#include "Test.h"
+#include "GameStateMachine.h"
+#include "InputHandler.h"
+#include <iostream>
+#include <SDL_image.h>
 
 /*	Wichtig für Singleton-Klasse
 *	

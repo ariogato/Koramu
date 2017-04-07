@@ -3,11 +3,13 @@
 #include "Stack.h"
 #include "Map.h"
 
+
 /*	In diesen namespace gehört alles, was mit dem Zustandsautomaten
 *	des Spiels zu tun hat.
 */
 namespace FiniteStateMachine 
 {
+
 	/*	Dies ist ein Datentyp für unsere Zustände.
 	*	Neue Zustände müssen erstmal in der enum definiert werden.
 	*/

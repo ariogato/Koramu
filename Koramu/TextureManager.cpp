@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include "Game.h"
+#include <SDL_image.h>
 
 //	Wichtig für Singleton-Klasse
 TextureManager* TextureManager::s_pInstance = nullptr;

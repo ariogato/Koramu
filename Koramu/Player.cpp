@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "ParamLoader.h"
+#include "InputHandler.h"
 
 Player::Player()
 {}

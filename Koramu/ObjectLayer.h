@@ -1,7 +1,9 @@
 #pragma once
 #include "Layer.h"
 #include "Player.h"
-#include "vector"
+#include <vector>
+
+class GameObject;
 
 namespace Environment
 {

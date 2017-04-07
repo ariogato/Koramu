@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "Game.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 #if DEBUG
 #include "Test.h"
@@ -76,7 +76,9 @@ int main(int argc, char** argv)
 
 	std::cout << "ByeBye" << std::endl;
 
+#if DEBUG
 	Test::Instance()->destroy();
+#endif
 
 	// Damit man lesen kann, was ausgegeben wird und das Fenster nicht sofort verschwindet.
 	system("PAUSE"); 

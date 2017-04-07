@@ -1,7 +1,8 @@
 #pragma once
 #include "Vector2D.h"
-#include "Layer.h"
-#include "map"
+#include <map>
+
+class Layer;
 
 //	Alles bezüglich der Map befindet sich im Namenraum "Environment"
 namespace Environment
@@ -10,7 +11,7 @@ namespace Environment
 	class Map
 	{
 	private:
-		Vector2D m_positionVector;					//	Ortsvektor
+		Vector2D m_positionVector;						//	Ortsvektor
 		std::map<std::string, Layer*> m_layerMap;		//	Dictionary/Map aus zur Map gehörigen Layern
 
 	public:

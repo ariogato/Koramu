@@ -1,4 +1,5 @@
 #include "ClosureDeclarations.h"
+#include "Node.h"
 
 template <typename T>
 DataStructure::StackElement<T>* DataStructure::Closure<T>::push(T* pNewNodeData)
