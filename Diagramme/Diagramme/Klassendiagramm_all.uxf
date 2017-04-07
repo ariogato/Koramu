@@ -879,4 +879,21 @@ GameObjectFactory
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2154</x>
+      <y>276</y>
+      <w>222</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>StateParser
+--
+- m_pDocument : XMLDocument*
+--
++ parse(filename : string, stateID : GameStateID)
++ loadTextures(pTextureNode : XMLElement*)
++ loadGameObjects(pCurrentStateNode : XMLElement*)</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
