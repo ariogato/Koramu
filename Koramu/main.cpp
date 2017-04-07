@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "Game.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 #if DEBUG
 #include "Test.h"
@@ -69,7 +69,6 @@ int main(int argc, char** argv)
 			if (frameTime < DELAY_TIME)
 				SDL_Delay((int)(DELAY_TIME - frameTime));
 		}
-
 		//	Sobald das Spiel nicht mehr läuft wird aufgeräumt
 		TheGame::Instance()->destroy();
 	}

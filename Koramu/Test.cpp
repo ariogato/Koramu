@@ -45,17 +45,6 @@ Test::Test()						//Konstruktor
 	backgroundMusic = Mix_LoadMUS("../assets/undertale_example.ogg");
 #pragma endregion
 
-#pragma region stateParserTest
-	stateParser = new StateParser();
-	std::vector<GameObject*>* v = new std::vector<GameObject*>();
-	StateParser::parse("xmlFiles/states.xml", v, FiniteStateMachine::menuState);
-	StateParser::parse("xmlFiles/states.xml", v, FiniteStateMachine::menuState);
-
-	for (auto i : *v)
-	{
-		TheGame::Instance()->logStandard() << typeid(i).name() << std::endl;
-	}
-#pragma endregion 
 }
 
 Test::~Test()						//Destruktor
@@ -69,9 +58,6 @@ Test::~Test()						//Destruktor
 	Mix_Quit();
 #pragma endregion
 
-#pragma region stateParserTest
-	delete stateParser;
-#pragma endregion 
 }
 
 

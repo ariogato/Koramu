@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 #include "GameObjectFactory.h"
 #include "Player.h"
+#include "MenuState.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -49,6 +50,7 @@ Game::~Game()									//	Destruktor
 	//	Dynamisch allozierte Objeke löschen
 	delete m_pStandardLog;
 	delete m_pErrorLog;
+	delete m_pStateMachine;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
@@ -125,6 +127,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 #pragma region GameObjectFactoryTest
 		TheGameObjectFactory::Instance()->registerType("button", new PlayerCreator());
 #pragma endregion
+
+		//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
+		m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;

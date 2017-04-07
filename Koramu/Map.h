@@ -1,8 +1,11 @@
 #pragma once
 #include "Vector2D.h"
 #include <map>
+#include <vector>
+#include "Layer.h"
 
-class Layer;
+//class Layer;
+class GameObject;
 
 //	Alles bezüglich der Map befindet sich im Namenraum "Environment"
 namespace Environment
@@ -18,7 +21,8 @@ namespace Environment
 		Map();
 		~Map();
 
-		void update();			//	Aktualisieren
-		void render();			//	Rendern
+		void init(std::vector<GameObject*>*);			//	Initialisieren
+		void update();									//	Aktualisieren
+		void render();									//	Rendern
 	};
 }

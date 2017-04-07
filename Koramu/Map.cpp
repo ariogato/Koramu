@@ -1,6 +1,5 @@
 #include "Map.h"
-#include "Layer.h"
-
+#include <iostream>
 
 Environment::Map::Map()
 	: m_positionVector(0.0f, 0.0f)
@@ -9,6 +8,11 @@ Environment::Map::Map()
 
 Environment::Map::~Map()
 {
+}
+
+void Environment::Map::init(std::vector<GameObject*>* pObjects)
+{
+
 }
 
 void Environment::Map::update()

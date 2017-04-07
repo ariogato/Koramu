@@ -146,7 +146,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		/*	Die XML-Datei besitzt kein Element mit dem Namen des gewünschten States.
 		*	Diesen Fehler loggen wir.
 		*/
-		TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDie XML-Datei besitzt kein Element mit dem Namen des gewünschten States" << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDie XML-Datei besitzt kein Element mit dem Namen des gewünschten States" << std::endl;
 		
 		//	Wir können nicht mit dem Laden der "GameObjects" forfahren. Wir geben "false" zurück.
 		return false;
@@ -155,7 +155,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	//	Wir schauen ob die Liste von GameObjects vorhanden sind
 	if (pCurrentStateNode->NoChildren())
 	{
-		TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tState ohne GameObject-Liste" << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObject-Liste" << std::endl;
 		return false;
 	}
 
@@ -168,7 +168,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	//	Wir schauen ob überhaupt Objekte vorhanden sind
 	if (pObjectNode->NoChildren() || !pObjectNode)
 	{
-		TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tState ohne GameObjects" << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObjects" << std::endl;
 		return false;
 	}
 
@@ -197,37 +197,37 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		//	xPos
 		if (e->QueryAttribute("xPos", &x))
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine xPos" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine xPos" << std::endl << std::endl;
 			return false;
 		}
 		//	yPos
 		if (e->QueryAttribute("yPos", &y))
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine yPos" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine yPos" << std::endl << std::endl;
 			return false;
 		}
 		//	width
 		if (e->QueryAttribute("width", &width))
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine width" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine width" << std::endl << std::endl;
 			return false;
 		}
 		//	height
 		if (e->QueryAttribute("height", &height))
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine height" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine height" << std::endl << std::endl;
 			return false;
 		}
 		//	numRows
 		if (e->QueryAttribute("numRows", &numRows))
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine numRows" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine numRows" << std::endl << std::endl;
 			return false;
 		}
 		//	numCols
 		if (e->QueryAttribute("numCols", &numCols))
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine numCols" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine numCols" << std::endl << std::endl;
 			return false;
 		}
 
@@ -239,12 +239,12 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		//	Strings auf Validität prüfen
 		if (!type)
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keinen Typ" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keinen Typ" << std::endl << std::endl;
 			return false;
 		}
 		if (!textureId)
 		{
-			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine textureId" << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine textureId" << std::endl << std::endl;
 			return false;
 		}
 #pragma endregion
@@ -285,6 +285,6 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	}
 
 	//	Das Laden der GameObjects ist hier reibungsfrei abgelaufen
-	TheGame::Instance()->logStandard() << "StateParser::loadObjects(): \n\tObjekte erfolgreich geladen" << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "StateParser::loadGameObjects(): \n\tObjekte erfolgreich geladen" << std::endl << std::endl;
 	return true;
 }

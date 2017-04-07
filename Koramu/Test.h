@@ -4,7 +4,6 @@
 #include <SDL_mixer.h>
 
 class Player;
-class StateParser;
 
 /*	Test-Objekte werden erstellt um eine seperate Klasse zu testen.
 *	In dieser Test-Klasse wurde das Enturfsmuster der Singleteon-Klasse benutzt.
@@ -21,11 +20,9 @@ private:
 	Test();		//	Konstruktor
 	~Test();	//	Destruktor
 
-//	TODO: erklären bzw. kommentieren
 #pragma region TestAttributes
 	Player* player;
 	Mix_Music* backgroundMusic;
-	StateParser* stateParser;
 #pragma endregion
 
 public:
