@@ -16,7 +16,7 @@
 *		- Ein Button braucht eine Methode onClick()
 */
 
-class SDL_GameObject : protected GameObject
+class SDL_GameObject : public GameObject
 {
 protected:
 	Vector2D m_positionVector;						//	Der Ortsvektor

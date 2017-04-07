@@ -5,6 +5,8 @@
 #include "InputHandler.h"
 #include <iostream>
 #include <SDL_image.h>
+#include "GameObjectFactory.h"
+#include "Player.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -119,6 +121,10 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		m_gameHeight = height;
 		m_gameXPos = xPos;
 		m_gameYPos = yPos;
+
+#pragma region GameObjectFactoryTest
+		TheGameObjectFactory::Instance()->registerType("button", new PlayerCreator());
+#pragma endregion
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;

@@ -47,7 +47,13 @@ Test::Test()						//Konstruktor
 
 #pragma region stateParserTest
 	stateParser = new StateParser();
-	stateParser->parse("xmlFiles/states.xml", FiniteStateMachine::menuState);
+	std::vector<GameObject*>* v = new std::vector<GameObject*>();
+	StateParser::parse("xmlFiles/states.xml", v, FiniteStateMachine::menuState);
+
+	for (auto i : *v)
+	{
+		TheGame::Instance()->logStandard() << typeid(i).name() << std::endl;
+	}
 #pragma endregion 
 }
 

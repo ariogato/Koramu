@@ -2,34 +2,35 @@
 #include "TextureManager.h"
 #include "Game.h"
 #include "ParamLoader.h"
+#include "GameObject.h"
+#include "GameObjectFactory.h"
 
 StateParser::StateParser()
-	: m_pDocument(new XMLDocument())
 {
 }
 
 StateParser::~StateParser()
 {
-	//	Pointer löschen, um einem Speicherleck vorzubeugen.
-	delete m_pDocument;
 }
 
-bool StateParser::parse(std::string filename, FiniteStateMachine::GameStateID stateID)
+bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID)
 {
+	XMLDocument* pDocument = new XMLDocument();
+
 	//	Laden des Dokuments (anhand des übergebenen Dateinamens).
-	if(m_pDocument->LoadFile(filename.c_str()))
+	if(pDocument->LoadFile(filename.c_str()))
 	{
 		/*	Beim Laden ist ein Fehler passiert.
 		 *	Diesen Fehler loggen wir.
 		 */
-		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " konnte nicht geladen werden. " << m_pDocument->ErrorName() << std::endl;
+		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " konnte nicht geladen werden. " << pDocument->ErrorName() << std::endl;
 		
 		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 		return false;
 	}
 
 	//	Ermitteln des Wurzelelementes
-	XMLElement* stateRoot = m_pDocument->RootElement();
+	XMLElement* stateRoot = pDocument->RootElement();
 	if (stateRoot == nullptr)
 	{
 		/*	Die XML-Datei besitzt kein Wurzelement und ist demnach leer. 
@@ -53,13 +54,16 @@ bool StateParser::parse(std::string filename, FiniteStateMachine::GameStateID st
 	/*	Aufrufen der Methode zum Laden der "GameObjects" und überprüfen, ob das Laden erfolgreich war.
 	 *	Der zu ladende "GameState" wird anhand der übergeben "stateID" ermittelt. Für weitere Informationen siehe "GameState.h".
 	 */
-	if(!loadGameObjects(stateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID])))
+	if (!loadGameObjects(stateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID]), pObjects))
 	{
 		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": Laden der 'GameObjects' fehlgeschlagen" << std::endl << std::endl;
-		
+
 		//	Das Parsen war nicht erfolgreich. Wir geben "false" zurück.
 		return false;
 	}
+
+	//	Pointer löschen, um einem Speicherleck vorzubeugen.
+	delete pDocument;
 
 	//	Das Parsen ist reibungsfrei abgelaufen. Wir geben "true" zurück.
 	return true;
@@ -120,7 +124,7 @@ bool StateParser::loadTextures(XMLElement* pTextureNode)
 	return true;
 }
 
-bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode)
+bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<GameObject*>* pObjects)
 {
 	//	Überprüfen, ob überhaupt ein XML-Element mit dem Namen des gewünschten States existiert.
 	if (pCurrentStateNode == nullptr)
@@ -148,7 +152,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode)
 	XMLElement* pObjectNode = pCurrentStateNode->FirstChildElement("gameObjects");
 	
 	//	Wir schauen ob überhaupt Objekte vorhanden sind
-	if (pObjectNode->NoChildren())
+	if (pObjectNode->NoChildren() || !pObjectNode)
 	{
 		TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tState ohne GameObjects" << std::endl;
 		return false;
@@ -175,32 +179,38 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode)
 		 *		
 		 *	Andere Attribute sind optional, weshalb sie auch nicht validiert werden.
 		 */
-		
+
+		//	xPos
 		if (e->QueryAttribute("xPos", &x))
 		{
 			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine xPos" << std::endl << std::endl;
 			return false;
 		}
+		//	yPos
 		if (e->QueryAttribute("yPos", &y))
 		{
 			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine yPos" << std::endl << std::endl;
 			return false;
 		}
+		//	width
 		if (e->QueryAttribute("width", &width))
 		{
 			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine width" << std::endl << std::endl;
 			return false;
 		}
+		//	height
 		if (e->QueryAttribute("height", &height))
 		{
 			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine height" << std::endl << std::endl;
 			return false;
 		}
+		//	numRows
 		if (e->QueryAttribute("numRows", &numRows))
 		{
 			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine numRows" << std::endl << std::endl;
 			return false;
 		}
+		//	numCols
 		if (e->QueryAttribute("numCols", &numCols))
 		{
 			TheGame::Instance()->logError() << "StateParser::loadObjects(): \n\tDas " << counter << ". Objekt besitzt keine numCols" << std::endl << std::endl;
@@ -237,7 +247,27 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode)
 		parameters.setNumCols(numCols);
 		parameters.setNumRows(numRows);
 
+		/*	Das gewünschte Objekt von der 'GameObjectFactory'
+		 *	erstellen lassen.
+		 *	Anschließend wird es mit der Funktion 'GameObject::load()' 
+		 *	mit den aus der XML-Datei herausgenommenen Daten beladen.
+		 *	
+		 *	Zuletzt wird das Objekt in die Liste (den 'std::vector') geschoben.
+		 *	Dadurch, dass 'pObjects' ein Pointer auf einen 'std::vector' ist, muss nichts returnt werden.
+		 *	Es wird direkt in die Speicheradresse geschrieben.
+		 */
+		GameObject* objectToLoad = TheGameObjectFactory::Instance()->create(type);
 
+		//	Ermitteln ob das Objekt erfolgreich geladen wurde
+		if (!objectToLoad)
+		{
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas Objekt vom Typ " << type << " konnte nicht erstellt werden" << std::endl << std::endl;
+
+			return false;
+		}
+
+		objectToLoad->load(parameters);
+		pObjects->push_back(objectToLoad);
 	}
 
 	//	Das Laden der GameObjects ist hier reibungsfrei abgelaufen

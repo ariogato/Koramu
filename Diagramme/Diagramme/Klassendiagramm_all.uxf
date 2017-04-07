@@ -889,11 +889,10 @@ GameObjectFactory
     </coordinates>
     <panel_attributes>StateParser
 --
-- m_pDocument : XMLDocument*
 --
-+ parse(filename : string, stateID : GameStateID)
-+ loadTextures(pTextureNode : XMLElement*)
-+ loadGameObjects(pCurrentStateNode : XMLElement*)</panel_attributes>
+_+ parse(filename : string, stateID : GameStateID)_
+_+ loadTextures(pTextureNode : XMLElement*)_
+_+ loadGameObjects(pCurrentStateNode : XMLElement*)_</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

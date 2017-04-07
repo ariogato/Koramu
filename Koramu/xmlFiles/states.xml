@@ -24,7 +24,7 @@
       <gameObject type="button" textureId="buttonExit"
                   xPos="460" yPos="583" width="360" height="120"
                   numRows="1" numCols="3"/>
-      <gameObject type="text" textureId="koramu"
+      <gameObject type="animation" textureId="koramu"
                   xPos="202" yPos="31" width="877" height="181"
                   numRows="1" numCols="1"/>
 

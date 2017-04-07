@@ -20,7 +20,7 @@ bool GameObjectFactory::registerType(std::string id, BaseCreator* pCreator)
 	//	Die CreatorMap um den neuen Typen ertweitern
 	m_creatorMap.insert( std::pair<std::string, BaseCreator*> (id, pCreator) );
 
-	TheGame::Instance()->logStandard() << "GameObjectFactory::registerType(): \n\tNeuer Typ hinzugefügt: " << id << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "GameObjectFactory::registerType(): \n\tNeuer Typ hinzugefuegt: " << id << std::endl << std::endl;
 
 	return true;
 }
