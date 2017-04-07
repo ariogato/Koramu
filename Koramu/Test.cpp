@@ -49,6 +49,7 @@ Test::Test()						//Konstruktor
 	stateParser = new StateParser();
 	std::vector<GameObject*>* v = new std::vector<GameObject*>();
 	StateParser::parse("xmlFiles/states.xml", v, FiniteStateMachine::menuState);
+	StateParser::parse("xmlFiles/states.xml", v, FiniteStateMachine::menuState);
 
 	for (auto i : *v)
 	{

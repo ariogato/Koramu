@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 
+bool StateParser::m_sHasLoadedTextures = false;
+
 StateParser::StateParser()
 {
 }
@@ -42,13 +44,20 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 		return false;
 	}
 
-	//	Aufrufen der Methode zum Laden der Texturen und überprüfen, ob das Laden erfolgreich war.
-	if(!loadTextures(stateRoot->FirstChildElement("textures")))
+	/*	Wir wollen die Texturen nicht jedes Mal wenn ein Zustandswechsel erfolgt neu parsen.
+	 *	Aus diesem Grunde überprüfen wir anhand der statischen Membervariable 'hasLoadedTextures',
+	 *	ob sie bereits geparst wurden.
+	 */
+	if (!m_sHasLoadedTextures)
 	{
-		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen fehlgeschlagen." << std::endl;
-		
-		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
-		return false;
+		//	Aufrufen der Methode zum Laden der Texturen und überprüfen, ob das Laden erfolgreich war.
+		if (!loadTextures(stateRoot->FirstChildElement("textures")))
+		{
+			TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen fehlgeschlagen." << std::endl;
+
+			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
+			return false;
+		}
 	}
 
 	/*	Aufrufen der Methode zum Laden der "GameObjects" und überprüfen, ob das Laden erfolgreich war.
@@ -118,6 +127,11 @@ bool StateParser::loadTextures(XMLElement* pTextureNode)
 		//	Die validierten Daten laden
 		if ( TheTextureManager::Instance()->load(id, path, TheGame::Instance()->getRenderer())){}
 	}
+
+	/*	Festhalten, dass die Texturen jetzt geladen wurden.
+	 *	Es soll kein weiteres Mal geschehen.
+	*/
+	m_sHasLoadedTextures = true;
 
 	//	Das Laden der Texturen ist hier reibungsfrei abgelaufen
 	TheGame::Instance()->logStandard() << "StateParser::loadTextures(): \n\tTexturen erfolgreich geladen" << std::endl << std::endl;

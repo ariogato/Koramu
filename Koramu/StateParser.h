@@ -22,6 +22,8 @@ using namespace tinyxml2;
 
 class StateParser
 {
+private:
+	static bool m_sHasLoadedTextures;						//	Zeigt an, ob die Texturen bereits geladen wurden
 public:
 	StateParser();			//	Konstruktor
 	~StateParser();			//	Destruktor
