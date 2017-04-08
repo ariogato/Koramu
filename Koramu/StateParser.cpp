@@ -35,7 +35,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	XMLElement* stateRoot = pDocument->RootElement();
 	if (stateRoot == nullptr)
 	{
-		/*	Die XML-Datei besitzt kein Wurzelement und ist demnach leer. 
+		/*	Die XML-Datei besitzt kein Wurzelelement und ist demnach leer. 
 		 *	Diesen Fehler loggen wir.
 		 */
 		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " hat kein <states>-Element." << std::endl;
@@ -61,7 +61,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	}
 
 	/*	Aufrufen der Methode zum Laden der "GameObjects" und überprüfen, ob das Laden erfolgreich war.
-	 *	Der zu ladende "GameState" wird anhand der übergeben "stateID" ermittelt. Für weitere Informationen siehe "GameState.h".
+	 *	Der zu ladende "GameState" wird anhand der übergebenen "stateID" ermittelt. Für weitere Informationen siehe "GameState.h".
 	 */
 	if (!loadGameObjects(stateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID]), pObjects))
 	{
@@ -148,7 +148,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		*/
 		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDie XML-Datei besitzt kein Element mit dem Namen des gewünschten States" << std::endl;
 		
-		//	Wir können nicht mit dem Laden der "GameObjects" forfahren. Wir geben "false" zurück.
+		//	Wir können nicht mit dem Laden der "GameObjects" fortfahren. Wir geben "false" zurück.
 		return false;
 	}
 
@@ -159,7 +159,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		return false;
 	}
 
-	/*	Aufgrund der Struktor der XML-Datei 
+	/*	Aufgrund der Struktur der XML-Datei 
 	 *	(state enthält textures; textures enthält einzelne texturen)
 	 *	muss hier der tag mit den GameObjects geholt werden
 	 */
