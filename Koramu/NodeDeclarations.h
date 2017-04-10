@@ -32,7 +32,7 @@ namespace DataStructure
 		T* getData();								//	Gibt das Datenelement des Knotens zurück
 
 		//	setter-Funktionen
-		void setSuccessor(StackElement<T>*);		//	Den Nachfolger eines Knotens setzen
+		void setSuccessor(StackElement<T>* pNewSuccessor);		//	Den Nachfolger eines Knotens setzen
 
 		//	killer-Funktionen
 		void destroy();								//	#selbstmord

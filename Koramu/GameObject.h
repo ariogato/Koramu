@@ -19,7 +19,7 @@ protected:
 
 public:
 	//	Folgende Memberfunktionen werden erst in der abgeleiteten Klasse definiert
-	virtual void load(const ParamLoader&) = 0;
+	virtual void load(const ParamLoader& parameters) = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
 	

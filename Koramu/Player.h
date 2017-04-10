@@ -18,7 +18,7 @@ public:
 	Player();					//	Konstruktor
 	~Player();					//	Destruktor
 
-	virtual void load(const ParamLoader&);
+	virtual void load(const ParamLoader& parameters);
 	virtual void update();
 	virtual void draw();
 };

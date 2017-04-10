@@ -44,7 +44,7 @@ namespace DataStructure
 		Stack();									//	Konstruktor
 		~Stack();									//	Destruktor
 
-		void push(T*);								//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)			
+		void push(T* pNewNodeData);								//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)			
 		void pop();									//	Um einen Knoten vom Stapel zu nehmen - Immer den ersten (entspricht "entfernen" aus dem Infounterricht)
 
 

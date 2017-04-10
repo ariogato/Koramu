@@ -28,9 +28,9 @@ public:
 	StateParser();			//	Konstruktor
 	~StateParser();			//	Destruktor
 
-	static bool parse(std::string, std::vector<GameObject*>*, FiniteStateMachine::GameStateID);					//	Parsen initialisieren
+	static bool parse(std::string filename, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);					//	Parsen initialisieren
 
 private:
-	static bool loadTextures(XMLElement*);																		//	Texturen laden
-	static bool loadGameObjects(XMLElement*, std::vector<GameObject*>*);										//	GameObjects laden
+	static bool loadTextures(XMLElement* pTextureNode);																		//	Texturen laden
+	static bool loadGameObjects(XMLElement* pCurrentStateNode, std::vector<GameObject*>* pObjects);										//	GameObjects laden
 };

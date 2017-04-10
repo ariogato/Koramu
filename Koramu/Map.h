@@ -21,7 +21,7 @@ namespace Environment
 		Map();
 		~Map();
 
-		void init(std::vector<GameObject*>*);			//	Initialisieren
+		void init(std::vector<GameObject*>* pObjects);			//	Initialisieren
 		void update();									//	Aktualisieren
 		void render();									//	Rendern
 	};

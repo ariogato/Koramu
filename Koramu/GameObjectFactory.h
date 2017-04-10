@@ -25,7 +25,7 @@ private:
 
 public:
 
-	bool registerType(std::string, BaseCreator*);
+	bool registerType(std::string id, BaseCreator* pCreator);
 	GameObject* create(std::string);
 
 	static GameObjectFactory* Instance()

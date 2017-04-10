@@ -24,9 +24,9 @@ namespace FiniteStateMachine
 		void render();				//	Alles auf den Bildschirm schmeißen
 
 		//	Hat alles mit dem Stack zu tun
-		void pushState(GameState*);					//	Einen neuen Spielzustand aufstapeln	
+		void pushState(GameState* newState);					//	Einen neuen Spielzustand aufstapeln	
 		void popState();							//	Den aktuellen Spielzustand entfernen (der vorherige wird "aktiv")
-		void changeState(GameState*);				//	Den aktuellen Spielzustand entfernen und einen Neuen aufstapeln
+		void changeState(GameState* newState);				//	Den aktuellen Spielzustand entfernen und einen Neuen aufstapeln
 		
 		//	getter-Funktionen:
 		GameState* getCurrentState() { return m_stateStack.getTopNodeData(); }		//	Den aktuellen Spielzustand zurückgeben

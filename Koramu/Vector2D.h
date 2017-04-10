@@ -19,14 +19,14 @@ public:
 	Vector2D normalize();				//	Den Einheitsvektor erhalten
 
 	//	Überladene Operatoren
-	Vector2D operator+(const Vector2D&) const;				//	Arithmetischer Operator +
-	Vector2D operator-(const Vector2D&) const;				//	Arithmetischer Operator -
-	Vector2D operator*(const float) const;					//	Multiplikation mit einem Skalar (Variation in Länge)
-	float operator*(const Vector2D&) const;					//	Skalarprodukt
-	Vector2D& operator+=(const Vector2D&);					//	Zuweisungsoperator +=
-	Vector2D& operator-=(const Vector2D&);					//	Zuweisungsoperator -=
-	Vector2D& operator*=(const float);						//	Zuweisungsoperator *= (Skalarmultiplikation)
-	Vector2D& operator=(const Vector2D&);					//	Zuweisungsoperator =
+	Vector2D operator+(const Vector2D& summand) const;				//	Arithmetischer Operator +
+	Vector2D operator-(const Vector2D& subtrahend) const;				//	Arithmetischer Operator -
+	Vector2D operator*(const float scalar) const;					//	Multiplikation mit einem Skalar (Variation in Länge)
+	float operator*(const Vector2D& vector2) const;					//	Skalarprodukt
+	Vector2D& operator+=(const Vector2D& summand);					//	Zuweisungsoperator +=
+	Vector2D& operator-=(const Vector2D& subtrahend);					//	Zuweisungsoperator -=
+	Vector2D& operator*=(const float scalar);						//	Zuweisungsoperator *= (Skalarmultiplikation)
+	Vector2D& operator=(const Vector2D& assign);					//	Zuweisungsoperator =
 
 	//	getter-Funktionen
 	float getX() const { return m_xComponent; }

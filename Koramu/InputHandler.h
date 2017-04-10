@@ -34,9 +34,9 @@ private:
 
 	void onKeyDown();								//	Wird aufgerufen, sobald eine Taste gedrückt wird
 	void onKeyUp();									//	Wird aufgerufen, sobald eine Taste losgelassen wird
-	void onMouseMotion(const SDL_Event&);			//	Wird aufgerufen, sobald die Maus bewegt wird
-	void onMouseButtonDown(const SDL_Event&);		//	Wird aufgerufen, sobald eine Maustaste gedrückt wird
-	void onMouseButtonUp(const SDL_Event&);			//	Wird aufgerufen, sobald eine Maustaste losgelassen wird
+	void onMouseMotion(const SDL_Event& event);			//	Wird aufgerufen, sobald die Maus bewegt wird
+	void onMouseButtonDown(const SDL_Event& event);		//	Wird aufgerufen, sobald eine Maustaste gedrückt wird
+	void onMouseButtonUp(const SDL_Event& event);			//	Wird aufgerufen, sobald eine Maustaste losgelassen wird
 
 public:
 	void handleInput();								//	Im Grunde werden hier nur Ereignisse gepollt
