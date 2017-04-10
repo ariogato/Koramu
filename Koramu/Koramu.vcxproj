@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapParser.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapParser.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="Player.h" />
@@ -202,6 +204,7 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="xmlFiles\maps.xml" />
     <Xml Include="xmlFiles\states.xml" />
     <Xml Include="xmlFiles\stinker.xml" />
   </ItemGroup>

@@ -60,6 +60,12 @@
     <Filter Include="Quelldateien\Environment">
       <UniqueIdentifier>{91836f7b-198e-4e94-ae27-29eb99baa035}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Parser\MapParser">
+      <UniqueIdentifier>{cfac6a57-a98f-43be-95a3-9db17af5aae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Parser\MapParser">
+      <UniqueIdentifier>{5e675f83-5b14-48c3-a09c-624e1a00cf7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="GameObjectFactory.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="MapParser.cpp">
+      <Filter>Quelldateien\Parser\MapParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,12 +244,18 @@
     <ClInclude Include="GameObjectFactory.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="MapParser.h">
+      <Filter>Headerdateien\Parser\MapParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
     <Xml Include="xmlFiles\stinker.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
+    <Xml Include="xmlFiles\maps.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
   </ItemGroup>

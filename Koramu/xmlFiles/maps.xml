@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<states>
+  <menu>
+    <maps>
+      <map path="../assets/testMap.tmx" />
+    </maps>
+  </menu>
+  <play>
+    
+  </play>
+  <pause>
+    
+  </pause>
+</states>
