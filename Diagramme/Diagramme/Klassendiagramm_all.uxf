@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1235</x>
-      <y>208</y>
-      <w>663</w>
-      <h>676</h>
+      <x>1222</x>
+      <y>195</y>
+      <w>689</w>
+      <h>715</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 Game
@@ -15,7 +15,7 @@ Game
 - m_pWindow : SDL_Window*
 - m_pRenderer : SDL_Renderer*
 
-- m_pStateMachine : FiniteStateMachine::GameStateMachine*
+- m_pStateMachine : GameStateMachine*
 
 - m_pStandardLog : Logger*
 - m_pErrorLog : Logger*
@@ -34,11 +34,13 @@ Game
 
 + getWindow() : SDL_Window*
 + getRenderer() : SDL_Renderer*
++ getStateMachine() : GameStateMachine*  
 + isRunning() : bool
 + getGameWidth() : int
 + getGameHeight() : int
 + getGameXPos() : int
 + getGameYPos() : int
+
 
 + logStandard() : Logger&amp;
 + logError() : Logger&amp;</panel_attributes>
@@ -71,7 +73,7 @@ Game
     <id>UMLNote</id>
     <coordinates>
       <x>1443</x>
-      <y>117</y>
+      <y>104</y>
       <w>182</w>
       <h>91</h>
     </coordinates>
@@ -325,28 +327,28 @@ TextureManager
     <coordinates>
       <x>1092</x>
       <y>299</y>
-      <w>169</w>
+      <w>156</w>
       <h>65</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=2
 m2=1
 has</panel_attributes>
-    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1885</x>
-      <y>377</y>
-      <w>351</w>
-      <h>1092</h>
+      <x>1898</x>
+      <y>364</y>
+      <w>338</w>
+      <h>1105</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=1
 m2=1
 controls</panel_attributes>
-    <additional_attributes>10.0;20.0;250.0;20.0;250.0;820.0</additional_attributes>
+    <additional_attributes>10.0;20.0;240.0;20.0;240.0;830.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
@@ -594,7 +596,7 @@ ToDo: Überladene Operatoren darstellen
     <id>UMLClass</id>
     <coordinates>
       <x>780</x>
-      <y>910</y>
+      <y>936</y>
       <w>520</w>
       <h>429</h>
     </coordinates>
@@ -626,7 +628,7 @@ InputHandler
     <id>UMLNote</id>
     <coordinates>
       <x>910</x>
-      <y>806</y>
+      <y>832</y>
       <w>182</w>
       <h>104</h>
     </coordinates>
@@ -828,17 +830,6 @@ bg=pink</panel_attributes>
 + getHeight() : int
 + getWidth() : int
 + getPositionVector : Vector2D  </panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLActor</id>
-    <coordinates>
-      <x>6110</x>
-      <y>1261</y>
-      <w>78</w>
-      <h>143</h>
-    </coordinates>
-    <panel_attributes>Actor</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
