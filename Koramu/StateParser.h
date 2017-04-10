@@ -11,7 +11,7 @@ class GameObject;
 *	
 *	Der jeweilige State ruft die parse() Funktion einer Instanz des Parsers auf,
 *	sobald der State ganz oben im State-Stapel ist und seine onEnter() Funktion aufgerufen wird.
-*	Der parse() Funktion übergibt der State einen Pointer auf seine Liste aus GameObjects 
+*	Die parse() Funktion übergibt der State einen Pointer auf seine Liste aus GameObjects 
 *	(die muss er irgendwie von den Layern bekommen).
 *	
 *	Die Methoden wurden als 'static' deklariert, um auch ohne Instanziierung eines Objektes auf
