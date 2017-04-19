@@ -146,6 +146,9 @@
     <ClCompile Include="MapParser.cpp">
       <Filter>Quelldateien\Parser\MapParser</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -246,6 +249,9 @@
     </ClInclude>
     <ClInclude Include="MapParser.h">
       <Filter>Headerdateien\Parser\MapParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

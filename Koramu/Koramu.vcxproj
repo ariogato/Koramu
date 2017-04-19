@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationLayer.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="Fps.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationLayer.h" />
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
