@@ -9,7 +9,7 @@ Environment::Tile::~Tile()
 {
 }
 
-void Environment::Tile::load()
+void Environment::Tile::load(const ParamLoader& params)
 {
 
 }
@@ -19,7 +19,7 @@ void Environment::Tile::update()
 
 }
 
-void Environment::Tile::render()
+void Environment::Tile::draw()
 {
-
+	
 }

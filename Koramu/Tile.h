@@ -1,13 +1,18 @@
 #pragma once
 #include "Vector2D.h"
 #include <string>
+#include "GameObject.h"
+
+class ParamLoader;
 
 namespace Environment
 { 
 	/*	Unsere Map besteht aus Tiles (64x64 großen Bildern).
-	 *	Instanzen der Klasse "Tile" repräsentieren einzelne Tiles.  
+	 *	Instanzen der Klasse "Tile" repräsentieren einzelne Tiles.
+	 *	'Tile' erbt von 'GameObject', damit die Methode 'addContent' 
+	 *	in der Klasse 'Layer' funktioniert.
 	 */
-	class Tile
+	class Tile : public GameObject
 	{
 	private:
 		Tile();				
@@ -21,9 +26,9 @@ namespace Environment
 		int m_height;					//	Höhe des Tiles
 
 	public:
-		void load();					//	Laden des Tiles
-		void update();					//	Membervariablen aktualisieren
-		void render();					//	Rendern
+		void load(const ParamLoader& parameters);					//	Laden des Tiles
+		void update();												//	Membervariablen aktualisieren
+		void draw();												//	Rendern
 
 		//	getter-Funktionen
 		std::string getTileTextureID() const { return m_tileTextureID; }
