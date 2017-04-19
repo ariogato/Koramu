@@ -8,10 +8,10 @@ Player::Player()
 Player::~Player()
 {}
 
-void Player::load(const ParamLoader& parameters)
+void Player::load(const ParamLoader& params)
 {
 	//	Die Funktion der Klasse "SDL_GameObject" wird aufgerufen, um für uns den Job zu erledigen 
-	SDL_GameObject::load(parameters);
+	SDL_GameObject::load(params);
 }
 
 void Player::update()
