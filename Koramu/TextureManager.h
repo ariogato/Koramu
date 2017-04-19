@@ -20,7 +20,6 @@ private:
 	TextureManager();	//	Konstruktor
 	~TextureManager();	//	Destruktor
 
-private:
 	//	Notwendig für Singleton-Klasse
 	static TextureManager* s_pInstance;
 

@@ -30,6 +30,7 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	m_numRows = parameters.getNumRows();
 	m_animSpeed = parameters.getAnimSpeed();
 	m_textureId = parameters.getTextureId();
+	m_mapId = parameters.getMapId();
 }
 
 void SDL_GameObject::update()

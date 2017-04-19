@@ -3,7 +3,8 @@
 <states>
   <menu>
     <maps>
-      <map path="../assets/testMap.tmx" />
+      <map id="mainMenuMap" path="../assets/testMap1.tmx" />
+      <map />
     </maps>
   </menu>
   <play>

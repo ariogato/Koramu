@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "StateParser.h"
 #include "Game.h"
+#include "MapParser.h"
 
 FiniteStateMachine::MenuState::MenuState()		//	Konstruktor
 {}
@@ -18,7 +19,16 @@ void FiniteStateMachine::MenuState::onEnter()
 	//	Überprüfen, ob erfolgreich geparst wurde
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
+
+		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
+		TheGame::Instance()->setGameOver();
+	}
+
+	//	Überprüfen, ob die Maps erfolgreich geparst wurden
+	if (!MapParser::parse("xmlFiles/maps.xml", m_maps, pObjects, this->getStateID()))
+	{
+		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
@@ -27,6 +37,7 @@ void FiniteStateMachine::MenuState::onEnter()
 
 void FiniteStateMachine::MenuState::onExit()
 {
+	//	put qualitiy code here (if needed)
 }
 
 void FiniteStateMachine::MenuState::handleInput()

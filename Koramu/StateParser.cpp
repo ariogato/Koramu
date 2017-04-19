@@ -32,8 +32,8 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	}
 
 	//	Ermitteln des Wurzelelementes
-	XMLElement* stateRoot = pDocument->RootElement();
-	if (stateRoot == nullptr)
+	XMLElement* pStateRoot = pDocument->RootElement();
+	if (pStateRoot == nullptr)
 	{
 		/*	Die XML-Datei besitzt kein Wurzelelement und ist demnach leer. 
 		 *	Diesen Fehler loggen wir.
@@ -51,7 +51,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	if (!m_sHasLoadedTextures)
 	{
 		//	Aufrufen der Methode zum Laden der Texturen und überprüfen, ob das Laden erfolgreich war.
-		if (!loadTextures(stateRoot->FirstChildElement("textures")))
+		if (!loadTextures(pStateRoot->FirstChildElement("textures")))
 		{
 			TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen fehlgeschlagen." << std::endl;
 
@@ -63,7 +63,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	/*	Aufrufen der Methode zum Laden der "GameObjects" und überprüfen, ob das Laden erfolgreich war.
 	 *	Der zu ladende "GameState" wird anhand der übergebenen "stateID" ermittelt. Für weitere Informationen siehe "GameState.h".
 	 */
-	if (!loadGameObjects(stateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID]), pObjects))
+	if (!loadGameObjects(pStateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID]), pObjects))
 	{
 		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": Laden der 'GameObjects' fehlgeschlagen" << std::endl << std::endl;
 
@@ -172,7 +172,6 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		return false;
 	}
 
-
 	//	Hier werden alle Daten des GameObjects gespeichert
 	ParamLoader parameters;										//	parameter Objekt für load()
 	int x, y, width, height, numRows, numCols, animSpeed;		//	integer Daten 
@@ -189,7 +188,8 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		 *		type, textureId,
 		 *		xPos, yPos,
 		 *		width, height,
-		 *		numRows, numCols
+		 *		numRows, numCols,
+		 *		mapId
 		 *		
 		 *	Andere Attribute sind optional, weshalb sie auch nicht validiert werden.
 		 */
@@ -234,6 +234,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		//	Strings müssen extra geladen und validiert werden
 		const char* type = e->Attribute("type");
 		const char* textureId = e->Attribute("textureId");
+		const char* mapId = e->Attribute("mapId");
 
 #pragma region StringValidation
 		//	Strings auf Validität prüfen
@@ -247,6 +248,11 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas " << counter << ". Objekt besitzt keine textureId" << std::endl << std::endl;
 			return false;
 		}
+		if (!mapId)
+		{
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\t " << counter <<  ". Objekt besitzt keine mapId" << std::endl << std::endl;
+			return false;
+		}
 #pragma endregion
 
 		//	Optionale Attribute
@@ -254,6 +260,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 
 		//	Ab hier sind alle Daten validiert und werden für das Laden der Objekte abgespeichert
 		parameters.setTextureId(textureId);
+		parameters.setMapId(mapId);
 		parameters.setX(x);
 		parameters.setY(y);
 		parameters.setWidth(width);
@@ -276,7 +283,6 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		if (!objectToLoad)
 		{
 			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDas Objekt vom Typ " << type << " konnte nicht erstellt werden" << std::endl << std::endl;
-
 			return false;
 		}
 
@@ -288,3 +294,6 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	TheGame::Instance()->logStandard() << "StateParser::loadGameObjects(): \n\tObjekte erfolgreich geladen" << std::endl << std::endl;
 	return true;
 }
+
+
+

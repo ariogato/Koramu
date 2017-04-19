@@ -127,7 +127,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 #pragma region GameObjectFactoryTest
 		TheGameObjectFactory::Instance()->registerType("button", new PlayerCreator());
 		TheGameObjectFactory::Instance()->registerType("animation", new PlayerCreator());
-		TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
 #pragma endregion
 
 		//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen

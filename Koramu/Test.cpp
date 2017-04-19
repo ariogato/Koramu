@@ -42,7 +42,8 @@ Test::Test()						//Konstruktor
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-	backgroundMusic = Mix_LoadMUS("../assets/undertale_example.ogg");
+	backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
+
 #pragma endregion
 
 }
@@ -57,7 +58,6 @@ Test::~Test()						//Destruktor
 	Mix_FreeMusic(backgroundMusic);
 	Mix_Quit();
 #pragma endregion
-
 }
 
 

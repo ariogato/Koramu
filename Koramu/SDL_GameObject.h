@@ -29,6 +29,7 @@ protected:
 	int m_numRows;									//	Die Anzahl der Reihen auf dem Spritesheet (vertikal)
 	int m_animSpeed;								//	Die Animationsgeschwindigkeit (Wie schnell die Bilder hintereinander abgespielt werden)
 	std::string m_textureId;						//	Die Id, unter der die Textur im TextureManager gespeichert wurde
+	std::string m_mapId;							//	Die Id der Map, der das GameObject angehört
 
 public:
 	SDL_GameObject();

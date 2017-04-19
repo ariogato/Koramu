@@ -2,10 +2,12 @@
 
 #include <string>
 #include <vector>
-#include "Map.h"
+#include "GameObject.h"
 
-class Map;
-class Stack;
+namespace Environment
+{
+	class Map;
+}
 
 namespace DataStructure
 {
@@ -18,13 +20,20 @@ namespace FiniteStateMachine
 	enum GameStateID;
 }
 
+
+struct Tileset
+{
+	int firstGid;
+	int tilecount;
+};
+
 class MapParser
 {
 public:
 	MapParser();			//	Konstruktor
 	~MapParser();			//	Destruktor
 
-	static bool parse(std::string filename, DataStructure::Stack<Environment::Map>* pMapStack, FiniteStateMachine::GameStateID stateID);					//	Parsen initialisieren
+	static bool parse(std::string filename, DataStructure::Stack<Environment::Map>& pMapStack, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);					//	Parsen initialisieren
 
 private:
 };

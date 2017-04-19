@@ -71,6 +71,7 @@ public:
 	//	Einfache getter-Funktionen
 	SDL_Window* getWindow() { return m_pWindow; }
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
+	FiniteStateMachine::GameStateMachine* getStateMachine() { return m_pStateMachine; }
 	bool isRunning() const { return m_running; }
 	int getGameWidth() const { return m_gameWidth; }
 	int getGameHeight() const { return m_gameHeight; }

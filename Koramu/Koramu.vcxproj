@@ -204,8 +204,12 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="xmlFiles\maps.xml" />
-    <Xml Include="xmlFiles\states.xml" />
+    <Xml Include="xmlFiles\maps.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+    <Xml Include="xmlFiles\states.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="xmlFiles\stinker.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

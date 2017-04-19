@@ -25,6 +25,7 @@ private:
 	int m_numRows;
 	int m_animSpeed;
 	std::string m_textureId;
+	std::string m_mapId;
 
 public:
 
@@ -37,6 +38,7 @@ public:
 	int getNumRows() const { return m_numRows; }
 	int getAnimSpeed() const { return m_animSpeed; }
 	std::string getTextureId() const { return m_textureId; }
+	std::string getMapId() const { return m_mapId; }
 
 	//	setter-Funktionen
 	void setX(float x) { m_xPos = x; }
@@ -47,4 +49,5 @@ public:
 	void setNumRows(int num) { m_numRows = num; }
 	void setAnimSpeed(int animspeed) { m_animSpeed = animspeed; }
 	void setTextureId(std::string id) { m_textureId = id; }
+	void setMapId(std::string id) { m_mapId = id; }
 };
