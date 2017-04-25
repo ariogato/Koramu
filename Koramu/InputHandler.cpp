@@ -73,12 +73,18 @@ void InputHandler::onKeyDown()
 {
 	//	Hier wird der Zustand der Tastatur abgerufen
 	m_aKeyboardState = SDL_GetKeyboardState(nullptr);
+
+	//	Restliche 'SDL_KEYDOWN' events werden gelöscht
+	SDL_FlushEvent(SDL_KEYDOWN);
 }
 
 void InputHandler::onKeyUp()
 {
 	//	Hier wird der Zustand der Tastatur abgerufen
 	m_aKeyboardState = SDL_GetKeyboardState(nullptr);
+	
+	//	Restliche 'SDL_KEYUP' events werden gelöscht
+	SDL_FlushEvent(SDL_KEYUP);
 }
 
 void InputHandler::onMouseMotion(const SDL_Event& event)
@@ -86,6 +92,9 @@ void InputHandler::onMouseMotion(const SDL_Event& event)
 	//	Hier wird anhand des Events die Position des Mauszeigers ermittelt
 	m_pMousePosition->setX(event.motion.x); 
 	m_pMousePosition->setY(event.motion.y);
+
+	//	Restliche 'SDL_MOUSEMOTION' events werden gelöscht
+	SDL_FlushEvent(SDL_MOUSEMOTION);
 }
 
 void InputHandler::onMouseButtonDown(const SDL_Event& event)
@@ -118,6 +127,9 @@ void InputHandler::onMouseButtonDown(const SDL_Event& event)
 		m_mouseButtonStates[2] = true;
 		break;
 	}
+
+	//	Restliche 'SDL_MOUSEBUTTONDOWN' events werden gelöscht
+	SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
 }
 
 void InputHandler::onMouseButtonUp(const SDL_Event& event)
@@ -142,6 +154,9 @@ void InputHandler::onMouseButtonUp(const SDL_Event& event)
 		m_mouseButtonStates[2] = false;
 		break;
 	}
+
+	//	Restliche 'SDL_MOUSEBUTTONUP' events werden gelöscht
+	SDL_FlushEvent(SDL_MOUSEBUTTONUP);
 }
 
 bool InputHandler::isKeyDown(SDL_Scancode key)

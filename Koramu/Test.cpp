@@ -135,6 +135,12 @@ void Test::testFunctions()
 	TheTextureManager::Instance()->draw("buttonHowtoplay", 460, 438, 360, 120);
 	TheTextureManager::Instance()->draw("buttonExit", 460, 583, 360, 120);
 #pragma endregion
+
+#pragma region fpsTest
+	fps.calculateFPS();
+	if (fps.getFPS() < 60)
+		TheGame::Instance()->logStandard() << "FPS low" << std::endl;
+#pragma endregion 
 }
 
 

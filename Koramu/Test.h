@@ -2,6 +2,7 @@
 
 //	Header von zu testenden Klassen müssen immer einbezogen werden
 #include <SDL_mixer.h>
+#include "Fps.h"
 
 class Player;
 
@@ -23,6 +24,7 @@ private:
 #pragma region TestAttributes
 	Player* player;
 	Mix_Music* backgroundMusic;
+	Fps fps;
 #pragma endregion
 
 public:
