@@ -25,7 +25,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 		/*	Beim Laden ist ein Fehler passiert.
 		 *	Diesen Fehler loggen wir.
 		 */
-		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " konnte nicht geladen werden. " << pDocument->ErrorName() << std::endl;
+		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " konnte nicht geladen werden. " << pDocument->ErrorName() << std::endl << std::endl;
 		
 		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 		return false;
@@ -38,7 +38,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 		/*	Die XML-Datei besitzt kein Wurzelelement und ist demnach leer. 
 		 *	Diesen Fehler loggen wir.
 		 */
-		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " hat kein <states>-Element." << std::endl;
+		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << " hat kein <states>-Element." << std::endl << std::endl;
 		
 		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 		return false;
@@ -53,7 +53,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 		//	Aufrufen der Methode zum Laden der Texturen und überprüfen, ob das Laden erfolgreich war.
 		if (!loadTextures(pStateRoot->FirstChildElement("textures")))
 		{
-			TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen fehlgeschlagen." << std::endl;
+			TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen fehlgeschlagen." << std::endl << std::endl;
 
 			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 			return false;
@@ -86,7 +86,7 @@ bool StateParser::loadTextures(XMLElement* pTextureNode)
 		/*	Die XML-Datei besitzt kein Element mit dem Namen "textures".
 		 *	Diesen Fehler loggen wir. 
 		 */
-		TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDie XML-Datei besitzt kein Element mit dem Namen 'textures'." << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDie XML-Datei besitzt kein Element mit dem Namen 'textures'." << std::endl << std::endl;
 		
 		//	Wir können nicht mit dem Laden der Texturen forfahren. Wir geben "false" zurück.
 		return false;
@@ -95,7 +95,7 @@ bool StateParser::loadTextures(XMLElement* pTextureNode)
 	//	Wir schauen ob überhaupt Texturen vorhanden sind
 	if (pTextureNode->NoChildren())
 	{
-		TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDie XML-Datei besitzt keine Texturen." << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDie XML-Datei besitzt keine Texturen." << std::endl << std::endl;
 		return false;
 	}
 
@@ -114,12 +114,12 @@ bool StateParser::loadTextures(XMLElement* pTextureNode)
 		//	Daten auf Validität prüfen
 		if (!id)
 		{
-			TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDas " << counter << ". Texturelement besitzt keine ID" << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDas " << counter << ". Texturelement besitzt keine ID" << std::endl << std::endl;
 			return false;
 		}
 		if (!path)
 		{
-			TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDas " << counter << ". Texturelement besitzt keinen Dateipfad" << std::endl;
+			TheGame::Instance()->logError() << "StateParser::loadTextures(): \n\tDas " << counter << ". Texturelement besitzt keinen Dateipfad" << std::endl << std::endl;
 			return false;
 		}
 #pragma endregion
@@ -146,7 +146,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		/*	Die XML-Datei besitzt kein Element mit dem Namen des gewünschten States.
 		*	Diesen Fehler loggen wir.
 		*/
-		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDie XML-Datei besitzt kein Element mit dem Namen des gewünschten States" << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tDie XML-Datei besitzt kein Element mit dem Namen des gewünschten States" << std::endl << std::endl;
 		
 		//	Wir können nicht mit dem Laden der "GameObjects" fortfahren. Wir geben "false" zurück.
 		return false;
@@ -155,7 +155,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	//	Wir schauen ob die Liste von GameObjects vorhanden sind
 	if (pCurrentStateNode->NoChildren())
 	{
-		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObject-Liste" << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObject-Liste" << std::endl << std::endl;
 		return false;
 	}
 
@@ -168,7 +168,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	//	Wir schauen ob überhaupt Objekte vorhanden sind
 	if (pObjectNode->NoChildren() || !pObjectNode)
 	{
-		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObjects" << std::endl;
+		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObjects" << std::endl << std::endl;
 		return false;
 	}
 
