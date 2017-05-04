@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "GameObject.h"
 
 namespace Environment
@@ -21,19 +22,16 @@ namespace FiniteStateMachine
 }
 
 
-struct Tileset
-{
-	int firstGid;
-	int tilecount;
-};
-
 class MapParser
 {
 public:
 	MapParser();			//	Konstruktor
 	~MapParser();			//	Destruktor
 
-	static bool parse(std::string filename, DataStructure::Stack<Environment::Map>& pMapStack, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);					//	Parsen initialisieren
+	static bool parse(	std::string filename, 
+						std::map<std::string, Environment::Map*>& pMapDict, DataStructure::Stack<Environment::Map*>& pMapStack, 
+						std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);								//	Parsen initialisieren
 
 private:
+	static bool parseMap(std::string path, Environment::Map* map);
 };

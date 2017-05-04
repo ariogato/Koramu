@@ -26,7 +26,7 @@ void FiniteStateMachine::MenuState::onEnter()
 	}
 
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
-	if (!MapParser::parse("xmlFiles/maps.xml", m_maps, pObjects, this->getStateID()))
+	if (!MapParser::parse("xmlFiles/maps.xml", m_mapDict, m_maps, pObjects, this->getStateID()))
 	{
 		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
 

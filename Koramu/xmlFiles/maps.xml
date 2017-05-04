@@ -4,7 +4,6 @@
   <menu>
     <maps>
       <map id="mainMenuMap" path="../assets/testMap1.tmx" />
-      <map />
     </maps>
   </menu>
   <play>

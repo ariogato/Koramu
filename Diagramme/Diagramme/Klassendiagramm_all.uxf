@@ -290,8 +290,8 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>740</y>
+      <x>4100</x>
+      <y>540</y>
       <w>220</w>
       <h>110</h>
     </coordinates>
@@ -501,24 +501,24 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>1070</y>
-      <w>180</w>
-      <h>80</h>
+      <x>3350</x>
+      <y>500</y>
+      <w>290</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Player 
 --
 --
-/+ load(const ParamLoader&amp;) : void/
-/+ update() : void/
-/+ draw() : void/</panel_attributes>
++ load(params : const ParamLoader&amp;) : void
++ update() : void
++ draw() : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1150</x>
-      <y>940</y>
+      <x>3720</x>
+      <y>530</y>
       <w>300</w>
       <h>320</h>
     </coordinates>
@@ -534,9 +534,9 @@ Node
 # m_animSpeed : int
 # m_textureId : string
 --
-/+ load(const ParamLoader&amp;) : void/
-/+ update() : void/
-/+ draw() : void/
++ load(const ParamLoader&amp;) : void
++ update() : void
++ draw() : void
 
 /+ destroy() : void/
 
@@ -549,24 +549,24 @@ Node
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1290</x>
-      <y>840</y>
-      <w>30</w>
-      <h>120</h>
+      <x>4010</x>
+      <y>590</y>
+      <w>110</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>1100</y>
-      <w>120</w>
+      <x>3630</x>
+      <y>530</y>
+      <w>110</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -676,9 +676,9 @@ Funktion übergeben wird</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>3050</x>
-      <y>1090</y>
+      <y>1060</y>
       <w>1380</w>
-      <h>600</h>
+      <h>890</h>
     </coordinates>
     <panel_attributes>Environment
 --
@@ -690,7 +690,7 @@ bg=pink</panel_attributes>
     <coordinates>
       <x>3100</x>
       <y>1130</y>
-      <w>350</w>
+      <w>630</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>Map 
@@ -698,7 +698,7 @@ bg=pink</panel_attributes>
 - m_positionVector : Vector2D
 - m_layerMap : map&lt;string, Layer*&gt;
 --
-+ init() : void
++ init(pObjects : vector&lt;GameObject*&gt;*, width : int, height : int, tilewidth : int, tileheight : int) : void
 + update() : void
 + render() : void
 
@@ -708,8 +708,8 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3590</x>
-      <y>1230</y>
+      <x>3600</x>
+      <y>1340</y>
       <w>140</w>
       <h>90</h>
     </coordinates>
@@ -725,9 +725,9 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3250</x>
-      <y>1400</y>
-      <w>280</w>
+      <x>3190</x>
+      <y>1510</y>
+      <w>360</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>ObjectLayer
@@ -739,45 +739,46 @@ bg=pink</panel_attributes>
 + update() : void
 + render() : void
 
-+ addObject(pObject : GameObject*) : void
-+ addPlayer(pPlayer : Player*) : void</panel_attributes>
+- addObjects(pObjects : vector&lt;GameObject*&gt;*) : void
+- addPlayer(pPlayer : Player*) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3480</x>
-      <y>1310</y>
-      <w>150</w>
+      <x>3420</x>
+      <y>1420</y>
+      <w>220</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>130.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>200.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3560</x>
-      <y>1400</y>
-      <w>200</w>
+      <x>3570</x>
+      <y>1510</y>
+      <w>270</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>TileLayer
 --
+- m_tilesets : vector&lt;Tileset&gt;
 - m_tiles : vector&lt;vector&lt;Tile*&gt;&gt;
 --
 + init() : void
 + update() : void
 + render() : void
 
-+ addTile (pTile : Tile*) : void</panel_attributes>
+- addTiles (pTiles : vector&lt;Tile*&gt;*) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3650</x>
-      <y>1310</y>
+      <x>3660</x>
+      <y>1420</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -787,9 +788,9 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3790</x>
-      <y>1400</y>
-      <w>310</w>
+      <x>3860</x>
+      <y>1510</y>
+      <w>380</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>AnimationLayer
@@ -800,19 +801,19 @@ bg=pink</panel_attributes>
 + update() : void
 + render() : void
 
-+ addAnimation(pAnimation : Animation*) : void</panel_attributes>
+- addAnimations(pAnimations : vector&lt;Animation*&gt;*) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3700</x>
-      <y>1310</y>
-      <w>160</w>
+      <x>3710</x>
+      <y>1420</y>
+      <w>220</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;200.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -824,7 +825,7 @@ bg=pink</panel_attributes>
     </coordinates>
     <panel_attributes>Tile
 --
-- m_tileTextureID : string
+- m_tileID : int
 - m_positionVector : Vector2D
 - m_message : string
 
@@ -833,7 +834,7 @@ bg=pink</panel_attributes>
 --
 + load() : void
 + update() : void
-+ render() : void
++ draw() : void
 
 + getTileTextureID() : string
 + getMessage() : string
@@ -888,8 +889,8 @@ GameObjectFactory
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3590</x>
-      <y>460</y>
+      <x>3010</x>
+      <y>320</y>
       <w>370</w>
       <h>110</h>
     </coordinates>
@@ -901,5 +902,43 @@ _+ parse(filename : string, stateID : GameStateID)_
 _+ loadTextures(pTextureNode : XMLElement*)_
 _+ loadGameObjects(pCurrentStateNode : XMLElement*)_</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4240</x>
+      <y>640</y>
+      <w>30</w>
+      <h>510</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3350</x>
+      <y>610</y>
+      <w>290</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Animation
+--
+--
++ load(params : const ParamLoader&amp;) : void
++ update() : void
++ draw() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3630</x>
+      <y>650</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

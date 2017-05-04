@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include "Stack.h"
 #include "Map.h"
 
@@ -32,12 +33,17 @@ namespace FiniteStateMachine
 	*	man in unserem Spiel erreichen kann.
 	*	Sie stellt das "Datenelement" in unserem Entwurfsmuster
 	*	des Kompositums für einen Stapel von Spielzuständen dar.	
+	*	
+	*	Das Laden der Maps:
+	*		Die zu Beginn des Programms geparsten Maps werden in einem Dictionary ('std::map' - 'm_mapDict') gespeichert.
+	*		Bei Bedarf werden sie dann auf einen Stapel ('m_maps') gestapelt.
 	*/
 	class GameState
 	{
 	protected:
 		GameStateID m_stateID;									//	Um den Zustand identifizieren zu können
-		DataStructure::Stack<Environment::Map> m_maps;			//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
+		std::map<std::string, Environment::Map*> m_mapDict;		//	'std::map' aus allen für den Spielzustand relevanten Maps
+		DataStructure::Stack<Environment::Map*> m_maps;			//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
 
 	public:
 		GameState() {}

@@ -18,7 +18,7 @@ namespace Environment
 		Tile();				
 		~Tile();		
 
-		std::string m_tileTextureID;	//	ID der zugehörigen Textur
+		int m_tileID;					//	ID des zugehörigen Tiles (auf dem Tileset)
 		Vector2D m_positionVector;		//	Ortsvektor des Tiles 
 		std::string m_message;			//	Jedes Tile hat eine "Nachricht", die dem User angezeigt werden können soll.
 	
@@ -31,7 +31,7 @@ namespace Environment
 		void draw();												//	Rendern
 
 		//	getter-Funktionen
-		std::string getTileTextureID() const { return m_tileTextureID; }
+		int getTileID() const { return m_tileID; }
 		std::string getMessage() const { return m_message; }
 		int getHeight() const { return m_height; }
 		int getWidth() const { return m_width; }
