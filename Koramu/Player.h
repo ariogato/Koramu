@@ -23,11 +23,16 @@ public:
 	virtual void draw();
 };
 
+/*
+ *	PlayerCreator erbt von BaseCreator und hat den Zweck ein Objekt/Objekte der Klasse Player zu erstellen. 
+ *	In Verbindung mit der "GameObjectFactory" ermöglicht uns dies Objekte eines bestimmten registrierten Typs zu erstellen.
+ *	In diesem Fall ist das der Typ "player". 
+ */
 class PlayerCreator : public BaseCreator
 {
 public:
 	GameObject* createGameObject() const 
 	{
-		return new Player();
+		return new Player();	//	Ein neues Objekt wird erstellt und anschließend zurückgegeben. 
 	}
 };

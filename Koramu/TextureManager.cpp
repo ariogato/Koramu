@@ -163,8 +163,6 @@ TextureManager* TextureManager::Instance()
 //	Wichtig für Singleton-Klasse
 void TextureManager::destroy()
 {
-
-
 	//	Den Destruktor aufrufen
 	delete s_pInstance;
 

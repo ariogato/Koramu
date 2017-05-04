@@ -1,9 +1,23 @@
 #include "GameObjectFactory.h"
 #include "Game.h"
 
+//	Wichtig für Singleton-Klasse
 GameObjectFactory* GameObjectFactory::s_pInstance = nullptr;
 
 
+GameObjectFactory::GameObjectFactory()
+{
+}
+
+GameObjectFactory::~GameObjectFactory()
+{
+	/*
+	*	Sobald man mindestens ein dynamisch alloziiertes Objekt
+	*	(Schema: "pointer = new class()") als Member-Variable hat
+	*	MUSS man einen Destruktor schreiben,
+	*	der diese löscht. Sonst entsteht ein übles Speicherleck!!!
+	*/
+}
 
 bool GameObjectFactory::registerType(std::string id, BaseCreator* pCreator)
 {
@@ -22,6 +36,7 @@ bool GameObjectFactory::registerType(std::string id, BaseCreator* pCreator)
 
 	TheGame::Instance()->logStandard() << "GameObjectFactory::registerType(): \n\tNeuer Typ hinzugefuegt: " << id << std::endl << std::endl;
 
+	//	Der neue Typ wurde erfolgreich hinzugefügt
 	return true;
 }
 
@@ -40,4 +55,13 @@ GameObject* GameObjectFactory::create(std::string id)
 	 *	Der Parser fügt dieses Objekt dann dem zu parsenden State hinzu.
 	 */
 	return m_creatorMap[id]->createGameObject();
+}
+
+void GameObjectFactory::destroy()
+{
+	//	Den Destruktor aufrufen
+	delete s_pInstance;
+
+	//	Nochmal - weil es gute Programmierpraxis ist - die Instanz = 'nullptr' setzen
+	s_pInstance = nullptr;
 }
