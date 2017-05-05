@@ -6,6 +6,8 @@
 #include "ParamLoader.h"
 #include "Player.h"
 #include <chrono>
+#include <regex>
+#include "ObjectLayer.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -46,6 +48,19 @@ Test::Test()						//Konstruktor
 
 #pragma endregion
 
+#pragma region ObjectLayerTest
+	Environment::ObjectLayer* o = new Environment::ObjectLayer();
+	
+	std::vector<GameObject*>* g = new std::vector<GameObject*>();
+	
+	g->push_back(TheGameObjectFactory::Instance()->create("animation"));
+	g->push_back(TheGameObjectFactory::Instance()->create("button"));
+
+	o->init(g);
+
+	delete o;
+#pragma endregion 
+	std::cout << "test" << std::endl;
 }
 
 Test::~Test()						//Destruktor

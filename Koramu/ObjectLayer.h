@@ -12,16 +12,16 @@ namespace Environment
 	class ObjectLayer : public Layer
 	{
 	private:
-		std::vector<GameObject*> m_gameObjects;		//	Array der GameObjects 
-		Player m_player;							//	Der Spieler ist Teil des ObjectLayers und wird von diesem gerendert.
+		std::vector<GameObject*>* m_pGameObjects;		//	Array der GameObjects 
+		Player m_player;								//	Der Spieler ist Teil des ObjectLayers und wird von diesem gerendert.
 
 	public:
 		ObjectLayer();
 		~ObjectLayer();
 
-		void init();							//	Initialisieren
-		void update();							//	Aktualisieren
-		void render();							//	Rendern
+		void init(std::vector<GameObject*>* pGameObjects);		//	Initialisieren
+		void update();											//	Aktualisieren
+		void render();											//	Rendern
 	};
 
 	

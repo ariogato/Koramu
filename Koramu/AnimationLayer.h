@@ -20,17 +20,13 @@ namespace Environment
 	private:
 		std::vector<GameObject*> m_animations;
 
-		void addAnimations(std::vector<GameObject*>& pAnimations);
-
 	public:
 		AnimationLayer();
 		~AnimationLayer();
 
-		void init();							//	Initialisieren
-		void update();							//	Aktualisiern
-		void render();							//	Rendern
-
-		void addContent(std::vector<GameObject*>& pObjects);		//	Inhalt hinzufügen
+		void init(std::vector<GameObject*>& pAnimations);		//	Initialisieren
+		void update();											//	Aktualisiern
+		void render();											//	Rendern
 	};
 
 

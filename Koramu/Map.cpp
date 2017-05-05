@@ -3,7 +3,7 @@
 #include "ParamLoader.h"
 
 Environment::Map::Map()
-	: m_positionVector(0.0f, 0.0f)
+	: m_width(0), m_height(0), m_tilewidth(0), m_tileheight(0), m_positionVector(0.0f, 0.0f)
 {
 }
 
@@ -11,7 +11,7 @@ Environment::Map::~Map()
 {
 }
 
-void Environment::Map::init(std::vector<GameObject*>* pObjects, const ParamLoader& params, int tilewidth, int tileheight)
+void Environment::Map::init(const ParamLoader& params, int tilewidth, int tileheight)
 {
 	//	Daten laden (Dem Aufrufer wird einfach vertraut, dass die Daten vollständig sind)
 	m_positionVector.setX(params.getX());
@@ -20,21 +20,6 @@ void Environment::Map::init(std::vector<GameObject*>* pObjects, const ParamLoade
 	m_height = params.getHeight();
 	m_tilewidth = tilewidth;
 	m_tileheight = tileheight;
-
-	/*	Damit die Objekte dem 'ObjectLayer' hinzugefügt werden können, 
-	 *	muss dieses 'ObjectLayer' erstmal existieren.
-	 *	Hier wird dies geprüft.
-	 */
-	if (!m_layerMap.count("ObjectLayer"))
-	{
-		TheGame::Instance()->logError() << "Map::init(): \n\tObjectLayer nicht gefunden!" << std::endl << std::endl;
-		return;
-	}
-
-	/*	Ab hier ist sicher, dass die übergebenen Daten valide sind.
-	*	Nun werden die Objekte ins 'ObjectLayer' eingefügt.
-	*/
-	m_layerMap["ObjectLayer"]->addContent(*pObjects);
 }
 
 void Environment::Map::update()
@@ -43,6 +28,7 @@ void Environment::Map::update()
 
 void Environment::Map::render()
 {
+
 }
 
 void Environment::Map::addLayer(std::string name, Layer* pNewLayer)

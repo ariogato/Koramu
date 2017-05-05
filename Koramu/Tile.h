@@ -9,15 +9,10 @@ namespace Environment
 { 
 	/*	Unsere Map besteht aus Tiles (64x64 großen Bildern).
 	 *	Instanzen der Klasse "Tile" repräsentieren einzelne Tiles.
-	 *	'Tile' erbt von 'GameObject', damit die Methode 'addContent' 
-	 *	in der Klasse 'Layer' funktioniert.
 	 */
-	class Tile : public GameObject
+	class Tile
 	{
 	private:
-		Tile();				
-		~Tile();		
-
 		int m_tileID;					//	ID des zugehörigen Tiles (auf dem Tileset)
 		Vector2D m_positionVector;		//	Ortsvektor des Tiles 
 		std::string m_message;			//	Jedes Tile hat eine "Nachricht", die dem User angezeigt werden können soll.
@@ -26,6 +21,9 @@ namespace Environment
 		int m_height;					//	Höhe des Tiles
 
 	public:
+		Tile();
+		~Tile();
+
 		void load(const ParamLoader& parameters);					//	Laden des Tiles
 		void update();												//	Membervariablen aktualisieren
 		void draw();												//	Rendern

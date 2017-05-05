@@ -16,10 +16,10 @@ namespace Environment
 		Layer() {}
 		virtual ~Layer() {}
 
-		virtual void init() = 0;		//	Layer initialisieren
+		//virtual void init() = 0;		//	Layer initialisieren
 		virtual void update() = 0;		//	Layer aktualisieren
 		virtual void render() = 0;		//	Layer rendern
 
-		virtual void addContent(std::vector<GameObject*>& pObjects) = 0;		//	Inhalt hinzufügen
+		//virtual void addContent(std::vector<GameObject*>& pObjects) = 0;		//	Inhalt hinzufügen
 	};
 }

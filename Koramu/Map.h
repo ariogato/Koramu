@@ -16,7 +16,9 @@ namespace Environment
 	 */
 	struct Tileset
 	{
-		int firstGid;
+		int firstgid;
+		int tilewidth;
+		int tileheight;
 		int tilecount;
 		int numCols;
 		int numRows;
@@ -38,8 +40,7 @@ namespace Environment
 		Map();
 		~Map();
 
-		void init(	std::vector<GameObject*>* pObjects, 
-					const ParamLoader& params,
+		void init(	const ParamLoader& params,
 					int tilewidth, int tileheight);			//	Initialisieren
 		void update();										//	Aktualisieren
 		void render();										//	Rendern

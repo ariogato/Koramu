@@ -24,10 +24,18 @@ private:
 	int m_numCols;
 	int m_numRows;
 	int m_animSpeed;
+	int m_tileId;
 	std::string m_textureId;
 	std::string m_mapId;
 
 public:
+	ParamLoader()									//	Konstruktor
+		:	m_xPos(0.0f), m_yPos(0.0f),
+			m_width(0), m_height(),
+			m_numCols(0), m_numRows(0),
+			m_animSpeed(0),
+			m_tileId(0)
+	{}
 
 	//	getter-Funktionen
 	float getX() const { return m_xPos; }
@@ -37,6 +45,7 @@ public:
 	int getNumCols() const { return m_numCols; }
 	int getNumRows() const { return m_numRows; }
 	int getAnimSpeed() const { return m_animSpeed; }
+	int getTileId() const { return m_tileId; }
 	std::string getTextureId() const { return m_textureId; }
 	std::string getMapId() const { return m_mapId; }
 
@@ -48,6 +57,7 @@ public:
 	void setNumCols(int num) { m_numCols = num; }
 	void setNumRows(int num) { m_numRows = num; }
 	void setAnimSpeed(int animspeed) { m_animSpeed = animspeed; }
+	void setTileId(int tileId) { m_tileId = tileId; }
 	void setTextureId(std::string id) { m_textureId = id; }
 	void setMapId(std::string id) { m_mapId = id; }
 };

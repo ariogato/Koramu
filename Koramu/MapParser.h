@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include <vector>
 #include <map>
 #include "GameObject.h"
@@ -21,7 +20,6 @@ namespace FiniteStateMachine
 	enum GameStateID;
 }
 
-
 class MapParser
 {
 public:
@@ -33,5 +31,5 @@ public:
 						std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);								//	Parsen initialisieren
 
 private:
-	static bool parseMap(std::string path, Environment::Map* map);
+	static bool parseMap(std::string path, Environment::Map* pMap);
 };

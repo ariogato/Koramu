@@ -8,7 +8,7 @@ class ParamLoader;
 
 class GameObject
 {
-protected:
+public:
 	GameObject() {}						//	Konstruktor
 	virtual ~GameObject() {}			//	Destruktor
 
@@ -17,7 +17,6 @@ protected:
 	*	Für mehr Info, siehe unser Wiki (Cpp Tipps -> Abstrakte Klassen)
 	*/
 
-public:
 	//	Folgende Memberfunktionen werden erst in der abgeleiteten Klasse definiert
 	virtual void load(const ParamLoader& parameters) = 0;
 	virtual void update() = 0;
