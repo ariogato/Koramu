@@ -60,7 +60,6 @@ Test::Test()						//Konstruktor
 
 	delete o;
 #pragma endregion 
-	std::cout << "test" << std::endl;
 }
 
 Test::~Test()						//Destruktor
@@ -83,46 +82,54 @@ Test::~Test()						//Destruktor
 void Test::testFunctions()
 {
 #pragma region logTest
-	//	Damit es nicht mehr
-	if (false)
-	{
-		//	Erster Durchlauf
-		auto start = std::chrono::high_resolution_clock::now();
-		TheGame::Instance()->logError() << "test" << std::endl;
-		auto finish = std::chrono::high_resolution_clock::now();
+	/*
+	//	Erster Durchlauf
+	auto start = std::chrono::high_resolution_clock::now();
+	TheGame::Instance()->logError() << "test" << std::endl;
+	auto finish = std::chrono::high_resolution_clock::now();
 
-		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
 
-		TheGame::Instance()->logStandard() << "Duration: " << duration.count() << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "Duration: " << duration.count() << std::endl << std::endl;
 
-		//	Zweiter test-durchlauf
-		auto start1 = std::chrono::high_resolution_clock::now();
-		std::cout << "test" << std::endl;
-		auto finish1 = std::chrono::high_resolution_clock::now();
+	//	Zweiter test-durchlauf
+	auto start1 = std::chrono::high_resolution_clock::now();
+	std::cout << "test" << std::endl;
+	auto finish1 = std::chrono::high_resolution_clock::now();
 
-		auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(finish1 - start1);
+	auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(finish1 - start1);
 
-		TheGame::Instance()->logStandard() << "Duration: " << duration1.count() << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "Duration: " << duration1.count() << std::endl << std::endl;
 
-		/*	Ergebnisse:
-		*		1. Unser logError() (in eine Datei) ist in der Regel schneller als std::cerr (oft auch gleich schnell).
-		*		2. Unser logError() (in den std::cerr stream) ist in der Regel ca. zehn mal langsamer als der normale std::cerr Aufruf.
-		*		3. Gleiches gilt für logStandard().
-		*		4. Ohne std::endl geht das Loggen um einiges schneller! Also immer "\n".
-		*/
-	}
+	/*	Ergebnisse:
+	*		1. Unser logError() (in eine Datei) ist in der Regel schneller als std::cerr (oft auch gleich schnell).
+	*		2. Unser logError() (in den std::cerr stream) ist in der Regel ca. zehn mal langsamer als der normale std::cerr Aufruf.
+	*		3. Gleiches gilt für logStandard().
+	*		4. Ohne std::endl geht das Loggen um einiges schneller! Also immer "\n".
+	*/
 #pragma endregion
 
-#pragma region PlayerTest
-	if (player->getPosition().getX() >= -200.0f)
-	{
-		player->update();
+#pragma region MapParserTest
+	/*
+	TheTextureManager::Instance()->drawFrame("test1", 200, 200, 64, 64, 3, 3);
+	TheTextureManager::Instance()->drawFrame("test1", 264, 200, 64, 64, 3, 4);
+	TheTextureManager::Instance()->drawFrame("test1", 328, 200, 64, 64, 3, 5);
+	TheTextureManager::Instance()->drawFrame("test1", 200, 264, 64, 64, 4, 3);
+	TheTextureManager::Instance()->drawFrame("test1", 264, 264, 64, 64, 4, 4);
+	TheTextureManager::Instance()->drawFrame("test1", 328, 264, 64, 64, 4, 5);
+	TheTextureManager::Instance()->drawFrame("test1", 200, 328, 64, 64, 5, 3);
+	TheTextureManager::Instance()->drawFrame("test1", 264, 328, 64, 64, 5, 4);
+	TheTextureManager::Instance()->drawFrame("test1", 328, 328, 64, 64, 5, 5);
+	*/ 
+#pragma endregion 
 
-		player->draw();
-	}
+#pragma region PlayerTest
+	player->update();
+	player->draw();
 #pragma endregion 
 
 #pragma region testMusic
+
 	if (!Mix_PlayingMusic())
 		Mix_PlayMusic(backgroundMusic, -1);
 		
@@ -145,10 +152,12 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region textureTest
+	/*
 	TheTextureManager::Instance()->draw("koramu", 203, 31, 875, 180);
 	TheTextureManager::Instance()->draw("buttonStart", 460, 293, 360, 120);
 	TheTextureManager::Instance()->draw("buttonHowtoplay", 460, 438, 360, 120);
 	TheTextureManager::Instance()->draw("buttonExit", 460, 583, 360, 120);
+	*/
 #pragma endregion
 
 #pragma region fpsTest

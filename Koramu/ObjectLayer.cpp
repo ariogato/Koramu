@@ -1,5 +1,6 @@
 #include "ObjectLayer.h"
 //#include "GameObject.h"
+#include "ParamLoader.h"
 
 Environment::ObjectLayer::ObjectLayer(): m_pGameObjects(nullptr)
 {
@@ -20,6 +21,21 @@ Environment::ObjectLayer::~ObjectLayer()
 void Environment::ObjectLayer::init(std::vector<GameObject*>* pGameObjects)
 {
 	m_pGameObjects = pGameObjects;
+
+	/*
+	ParamLoader playerParams; 
+
+	playerParams.setAnimSpeed(200);
+	playerParams.setHeight(180);
+	playerParams.setWidth(70);
+	playerParams.setNumRows(4);
+	playerParams.setNumCols(4);
+	playerParams.setTextureId("player");
+	playerParams.setX(500.0f);
+	playerParams.setY(100.0f);
+
+	m_player.load(playerParams);
+	*/
 }
 
 void Environment::ObjectLayer::update()
@@ -28,4 +44,9 @@ void Environment::ObjectLayer::update()
 
 void Environment::ObjectLayer::render()
 {
+	//	Jedes Spielobjekt wird iterativ gerendert
+	for (GameObject* g : *m_pGameObjects)
+		g->draw();
+	//	Der Spieler wird gesondert als letztes gerendert
+	m_player.draw();
 }

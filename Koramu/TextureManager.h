@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <string>
 #include <map>
+#include "TileLayer.h"
 
 
 /*	TextureManager soll eine Singleton Klasse sein, da wir während des gesamten Programmablaufes nur eine einzige 
@@ -35,6 +36,9 @@ public:
 	void drawFrame(std::string id,														//	Einen Teil einer Textur zeichnen
 		int x, int y, int width, int height,
 		int frameRow, int frameCol);
+	void drawTile(const Environment::Tileset& tileset,									//	Ein Tile aus einem Tileset (als Textur gespeichert) zeichnen
+		int tileId, 
+		int x, int y);
 	
 	void clearFromTextureMap(std::string id);											//	Die Texturen von der map löschen
 

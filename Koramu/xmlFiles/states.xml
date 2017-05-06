@@ -15,7 +15,7 @@
 
   <menu>
     <gameObjects>
-      <gameObject type="button" textureId="buttonStart"
+      <!--<gameObject type="button" textureId="buttonStart"
                   xPos="460" yPos="293" width="360" height="120"
                   numRows="1" numCols="3"
                   mapId="mainMenuMap"/>
@@ -34,7 +34,7 @@
       <gameObject type="animation" textureId="player"
                   xPos="460" yPos="374" width="24" height="62"
                   numRows="4" numCols="4"
-                  mapId="mainMenuMap"/>
+                  mapId="mainMenuMap"/>-->
     </gameObjects>
 	</menu>
   

@@ -17,9 +17,9 @@ namespace Environment
 		TileLayer();
 		~TileLayer();
 
-		void init(std::vector<Tileset> tilesets, std::vector<std::vector<Tile*>> tiles);		//	Initialisieren
-		void update();																			//	Aktualisieren
-		void render();																			//	Rendern
+		void init(std::vector<Tileset> tilesets, std::vector<std::vector<Tile*>> tiles);				//	Initialisieren
+		void update() override;																			//	Aktualisieren
+		void render() override;																			//	Rendern
 	};
 }
 

@@ -28,7 +28,12 @@ void Environment::Map::update()
 
 void Environment::Map::render()
 {
-
+	/*	Hier werden die Layer in der richtigen Reihenfolge gerendert.
+	 *	Die unterste Ebene muss zuerst gerendert werden.
+	 */
+	m_layerMap["Kachelebene 2"]->render();
+	m_layerMap["Kachelebene 1"]->render();
+	m_layerMap["ObjectLayer"]->render();
 }
 
 void Environment::Map::addLayer(std::string name, Layer* pNewLayer)

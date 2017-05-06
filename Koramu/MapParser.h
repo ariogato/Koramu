@@ -27,7 +27,7 @@ public:
 	~MapParser();			//	Destruktor
 
 	static bool parse(	std::string filename, 
-						std::map<std::string, Environment::Map*>& pMapDict, DataStructure::Stack<Environment::Map*>& pMapStack, 
+						std::map<std::string, Environment::Map*>& pMapDict, DataStructure::Stack<Environment::Map>& pMapStack, 
 						std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);								//	Parsen initialisieren
 
 private:

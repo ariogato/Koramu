@@ -22,7 +22,7 @@ MapParser::~MapParser()
 {
 }
 
-bool MapParser::parse(std::string filename, std::map<std::string, Environment::Map*>& pMapDict, DataStructure::Stack<Environment::Map*>& pMapStack, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID)
+bool MapParser::parse(std::string filename, std::map<std::string, Environment::Map*>& pMapDict, DataStructure::Stack<Environment::Map>& pMapStack, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID)
 {
 #pragma region Document
 	//	Ein neues Dokument wird erstellt und geöffnet
@@ -155,6 +155,8 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		//	geparste Map dem Dictionary aus Maps hinzufügen
 		pMapDict.insert(std::pair<std::string, Environment::Map*>(mapId, pCurrentMap));
 	}
+
+	pMapStack.push(pMapDict["mainMenuMap"]);
 
 	//	Pointer löschen, um einem Speicherleck vorzubeugen.
 	delete pDocument;
@@ -305,7 +307,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		/*	Der "TextureManager" lädt die Textur des Tilesets
 		 *	basierend auf dem Namen "name" und der Quelle "tilesetSource".
 		 */
-		TheTextureManager::Instance()->load(tempTileset.name, tilesetSource, TheGame::Instance()->getRenderer());
+		TheTextureManager::Instance()->load((tempTileset.name), "../assets/" + tilesetSource, TheGame::Instance()->getRenderer());
 
 		//	temporäres Tileset dem Vector aus Tilesets hinzufügen
 		tempTilesets.push_back(tempTileset);
@@ -315,7 +317,6 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 #pragma region TileLayer
 	for (XMLElement* e = pMapRoot->FirstChildElement("layer"); e != nullptr; e = e->NextSiblingElement("layer"))
 	{
-		//	
 		Environment::TileLayer* pCurrentLayer = new Environment::TileLayer();
 		
 		//	Daten des Layers parsen

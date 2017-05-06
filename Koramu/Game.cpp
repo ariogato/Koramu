@@ -21,6 +21,9 @@
 Game* Game::s_pInstance = nullptr;
 
 Game::Game()									//	Konstruktor
+	:	m_running(false), 
+		m_gameWidth(0), m_gameHeight(0), 
+		m_gameXPos(0), m_gameYPos(0)
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
@@ -162,6 +165,13 @@ void Game::render()
 	*	Sonst würde man jeden Frame immer wieder sehen. 
 	*/
 	SDL_RenderClear(m_pRenderer);
+
+	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen 
+	 *	Spielzustand zu rendern.
+	 *	Welcher Spielzustand gerade gerendert werden soll 
+	 *	interessiert die Klasse 'Game' nicht
+	 */
+	m_pStateMachine->render();
 
 #pragma region testStuff
 	TheTester::Instance()->testFunctions();

@@ -2,7 +2,7 @@
 #include "ParamLoader.h"
 
 Environment::Tile::Tile()
-	: m_positionVector(0.0f, 0.0f), m_width(64), m_height(64)
+	: m_tileID(0), m_positionVector(0.0f, 0.0f), m_width(64), m_height(64)
 {
 }
 

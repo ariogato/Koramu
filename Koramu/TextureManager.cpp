@@ -1,6 +1,7 @@
 #include "TextureManager.h"
-#include "Game.h"
 #include <SDL_image.h>
+#include "Game.h"
+#include "Map.h"
 
 //	Wichtig für Singleton-Klasse
 TextureManager* TextureManager::s_pInstance = nullptr;
@@ -79,8 +80,8 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height)
 	/*	Da wir nie Stauchen oder Strecken wollen, 
 	*	sind Höhe und Breite immer gleich
 	*/
-	SDL_Rect destRect;
 	SDL_Rect srcRect;
+	SDL_Rect destRect;
 
 	srcRect.w = destRect.w = width;
 	srcRect.h = destRect.h = height;
@@ -103,13 +104,11 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 {
 	//	Für mehr Info siehe Kommentare in TextureManager::draw
 
-	SDL_Rect destRect;
 	SDL_Rect srcRect;
+	SDL_Rect destRect;
 
-	srcRect.w = width;
-	srcRect.h = height;
-	destRect.w = 64;
-	destRect.h = 165;
+	srcRect.w = destRect.w = width;
+	srcRect.h = destRect.h = height;
 	/*	Wir wollen nur ein Bild in dem Spritesheet erfassen.
 	*	Um das zu erreichen wird die x- & y-Position des Source Rectangles
 	*	variiert. 
@@ -129,6 +128,35 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	destRect.y = y;
 
 	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect);
+}
+
+void TextureManager::drawTile(const Environment::Tileset& tileset, int tileId, int x, int y)
+{
+	//	Die Tiles mit einer 'tileId' von '0' sollen nicht gerendert werden. 
+	if (tileId - 1 < 0)
+		return;
+
+	/*	Das 'srcRect' beschreibt die Position des Tiles auf dem Tileset (Textur). 
+	 *	Das 'destRect' beschreibt die Position des Tiles auf dem Bildschirm.
+	 */
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+
+	//	Breite und Höhe der Tiles setzen
+	srcRect.w = destRect.w = tileset.tilewidth;
+	srcRect.h = destRect.h = tileset.tileheight;
+
+	/*	Hier wird anhand der 'tileId' und den Zeilen bzw. Spalten des Tilesets
+	 *	ausgerechnet wo das Tile sich auf dem Tileset (der Textur) befindet
+	 */
+	srcRect.x = tileset.tilewidth * ((tileId - 1) % tileset.numRows);
+	srcRect.y = tileset.tileheight * ((tileId - tileset.firstgid) / tileset.numCols);
+
+	//	x- und y-Positon auf dem Bildschirm setzen
+	destRect.x = x;
+	destRect.y = y;
+
+	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[tileset.name], &srcRect, &destRect);
 }
 
 void TextureManager::clearFromTextureMap(std::string id) 

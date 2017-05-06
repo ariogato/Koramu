@@ -4,6 +4,8 @@
 #include "StateParser.h"
 #include "Game.h"
 #include "MapParser.h"
+#include "Stack.h"
+#include "Map.h"
 
 FiniteStateMachine::MenuState::MenuState()		//	Konstruktor
 {}
@@ -50,5 +52,7 @@ void FiniteStateMachine::MenuState::update()
 
 void FiniteStateMachine::MenuState::render()
 {
+	//	Die aktuelle Map wird gerendert
+	m_maps.getTopNodeData()->render();
 }
 
