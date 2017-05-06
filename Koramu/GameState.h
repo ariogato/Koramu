@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <map>
 #include "Stack.h"
 #include "Map.h"
@@ -10,6 +11,7 @@
 */
 namespace FiniteStateMachine 
 {
+	class GameStateMachine;
 
 	/*	Dies ist ein Datentyp für unsere Zustände.
 	*	Neue Zustände müssen erstmal in der enum definiert werden.
@@ -18,15 +20,18 @@ namespace FiniteStateMachine
 	{
 		/*	Mögliche Zustände:
 		*	Wir können im Menü unseren Spiels sein (MenuState), das Spiel tatsächlich spielen (PlayState),
-		*	oder eine Pause machen (PauseState).
+		*	eine Pause machen (PauseState) oder aus dem Menu eine Spielanleitung (HowToPlayState) aufrufen.
 		*/
-		menuState = 0, playState, pauseState
+		menuState = 0, playState, pauseState, howToPlayState
 	};
 
 	/*	!!! Bei einer Erweiterung der Enumeration, muss der neue Spielzustand auch in dieses Array aufgenommen werden. !!! 	
 	 *	Ein statisches Array zur Zuordnung der GameStateID (sonst kann der Parser nichts damit anfangen).
 	 */
-	static const char* stateNames[] = { "menu", "play", "pause" };
+	static const char* s_stateNames[] = { "menu", "play", "pause", "howToPlay" };
+
+	//	Dictionary zur Speicherung der Callback-Funktionen der Buttons
+	static std::map<std::string, std::function<void(GameStateMachine*)>> s_callbackFunctions;
 
 
 	/*	Diese Klasse ist Basis für alle Zustände, die 

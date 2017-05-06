@@ -35,11 +35,19 @@ void FiniteStateMachine::MenuState::onEnter()
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
 	}
+	
+	//	Der Zustand wurde erfolgreich betreten
+	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::MenuState::onExit()
 {
-	//	put qualitiy code here (if needed)
+	std::cout << s_callbackFunctions.size() << std::endl;
+	s_callbackFunctions["exit"](TheGame::Instance()->getStateMachine());
+	/*	Hier muss nichts weiteres gemacht werden, 
+	 *	denn der Zustand wird schon über die Zustandsmaschine gelöscht.
+	 */	
+	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde verlassen." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::MenuState::handleInput()
