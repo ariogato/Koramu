@@ -8,6 +8,14 @@ Environment::TileLayer::TileLayer()
 
 Environment::TileLayer::~TileLayer()
 {
+	//	Wir löschen iterativ die Tiles im zweidimensionalen Vector aus Tiles.
+	for(auto i : m_tiles)
+	{
+		for(auto j : i)
+		{
+			delete j;
+		}
+	}
 }
 
 void Environment::TileLayer::init(std::vector<Tileset> tilesets, std::vector<std::vector<Tile*>> tiles)
@@ -38,7 +46,7 @@ void Environment::TileLayer::render()
 			});
 
 			//	Zuletzt wird das Tile mit Hilfe des 'TextureManager's gerenderts.
-			TheTextureManager::Instance()->drawTile(*tilesetToUse, m_tiles[i][j]->getTileID(), j * 64, i * 64);
+			TheTextureManager::Instance()->drawTile(*tilesetToUse, m_tiles[i][j]->getTileID(), j * 64 + m_tiles[i][j]->getPostionVector().getX(), i * 64 + m_tiles[i][j]->getPostionVector().getY());
 		}
 	}
 }

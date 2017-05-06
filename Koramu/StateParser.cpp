@@ -63,7 +63,7 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	/*	Aufrufen der Methode zum Laden der "GameObjects" und überprüfen, ob das Laden erfolgreich war.
 	 *	Der zu ladende "GameState" wird anhand der übergebenen "stateID" ermittelt. Für weitere Informationen siehe "GameState.h".
 	 */
-	if (!loadGameObjects(pStateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID]), pObjects))
+	if (!loadGameObjects(pStateRoot->FirstChildElement(FiniteStateMachine::s_stateNames[stateID]), pObjects))
 	{
 		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": Laden der 'GameObjects' fehlgeschlagen" << std::endl << std::endl;
 

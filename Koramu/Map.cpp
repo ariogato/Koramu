@@ -9,6 +9,11 @@ Environment::Map::Map()
 
 Environment::Map::~Map()
 {
+	//	Wir löschen iterativ die Layer aus der layerMap.
+	for(auto i : m_layerMap)
+	{
+		delete i.second;
+	}
 }
 
 void Environment::Map::init(const ParamLoader& params, int tilewidth, int tileheight)

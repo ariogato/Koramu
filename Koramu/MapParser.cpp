@@ -58,7 +58,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 
 #pragma region StateNode
 	//	XMLElement des angeforderten Spielzustandes ermitteln
-	XMLElement* pStateNode = pStateRoot->FirstChildElement(FiniteStateMachine::stateNames[stateID]);
+	XMLElement* pStateNode = pStateRoot->FirstChildElement(FiniteStateMachine::s_stateNames[stateID]);
 
 	//	Checken, ob 'pStateNode' befüllt wurde
 	if (!pStateNode)
@@ -66,7 +66,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		/*	Der Spielzustand besitzt kein <states>-Element und ist demnach leer.
 		*	Diesen Fehler loggen wir.
 		*/
-		TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << " hat keinen \"" << FiniteStateMachine::stateNames[stateID] << "\" Zustand." << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << " hat keinen \"" << FiniteStateMachine::s_stateNames[stateID] << "\" Zustand." << std::endl << std::endl;
 
 		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 		return false;
@@ -83,7 +83,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		/*	Der Spielzustand besitzt kein <maps>-Element und ist demnach leer.
 		*	Diesen Fehler loggen wir.
 		*/
-		TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << " hat kein <maps>-Element im Zustand \"" << FiniteStateMachine::stateNames[stateID] << "\"." << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << " hat kein <maps>-Element im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\"." << std::endl << std::endl;
 	
 		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 		return false;
@@ -93,7 +93,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 	if (pMapNode->NoChildren())
 	{
 		//	Lies die Log-Message du Vogel!
-		TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << " hat keine Maps im Zustand \"" << FiniteStateMachine::stateNames[stateID] << "\"." << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << " hat keine Maps im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\"." << std::endl << std::endl;
 		
 		//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 		return false;
@@ -116,14 +116,14 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		//	Die Daten werden auf Validität geprüft
 		if (mapId.empty())
 		{
-			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::stateNames[stateID] << "\" hat keine id." << std::endl << std::endl;
+			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\" hat keine id." << std::endl << std::endl;
 
 			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 			return false;
 		}
 		if (mapPath.empty())
 		{
-			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::stateNames[stateID] << "\" hat keinen path." << std::endl << std::endl;
+			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\" hat keinen path." << std::endl << std::endl;
 
 			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 			return false;
@@ -139,7 +139,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		 */
 		if (!parseMap(mapPath, pCurrentMap))
 		{
-			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::stateNames[stateID] << "\" konnte nicht geparst werden." << std::endl << std::endl;
+			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\" konnte nicht geparst werden." << std::endl << std::endl;
 		
 			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 			return false;
@@ -365,8 +365,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 			tileParams.setTileId(std::stoi(tempData));				//	'stoi()' steht für "string to int"
 			tileParams.setWidth(tilewidth);
 			tileParams.setHeight(tileheight);
-			tileParams.setX((counter % mapWidth) * tilewidth);
-			tileParams.setY((counter / mapWidth) * tileheight);
+			//	X- und Y-Position werden in der update()-Funktion von 'TileLayer' gesetzt
 
 
 			//	Objekt zum Tile an der Stelle x = [counter % mapWidth] y = [counter / mapWidth]

@@ -2,12 +2,13 @@
 
 #include "GameState.h"
 
-/*	Dieser Spielzustand/"GameState" ist "aktiv", wenn wir im Menu unseres Spiels sind.
-*	
-*	Diese Klasse erbt von "GameState"	
-*/
+
 namespace FiniteStateMachine
 {
+	/*	Dieser Spielzustand/"GameState" ist "aktiv", wenn wir im Menu unseres Spiels sind.
+	 *
+	 *	Diese Klasse erbt von "GameState"
+	 */
 	class MenuState : public GameState
 	{
 	public:
