@@ -143,10 +143,12 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationLayer.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="HowToPlayState.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
@@ -172,6 +174,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationLayer.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
     <ClInclude Include="Fps.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="HowToPlayState.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />

@@ -149,6 +149,12 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="HowToPlayState.cpp">
+      <Filter>Quelldateien\StateMachine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -252,6 +258,12 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="HowToPlayState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
