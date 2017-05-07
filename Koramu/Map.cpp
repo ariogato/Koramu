@@ -41,7 +41,7 @@ void Environment::Map::render()
 	 *	Die unterste Ebene muss zuerst gerendert werden.
 	 */
 	//m_layerMap["Kachelebene 2"]->render();
-	m_layerMap["Kachelebene 1"]->render();
+	//m_layerMap["Kachelebene 1"]->render();
 	m_layerMap["ObjectLayer"]->render();
 }
 
