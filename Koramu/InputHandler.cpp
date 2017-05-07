@@ -175,9 +175,9 @@ bool InputHandler::isKeyDown(SDL_Scancode key)
 	return false;
 }
 
-Vector2D* InputHandler::getMousePosition()
+Vector2D InputHandler::getMousePosition() const
 {
-	return m_pMousePosition;
+	return *m_pMousePosition;
 }
 
 InputHandler* InputHandler::Instance()

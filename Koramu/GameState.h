@@ -41,9 +41,10 @@ namespace FiniteStateMachine
 	class GameState
 	{
 	protected:
-		GameStateID m_stateID;									//	Um den Zustand identifizieren zu können
-		std::map<std::string, Environment::Map*> m_mapDict;		//	'std::map' aus allen für den Spielzustand relevanten Maps
-		DataStructure::Stack<Environment::Map> m_maps;			//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
+		GameStateID m_stateID;																		//	Um den Zustand identifizieren zu können
+		std::map<std::string, Environment::Map*> m_mapDict;											//	'std::map' aus allen für den Spielzustand relevanten Maps
+		DataStructure::Stack<Environment::Map> m_maps;												//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
+		std::map<std::string, void(*)()> m_callbackFunctions;		//	'std::map' aus allen für das jeweilige Menü relevanten Callback Funktionen
 
 	public:
 		GameState() {}

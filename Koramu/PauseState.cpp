@@ -9,13 +9,15 @@
 #include "Map.h"
 
 FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
-{}
+{
+	m_stateID = pauseState;
+}
 
 FiniteStateMachine::PauseState::~PauseState()		//	Destruktor
 {}
 
 void FiniteStateMachine::PauseState::onEnter()
-{
+{/*
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
 
@@ -38,7 +40,7 @@ void FiniteStateMachine::PauseState::onEnter()
 	}
 
 	//	Der Zustand wurde erfolgreich betreten
-	TheGame::Instance()->logStandard() << "Der 'PauseState' wurde betreten." << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "Der 'PauseState' wurde betreten." << std::endl << std::endl;*/
 }
 
 void FiniteStateMachine::PauseState::onExit()

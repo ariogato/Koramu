@@ -27,13 +27,14 @@ private:
 	int m_tileId;
 	std::string m_textureId;
 	std::string m_mapId;
+	std::string m_callbackId;
 
 public:
 	ParamLoader()									//	Konstruktor
 		:	m_xPos(0.0f), m_yPos(0.0f),
 			m_width(0), m_height(),
 			m_numCols(0), m_numRows(0),
-			m_animSpeed(0),
+			m_animSpeed(1),
 			m_tileId(0)
 	{}
 
@@ -48,6 +49,7 @@ public:
 	int getTileId() const { return m_tileId; }
 	std::string getTextureId() const { return m_textureId; }
 	std::string getMapId() const { return m_mapId; }
+	std::string getCallbackId() const { return m_callbackId; }
 
 	//	setter-Funktionen
 	void setX(float x) { m_xPos = x; }
@@ -60,4 +62,5 @@ public:
 	void setTileId(int tileId) { m_tileId = tileId; }
 	void setTextureId(std::string id) { m_textureId = id; }
 	void setMapId(std::string id) { m_mapId = id; }
+	void setCallbackId(std::string id) { m_callbackId = id; }
 };

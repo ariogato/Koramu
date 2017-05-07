@@ -22,7 +22,7 @@ void Environment::ObjectLayer::init(std::vector<GameObject*>* pGameObjects)
 {
 	m_pGameObjects = pGameObjects;
 
-	/*
+	
 	ParamLoader playerParams; 
 
 	playerParams.setAnimSpeed(200);
@@ -35,11 +35,16 @@ void Environment::ObjectLayer::init(std::vector<GameObject*>* pGameObjects)
 	playerParams.setY(100.0f);
 
 	m_player.load(playerParams);
-	*/
+	
 }
 
 void Environment::ObjectLayer::update()
 {
+	//	Jedes Spielobjekt wird iterativ geupdatet
+	for (GameObject* g : *m_pGameObjects)
+		g->update();
+	//	Der Spieler wird gesondert als letztes geupdatet
+	m_player.update();
 }
 
 void Environment::ObjectLayer::render()

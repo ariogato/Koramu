@@ -11,6 +11,7 @@
 
 FiniteStateMachine::HowToPlayState::HowToPlayState()
 {
+	m_stateID = howToPlayState;
 }
 
 
@@ -63,6 +64,4 @@ void FiniteStateMachine::HowToPlayState::update()
 
 void FiniteStateMachine::HowToPlayState::render()
 {
-	//	Die aktuelle Map wird gerendert
-	m_maps.getTopNodeData()->render();
 }

@@ -14,6 +14,7 @@ private:
 
 public:
 	Vector2D(float, float);				//	Konstruktor
+	Vector2D(const Vector2D&);			//	Kopierkonstruktor
 	~Vector2D();						//	Destruktor
 
 	Vector2D normalize();				//	Den Einheitsvektor erhalten

@@ -5,6 +5,12 @@ Vector2D::Vector2D(float x, float y)		//	Konstruktor
 {
 }
 
+Vector2D::Vector2D(const Vector2D& v)		//	Kopierkonstruktor
+{
+	this->m_xComponent = v.getX();
+	this->m_yComponent = v.getY();
+}
+
 Vector2D::~Vector2D()						//	Destruktor
 {}
 

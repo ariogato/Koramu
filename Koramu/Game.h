@@ -3,35 +3,46 @@
 #include <string>
 #include <SDL.h>
 #include "Logger.h"
+#include "GameState.h"
 
 namespace FiniteStateMachine
 {
 	class GameStateMachine;
 }
 
+/*	Konstruktor und Destruktor wurden aus folgendem Grund 'private' gesetzt:
+*
+*	Da wir während des gesamten Programmablaufes nur eine einzige
+*	Instanz dieser Klasse benötigen (und haben dürfen),
+*	bietet sich das Design-Pattern einer Singleton-Klasse an.
+*
+*	Wie funktionieren Singletons?
+*		Dadurch dass sowohl Konstruktor als auch Desktuktor 'private' sind,
+*		kann keiner eine Instanz dieser Klasse (direkt) erzeugen (oder löschen).
+*		Um trotzdem auf irgendeine Instanz zugreifen zu können, gibt es die
+*		Methode 'Instance()', die bei Aufruf die statische (ebenfalls 'private')
+*		Member-Variable 's_pInstance' zurückgibt.
+*
+*	Wie greife ich auf die Instanz zu?
+*		Dadurch dass ganz unten in dieser Datei noch ein 'typedef' eingebaut wurde,
+*		greift man auf die Klasse 'Game' jetzt mit 'TheGame' zu.
+*		Also gibt Folgendes die Instanz zurück:
+*			'TheGame::Instance()'
+*
+*	Zustandsmaschine:
+*		Wir implementieren unser Spiel auf Basis einer FSM (Finite State Machine).
+*		Das heißt, dass unser Spiel zwischen verschiedenen Zuständen (z.B. Pause, Menü) unterscheiden kann 
+*		und in der Folge auch die zustandsspezifischen Operationen durchführen wird. 
+*		Hierzu muss unsere grundlegende Klasse Game eine Membervariable besitzen, die unsere ganzen Zustände verwaltet ('m_pStateMachine').
+*		
+*		Zu 'm_pCurrentState':
+*			Sobald eine Zustandsänderung stattfinden sollte, wird der neue Zustand in 'm_pCurrentState' lediglich zwischengespeichert.
+*			Das Rendern (und andere Operationen) des alten Zustands wird zuendegeführt.
+*			Erst beim nächsten Durchlauf der Hauptschleife (siehe main.cpp) tritt der neue Zustand tatsächlich ein.
+*/
+
 class Game
 {
-	/*	Konstruktor und Destruktor wurden aus folgendem Grund 'private' gesetzt: 
-	*	
-	*	Da wir während des gesamten Programmablaufes nur eine einzige 
-	*	Instanz dieser Klasse benötigen (und haben dürfen), 
-	*	bietet sich das Design-Pattern einer Singleton-Klasse an.
-	*
-	*	Wie funktionieren Singletons?
-	*		Dadurch dass sowohl Konstruktor als auch Desktuktor 'private' sind,
-	*		kann keiner eine Instanz dieser Klasse (direkt) erzeugen (oder löschen).
-	*		Um trotzdem auf irgendeine Instanz zugreifen zu können, gibt es die 
-	*		Methode 'Instance()', die bei Aufruf die statische (ebenfalls 'private')
-	*		Member-Variable 's_pInstance' zurückgibt.
-	*	
-	*	Wie greife ich auf die Instanz zu?
-	*		Dadurch dass ganz unten in dieser Datei noch ein 'typedef' eingebaut wurde, 
-	*		greift man auf die Klasse 'Game' jetzt mit 'TheGame' zu.
-	*		Also gibt Folgendes die Instanz zurück:
-	*			'TheGame::Instance()'
-	*
-	*	Gruß Ario 	
-	*/
 
 private:
 	Game();			//	Konstruktor
@@ -57,6 +68,13 @@ private:
 	int m_gameXPos;
 	int m_gameYPos;
 
+	FiniteStateMachine::GameState* m_pCurrentState;			//	Aktueller Spielzustand
+
+	//	Variablen für die Zustandsmaschine
+	bool isChangeState = false;
+	bool isPushState = false;
+	bool isPopState = false;
+
 public:
 	bool init(	std::string title,		//	Das Spiel (und SDL) initialisieren
 		int width, int height, 
@@ -67,11 +85,14 @@ public:
 	void render();						//	Alles auf den Bildschirm schmeißen
 	void setGameOver();					//	Um z.B. vom InputHandler aus das Spiel zu beenden
 
+	//	Methoden zur Erfassung einer Zustandsänderung
+	void changeState(FiniteStateMachine::GameState* newState);
+	void pushState(FiniteStateMachine::GameState* newStates);
+	void popState();
 
 	//	Einfache getter-Funktionen
 	SDL_Window* getWindow() { return m_pWindow; }
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
-	FiniteStateMachine::GameStateMachine* getStateMachine() { return m_pStateMachine; }
 	bool isRunning() const { return m_running; }
 	int getGameWidth() const { return m_gameWidth; }
 	int getGameHeight() const { return m_gameHeight; }

@@ -17,11 +17,12 @@ void Player::load(const ParamLoader& params)
 void Player::update()
 {
 #pragma region testStuff
+	m_currentRow = 0;
+	m_currentCol = 0;
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
 		//	Die Funktion der Klasse "SDL_GameObject" wird aufgerufen, um für uns den Job zu erledigen 
 		SDL_GameObject::update();
-
 		m_currentRow = 2;
 
 		Vector2D temp(1.0f, 0.0f);

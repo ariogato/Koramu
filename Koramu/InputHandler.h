@@ -43,7 +43,7 @@ public:
 
 	//	getter-Funktionen
 	bool isKeyDown(SDL_Scancode);					//	Prüft, ob eine bestimmte Taste gedrückt wurde
-	Vector2D* getMousePosition();					//	Gibt den Ortsvektor der Maus zurück
+	Vector2D getMousePosition() const;					//	Gibt den Ortsvektor der Maus zurück
 
 	std::vector<bool> getMouseButtonState() const { return m_mouseButtonStates; }
 

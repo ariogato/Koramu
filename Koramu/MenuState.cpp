@@ -1,11 +1,17 @@
 #include "MenuState.h"
 #include <vector>
+#include <map>
 #include "GameObject.h"
 #include "StateParser.h"
 #include "Game.h"
 #include "MapParser.h"
 #include "Stack.h"
 #include "Map.h"
+#include "GameStateMachine.h"
+#include "Button.h"
+#include "PlayState.h"
+#include "HowToPlayState.h"
+
 
 FiniteStateMachine::MenuState::MenuState()		//	Konstruktor
 {}
@@ -15,6 +21,9 @@ FiniteStateMachine::MenuState::~MenuState()		//	Destruktor
 
 void FiniteStateMachine::MenuState::onEnter()
 {
+	//	Hier werden alle Callback Funktionen in die 'std::map' geladen
+	this->setCallbackFunctions();
+
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
 	
@@ -25,6 +34,26 @@ void FiniteStateMachine::MenuState::onEnter()
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
+		return;
+	}
+
+	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
+	for (auto object : *pObjects)
+	{
+		//	Überprüfen, ob das Objekt ein Button ist
+		if (Button* b = dynamic_cast<Button*>(object))
+		{
+			//	Überprüfen, ob es die Callback Funktion des Buttons überhaupt gibt
+			if (!m_callbackFunctions.count(b->getCallbackId()))
+			{
+				TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tDie Callback Funktion \"" << b->getCallbackId() << "\" existiert nicht." << std::endl << std::endl;
+				TheGame::Instance()->setGameOver();
+				return;
+			}
+
+			//	Setzen der Callback Funktion des Buttons anhand der callbackId 
+			b->setCallback(m_callbackFunctions[b->getCallbackId()]);
+		}
 	}
 
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
@@ -34,16 +63,14 @@ void FiniteStateMachine::MenuState::onEnter()
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
+		return;
 	}
-	
-	//	Der Zustand wurde erfolgreich betreten
-	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde betreten." << std::endl << std::endl;
+
+	TheGame::Instance()->logStandard() << "MenuState wurde erfolgreich betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::MenuState::onExit()
 {
-	std::cout << s_callbackFunctions.size() << std::endl;
-	s_callbackFunctions["exit"](TheGame::Instance()->getStateMachine());
 	/*	Hier muss nichts weiteres gemacht werden, 
 	 *	denn der Zustand wird schon über die Zustandsmaschine gelöscht.
 	 */	
@@ -56,6 +83,7 @@ void FiniteStateMachine::MenuState::handleInput()
 
 void FiniteStateMachine::MenuState::update()
 {
+	m_maps.getTopNodeData()->update();
 }
 
 void FiniteStateMachine::MenuState::render()
@@ -64,3 +92,33 @@ void FiniteStateMachine::MenuState::render()
 	m_maps.getTopNodeData()->render();
 }
 
+void FiniteStateMachine::MenuState::menuToPlay()
+{
+	//	Der MenuState wird verworfen; PlayState wird aufgestapelt
+
+	std::cout << "menuToPlay" << std::endl;
+	TheGame::Instance()->changeState(new PlayState());
+}
+
+void FiniteStateMachine::MenuState::menuToHowToPlay()
+{
+	//	MenuState bleibt erhalten; HowToPlayState wird aufgestapelt
+
+	std::cout << "menutToHowToPlay" << std::endl;
+	TheGame::Instance()->pushState(new HowToPlayState());
+}
+
+void FiniteStateMachine::MenuState::exit()
+{
+	//	Das Spiel wird verlassen
+
+	std::cout << "exit" << std::endl;
+	TheGame::Instance()->setGameOver();
+}
+
+void FiniteStateMachine::MenuState::setCallbackFunctions()
+{
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("menuToPlay", menuToPlay));
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("menuToHowToPlay", menuToHowToPlay));
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("exit", exit));
+}

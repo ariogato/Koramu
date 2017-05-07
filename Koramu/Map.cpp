@@ -29,6 +29,10 @@ void Environment::Map::init(const ParamLoader& params, int tilewidth, int tilehe
 
 void Environment::Map::update()
 {
+	for (auto layer : m_layerMap)
+	{
+		layer.second->update();
+	}
 }
 
 void Environment::Map::render()
@@ -36,7 +40,7 @@ void Environment::Map::render()
 	/*	Hier werden die Layer in der richtigen Reihenfolge gerendert.
 	 *	Die unterste Ebene muss zuerst gerendert werden.
 	 */
-	m_layerMap["Kachelebene 2"]->render();
+	//m_layerMap["Kachelebene 2"]->render();
 	m_layerMap["Kachelebene 1"]->render();
 	m_layerMap["ObjectLayer"]->render();
 }

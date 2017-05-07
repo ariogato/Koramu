@@ -47,19 +47,6 @@ Test::Test()						//Konstruktor
 	backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 
 #pragma endregion
-
-#pragma region ObjectLayerTest
-	Environment::ObjectLayer* o = new Environment::ObjectLayer();
-	
-	std::vector<GameObject*>* g = new std::vector<GameObject*>();
-	
-	g->push_back(TheGameObjectFactory::Instance()->create("animation"));
-	g->push_back(TheGameObjectFactory::Instance()->create("button"));
-
-	o->init(g);
-
-	delete o;
-#pragma endregion 
 }
 
 Test::~Test()						//Destruktor
@@ -123,11 +110,6 @@ void Test::testFunctions()
 	*/ 
 #pragma endregion 
 
-#pragma region PlayerTest
-	player->update();
-	player->draw();
-#pragma endregion 
-
 #pragma region testMusic
 
 	if (!Mix_PlayingMusic())
@@ -144,9 +126,9 @@ void Test::testFunctions()
 	{
 		//TheGame::Instance()->logStandard() << "click middle!" << std::endl;
 		TheGame::Instance()->logStandard()
-			<< TheInputHandler::Instance()->getMousePosition()->getX()
+			<< TheInputHandler::Instance()->getMousePosition().getX()
 			<< " : "
-			<< TheInputHandler::Instance()->getMousePosition()->getY()
+			<< TheInputHandler::Instance()->getMousePosition().getY()
 			<< std::endl;
 	}
 #pragma endregion

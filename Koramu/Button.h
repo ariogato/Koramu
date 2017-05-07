@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL_GameObject.h"
 #include "GameObjectFactory.h"
+#include "GameState.h"
 
 
 /*	Objekte der Klasse "Button" repräsentieren Schaltflächen, 
@@ -11,12 +12,24 @@
 class Button : public SDL_GameObject
 {
 private:
-	std::string callbackId; 
+	std::string m_callbackId; 
+	void(*m_callbackFunction)();
 
 public:
 	Button();
 	~Button();
 	
+	void load(const ParamLoader& params);
+	void update();
+	void draw();
+
+
+	//	getter-Funktionen
+	std::string getCallbackId() const { return m_callbackId; }
+
+	//	setter-Funktionen
+	void setCallback(void(*callback)()) { m_callbackFunction = callback; }
+	void setCallbackId(std::string callbackId) { m_callbackId = callbackId; }
 };
 
 /*

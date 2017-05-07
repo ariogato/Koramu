@@ -10,6 +10,7 @@
 #include "Button.h"
 #include "GameStateMachine.h"
 #include "MenuState.h"
+#include "PlayState.h"
 
 
 /*	Wichtig für Singleton-Klasse
@@ -124,9 +125,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		//	Zustandsmaschine initialisieren
 		m_pStateMachine = new FiniteStateMachine::GameStateMachine();
 
-		//	Das lässt die main-Schleife laufen
-		m_running = true;
-
 		//	Informationen über das Fenster speichern
 		m_gameWidth = width;
 		m_gameHeight = height;
@@ -141,11 +139,19 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 		//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
 		m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
-		
+		m_pCurrentState = m_pStateMachine->getCurrentState();
+
+#pragma region testStuff
+		TheTester::Instance()->testFunctions();
+#pragma endregion 
+
+
+		//	Das lässt die main-Schleife laufen
+		m_running = true;
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;
-		
+
 	}
 	
 }
@@ -163,7 +169,35 @@ void Game::handleInput()
 
 void Game::update() 
 {
+	/*	Die Variablen isChangeState, isPushState & isPopState werden genau dann 'true' gesetzt,
+	 *	wenn eine Zustandsänderung angefordert wird. Damit wir wissen welche Art der Zustandsänderung
+	 *	vorliegt, haben wir diese drei unterschiedlichen Variablen.
+	 */
+	if (isChangeState)
+	{
+		isChangeState = false;
+		//	Aktuellen Zustand durch neuen ersetzen
+		m_pStateMachine->changeState(m_pCurrentState);
+	}
+	else if (isPushState)
+	{
+		isPushState = false;
+		//	Neuen Zustand aufstapeln
+		m_pStateMachine->pushState(m_pCurrentState);
+	}
+	else if (isPopState)
+	{
+		isPopState = false;
+		//	Aktuellen Zustand entfernen
+		m_pStateMachine->popState();
+	}
 
+	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen 
+	 *	Spielzustand zu updaten.
+	 *	Welcher Spielzustand gerade geupdatet werden soll 
+	 *	interessiert die Klasse 'Game' nicht.
+	 */
+	m_pStateMachine->getCurrentState()->update();
 }
 
 void Game::render()
@@ -192,6 +226,23 @@ void Game::render()
 void Game::setGameOver()
 {
 	m_running = false;
+}
+
+void Game::changeState(FiniteStateMachine::GameState* pNewState)
+{
+	m_pCurrentState = pNewState;
+	isChangeState = true;
+}
+
+void Game::pushState(FiniteStateMachine::GameState* pNewState)
+{
+	m_pCurrentState = pNewState;
+	isPushState = true;
+}
+
+void Game::popState()
+{
+	isPopState = true;
 }
 
 

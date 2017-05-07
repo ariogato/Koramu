@@ -191,6 +191,9 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		 *		numRows, numCols,
 		 *		mapId
 		 *		
+		 *	Spezielle Attribute müssen nur bei Spielobjekten eines bestimmten Typs vorhanden sein:
+		 *		callbackId bei 'Button'
+		 *		
 		 *	Andere Attribute sind optional, weshalb sie auch nicht validiert werden.
 		 */
 
@@ -235,6 +238,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		const char* type = e->Attribute("type");
 		const char* textureId = e->Attribute("textureId");
 		const char* mapId = e->Attribute("mapId");
+		const char* callbackId = e->Attribute("callbackId");
 
 #pragma region StringValidation
 		//	Strings auf Validität prüfen
@@ -253,6 +257,11 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\t " << counter <<  ". Objekt besitzt keine mapId" << std::endl << std::endl;
 			return false;
 		}
+		if (!callbackId && !strcmp(type, "button"))
+		{
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\t " << counter << ". Objekt vom Typ Button besitzt keine callbackId" << std::endl << std::endl;
+			return false;
+		}
 #pragma endregion
 
 		//	Optionale Attribute
@@ -267,6 +276,10 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		parameters.setHeight(height);
 		parameters.setNumCols(numCols);
 		parameters.setNumRows(numRows);
+		parameters.setAnimSpeed(animSpeed);
+
+		if (!strcmp(type, "button"))
+			parameters.setCallbackId(callbackId);
 
 		/*	Das gewünschte Objekt von der 'GameObjectFactory'
 		 *	erstellen lassen.
