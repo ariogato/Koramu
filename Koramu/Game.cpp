@@ -1,6 +1,5 @@
 #include "Game.h"
 #include <iostream>
-#include <map>
 #include <SDL_image.h>
 #include "TextureManager.h"
 #include "Test.h"
@@ -10,9 +9,6 @@
 #include "Animation.h"
 #include "Button.h"
 #include "GameStateMachine.h"
-// #include "GameState.h"
-#include "PlayState.h"
-#include "HowToPlayState.h"
 #include "MenuState.h"
 
 
@@ -143,48 +139,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
 #pragma endregion
 
-
-#pragma region callbackFunctions
-
-		//	MenuToPlay 
-		FiniteStateMachine::s_callbackFunctions.insert(std::pair<std::string, std::function<void(FiniteStateMachine::GameStateMachine*)>>("menuToPlay", [](FiniteStateMachine::GameStateMachine* tempStateMachine)
-		{
-			tempStateMachine->changeState(new FiniteStateMachine::PlayState());
-		}));
-
-		/*
-		//	MenuToHowToPlay
-		FiniteStateMachine::s_callbackFunctions.insert(std::pair<std::string, std::function<void(FiniteStateMachine::GameStateMachine*)>>("menuToHowToPlay", [](FiniteStateMachine::GameStateMachine* tempStateMachine)
-		{
-			tempStateMachine->pushState(new FiniteStateMachine::HowToPlayState());
-		}));
-
-		//	HowToPlayToMenu
-		FiniteStateMachine::s_callbackFunctions.insert(std::pair<std::string, std::function<void(FiniteStateMachine::GameStateMachine*)>>("howToPlayToMenu", [](FiniteStateMachine::GameStateMachine* tempStateMachine)
-		{
-			tempStateMachine->popState();
-		}));
-
-		//	Exit
-		FiniteStateMachine::s_callbackFunctions.insert(std::pair<std::string, std::function<void(FiniteStateMachine::GameStateMachine*)>>("exit", [](FiniteStateMachine::GameStateMachine* tempStateMachine)
-		{
-			TheGame::Instance()->setGameOver();
-		}));
-
-		// Mute
-		FiniteStateMachine::s_callbackFunctions.insert(std::pair<std::string, std::function<void(FiniteStateMachine::GameStateMachine*)>>("menuToPlay", [](FiniteStateMachine::GameStateMachine* tempStateMachine)
-		{
-			tempStateMachine->changeState(new FiniteStateMachine::PlayState());
-		}));
-		*/
-#pragma endregion 
-
 		//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
 		m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
-		m_pStateMachine->popState();
-		//	m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
-
-
+		
 
 		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
 		return true;

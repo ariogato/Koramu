@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 #include <map>
 #include "Stack.h"
 #include "Map.h"
@@ -29,10 +28,6 @@ namespace FiniteStateMachine
 	 *	Ein statisches Array zur Zuordnung der GameStateID (sonst kann der Parser nichts damit anfangen).
 	 */
 	static const char* s_stateNames[] = { "menu", "play", "pause", "howToPlay" };
-
-	//	Dictionary zur Speicherung der Callback-Funktionen der Buttons
-	static std::map<std::string, std::function<void(GameStateMachine*)>> s_callbackFunctions;
-
 
 	/*	Diese Klasse ist Basis für alle Zustände, die 
 	*	man in unserem Spiel erreichen kann.
