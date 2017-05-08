@@ -65,7 +65,7 @@ void FiniteStateMachine::MenuState::onEnter()
 		return;
 	}
 
-	TheGame::Instance()->logStandard() << "MenuState wurde erfolgreich betreten." << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::MenuState::onExit()
@@ -96,7 +96,6 @@ void FiniteStateMachine::MenuState::menuToPlay()
 {
 	//	Der MenuState wird verworfen; PlayState wird aufgestapelt
 
-	std::cout << "menuToPlay" << std::endl;
 	TheGame::Instance()->changeState(new PlayState());
 }
 
@@ -104,7 +103,6 @@ void FiniteStateMachine::MenuState::menuToHowToPlay()
 {
 	//	MenuState bleibt erhalten; HowToPlayState wird aufgestapelt
 
-	std::cout << "menutToHowToPlay" << std::endl;
 	TheGame::Instance()->pushState(new HowToPlayState());
 }
 
@@ -112,7 +110,7 @@ void FiniteStateMachine::MenuState::exit()
 {
 	//	Das Spiel wird verlassen
 
-	std::cout << "exit" << std::endl;
+	TheGame::Instance()->logStandard() << "exit" << std::endl;
 	TheGame::Instance()->setGameOver();
 }
 

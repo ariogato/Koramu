@@ -20,6 +20,12 @@ namespace FiniteStateMachine
 		void handleInput();		//	Eingaben bearbeiten
 		void update();			//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 		void render();			//	Alles auf den Bildschirm schmeiﬂen
+
+	private:
+		//	Callback Funktionen
+		static void backToMenu();
+
+		void setCallbackFunctions();				//	Callback Funktionen in die 'std::map' laden
 	};
 
 }

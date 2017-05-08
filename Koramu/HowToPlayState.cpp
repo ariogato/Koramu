@@ -6,7 +6,7 @@
 #include "MapParser.h"
 #include "Stack.h"
 #include "Map.h"
-
+#include "Button.h"
 
 
 FiniteStateMachine::HowToPlayState::HowToPlayState()
@@ -21,25 +21,49 @@ FiniteStateMachine::HowToPlayState::~HowToPlayState()
 
 void FiniteStateMachine::HowToPlayState::onEnter()
 {
+	//	Hier werden alle Callback Funktionen in die 'std::map' geladen
+	this->setCallbackFunctions();
+
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
 
 	//	Überprüfen, ob erfolgreich geparst wurde
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "HowTpPlayState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
+		return;
+	}
+
+	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
+	for (auto object : *pObjects)
+	{
+		//	Überprüfen, ob das Objekt ein Button ist
+		if (Button* b = dynamic_cast<Button*>(object))
+		{
+			//	Überprüfen, ob es die Callback Funktion des Buttons überhaupt gibt
+			if (!m_callbackFunctions.count(b->getCallbackId()))
+			{
+				TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tDie Callback Funktion \"" << b->getCallbackId() << "\" existiert nicht." << std::endl << std::endl;
+				TheGame::Instance()->setGameOver();
+				return;
+			}
+
+			//	Setzen der Callback Funktion des Buttons anhand der callbackId 
+			b->setCallback(m_callbackFunctions[b->getCallbackId()]);
+		}
 	}
 
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
 	if (!MapParser::parse("xmlFiles/maps.xml", m_mapDict, m_maps, pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "HowToPlayState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
+		return;
 	}
 
 	//	Der Zustand wurde erfolgreich betreten
@@ -60,8 +84,24 @@ void FiniteStateMachine::HowToPlayState::handleInput()
 
 void FiniteStateMachine::HowToPlayState::update()
 {
+	//	Die aktuelle Map wird geupdatet
+	m_maps.getTopNodeData()->update();
 }
 
 void FiniteStateMachine::HowToPlayState::render()
 {
+	//	Die aktuelle Map wird gerendert
+	m_maps.getTopNodeData()->render();
+}
+
+void FiniteStateMachine::HowToPlayState::backToMenu()
+{
+	//	MenuState bleibt erhalten; HowToPlayState wird abgestapelt
+
+	TheGame::Instance()->popState();
+}
+
+void FiniteStateMachine::HowToPlayState::setCallbackFunctions()
+{
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("backToMenu", backToMenu));
 }

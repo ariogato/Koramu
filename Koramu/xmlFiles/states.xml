@@ -9,6 +9,7 @@
     <texture id="buttonExit" path="../assets/Button_Exit.png"/>
     <texture id="buttonResume" path="../assets/Button_Resume.png"/>
     <texture id="buttonMainMenu" path="../assets/Button_MainMenu.png"/>
+    <texture id="buttonBack" path="../assets/Button_Back.png"/>
 
     <!-- keine Buttons-->
     <texture id="koramu" path="../assets/Koramu.png"/>
@@ -42,21 +43,19 @@
 
   <howToPlay>
     <gameObjects>
-      <!--Dummy GameObject - Nichts -->
-      <gameObject type="animation" textureId="a"
-                  xPos="460" yPos="293" width="200" height="80"
+      <gameObject type="button" textureId="buttonBack"
+                  xPos="50" yPos="50" width="80" height="80"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap"/>
+                  mapId="mainMenuMap" callbackId="backToMenu"/>
     </gameObjects>
   </howToPlay>
   
 	<play>
     <gameObjects>
-      <!--Dummy GameObject - Nichts -->
-      <gameObject type="animation" textureId="a"
-                  xPos="460" yPos="293" width="200" height="80"
-                  numRows="1" numCols="3"
-                  mapId="mainMenuMap"/>
+      <gameObject type="player" textureId="player"
+                  xPos="460" yPos="293" width="70" height="180"
+                  numRows="4" numCols="4"
+                  mapId="mainMenuMap" animSpeed="200"/>
     </gameObjects>
 	</play>
 	

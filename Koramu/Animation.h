@@ -12,9 +12,9 @@ public:
 	Animation();
 	~Animation();
 
-	void load(const ParamLoader& params);
-	void update();
-	void draw();
+	virtual void load(const ParamLoader& params);
+	virtual void update();
+	virtual void draw();
 };
 
 /*

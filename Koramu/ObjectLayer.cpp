@@ -44,7 +44,7 @@ void Environment::ObjectLayer::update()
 	for (GameObject* g : *m_pGameObjects)
 		g->update();
 	//	Der Spieler wird gesondert als letztes geupdatet
-	m_player.update();
+	//m_player.update();
 }
 
 void Environment::ObjectLayer::render()
@@ -53,5 +53,5 @@ void Environment::ObjectLayer::render()
 	for (GameObject* g : *m_pGameObjects)
 		g->draw();
 	//	Der Spieler wird gesondert als letztes gerendert
-	m_player.draw();
+	//m_player.draw();
 }

@@ -38,7 +38,7 @@ void FiniteStateMachine::PlayState::onEnter()
 		TheGame::Instance()->setGameOver();
 		return;
 	}
-	TheGame::Instance()->logStandard() << "PlayState erfolgreich betreten." << std::endl << std::endl;
+	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::PlayState::onExit()
