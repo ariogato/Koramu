@@ -17,7 +17,6 @@ void Player::load(const ParamLoader& params)
 void Player::update()
 {
 #pragma region testStuff
-	m_currentRow = 0;
 	m_currentCol = 0;
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{

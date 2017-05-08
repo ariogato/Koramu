@@ -7,6 +7,8 @@
     <texture id="buttonStart" path="../assets/Button_Start.png"/>
     <texture id="buttonHowtoplay" path="../assets/Button_Howtoplay.png"/>
     <texture id="buttonExit" path="../assets/Button_Exit.png"/>
+    <texture id="buttonResume" path="../assets/Button_Resume.png"/>
+    <texture id="buttonMainMenu" path="../assets/Button_MainMenu.png"/>
 
     <!-- keine Buttons-->
     <texture id="koramu" path="../assets/Koramu.png"/>
@@ -37,16 +39,37 @@
                   mapId="mainMenuMap"/>-->
     </gameObjects>
 	</menu>
+
+  <howToPlay>
+    <gameObjects>
+      <!--Dummy GameObject - Nichts -->
+      <gameObject type="animation" textureId="a"
+                  xPos="460" yPos="293" width="200" height="80"
+                  numRows="1" numCols="3"
+                  mapId="mainMenuMap"/>
+    </gameObjects>
+  </howToPlay>
   
 	<play>
     <gameObjects>
-
+      <!--Dummy GameObject - Nichts -->
+      <gameObject type="animation" textureId="a"
+                  xPos="460" yPos="293" width="200" height="80"
+                  numRows="1" numCols="3"
+                  mapId="mainMenuMap"/>
     </gameObjects>
 	</play>
 	
   <pause>
     <gameObjects>
-
+      <gameObject type="button" textureId="buttonResume"
+                  xPos="460" yPos="293" width="200" height="80"
+                  numRows="1" numCols="3"
+                  mapId="mainMenuMap" callbackId="resumePlay"/>
+      <gameObject type="button" textureId="buttonMainMenu"
+                  xPos="460" yPos="438" width="200" height="80"
+                  numRows="1" numCols="3"
+                  mapId="mainMenuMap" callbackId="playToMenu"/>
     </gameObjects>
 	</pause>
 </states>

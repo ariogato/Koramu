@@ -7,7 +7,6 @@
 #include "MapParser.h"
 #include "Stack.h"
 #include "Map.h"
-#include "GameStateMachine.h"
 #include "Button.h"
 #include "PlayState.h"
 #include "HowToPlayState.h"
@@ -26,7 +25,7 @@ void FiniteStateMachine::MenuState::onEnter()
 
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
-	
+
 	//	Überprüfen, ob erfolgreich geparst wurde
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
@@ -83,6 +82,7 @@ void FiniteStateMachine::MenuState::handleInput()
 
 void FiniteStateMachine::MenuState::update()
 {
+	//	Die aktuelle Map wird geupdatet
 	m_maps.getTopNodeData()->update();
 }
 

@@ -173,23 +173,23 @@ void Game::update()
 	 *	wenn eine Zustandsänderung angefordert wird. Damit wir wissen welche Art der Zustandsänderung
 	 *	vorliegt, haben wir diese drei unterschiedlichen Variablen.
 	 */
+	if (isPopState)
+	{
+		isPopState = false;
+		//	Aktuellen Zustand entfernen
+		m_pStateMachine->popState();
+	}
 	if (isChangeState)
 	{
 		isChangeState = false;
 		//	Aktuellen Zustand durch neuen ersetzen
 		m_pStateMachine->changeState(m_pCurrentState);
 	}
-	else if (isPushState)
+	if (isPushState)
 	{
 		isPushState = false;
 		//	Neuen Zustand aufstapeln
 		m_pStateMachine->pushState(m_pCurrentState);
-	}
-	else if (isPopState)
-	{
-		isPopState = false;
-		//	Aktuellen Zustand entfernen
-		m_pStateMachine->popState();
 	}
 
 	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen 

@@ -7,7 +7,6 @@
 #include "Player.h"
 #include <chrono>
 #include <regex>
-#include "ObjectLayer.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -118,6 +117,7 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region inputTest
+	/*
 	if (TheInputHandler::Instance()->getLeftMouseButtonState())
 		TheGame::Instance()->logStandard() << "click left!" << std::endl;
 	if (TheInputHandler::Instance()->getRightMouseButtonState())
@@ -131,6 +131,7 @@ void Test::testFunctions()
 			<< TheInputHandler::Instance()->getMousePosition().getY()
 			<< std::endl;
 	}
+	*/
 #pragma endregion
 
 #pragma region textureTest

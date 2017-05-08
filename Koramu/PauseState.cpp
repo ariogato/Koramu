@@ -7,6 +7,7 @@
 #include "MapParser.h"
 #include "Stack.h"
 #include "Map.h"
+#include "Button.h"
 
 FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
 {
@@ -17,10 +18,13 @@ FiniteStateMachine::PauseState::~PauseState()		//	Destruktor
 {}
 
 void FiniteStateMachine::PauseState::onEnter()
-{/*
+{
+	//	Hier werden alle Callback Funktionen in die 'std::map' geladen
+	this->setCallbackFunctions();
+
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
-
+	
 	//	Überprüfen, ob erfolgreich geparst wurde
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
@@ -28,6 +32,26 @@ void FiniteStateMachine::PauseState::onEnter()
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
+		return;
+	}
+
+	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
+	for (auto object : *pObjects)
+	{
+		//	Überprüfen, ob das Objekt ein Button ist
+		if (Button* b = dynamic_cast<Button*>(object))
+		{
+			//	Überprüfen, ob es die Callback Funktion des Buttons überhaupt gibt
+			if (!m_callbackFunctions.count(b->getCallbackId()))
+			{
+				TheGame::Instance()->logError() << "PauseState::onEnter(): \n\tDie Callback Funktion \"" << b->getCallbackId() << "\" existiert nicht." << std::endl << std::endl;
+				TheGame::Instance()->setGameOver();
+				return;
+			}
+
+			//	Setzen der Callback Funktion des Buttons anhand der callbackId 
+			b->setCallback(m_callbackFunctions[b->getCallbackId()]);
+		}
 	}
 
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
@@ -37,10 +61,10 @@ void FiniteStateMachine::PauseState::onEnter()
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->setGameOver();
+		return;
 	}
 
-	//	Der Zustand wurde erfolgreich betreten
-	TheGame::Instance()->logStandard() << "Der 'PauseState' wurde betreten." << std::endl << std::endl;*/
+	TheGame::Instance()->logStandard() << "PauseState wurde erfolgreich betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::PauseState::onExit()
@@ -57,10 +81,33 @@ void FiniteStateMachine::PauseState::handleInput()
 
 void FiniteStateMachine::PauseState::update()
 {
+	//	Die aktuelle Map wird geupdatet
+	m_maps.getTopNodeData()->update();
 }
 
 void FiniteStateMachine::PauseState::render()
 {
 	//	Die aktuelle Map wird gerendert
 	m_maps.getTopNodeData()->render();
+}
+
+void FiniteStateMachine::PauseState::resumePlay()
+{
+	//	PlayState bleibt erhalten; PauseState wird abgestapelt
+
+	TheGame::Instance()->popState();
+}
+
+void FiniteStateMachine::PauseState::playToMenu()
+{
+	//	PauseState & PlayState werden abgestapelt; MenuState wird aufgestapelt
+
+	TheGame::Instance()->popState();
+	TheGame::Instance()->changeState(new MenuState());
+}
+
+void FiniteStateMachine::PauseState::setCallbackFunctions()
+{
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("resumePlay", resumePlay));
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("playToMenu", playToMenu));
 }

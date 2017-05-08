@@ -39,10 +39,16 @@ void Environment::Map::render()
 {
 	/*	Hier werden die Layer in der richtigen Reihenfolge gerendert.
 	 *	Die unterste Ebene muss zuerst gerendert werden.
+	 *	Davor wird gecheckt, ob das Layer überhaupt existiert.
 	 */
-	//m_layerMap["Kachelebene 2"]->render();
-	//m_layerMap["Kachelebene 1"]->render();
-	m_layerMap["ObjectLayer"]->render();
+	if (m_layerMap.count("Kachelebene 2"))
+		m_layerMap["Kachelebene 2"]->render();
+
+	if (m_layerMap.count("Kachelebene 1"))
+		m_layerMap["Kachelebene 1"]->render();
+
+	if (m_layerMap.count("ObjectLayer"))
+		m_layerMap["ObjectLayer"]->render();
 }
 
 void Environment::Map::addLayer(std::string name, Layer* pNewLayer)
