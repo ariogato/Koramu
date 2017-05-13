@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
 
-class GameObject;
+#include "Vector2D.h"
 
 namespace Environment
 { 
@@ -12,14 +11,15 @@ namespace Environment
 	 */
 	class Layer
 	{
+	protected:
+		Vector2D m_positionVector;
 	public:
-		Layer() {}
+		Layer()
+			: m_positionVector(0.0f, 0.0f)
+		{}
 		virtual ~Layer() {}
 
-		//virtual void init() = 0;		//	Layer initialisieren
-		virtual void update() = 0;		//	Layer aktualisieren
-		virtual void render() = 0;		//	Layer rendern
-
-		//virtual void addContent(std::vector<GameObject*>& pObjects) = 0;		//	Inhalt hinzufügen
+		virtual void update(Vector2D mapPosition) = 0;		//	Layer aktualisieren
+		virtual void render() = 0;							//	Layer rendern
 	};
 }
