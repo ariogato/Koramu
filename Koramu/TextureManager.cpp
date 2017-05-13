@@ -149,7 +149,7 @@ void TextureManager::drawTile(const Environment::Tileset& tileset, int tileId, i
 	/*	Hier wird anhand der 'tileId' und den Zeilen bzw. Spalten des Tilesets
 	 *	ausgerechnet wo das Tile sich auf dem Tileset (der Textur) befindet
 	 */
-	srcRect.x = tileset.tilewidth * ((tileId - 1) % tileset.numRows);
+	srcRect.x = tileset.tilewidth * ((tileId - tileset.firstgid) % tileset.numCols);
 	srcRect.y = tileset.tileheight * ((tileId - tileset.firstgid) / tileset.numCols);
 
 	//	x- und y-Positon auf dem Bildschirm setzen
