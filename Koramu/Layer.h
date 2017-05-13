@@ -19,7 +19,7 @@ namespace Environment
 		{}
 		virtual ~Layer() {}
 
-		virtual void update(Vector2D mapPosition) = 0;		//	Layer aktualisieren
+		virtual void update() = 0;		//	Layer aktualisieren
 		virtual void render() = 0;							//	Layer rendern
 	};
 }
