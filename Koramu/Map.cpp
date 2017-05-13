@@ -47,8 +47,26 @@ void Environment::Map::render()
 	if (m_layerMap.count("Kachelebene 1"))
 		m_layerMap["Kachelebene 1"]->render();
 
+
+	if (m_layerMap.count("Backgroundlayer"))
+		m_layerMap["Backgroundlayer"]->render();
+
+	if (m_layerMap.count("Collisionlayer"))
+		m_layerMap["Collisionlayer"]->render(); 
+	
+	if (m_layerMap.count("Bridgelayer"))
+		m_layerMap["Bridgelayer"]->render();
+
+	if (m_layerMap.count("Interactionlayer"))
+		m_layerMap["Interactionlayer"]->render();
+
+	
 	if (m_layerMap.count("ObjectLayer"))
 		m_layerMap["ObjectLayer"]->render();
+
+
+	if (m_layerMap.count("Foregroundlayer"))
+		m_layerMap["Foregroundlayer"]->render();
 }
 
 void Environment::Map::addLayer(std::string name, Layer* pNewLayer)
