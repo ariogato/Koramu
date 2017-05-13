@@ -1,7 +1,6 @@
 #include "StackDeclarations.h"
 #include "Node.h"
 #include "Closure.h"
-#include <iostream>
 
 template <typename T>
 DataStructure::Stack<T>::Stack()

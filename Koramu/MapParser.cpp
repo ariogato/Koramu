@@ -27,7 +27,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 #pragma region Document
 	//	Ein neues Dokument wird erstellt und geöffnet
 	XMLDocument* pDocument = new XMLDocument();
-	
+
 	//	Laden des Dokuments (anhand des übergebenen Dateinamens).
 	if (pDocument->LoadFile(filename.c_str()))
 	{
@@ -140,14 +140,29 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		if (!parseMap(mapPath, pCurrentMap))
 		{
 			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\" konnte nicht geparst werden." << std::endl << std::endl;
-		
+
 			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 			return false;
 		}
 
 		//	ObjectLayer wird erstellt und befüllt
 		Environment::ObjectLayer* pObjectLayer = new Environment::ObjectLayer();
-		pObjectLayer->init(pObjects);
+
+
+		std::vector<GameObject*>* pCurrentMapObjects = new std::vector<GameObject*>();
+
+		for (auto g : *pObjects)
+		{
+			if (SDL_GameObject* sdlG = dynamic_cast<SDL_GameObject*>(g))
+			{
+				if (sdlG->getMapId() == mapId)
+				{
+					pCurrentMapObjects->push_back(sdlG);
+				}
+			}
+		}
+
+		pObjectLayer->init(pCurrentMapObjects);
 
 		//	Spielobjekte zum 'ObjectLayer' von 'pCurrentMap' hinzufügen
 		pCurrentMap->addLayer("ObjectLayer", pObjectLayer);
@@ -156,7 +171,6 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		pMapDict.insert(std::pair<std::string, Environment::Map*>(mapId, pCurrentMap));
 	}
 
-	pMapStack.push(pMapDict["mainMenuMap"]);
 
 	//	Pointer löschen, um einem Speicherleck vorzubeugen.
 	delete pDocument;

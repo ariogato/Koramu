@@ -36,13 +36,14 @@ public:
 	~SDL_GameObject();
 
 	virtual void load(const ParamLoader& parameters);			//	Hier wird das Objekt geladen
-	virtual void update();							//	Hier werden die Membervariablen aktualisiert
-	virtual void draw();							//	Hier wird das Objekt auf den Bildschirm geschmissen
+	virtual void update();										//	Hier werden die Membervariablen aktualisiert
+	virtual void draw();										//	Hier wird das Objekt auf den Bildschirm geschmissen
 
 	virtual void destroy();
 
-	//geter-Funktionen
+	//	getter-Funktionen
 	Vector2D getPosition() const { return m_positionVector; }
 	int getWidth() const { return m_width; }
 	int getHeight() const { return m_height; }
+	std::string getMapId() const { return m_mapId; }
 };

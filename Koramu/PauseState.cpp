@@ -8,6 +8,8 @@
 #include "Stack.h"
 #include "Map.h"
 #include "Button.h"
+#include <SDL.h>
+#include "InputHandler.h"
 
 FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
 {
@@ -19,6 +21,9 @@ FiniteStateMachine::PauseState::~PauseState()		//	Destruktor
 
 void FiniteStateMachine::PauseState::onEnter()
 {
+	//	Der Mauscursor wird wieder angezeigt
+	SDL_ShowCursor(SDL_ENABLE);
+
 	//	Hier werden alle Callback Funktionen in die 'std::map' geladen
 	this->setCallbackFunctions();
 
@@ -64,11 +69,17 @@ void FiniteStateMachine::PauseState::onEnter()
 		return;
 	}
 
+	//	Die Anfangsmap aufstapeln
+	m_maps.push(m_mapDict["pauseMap"]);
+
 	TheGame::Instance()->logStandard() << "Der 'PauseState' wurde betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::PauseState::onExit()
 {
+	//	Der Mauscursor verschwindet
+	SDL_ShowCursor(SDL_DISABLE);
+
 	/*	Hier muss nichts weiteres gemacht werden,
 	*	denn der Zustand wird schon über die Zustandsmaschine gelöscht.
 	*/
@@ -83,6 +94,17 @@ void FiniteStateMachine::PauseState::update()
 {
 	//	Die aktuelle Map wird geupdatet
 	m_maps.getTopNodeData()->update();
+	
+	//	Wir wollen den PauseState auch durch das Drücken von 'ESCAPE' wieder verlassen können.
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+		{
+			TheInputHandler::Instance()->handleInput();
+		}
+
+		TheGame::Instance()->popState();
+	}
 }
 
 void FiniteStateMachine::PauseState::render()

@@ -23,7 +23,6 @@ namespace DataStructure
 	public:
 		Node(T* pData);								//	Konstruktor (R.I.P Sack ... you won't be forgotten)
 		~Node();									//	Destruktor
-		//Node(const Node<T>&)						//	Kopierkonstruktor
 
 		StackElement<T>* push(T*);					//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
 

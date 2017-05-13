@@ -8,17 +8,17 @@
   </menu>
   <howToPlay>
     <maps>
-      <map id="mainMenuMap" path="../assets/testMap2.tmx" />
+      <map id="howToPlayMap" path="../assets/testMap2.tmx" />
     </maps>
   </howToPlay>
   <play>
     <maps>
-      <map id="mainMenuMap" path="../assets/testMap1.tmx" />
+      <map id="mainMap" path="../assets/testMap3.tmx" />
     </maps>
   </play>
   <pause>
     <maps>
-      <map id="mainMenuMap" path="../assets/testMap2.tmx" />
+      <map id="pauseMap" path="../assets/testMap2.tmx" />
     </maps>
   </pause>
 </states>

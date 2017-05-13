@@ -14,6 +14,7 @@
     <!-- keine Buttons-->
     <texture id="koramu" path="../assets/Koramu.png"/>
     <texture id="player" path="../assets/Player.png"/>
+    <texture id="greyLayer" path="../assets/Grey_Layer.png"/>
   </textures>
 
   <menu>
@@ -34,10 +35,6 @@
                   xPos="202" yPos="31" width="877" height="181"
                   numRows="1" numCols="1"
                   mapId="mainMenuMap"/>
-      <!--<gameObject type="animation" textureId="player"
-                  xPos="460" yPos="374" width="24" height="62"
-                  numRows="4" numCols="4"
-                  mapId="mainMenuMap"/>-->
     </gameObjects>
 	</menu>
 
@@ -46,7 +43,7 @@
       <gameObject type="button" textureId="buttonBack"
                   xPos="50" yPos="50" width="80" height="80"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap" callbackId="backToMenu"/>
+                  mapId="howToPlayMap" callbackId="backToMenu"/>
     </gameObjects>
   </howToPlay>
   
@@ -55,20 +52,24 @@
       <gameObject type="player" textureId="player"
                   xPos="460" yPos="293" width="70" height="180"
                   numRows="4" numCols="4"
-                  mapId="mainMenuMap" animSpeed="200"/>
+                  mapId="mainMap" animSpeed="200"/>
     </gameObjects>
 	</play>
 	
   <pause>
     <gameObjects>
+      <gameObject type="animation" textureId="greyLayer"
+                  xPos="0" yPos="0" width="1280" height="896"
+                  numRows="1" numCols="1"
+                  mapId="pauseMap" animSpeed="200"/>
       <gameObject type="button" textureId="buttonResume"
                   xPos="460" yPos="293" width="200" height="80"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap" callbackId="resumePlay"/>
+                  mapId="pauseMap" callbackId="resumePlay"/>
       <gameObject type="button" textureId="buttonMainMenu"
                   xPos="460" yPos="438" width="200" height="80"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap" callbackId="playToMenu"/>
+                  mapId="pauseMap" callbackId="playToMenu"/>
     </gameObjects>
 	</pause>
 </states>

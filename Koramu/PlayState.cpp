@@ -15,6 +15,8 @@ FiniteStateMachine::PlayState::~PlayState()		//	Konstruktor
 
 void FiniteStateMachine::PlayState::onEnter()
 {
+	//	Der Mauscursor verschwindet
+	SDL_ShowCursor(SDL_DISABLE);
 
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
@@ -38,11 +40,18 @@ void FiniteStateMachine::PlayState::onEnter()
 		TheGame::Instance()->setGameOver();
 		return;
 	}
+
+	//	Die Anfangsmap aufstapeln
+	m_maps.push(m_mapDict["mainMap"]);
+
 	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
 }
 
 void FiniteStateMachine::PlayState::onExit()
 {
+	//	Der Mauscursor wird wieder angezeigt
+	SDL_ShowCursor(SDL_ENABLE);
+
 	/*	Hier muss nichts weiteres gemacht werden,
 	*	denn der Zustand wird schon über die Zustandsmaschine gelöscht.
 	*/
@@ -61,6 +70,11 @@ void FiniteStateMachine::PlayState::update()
 	//	Wir wollen in den PauseState wechseln, sobald 'ESC' gedrückt wurde
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
+		while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+		{
+			TheInputHandler::Instance()->handleInput();
+		}
+
 		TheGame::Instance()->pushState(new PauseState());
 	}
 }

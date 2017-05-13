@@ -65,6 +65,9 @@ void FiniteStateMachine::MenuState::onEnter()
 		return;
 	}
 
+	//	Die Anfangsmap aufstapeln
+	m_maps.push(m_mapDict["mainMenuMap"]);
+
 	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde betreten." << std::endl << std::endl;
 }
 

@@ -111,8 +111,8 @@ void Test::testFunctions()
 
 #pragma region testMusic
 
-	if (!Mix_PlayingMusic())
-		Mix_PlayMusic(backgroundMusic, -1);
+	//if (!Mix_PlayingMusic())
+		//Mix_PlayMusic(backgroundMusic, -1);
 		
 #pragma endregion
 
@@ -144,9 +144,11 @@ void Test::testFunctions()
 #pragma endregion
 
 #pragma region fpsTest
+	/*
 	fps.calculateFPS();
 	if (fps.getFPS() < 60)
 		TheGame::Instance()->logStandard() << "FPS low" << std::endl;
+	*/
 #pragma endregion 
 }
 

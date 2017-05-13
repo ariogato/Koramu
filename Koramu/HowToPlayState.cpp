@@ -66,6 +66,9 @@ void FiniteStateMachine::HowToPlayState::onEnter()
 		return;
 	}
 
+	//	Die Anfangsmap aufstapeln
+	m_maps.push(m_mapDict["howToPlayMap"]);
+
 	//	Der Zustand wurde erfolgreich betreten
 	TheGame::Instance()->logStandard() << "Der 'HowToPlayState' wurde betreten." << std::endl << std::endl;
 }
