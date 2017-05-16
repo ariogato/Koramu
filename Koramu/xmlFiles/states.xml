@@ -63,11 +63,11 @@
                   numRows="1" numCols="1"
                   mapId="pauseMap" animSpeed="200"/>
       <gameObject type="button" textureId="buttonResume"
-                  xPos="460" yPos="293" width="200" height="80"
+                  xPos="460" yPos="293" width="360" height="80"
                   numRows="1" numCols="3"
                   mapId="pauseMap" callbackId="resumePlay"/>
       <gameObject type="button" textureId="buttonMainMenu"
-                  xPos="460" yPos="438" width="200" height="80"
+                  xPos="460" yPos="438" width="360" height="80"
                   numRows="1" numCols="3"
                   mapId="pauseMap" callbackId="playToMenu"/>
     </gameObjects>
