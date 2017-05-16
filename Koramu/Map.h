@@ -10,6 +10,17 @@ class ParamLoader;
 //	Alles bezüglich der Map befindet sich im Namenraum "Environment"
 namespace Environment
 {
+	/*	Eine Datenstruktur zur Speicherung der essentiellen Daten von Kollisionsboxen
+		*/
+	struct Collisionbox
+	{
+		std::string id;
+		float xPos;
+		float yPos;
+		float width;
+		float height;
+	};
+
 	/*	Eine Datenstruktur zur Speicherung der essentiellen Daten von Tilesets
 	 */
 	struct Tileset
