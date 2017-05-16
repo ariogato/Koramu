@@ -11,8 +11,6 @@ class ParamLoader;
 namespace Environment
 {
 	/*	Eine Datenstruktur zur Speicherung der essentiellen Daten von Tilesets
-	 *
-	 *	
 	 */
 	struct Tileset
 	{
@@ -23,7 +21,9 @@ namespace Environment
 		int numCols;
 		int numRows;
 		std::string name;
+		std::map<int, std::vector<Collisionbox>> collisionMap;
 	};
+
 
 	//	Instanzen dieser Klasse repräsentieren unsere Maps.
 	class Map

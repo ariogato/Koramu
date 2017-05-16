@@ -259,8 +259,9 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		//	Temporäres Tilesetobjekt
 		Environment::Tileset tempTileset;
 
+
 		/*	Ab hier werden alle Attribute des Tilesetelements 
-		 *	aus der XML-Datei geparst.
+		 *	aus der TMX-Datei geparst.
 		 */
 
 		//	firstgid
@@ -323,7 +324,88 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		 */
 		TheTextureManager::Instance()->load((tempTileset.name), "../assets/" + tilesetSource, TheGame::Instance()->getRenderer());
 
-		//	temporäres Tileset dem Vector aus Tilesets hinzufügen
+		/*	Falls Tiles des aktuellen Tilesets "e" Kolliosionsboxen
+		 *	(wir verwenden diese für die Collision Detection) besitzen,
+		 *	steht das an dieser Stelle der TMX-Datei. 
+		 *	Wir parsen das und fügen dann einen Vector aus den Kolliosionboxen
+		 *	in ein Dictionary der Tileset-Struktur ein.
+		 */
+		for(XMLElement* t = e->FirstChildElement("tile"); t != nullptr; t = t->NextSiblingElement("tile"))
+		{
+			//	tileId
+			int currentTileId;
+			if (t->QueryAttribute("id", &currentTileId))
+			{
+				TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <tile>-Element besitzt kein id-Attribut." << std::endl << std::endl;
+				return false;
+			}
+
+			/*	Hat das Tile Kollisionsboxen, so sind diese unter dem Tag <objectgroup>
+			 *	als <object>-Elemente dargestellt.
+			 */
+			if (t->FirstChildElement("objectgroup"))
+			{
+				//	Vector zur Speicherung der Kollisionsboxen des Tiles 
+				std::vector<Environment::Collisionbox> tempCollisionboxes;
+
+				for (XMLElement* o = t->FirstChildElement("objectgroup")->FirstChildElement("object"); o != nullptr; o = o->NextSiblingElement("object"))
+				{
+					// Temporäres Collisionbox-Objekt 
+					Environment::Collisionbox tempCollisionbox;
+
+					/*	Ab hier werden alle Attribute des <object>-Elements,
+					*	welches eine Kollisionsbox des Tiles darstellt,
+					*	aus der TMX-Datei geparst.
+					*/
+
+					//	id
+					tempCollisionbox.id = o->Attribute("id");
+					if (tempCollisionbox.id.empty())
+					{
+						TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element besitzt kein id-Attribut." << std::endl << std::endl;
+						return false;
+					}
+
+					//	xPos
+					if (o->QueryAttribute("x", &tempCollisionbox.xPos))
+					{
+						TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element " << tempCollisionbox.id << " besitzt kein xPos-Attribut." << std::endl << std::endl;
+						return false;
+					}
+
+					//	yPos
+					if (o->QueryAttribute("y", &tempCollisionbox.yPos))
+					{
+						TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element " << tempCollisionbox.id << " besitzt kein yPos-Attribut." << std::endl << std::endl;
+						return false;
+					}
+
+					//	width
+					if (o->QueryAttribute("width", &tempCollisionbox.width))
+					{
+						TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element " << tempCollisionbox.id << " besitzt kein width-Attribut." << std::endl << std::endl;
+						return false;
+					}
+
+					//	width
+					if (o->QueryAttribute("height", &tempCollisionbox.height))
+					{
+						TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element " << tempCollisionbox.id << " besitzt kein height-Attribut." << std::endl << std::endl;
+						return false;
+					}
+
+					//	Das gerade geparste Kollisionsbox-Objekt in den Vektor aus Kollisionsboxen einfügen 
+					tempCollisionboxes.push_back(tempCollisionbox);
+				}
+
+				//	Das aktuelle Tile, bzw. dessen Id mit den zugehörigen Kollisionsboxen in das entsprechende Dictionary der Tileset-Struktur einfügen
+				tempTileset.collisionMap.insert(std::pair<int, std::vector<Environment::Collisionbox>>(currentTileId, tempCollisionboxes));
+			}
+		}
+
+		
+
+		//	Temporäres Tileset dem Vector aus Tilesets hinzufügen
 		tempTilesets.push_back(tempTileset);
 	}
 #pragma endregion
