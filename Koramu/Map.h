@@ -11,7 +11,7 @@ class ParamLoader;
 namespace Environment
 {
 	/*	Eine Datenstruktur zur Speicherung der essentiellen Daten von Kollisionsboxen
-		*/
+	 */
 	struct Collisionbox
 	{
 		std::string id;
@@ -19,6 +19,10 @@ namespace Environment
 		float yPos;
 		float width;
 		float height;
+
+		Collisionbox()
+			: xPos(0), yPos(0), width(0), height(0)
+		{}
 	};
 
 	/*	Eine Datenstruktur zur Speicherung der essentiellen Daten von Tilesets
@@ -33,6 +37,10 @@ namespace Environment
 		int numRows;
 		std::string name;
 		std::map<int, std::vector<Collisionbox>> collisionMap;
+
+		Tileset()
+			: firstgid(0), tilewidth(0), tileheight(0), tilecount(0), numCols(0), numRows(0)
+		{}
 	};
 
 
