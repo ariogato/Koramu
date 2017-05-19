@@ -19,7 +19,7 @@ namespace FiniteStateMachine
 		GameStateMachine();			//	Konstruktor
 		~GameStateMachine();		//	Destruktor
 
-		void handleInput();			//	Eingaben bearbeiten
+		void handleInput();			//	Eingaben bearbeiten (Diese Funktion wird noch nicht benutzt)
 		void update();				//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 		void render();				//	Alles auf den Bildschirm schmeiﬂen
 

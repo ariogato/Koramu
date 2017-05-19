@@ -80,10 +80,11 @@ public:
 		int width, int height, 
 		int xPos, int yPos, 
 		int flags);
-	void handleInput();					//	Eingaben bearbeiten
-	void update();						//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
-	void render();						//	Alles auf den Bildschirm schmeiﬂen
-	void setGameOver();					//	Um z.B. vom InputHandler aus das Spiel zu beenden
+	void handleInput();							//	Eingaben bearbeiten
+	void update();								//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
+	void render();								//	Alles auf den Bildschirm schmeiﬂen
+	void setGameOver();							//	Um z.B. vom InputHandler aus das Spiel zu beenden
+	void emergencyExit(const char* message);	//	Um, im Fall eines fatalen Fehlers, das Programm sofort zu beenden (nicht empfohlen!)
 
 	//	Methoden zur Erfassung einer Zustands‰nderung
 	void changeState(FiniteStateMachine::GameState* newState);

@@ -28,9 +28,10 @@ Game* Game::s_pInstance = nullptr;
 
 
 Game::Game()									//	Konstruktor
-	:	m_running(false), 
-		m_gameWidth(0), m_gameHeight(0), 
-		m_gameXPos(0), m_gameYPos(0)
+	: m_running(false),
+	  m_gameWidth(0), m_gameHeight(0),
+	  m_gameXPos(0), m_gameYPos(0), 
+	  m_pCurrentState(nullptr)
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
@@ -77,7 +78,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
-	else if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
+	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
 	{ 
 		/*	Das Zeug in der obigen Zeile bedeutet nur,
 		*	dass man checkt, ob das, was man initialisieren wollte auch wirklich
@@ -88,74 +89,69 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		std::cerr << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
 		return false;
 	}
-	else 
+	//	Die initialisierung von SDL & SDL_image war erfolgreich!
+	std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
+					"SDL_image wurde erfolgreich initialisiert!" << std::endl;
+
+
+	//	Fenster erstellen. Es werden Parameter, die Game::init mitgegeben worden sind an SDL_CreateWindow() weitergegeben:
+	m_pWindow = SDL_CreateWindow(title.c_str(), xPos, yPos, width, height, flags);
+
+	//	Überprüfen, ob das Fenster erfolgreich erstellt wurde:
+	if (!m_pWindow) 
 	{
-		//	Die initialisierung von SDL & SDL_image war erfolgreich!
-		std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
-						"SDL_image wurde erfolgreich initialisiert!" << std::endl;
+		//	Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+		std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
+		return false;
+	}
+	//	Das Fenster wurde erfolgreich erstellt
+	std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
 
 
-		//	Fenster erstellen. Es werden Parameter, die Game::init mitgegeben worden sind an SDL_CreateWindow() weitergegeben:
-		m_pWindow = SDL_CreateWindow(title.c_str(), xPos, yPos, width, height, flags);
+	//	Renderer erstellen.
+	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
-		//	Überprüfen, ob das Fenster erfolgreich erstellt wurde:
-		if (!m_pWindow) 
-		{
-			//	Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-			std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
-			return false;
-		}
-		//	Das Fenster wurde erfolgreich erstellt
-		std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
+	//	Überprüfen, ob der Renderer erfolgreich erstellt wurde:
+	if (!m_pRenderer)
+	{
+		//	Die Erstellung des Renderers ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
+		std::cerr << "Could not create renderer: \n" << SDL_GetError() << std::endl;
+		return false;
+	}
+	//	Der Renderer wurde erfolgreich erstellt
+	std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
+	//	Zustandsmaschine initialisieren
+	m_pStateMachine = new FiniteStateMachine::GameStateMachine();
 
-		//	Renderer erstellen.
-		m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
-
-		//	Überprüfen, ob der Renderer erfolgreich erstellt wurde:
-		if (!m_pRenderer)
-		{
-			//	Die Erstellung des Renderers ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-			std::cerr << "Could not create renderer: \n" << SDL_GetError() << std::endl;
-			return false;
-		}
-		//	Der Renderer wurde erfolgreich erstellt
-		std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
-
-		//	Zustandsmaschine initialisieren
-		m_pStateMachine = new FiniteStateMachine::GameStateMachine();
-
-		//	Informationen über das Fenster speichern
-		m_gameWidth = width;
-		m_gameHeight = height;
-		m_gameXPos = xPos;
-		m_gameYPos = yPos;
+	//	Informationen über das Fenster speichern
+	m_gameWidth = width;
+	m_gameHeight = height;
+	m_gameXPos = xPos;
+	m_gameYPos = yPos;
 
 #pragma region registerType
-		TheGameObjectFactory::Instance()->registerType("button", new ButtonCreator());
-		TheGameObjectFactory::Instance()->registerType("animation", new AnimationCreator());
-		TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
+	TheGameObjectFactory::Instance()->registerType("button", new ButtonCreator());
+	TheGameObjectFactory::Instance()->registerType("animation", new AnimationCreator());
+	TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
 #pragma endregion
 
-		//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
-		m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
-		m_pCurrentState = m_pStateMachine->getCurrentState();
+	//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
+	m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
+	m_pCurrentState = m_pStateMachine->getCurrentState();
 
 #pragma region testStuff
-		TheTester::Instance()->testFunctions();
+	TheTester::Instance()->testFunctions();
 #pragma endregion 
 
 
-		//	Das lässt die main-Schleife laufen
-		m_running = true;
+	//	Das lässt die main-Schleife laufen
+	m_running = true;
 
-		//	Wenn wir hier angekommen sind ist nichts schief gelaufen
-		return true;
+	//	Wenn wir hier angekommen sind ist nichts schief gelaufen
+	return true;
 
-	}
-	
 }
-
 
 void Game::handleInput()
 {
@@ -197,7 +193,7 @@ void Game::update()
 	 *	Welcher Spielzustand gerade geupdatet werden soll 
 	 *	interessiert die Klasse 'Game' nicht.
 	 */
-	m_pStateMachine->getCurrentState()->update();
+	m_pStateMachine->update();
 }
 
 void Game::render()
@@ -226,6 +222,18 @@ void Game::render()
 void Game::setGameOver()
 {
 	m_running = false;
+}
+
+void Game::emergencyExit(const char* message)
+{
+	/*	Diese Funktion ist eine Art Notbremse.
+	 *	Missbrauch ist strafbar.
+	 */
+
+	//	Zuerst wird eine Fehlermeldung in Form eines
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fataler Fehler!", message, nullptr);
+
+	exit(1);
 }
 
 void Game::changeState(FiniteStateMachine::GameState* pNewState)
