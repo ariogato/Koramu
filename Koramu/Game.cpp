@@ -230,9 +230,10 @@ void Game::emergencyExit(const char* message)
 	 *	Missbrauch ist strafbar.
 	 */
 
-	//	Zuerst wird eine Fehlermeldung in Form eines
+	//	Zuerst wird eine Fehlermeldung in Form eines Fensters ausgegeben.
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fataler Fehler!", message, nullptr);
 
+	//	Nun wird das Programm bedingungslos beendet.
 	exit(1);
 }
 
