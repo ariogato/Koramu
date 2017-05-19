@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <iostream>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include "TextureManager.h"
 #include "Test.h"
 #include "InputHandler.h"
@@ -10,8 +11,6 @@
 #include "Button.h"
 #include "GameStateMachine.h"
 #include "MenuState.h"
-#include "PlayState.h"
-
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -24,23 +23,17 @@
 */
 Game* Game::s_pInstance = nullptr;
 
-//	std::map<std::string, std::function<void(FiniteStateMachine::GameStateMachine*)> FiniteStateMachine::s_callbackFunction;
-
 
 Game::Game()									//	Konstruktor
 	: m_running(false),
 	  m_gameWidth(0), m_gameHeight(0),
 	  m_gameXPos(0), m_gameYPos(0), 
-	  m_pCurrentState(nullptr)
+	  m_pStateMachine(nullptr), m_pCurrentState(nullptr),
+	  m_pWindow(nullptr), m_pRenderer(nullptr)
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
 	m_pErrorLog = new Logger("../logs/errors.txt");
-
-	// Pointer mit nullptr initialisieren (best practice)
-	m_pWindow = nullptr;
-	m_pRenderer = nullptr;
-	m_pStateMachine = nullptr;
 }
 
 /*	!! WICHTIG !!
@@ -65,6 +58,7 @@ Game::~Game()									//	Destruktor
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
+	TTF_Quit();									//	SDL_ttf beenden
 	IMG_Quit();									//	SDL_image beenden
 	SDL_Quit();									//	SDL beenden
 }
@@ -89,9 +83,17 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 		std::cerr << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
 		return false;
 	}
+	if (TTF_Init() < 0)
+	{
+		//	Falls wir hier ankommen, ist etwas kaputt gegangen
+		std::cerr << "TTF_Init failed: \n" << TTF_GetError() << std::endl;
+		return false;
+	}
+
 	//	Die initialisierung von SDL & SDL_image war erfolgreich!
 	std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
-					"SDL_image wurde erfolgreich initialisiert!" << std::endl;
+					"SDL_image wurde erfolgreich initialisiert!" << std::endl << 
+					"SDL_ttf wurde erfolgreich initialisiert!" << std::endl;
 
 
 	//	Fenster erstellen. Es werden Parameter, die Game::init mitgegeben worden sind an SDL_CreateWindow() weitergegeben:
