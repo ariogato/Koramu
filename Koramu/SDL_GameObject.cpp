@@ -3,7 +3,6 @@
 #include "TextureManager.h"
 
 SDL_GameObject::SDL_GameObject()
-	: m_positionVector(0.0f, 0.0f)
 {
 }
 
