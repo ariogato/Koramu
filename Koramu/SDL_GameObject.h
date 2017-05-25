@@ -3,6 +3,7 @@
 #include <string>
 #include "GameObject.h"
 #include "Vector2D.h"
+#include "ObjectRectangle.h"
 
 /*	Diese Klasse erbt von der abstrakten Klasse GameObject.
 *	Andere Klassen wie der Player wiederum erben von SDL_GameObject
@@ -19,10 +20,7 @@
 class SDL_GameObject : public GameObject
 {
 protected:
-	Vector2D m_positionVector;						//	Der Ortsvektor
-
-	int m_width;									//	Breite des Objektes (sowohl srcRect als auch destRect)
-	int m_height;									//	Höhe des Objektes (sowohl srcRect als auch destRect)
+	ObjectRectangle m_objectRect;					//	Position, Breite und Höhe
 	int m_currentRow;								//	Reihe im Spritesheet
 	int m_currentCol;								//	Spalte im Spritesheet
 	int m_numCols;									//	Die Anzahl der Spalten auf dem Spritesheet (horizontal)
@@ -31,6 +29,7 @@ protected:
 	std::string m_textureId;						//	Die Id, unter der die Textur im TextureManager gespeichert wurde
 	std::string m_mapId;							//	Die Id der Map, der das GameObject angehört
 
+	
 public:
 	SDL_GameObject();
 	~SDL_GameObject();
@@ -42,8 +41,8 @@ public:
 	virtual void destroy();
 
 	//	getter-Funktionen
-	Vector2D getPosition() const { return m_positionVector; }
-	int getWidth() const { return m_width; }
-	int getHeight() const { return m_height; }
+	Vector2D getPosition() const { return m_objectRect.positionVector; }
+	int getWidth() const { return m_objectRect.width; }
+	int getHeight() const { return m_objectRect.height; }
 	std::string getMapId() const { return m_mapId; }
 };

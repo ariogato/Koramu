@@ -13,7 +13,7 @@
   </howToPlay>
   <play>
     <maps>
-      <map id="mainMap" path="../assets/testMap3.tmx" />
+      <map id="mainMap" path="../assets/testMap4.tmx" />
     </maps>
   </play>
   <pause>

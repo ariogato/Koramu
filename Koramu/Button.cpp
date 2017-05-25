@@ -31,10 +31,10 @@ void Button::update()
 	m_currentCol = 0;
 
 	//	Checken ob die xPosition der Maus in dem Bereich des Buttons ist
-	if (mousePosition.getX() >= m_positionVector.getX() && mousePosition.getX() <=m_positionVector.getX() + m_width)
+	if (mousePosition.getX() >= m_objectRect.positionVector.getX() && mousePosition.getX() <= m_objectRect.positionVector.getX() + m_objectRect.width)
 	{
 		//	Checken ob die yPosition der Maus in dem Bereich des Buttons ist
-		if (mousePosition.getY() >= m_positionVector.getY() && mousePosition.getY() <= m_positionVector.getY() + m_height)
+		if (mousePosition.getY() >= m_objectRect.positionVector.getY() && mousePosition.getY() <= m_objectRect.positionVector.getY() + m_objectRect.height)
 		{
 			m_currentCol = 1;
 			
@@ -50,13 +50,14 @@ void Button::update()
 					 */
 					TheGame::Instance()->handleInput();
 					TheGame::Instance()->render();
+					SDL_Delay(20);
 				}
 
 				//	Hier wird gecheckt, ob die Maus sich nach dem Loslassen der Taste noch auf dem Button befindet.
 				mousePosition = TheInputHandler::Instance()->getMousePosition();
 
-				if (mousePosition.getX() >= m_positionVector.getX() && mousePosition.getX() <= m_positionVector.getX() + m_width)
-					if (mousePosition.getY() >= m_positionVector.getY() && mousePosition.getY() <= m_positionVector.getY() + m_height)
+				if (mousePosition.getX() >= m_objectRect.positionVector.getX() && mousePosition.getX() <= m_objectRect.positionVector.getX() + m_objectRect.width)
+					if (mousePosition.getY() >= m_objectRect.positionVector.getY() && mousePosition.getY() <= m_objectRect.positionVector.getY() + m_objectRect.height)
 						//	Zuletzt wird die Callback Funktion aufgerufen.
 						m_callbackFunction();
 			}

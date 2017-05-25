@@ -155,6 +155,9 @@
     <ClCompile Include="HowToPlayState.cpp">
       <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectRectangle.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -264,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="HowToPlayState.h">
       <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectRectangle.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

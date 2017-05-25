@@ -22,15 +22,13 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	m_currentCol = 0;
 
 	//	Ab hier werden alle übergebenen Werte geladen
-	m_positionVector.setX(parameters.getX());
-	m_positionVector.setY(parameters.getY());
-	m_width = parameters.getWidth();
-	m_height = parameters.getHeight();
 	m_numCols = parameters.getNumCols();
 	m_numRows = parameters.getNumRows();
 	m_animSpeed = parameters.getAnimSpeed();
 	m_textureId = parameters.getTextureId();
 	m_mapId = parameters.getMapId();
+
+	m_objectRect.load(parameters);
 }
 
 void SDL_GameObject::update()
@@ -41,10 +39,17 @@ void SDL_GameObject::update()
 
 void SDL_GameObject::draw()
 {
+	/*	Dem TextureManager werden alle benötigten Daten zum Rendern des 
+	 *	Spielobjekts übergeben, damit dieser ein wunderschönes Bild
+	 *	malen kann. (im besten Fall eins vom Spielobjekt ;-) ) 
+	 */
 	TheTextureManager::Instance()->drawFrame(m_textureId,
-		m_positionVector.getX(), m_positionVector.getY(),
-		m_width, m_height,
+		m_objectRect.positionVector.getX(), m_objectRect.positionVector.getY(),
+		m_objectRect.width, m_objectRect.height,
 		m_currentRow, m_currentCol);
+
+	//	Im Debugmodus wird das 'objectRectange' mitgerendert
+	m_objectRect.draw();
 }
 
 void SDL_GameObject::destroy()

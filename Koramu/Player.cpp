@@ -26,7 +26,7 @@ void Player::update()
 
 		Vector2D temp(1.0f, 0.0f);
 
-		m_positionVector += temp;
+		m_objectRect.positionVector += temp;
 	}
 	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
@@ -37,7 +37,7 @@ void Player::update()
 
 		Vector2D temp(-1.0f, 0.0f);
 
-		m_positionVector += temp;
+		m_objectRect.positionVector += temp;
 	}
 	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 	{
@@ -48,7 +48,7 @@ void Player::update()
 
 		Vector2D temp(0.0f, -1.0f);
 
-		m_positionVector += temp;
+		m_objectRect.positionVector += temp;
 	}
 	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 	{
@@ -59,7 +59,7 @@ void Player::update()
 
 		Vector2D temp(0.0f, 1.0f);
 
-		m_positionVector += temp;
+		m_objectRect.positionVector += temp;
 	}
 #pragma endregion
 }
