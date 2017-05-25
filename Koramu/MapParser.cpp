@@ -324,10 +324,10 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		 */
 		TheTextureManager::Instance()->load((tempTileset.name), "../assets/" + tilesetSource, TheGame::Instance()->getRenderer());
 
-		/*	Falls Tiles des aktuellen Tilesets "e" Kolliosionsboxen
+		/*	Falls Tiles des aktuellen Tilesets "e" Kollisionsboxen
 		 *	(wir verwenden diese für die Collision Detection) besitzen,
 		 *	steht das an dieser Stelle der TMX-Datei. 
-		 *	Wir parsen das und fügen dann einen Vector aus den Kolliosionboxen
+		 *	Wir parsen das und fügen dann einen Vector aus den Kollisionboxen
 		 *	in ein Dictionary der Tileset-Struktur ein.
 		 */
 		for(XMLElement* t = e->FirstChildElement("tile"); t != nullptr; t = t->NextSiblingElement("tile"))
@@ -387,7 +387,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 						return false;
 					}
 
-					//	width
+					//	height
 					if (o->QueryAttribute("height", &tempCollisionbox.height))
 					{
 						TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element " << tempCollisionbox.id << " besitzt kein height-Attribut." << std::endl << std::endl;
