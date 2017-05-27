@@ -145,7 +145,7 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 			return false;
 		}
 
-		//	ObjectLayer wird erstellt und befüllt
+		//	'ObjectLayer' wird erstellt und befüllt
 		Environment::ObjectLayer* pObjectLayer = new Environment::ObjectLayer();
 
 
@@ -163,6 +163,15 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		}
 
 		pObjectLayer->init(pCurrentMapObjects);
+
+		/*	Überprüfen, ob die Map ein 'CollisionLayer' besitzt, 
+		 *	denn z.B. die Map im 'MenuState' soll ausdrücklich keines besitzen.
+		 */
+		if (pCurrentMap->getCollisionLayer())
+		{
+			//	Dem 'ObjectLayer' wird ein Pointer auf das 'CollisionLayer' der Map übergeben
+			pObjectLayer->addCollisionLayer(pCurrentMap->getCollisionLayer());
+		}
 
 		//	Spielobjekte zum 'ObjectLayer' von 'pCurrentMap' hinzufügen
 		pCurrentMap->addLayer("ObjectLayer", pObjectLayer);
