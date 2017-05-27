@@ -1,6 +1,7 @@
 #pragma once
-#include "Layer.h"
+
 #include <vector>
+#include "Layer.h"
 #include "Tile.h"
 #include "Map.h"
 
@@ -20,6 +21,9 @@ namespace Environment
 		void init(std::vector<Tileset> tilesets, std::vector<std::vector<Tile*>> tiles);				//	Initialisieren
 		void update() override;																			//	Aktualisieren
 		void render() override;																			//	Rendern
+
+		//	getter-Funktionen
+		int getTileIdAtPosition (const Vector2D& positionVector) const;
 	};
 }
 

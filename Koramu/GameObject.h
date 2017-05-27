@@ -21,6 +21,8 @@ public:
 	virtual void load(const ParamLoader& parameters) = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
+
+	virtual void collision() = 0;
 	
 	//	Für Abstraktion
 	virtual void destroy() = 0;

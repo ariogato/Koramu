@@ -19,44 +19,48 @@ Test* Test::s_pInstance = nullptr;	//Wichtig für Singleton-Klasse
 Test::Test()						//Konstruktor
 {
 #pragma region PlayerTest
-	//	eine Textur hinzufügen
-	TheTextureManager::Instance()->load("player", "../assets/Player.png", TheGame::Instance()->getRenderer());
+	/*
+TheTextureManager::Instance()->load("player", "../assets/Player.png", TheGame::Instance()->getRenderer());
 
-	player = new Player();
+player = new Player();
 
-	ParamLoader params;
+ParamLoader params;
 
-	params.setAnimSpeed(200);
-	params.setHeight(180);
-	params.setWidth(70);
-	params.setNumRows(4);
-	params.setNumCols(4);
-	params.setTextureId("player");
-	params.setX(500.0f);
-	params.setY(100.0f);
+params.setAnimSpeed(200);
+params.setHeight(180);
+params.setWidth(70);
+params.setNumRows(4);
+params.setNumCols(4);
+params.setTextureId("player");
+params.setX(500.0f);
+params.setY(100.0f);
 
-	player->load(params);
+player->load(params);
+*/
 #pragma endregion
 
 #pragma region testMusic
-	Mix_Init(MIX_INIT_OGG);
+	/*
+Mix_Init(MIX_INIT_OGG);
 
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-	backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
-
+backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
+*/
 #pragma endregion
 }
 
 Test::~Test()						//Destruktor
 {
 #pragma region PlayerTest
-	delete player;
+	//delete player;
 #pragma endregion
 
 #pragma region testMusic
+	/*
 	Mix_FreeMusic(backgroundMusic);
 	Mix_Quit();
+	*/
 #pragma endregion
 }
 

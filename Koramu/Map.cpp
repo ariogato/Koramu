@@ -1,6 +1,7 @@
 #include "Map.h"
 #include "Game.h"
 #include "ParamLoader.h"
+#include "TileLayer.h"
 
 Environment::Map::Map()
 	: m_width(0), m_height(0), m_tilewidth(0), m_tileheight(0), m_positionVector(0.0f, 0.0f)
@@ -88,4 +89,17 @@ void Environment::Map::addLayer(std::string name, Layer* pNewLayer)
 	 *	Nun wird einfach das neue Layer eingefügt.
 	 */
 	m_layerMap.insert(std::pair<std::string, Layer*>(name, pNewLayer));
+}
+
+Environment::TileLayer* Environment::Map::getCollisionLayer()
+{
+	//	Checken, ob ein CollisionLayer vorhanden ist
+	if (!m_layerMap.count("Collisionlayer"))
+	{
+		TheGame::Instance()->logError() << "Map::getCollisionLayer(): \n\tEs existiert kein CollisionLayer!" << std::endl << std::endl;
+		return nullptr;
+	}
+
+	//	Da wir wissen, dass das Collisionlayer immer ein TileLayer ist, können wir es sicher casten
+	return dynamic_cast<TileLayer*>(m_layerMap["Collisionlayer"]);
 }

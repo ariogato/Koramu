@@ -30,11 +30,10 @@ void FiniteStateMachine::HowToPlayState::onEnter()
 	//	Überprüfen, ob erfolgreich geparst wurde
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "HowToPlayState::onEnter(): \n\tFehler beim Parsen des States" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
-		TheGame::Instance()->setGameOver();
-		return;
+		TheGame::Instance()->emergencyExit("Fehler beim Parsen des HowToPlayStates!");
 	}
 
 	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
@@ -46,7 +45,7 @@ void FiniteStateMachine::HowToPlayState::onEnter()
 			//	Überprüfen, ob es die Callback Funktion des Buttons überhaupt gibt
 			if (!m_callbackFunctions.count(b->getCallbackId()))
 			{
-				TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tDie Callback Funktion \"" << b->getCallbackId() << "\" existiert nicht." << std::endl << std::endl;
+				TheGame::Instance()->logError() << "HowToPlayState::onEnter(): \n\tDie Callback Funktion \"" << b->getCallbackId() << "\" existiert nicht." << std::endl << std::endl;
 				TheGame::Instance()->setGameOver();
 				return;
 			}
@@ -59,11 +58,10 @@ void FiniteStateMachine::HowToPlayState::onEnter()
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
 	if (!MapParser::parse("xmlFiles/maps.xml", m_mapDict, m_maps, pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "HowToPlayState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
-		TheGame::Instance()->setGameOver();
-		return;
+		TheGame::Instance()->emergencyExit("Fehler beim Parsen der Maps des HowToPlayStates!");
 	}
 
 	//	Die Anfangsmap aufstapeln

@@ -10,6 +10,8 @@ class ParamLoader;
 //	Alles bezüglich der Map befindet sich im Namenraum "Environment"
 namespace Environment
 {
+	class TileLayer;
+
 	/*	Eine Datenstruktur zur Speicherung der essentiellen Daten von Kollisionsboxen
 	 */
 	struct Collisionbox
@@ -65,5 +67,8 @@ namespace Environment
 		void render();										//	Rendern
 
 		void addLayer(std::string name, Layer* pNewLayer);
+
+		//	getter-Funktionen
+		TileLayer* getCollisionLayer();
 	};
 }

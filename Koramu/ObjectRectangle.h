@@ -19,8 +19,12 @@ public:
 	int height;							//	Die Höhe des Rechtecks
 
 private:
-	std::string m_rectAttributes;		//	Attribute, die unter dem Rechteck gerendert werden.
+	bool m_visible;						//	Indikator, ob gerendert/geupdatet werden soll
 
+	SDL_Color m_color;					//	Farbe des Rechtecks
+
+	std::string m_rectAttributes;		//	Attribute, die unter dem Rechteck gerendert werden.
+	bool m_showText;					//	Indikator ob die 'rectAttributes' gerendert werden sollen
 	TTF_Font* m_font;					//	Vorläufige Speicherung der Schriftart (bis TextureManager auch Schriftarten händeln kann)
 
 public:
@@ -36,6 +40,12 @@ public:
 	float getY() const { return positionVector.getY(); }
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
+	bool getShowText() const { return m_showText; }
+	bool getVisible() const { return m_visible; }
 	
+	//	setter-Funktionen
+	void setColor(int r, int g, int b, int alpha) { m_color.r = r; m_color.g = g; m_color.b = b; m_color.a = alpha; }
+	void setShowText(bool b) { m_showText = b; }
+	void setVisible(bool b) { m_visible = b; }
 };
 

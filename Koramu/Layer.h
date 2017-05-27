@@ -21,5 +21,8 @@ namespace Environment
 
 		virtual void update() = 0;							//	Layer aktualisieren
 		virtual void render() = 0;							//	Layer rendern
+
+		//	getter-Funktionen
+		Vector2D getPosition() const { return m_positionVector; }
 	};
 }

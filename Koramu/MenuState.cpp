@@ -29,11 +29,10 @@ void FiniteStateMachine::MenuState::onEnter()
 	//	Überprüfen, ob erfolgreich geparst wurde
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen des States" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
-		TheGame::Instance()->setGameOver();
-		return;
+		TheGame::Instance()->emergencyExit("Fehler beim Parsen des MenuStates!");
 	}
 
 	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
@@ -61,8 +60,7 @@ void FiniteStateMachine::MenuState::onEnter()
 		TheGame::Instance()->logError() << "MenuState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
-		TheGame::Instance()->setGameOver();
-		return;
+		TheGame::Instance()->emergencyExit("Fehler beim Parsen der Maps des MenuStates!");
 	}
 
 	//	Die Anfangsmap aufstapeln

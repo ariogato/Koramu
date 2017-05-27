@@ -27,8 +27,7 @@ void FiniteStateMachine::PlayState::onEnter()
 		TheGame::Instance()->logError() << "PlayState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
-		TheGame::Instance()->setGameOver();
-		return;
+		TheGame::Instance()->emergencyExit("Fehler beim Parsen des PlayStates!");
 	}
 
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
@@ -37,8 +36,7 @@ void FiniteStateMachine::PlayState::onEnter()
 		TheGame::Instance()->logError() << "PlayState::onEnter(): \n\tFehler beim Parsen der Maps" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
-		TheGame::Instance()->setGameOver();
-		return;
+		TheGame::Instance()->emergencyExit("Fehler beim Parsen der Maps des PlayStates!");
 	}
 
 	//	Die Anfangsmap aufstapeln

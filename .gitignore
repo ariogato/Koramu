@@ -246,3 +246,6 @@ logs/
 
 # Screenshot for 'PauseState'
 **/screenshot.bmp
+
+# Testmaps
+assets/testMap*.tmx

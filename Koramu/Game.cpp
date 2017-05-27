@@ -142,11 +142,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	m_pStateMachine->pushState(new FiniteStateMachine::MenuState());
 	m_pCurrentState = m_pStateMachine->getCurrentState();
 
-#pragma region testStuff
-	TheTester::Instance()->testFunctions();
-#pragma endregion 
-
-
 	//	Das lässt die main-Schleife laufen
 	m_running = true;
 
