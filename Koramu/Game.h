@@ -10,6 +10,8 @@ namespace FiniteStateMachine
 	class GameStateMachine;
 }
 
+class Camera;
+
 /*	Konstruktor und Destruktor wurden aus folgendem Grund 'private' gesetzt:
 *
 *	Da wir während des gesamten Programmablaufes nur eine einzige
@@ -55,6 +57,9 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	
+	//	Kamera
+	Camera* m_pCamera;
+
 	//	Zustandsmaschine
 	FiniteStateMachine::GameStateMachine* m_pStateMachine;
 
@@ -91,9 +96,10 @@ public:
 	void pushState(FiniteStateMachine::GameState* newStates);
 	void popState();
 
-	//	Einfache getter-Funktionen
+	//	getter-Funktionen
 	SDL_Window* getWindow() { return m_pWindow; }
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
+	Camera* getCamera() const { return m_pCamera; }
 	bool isRunning() const { return m_running; }
 	int getGameWidth() const { return m_gameWidth; }
 	int getGameHeight() const { return m_gameHeight; }

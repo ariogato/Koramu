@@ -158,6 +158,9 @@
     <ClCompile Include="ObjectRectangle.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -269,6 +272,9 @@
       <Filter>Headerdateien\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="ObjectRectangle.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
