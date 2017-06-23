@@ -2,7 +2,7 @@
 
 #include "Vector2D.h"
 
-class GameObject;
+class SDL_GameObject;
 
 /*	Dank dieser Klasse wird nicht die gesamte Map gerendert.
  *	Stattdessen wird nur der kleine, zu der Zeit benötigte Teil der Map gerendert.
@@ -13,16 +13,18 @@ class GameObject;
 class Camera
 {
 private:
-	Vector2D m_positionVector;						//	Position des Vektors
+	Vector2D m_positionVector;						//	Position der Kamera
 	int m_cameraWidth;								//	Breite der Kamera
 	int m_cameraHeight;								//	Höhe der Kamera
+	SDL_GameObject* m_pCenterObject;				//	Objekt auf dem die Kamera zentriert ist
 
 public:
 	Camera();										//	Konstruktor
 	~Camera();										//	Destruktor
 	
-	void centerOnGameObject(GameObject& object);	//	Kamera auf das übergebene Objekt zentrieren
-	void move(Vector2D& vector);					//	Kamera wird mit dem übergebenen Vektor bewegt
+	void centerOnGameObject(SDL_GameObject* object);	//	Kamera wird auf das übergebene Objekt zentriert
+	void move(Vector2D& vector);						//	Kamera wird mit dem übergebenen Vektor bewegt
+	void update();										//	Die Position der Kamera wird, abhängig von 'm_pCenterObject' errechnet
 
 	//	getter-Funktionen
 	Vector2D getPositionVector() const { return m_positionVector; }
