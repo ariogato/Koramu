@@ -10,6 +10,7 @@
 #include "Button.h"
 #include <SDL.h>
 #include "InputHandler.h"
+#include "TextureManager.h"
 
 FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
 {
@@ -38,6 +39,13 @@ void FiniteStateMachine::PauseState::onEnter()
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->emergencyExit("Fehler beim Parsen des PauseStates!");
 	}
+
+	//	Ario darf diesen wundervollen Teil des Codes kommentieren. Küsschen Roman und Tobi :*
+	SDL_Surface* screenshot = SDL_CreateRGBSurface(0, TheGame::Instance()->getGameWidth(), TheGame::Instance()->getGameHeight(), 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	SDL_RenderReadPixels(TheGame::Instance()->getRenderer(), NULL, SDL_PIXELFORMAT_ARGB8888, screenshot->pixels, screenshot->pitch);
+	SDL_SaveBMP(screenshot, "../assets/screenshot.bmp");
+	SDL_FreeSurface(screenshot);
+	TheTextureManager::Instance()->load("screenshot", "../assets/screenshot.bmp", TheGame::Instance()->getRenderer());
 
 	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
 	for (auto object : *pObjects)

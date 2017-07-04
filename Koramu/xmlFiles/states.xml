@@ -60,6 +60,10 @@
 	
   <pause>
     <gameObjects>
+      <gameObject type="animation" textureId="screenshot"
+                  xPos="0" yPos="0" width="1280" height="896"
+                  numRows="1" numCols="1"
+                  mapId="pauseMap" animSpeed="200"/>
       <gameObject type="animation" textureId="greyLayer"
                   xPos="0" yPos="0" width="1280" height="896"
                   numRows="1" numCols="1"
