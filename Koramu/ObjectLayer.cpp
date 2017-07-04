@@ -216,7 +216,10 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, SDL_GameObj
 				}
 			}
 		}
-		rectVector.setY(rectVector.getY() + pSDLGameObject->getCollisionBoxHeight());
+		if(rectVector.getY() + 64 <= pSDLGameObject->getCollisionBoxPosition().getY() + pSDLGameObject->getCollisionBoxHeight())
+			rectVector.setY(rectVector.getY() + 64);
+		else
+			rectVector.setY(rectVector.getY() + pSDLGameObject->getCollisionBoxHeight());
 	}
 	return false;
 }
@@ -309,7 +312,10 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, SDL_GameObj
 				}
 			}
 		}
-		rectVector.setX(rectVector.getX() + pSDLGameObject->getCollisionBoxWidth());
+		if (rectVector.getX() + 64 <= pSDLGameObject->getCollisionBoxPosition().getX() + pSDLGameObject->getCollisionBoxWidth())
+			rectVector.setX(rectVector.getX() + 64);
+		else
+			rectVector.setX(rectVector.getX() + pSDLGameObject->getCollisionBoxWidth());
 	}
 	return false;
 }
