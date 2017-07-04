@@ -50,7 +50,7 @@ void Player::update()
 	{
 		m_currentRow = 2;
 
-		Vector2D temp(3.0f, 0.0f);
+		Vector2D temp(2.0f, 0.0f);
 
 		m_velocity += temp;
 
@@ -62,7 +62,7 @@ void Player::update()
 
 		m_currentRow = 3;
 
-		Vector2D temp(-3.0f, 0.0f);
+		Vector2D temp(-2.0f, 0.0f);
 
 		m_velocity += temp;
 
@@ -74,7 +74,7 @@ void Player::update()
 
 		m_currentRow = 1;
 
-		Vector2D temp(0.0f, -3.0f);
+		Vector2D temp(0.0f, -2.0f);
 
 		m_velocity += temp;
 
@@ -86,7 +86,7 @@ void Player::update()
 
 		m_currentRow = 0;
 
-		Vector2D temp(0.0f, 3.0f);
+		Vector2D temp(0.0f, 2.0f);
 
 		m_velocity += temp;
 

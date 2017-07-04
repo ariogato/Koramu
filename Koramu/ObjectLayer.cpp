@@ -2,6 +2,7 @@
 #include "ParamLoader.h"
 #include "TileLayer.h"
 #include "Game.h"
+#include <algorithm>
 
 Environment::ObjectLayer::ObjectLayer()
 	: m_pGameObjects(nullptr),
@@ -87,7 +88,7 @@ void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 	 */
 	Vector2D collisionVector = pSDLGameObject->getCollisionBoxPosition();
 
-	//	Zuerst wird gecheckt ob 
+	//	Zuerst wird gecheckt ob das Objekt sich überhaupt bewegt
 	if (objectVelocity.getLength() > 0)
 	{
 		//	Es wird über die Kollisionslayer iteriert, um zu checken ob eine Kollision an
@@ -128,81 +129,187 @@ void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 
 bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, SDL_GameObject* pSDLGameObject, Vector2D rectVector)
 {
+	bool possibleCollision = true;
 
-	while (rectVector.getY() < pSDLGameObject->getPosition().getY() + pSDLGameObject->getHeight() + 64)
-	{
-		if (pLayer->getTileIdAtPosition(rectVector))
+	while (rectVector.getY() <= pSDLGameObject->getCollisionBoxPosition().getY() + pSDLGameObject->getCollisionBoxHeight())
+	{	
+		if(pLayer->getTilesets().size())
 		{
-			int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-			int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
-
-			int topA, topB;
-			int bottomA, bottomB;
-			int leftA, leftB;
-			int rightA, rightB;
-
-			leftA = pSDLGameObject->getPosition().getX();
-			leftB = x;
-
-			rightA = pSDLGameObject->getPosition().getX() + pSDLGameObject->getWidth();
-			rightB = x + 64;
-
-			topA = pSDLGameObject->getPosition().getY();
-			topB = y;
-
-			bottomA = pSDLGameObject->getPosition().getY() + pSDLGameObject->getHeight();
-			bottomB = y + 64;
-
-			bool collision = false;
-
-			if (rightA > leftB && bottomA > topB && topA < bottomB && leftA < rightB)
+			int destinationTileId = pLayer->getTileIdAtPosition(rectVector);
+		
+			Tileset tSet;
+			for(int i = 0; i < pLayer->getTilesets().size(); i++)
 			{
-				collision = true;
+				if(destinationTileId < pLayer->getTilesets()[i].firstgid + pLayer->getTilesets()[i].tilecount)
+				{
+					tSet = pLayer->getTilesets()[i];
+					break;
+				}
 			}
+		
+			std::cout << "Tileset: " << tSet.firstgid << " collisionTileId: " << destinationTileId - tSet.firstgid << " in Collisionmap: " << tSet.collisionMap.count(destinationTileId - tSet.firstgid) << std::endl;
+				
+			if(tSet.collisionMap.count(destinationTileId - tSet.firstgid))
+			{
+				for(int i = 0; i < tSet.collisionMap[destinationTileId - tSet.firstgid].size(); i++)
+				{
+					int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
+					int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
 
-			return collision;
+					Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
+
+					int topA, topB;
+					int bottomA, bottomB;
+					int leftA, leftB;
+					int rightA, rightB;
+
+					leftA = pSDLGameObject->getCollisionBoxPosition().getX();
+					leftB = x + cBox.xPos;
+
+					rightA = pSDLGameObject->getCollisionBoxPosition().getX() + pSDLGameObject->getCollisionBoxWidth();
+					rightB = leftB + cBox.width;
+
+					topA = pSDLGameObject->getCollisionBoxPosition().getY();
+					topB = y + cBox.yPos;
+
+					bottomA = pSDLGameObject->getCollisionBoxPosition().getY() + pSDLGameObject->getCollisionBoxHeight();
+					bottomB = topB + cBox.height;
+
+					
+					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+					{
+						return true;
+					}				
+				}
+				possibleCollision = false;
+			}
 		}
-		rectVector.setY(rectVector.getY() + 64);
+	
+		if(possibleCollision)
+		{
+			if (pLayer->getTileIdAtPosition(rectVector))
+			{
+				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
+				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+
+				int topA, topB;
+				int bottomA, bottomB;
+				int leftA, leftB;
+				int rightA, rightB;
+
+				leftA = pSDLGameObject->getCollisionBoxPosition().getX();
+				leftB = x;
+
+				rightA = pSDLGameObject->getCollisionBoxPosition().getX() + pSDLGameObject->getCollisionBoxWidth();
+				rightB = x + 64;
+
+				topA = pSDLGameObject->getCollisionBoxPosition().getY();
+				topB = y;
+
+				bottomA = pSDLGameObject->getCollisionBoxPosition().getY() + pSDLGameObject->getCollisionBoxHeight();
+				bottomB = y + 64;
+
+
+				if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+				{
+					return true;
+				}
+			}
+		}
+		rectVector.setY(rectVector.getY() + pSDLGameObject->getCollisionBoxHeight());
 	}
 	return false;
 }
 
 bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, SDL_GameObject* pSDLGameObject, Vector2D rectVector)
 {
-	while (rectVector.getX() < pSDLGameObject->getPosition().getX() + pSDLGameObject->getWidth() + 64)
+	bool possibleCollision = true;
+
+	while (rectVector.getX() <= pSDLGameObject->getCollisionBoxPosition().getX() + pSDLGameObject->getCollisionBoxWidth())
 	{
-		if (pLayer->getTileIdAtPosition(rectVector))
+		if (pLayer->getTilesets().size())
 		{
-			int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-			int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+			int destinationTileId = pLayer->getTileIdAtPosition(rectVector);
 
-			int topA, topB;
-			int bottomA, bottomB;
-			int leftA, leftB;
-			int rightA, rightB;
-
-			leftA = pSDLGameObject->getPosition().getX();
-			leftB = x;
-
-			rightA = pSDLGameObject->getPosition().getX() + pSDLGameObject->getWidth();
-			rightB = x + 64;
-
-			topA = pSDLGameObject->getPosition().getY();
-			topB = y;
-
-			bottomA = pSDLGameObject->getPosition().getY() + pSDLGameObject->getHeight();
-			bottomB = y + 64;
-
-			bool collision = false;
-
-			if (rightA > leftB && bottomA > topB && topA < bottomB && leftA < rightB)
+			Tileset tSet;
+			for (int i = 0; i < pLayer->getTilesets().size(); i++)
 			{
-				collision = true;
+				if (destinationTileId < pLayer->getTilesets()[i].firstgid + pLayer->getTilesets()[i].tilecount)
+				{
+					tSet = pLayer->getTilesets()[i];
+					break;
+				}
 			}
 
-			return collision;
+			std::cout << "Tileset: " << tSet.firstgid << " collisionTileId: " << destinationTileId - tSet.firstgid << " in Collisionmap: " << tSet.collisionMap.count(destinationTileId - tSet.firstgid) << std::endl;
+
+
+			if (tSet.collisionMap.count(destinationTileId - tSet.firstgid))
+			{
+				for (int i = 0; i < tSet.collisionMap[destinationTileId - tSet.firstgid].size(); i++)
+				{
+					int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
+					int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+
+					Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
+
+					int topA, topB;
+					int bottomA, bottomB;
+					int leftA, leftB;
+					int rightA, rightB;
+
+					leftA = pSDLGameObject->getCollisionBoxPosition().getX();
+					leftB = x + cBox.xPos;
+
+					rightA = pSDLGameObject->getCollisionBoxPosition().getX() + pSDLGameObject->getCollisionBoxWidth();
+					rightB = leftB + cBox.width;
+
+					topA = pSDLGameObject->getCollisionBoxPosition().getY();
+					topB = y + cBox.yPos;
+
+					bottomA = pSDLGameObject->getCollisionBoxPosition().getY() + pSDLGameObject->getCollisionBoxHeight();
+					bottomB = topB + cBox.height;
+					
+					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+					{
+						return true;
+					}
+				}
+				possibleCollision = false;
+			}
 		}
-		rectVector.setX(rectVector.getX() + 64);
+
+		if(possibleCollision)
+		{
+			if (pLayer->getTileIdAtPosition(rectVector))
+			{
+				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
+				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+
+				int topA, topB;
+				int bottomA, bottomB;
+				int leftA, leftB;
+				int rightA, rightB;
+
+				leftA = pSDLGameObject->getCollisionBoxPosition().getX();
+				leftB = x;
+
+				rightA = pSDLGameObject->getCollisionBoxPosition().getX() + pSDLGameObject->getCollisionBoxWidth();
+				rightB = x + 64;
+
+				topA = pSDLGameObject->getCollisionBoxPosition().getY();
+				topB = y;
+
+				bottomA = pSDLGameObject->getCollisionBoxPosition().getY() + pSDLGameObject->getCollisionBoxHeight();
+				bottomB = y + 64;
+
+				if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+				{
+					return true;
+				}
+			}
+		}
+		rectVector.setX(rectVector.getX() + pSDLGameObject->getCollisionBoxWidth());
 	}
 	return false;
 }

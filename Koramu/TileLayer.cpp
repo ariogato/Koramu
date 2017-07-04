@@ -1,6 +1,9 @@
 #include "TileLayer.h"
 #include <algorithm>
 #include "TextureManager.h"
+#include "Game.h"
+#include "ObjectRectangle.h"
+#include "ParamLoader.h"
 
 Environment::TileLayer::TileLayer()
 {
@@ -45,8 +48,39 @@ void Environment::TileLayer::render()
 				return tileId < t.firstgid + t.tilecount;
 			});
 
+			
 			//	Zuletzt wird das Tile mit Hilfe des 'TextureManager's gerenderts.
 			TheTextureManager::Instance()->drawTile(*tilesetToUse, m_tiles[i][j]->getTileID(), j * 64 + m_tiles[i][j]->getPostionVector().getX(), i * 64 + m_tiles[i][j]->getPostionVector().getY());
+
+			if(tilesetToUse->collisionMap.count(tileId - tilesetToUse->firstgid))
+			{
+				for (int k = 0; k < tilesetToUse->collisionMap[tileId - tilesetToUse->firstgid].size(); k++)
+				{
+					Collisionbox cBox = tilesetToUse->collisionMap[tileId - tilesetToUse->firstgid][k];
+					/*
+					ObjectRectangle cRect;
+					ParamLoader params;
+					params.setX(j * 64 + m_tiles[i][j]->getPostionVector().getX() + cBox.xPos);
+					params.setY(i * 64 + m_tiles[i][j]->getPostionVector().getY() + cBox.yPos);
+					params.setWidth(cBox.width);
+					params.setHeight(cBox.height);
+					cRect.load(params);
+					cRect.setVisible(true);
+					cRect.setShowText(true);
+					cRect.draw();
+					*/
+					
+					SDL_Color cRectColor;
+					cRectColor.r = 0; cRectColor.g = 0, cRectColor.b = 255, cRectColor.a = 255;
+					SDL_Rect rect = { j * 64 + m_tiles[i][j]->getPostionVector().getX() + cBox.xPos, i * 64 + m_tiles[i][j]->getPostionVector().getY() + cBox.yPos, cBox.width, cBox.height };
+					SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), cRectColor.r, cRectColor.g, cRectColor.b, cRectColor.a);
+					SDL_RenderDrawRect(TheGame::Instance()->getRenderer(), &rect);
+					SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0, 0, 0, 255);
+					
+				}				
+			}
+			
+			
 		}
 	}
 }

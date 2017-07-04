@@ -83,6 +83,7 @@ void SDL_GameObject::collision()
 	 */
 	m_objectRect.positionVector -= m_velocity;
 	m_collisionRect.positionVector -= m_velocity;
+	m_currentCol = 0; // TODO: wollen wir das?
 }
 
 void SDL_GameObject::destroy()

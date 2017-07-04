@@ -24,6 +24,7 @@ namespace Environment
 
 		//	getter-Funktionen
 		int getTileIdAtPosition (const Vector2D& positionVector) const;
+		std::vector<Tileset> getTilesets() const { return m_tilesets; };
 	};
 }
 
