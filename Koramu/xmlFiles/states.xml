@@ -8,6 +8,7 @@
     <texture id="buttonHowtoplay" path="../assets/Button_Howtoplay.png"/>
     <texture id="buttonExit" path="../assets/Button_Exit.png"/>
     <texture id="buttonResume" path="../assets/Button_Resume.png"/>
+    <texture id="buttonSave" path="../assets/Button_Save.png"/>
     <texture id="buttonMainMenu" path="../assets/Button_MainMenu.png"/>
     <texture id="buttonBack" path="../assets/Button_Back.png"/>
 
@@ -15,6 +16,7 @@
     <texture id="koramu" path="../assets/Koramu.png"/>
     <texture id="player" path="../assets/Player.png"/>
     <texture id="greyLayer" path="../assets/Grey_Layer.png"/>
+    <texture id="tree" path="../assets/Tree.png"/>
   </textures>
 
   <menu>
@@ -63,11 +65,15 @@
                   numRows="1" numCols="1"
                   mapId="pauseMap" animSpeed="200"/>
       <gameObject type="button" textureId="buttonResume"
-                  xPos="460" yPos="293" width="360" height="80"
+                  xPos="460" yPos="263" width="360" height="80"
+                  numRows="1" numCols="3"
+                  mapId="pauseMap" callbackId="resumePlay"/>
+      <gameObject type="button" textureId="buttonSave"
+                  xPos="460" yPos="408" width="360" height="80"
                   numRows="1" numCols="3"
                   mapId="pauseMap" callbackId="resumePlay"/>
       <gameObject type="button" textureId="buttonMainMenu"
-                  xPos="460" yPos="438" width="360" height="80"
+                  xPos="460" yPos="553" width="360" height="80"
                   numRows="1" numCols="3"
                   mapId="pauseMap" callbackId="playToMenu"/>
     </gameObjects>

@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include "Layer.h"
+#include "ObjectLayer.h"
 
 class GameObject;
 class ParamLoader;
@@ -70,5 +71,6 @@ namespace Environment
 
 		//	getter-Funktionen
 		TileLayer* getCollisionLayer();
+		ObjectLayer* getObjectLayer();
 	};
 }

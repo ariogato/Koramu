@@ -130,21 +130,6 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		}
 #pragma endregion 
 
-		//	Hier wird die Map aus 'parseMap()' hineingeparst
-		//	TODO: Funktion checken (immer neues Objekt oder nicht?)
-		Environment::Map* pCurrentMap = new Environment::Map();
-
-		/*	Aufrufen der Methode zum Laden der Map und überprüfen, ob das Laden erfolgreich war.
-		 *	Die geparste Map wird in 'pCurrentMap' geladen.
-		 */
-		if (!parseMap(mapPath, pCurrentMap))
-		{
-			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\" konnte nicht geparst werden." << std::endl << std::endl;
-
-			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
-			return false;
-		}
-
 		//	'ObjectLayer' wird erstellt und befüllt
 		Environment::ObjectLayer* pObjectLayer = new Environment::ObjectLayer();
 
@@ -164,17 +149,33 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 
 		pObjectLayer->init(pCurrentMapObjects);
 
+		//	Hier wird die Map aus 'parseMap()' hineingeparst
+		Environment::Map* pCurrentMap = new Environment::Map();
+
+
+		//	'ObjectLayer' (pObjectLayer) in 'pCurrentMap' einfügen
+		pCurrentMap->addLayer("Objectlayer", pObjectLayer);
+				
+
+		/*	Aufrufen der Methode zum Laden der Map und überprüfen, ob das Laden erfolgreich war.
+		*	Die geparste Map wird in 'pCurrentMap' geladen.
+		*/
+		if (!parseMap(mapPath, pCurrentMap))
+		{
+			TheGame::Instance()->logError() << "MapParser::parse(): \n\t" << filename << ": Die " << counter << ". Map im Zustand \"" << FiniteStateMachine::s_stateNames[stateID] << "\" konnte nicht geparst werden." << std::endl << std::endl;
+
+			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
+			return false;
+		}
+
 		/*	Überprüfen, ob die Map ein 'CollisionLayer' besitzt, 
 		 *	denn z.B. die Map im 'MenuState' soll ausdrücklich keines besitzen.
 		 */
 		if (pCurrentMap->getCollisionLayer())
 		{
-			//	Dem 'ObjectLayer' wird ein Pointer auf das 'CollisionLayer' der Map übergeben
-			pObjectLayer->addCollisionLayer(pCurrentMap->getCollisionLayer());
+			//	Dem 'ObjectLayer' der akttuellen Map wird ein Pointer auf das 'CollisionLayer' der Map übergeben
+			pCurrentMap->getObjectLayer()->addCollisionLayer(pCurrentMap->getCollisionLayer());
 		}
-
-		//	Spielobjekte zum 'ObjectLayer' von 'pCurrentMap' hinzufügen
-		pCurrentMap->addLayer("ObjectLayer", pObjectLayer);
 
 		//	geparste Map dem Dictionary aus Maps hinzufügen
 		pMapDict.insert(std::pair<std::string, Environment::Map*>(mapId, pCurrentMap));
@@ -497,6 +498,85 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		 */
 		pCurrentLayer->init(tempTilesets, tempTiles);
 		pMap->addLayer(layerName, pCurrentLayer);
+	}
+
+	/*	!!!TEST!!! parsen der Objekte aus dem Objectlayer
+	 */
+	
+	for(XMLElement* oG = pMapRoot->FirstChildElement("objectgroup"); oG != nullptr; oG = oG->NextSiblingElement("objectgroup"))
+	{
+		std::string ogName = oG->Attribute("name");
+		if(ogName == "Objectlayer")
+		{
+			ParamLoader parameters;
+			float x, y;
+			int width, height, numRows, numCols;
+
+			for(XMLElement* o = oG->FirstChildElement("object"); o != nullptr; o = o->NextSiblingElement("object"))
+			{
+				//	Bis auf weiters immer 1
+				numCols = 1;
+				numRows = 1;
+				
+				std::string objectType = o->Attribute("type");
+				if (objectType.empty())
+				{
+					TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element besitzt kein type-Attribut." << std::endl << std::endl;
+					return false;
+				}
+				//	Validition
+
+				//	xPos
+				if (o->QueryAttribute("x", &x))
+				{
+					TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element vom Typ: " << objectType << " besitzt kein xPos-Attribut." << std::endl << std::endl;
+					return false;
+				}
+
+				//	yPos
+				if (o->QueryAttribute("y", &y))
+				{
+					TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element vom Typ " << objectType << " besitzt kein yPos-Attribut." << std::endl << std::endl;
+					return false;
+				}
+
+				//	width
+				if (o->QueryAttribute("width", &width))
+				{
+					TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element vom Typ " << objectType << " besitzt kein width-Attribut." << std::endl << std::endl;
+					return false;
+				}
+
+				//	height
+				if (o->QueryAttribute("height", &height))
+				{
+					TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element vom Typ " << objectType << " besitzt kein height-Attribut." << std::endl << std::endl;
+					return false;
+				}
+
+				parameters.setX(x);
+				parameters.setY(y);
+				parameters.setWidth(width);
+				parameters.setHeight(height);
+				parameters.setNumCols(numCols);
+				parameters.setNumRows(numRows);
+				parameters.setTextureId(objectType);
+
+
+				SDL_GameObject* objectToLoad = new SDL_GameObject;
+
+				//	Ermitteln ob das Objekt erfolgreich geladen wurde
+				if (!objectToLoad)
+				{
+					TheGame::Instance()->logError() << "MapParser::loadMap(): \n\tDas Objekt vom Typ " << objectType << " konnte nicht erstellt werden" << std::endl << std::endl;
+					return false;
+				}
+
+				objectToLoad->load(parameters);
+
+				pMap->getObjectLayer()->getGameObjects()->push_back(objectToLoad);
+			}
+		}
 	}
 
 	

@@ -62,8 +62,8 @@ void Environment::Map::render()
 		m_layerMap["Interactionlayer"]->render();
 
 	
-	if (m_layerMap.count("ObjectLayer"))
-		m_layerMap["ObjectLayer"]->render();
+	if (m_layerMap.count("Objectlayer"))
+		m_layerMap["Objectlayer"]->render();
 
 
 	if (m_layerMap.count("Foregroundlayer"))
@@ -96,10 +96,23 @@ Environment::TileLayer* Environment::Map::getCollisionLayer()
 	//	Checken, ob ein CollisionLayer vorhanden ist
 	if (!m_layerMap.count("Collisionlayer"))
 	{
-		TheGame::Instance()->logError() << "Map::getCollisionLayer(): \n\tEs existiert kein CollisionLayer!" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "Map::getCollisionLayer(): \n\tEs existiert kein Collisionlayer!" << std::endl << std::endl;
 		return nullptr;
 	}
 
 	//	Da wir wissen, dass das Collisionlayer immer ein TileLayer ist, können wir es sicher casten
 	return dynamic_cast<TileLayer*>(m_layerMap["Collisionlayer"]);
+}
+
+Environment::ObjectLayer* Environment::Map::getObjectLayer()
+{
+	//	Checken, ob ein Objectlayer vorhanden ist
+	if (!m_layerMap.count("Objectlayer"))
+	{
+		TheGame::Instance()->logError() << "Map::getCollisionLayer(): \n\tEs existiert Objectlayer!" << std::endl << std::endl;
+		return nullptr;
+	}
+
+	//	Da wir wissen, dass das Objectlayer immer ein Objectlayer ist, können wir es sicher casten
+	return dynamic_cast<ObjectLayer*>(m_layerMap["Objectlayer"]);
 }

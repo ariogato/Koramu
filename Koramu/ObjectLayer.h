@@ -30,6 +30,9 @@ namespace Environment
 		//	setter-Funktion
 		void addCollisionLayer(TileLayer* pCollisionLayer) { m_pCollisionLayers->push_back(pCollisionLayer); }
 
+		//	getter-Funktionen
+		std::vector<GameObject*>* getGameObjects() const { return m_pGameObjects; }
+
 	private:
 		void objectTileCollision(GameObject* pGameObject);
 		bool rectRectCollisionX(TileLayer* pLayer, SDL_GameObject* pSDLGameObject, Vector2D rectVector);
