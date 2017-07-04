@@ -45,6 +45,8 @@ void FiniteStateMachine::PauseState::onEnter()
 	SDL_RenderReadPixels(TheGame::Instance()->getRenderer(), NULL, SDL_PIXELFORMAT_ARGB8888, screenshot->pixels, screenshot->pitch);
 	SDL_SaveBMP(screenshot, "../assets/screenshot.bmp");
 	SDL_FreeSurface(screenshot);
+	
+	TheTextureManager::Instance()->clearFromTextureMap("screenshot");
 	TheTextureManager::Instance()->load("screenshot", "../assets/screenshot.bmp", TheGame::Instance()->getRenderer());
 
 	//	Hier wird jeder Instanz der Klasse Button seine Callback Funktion übergeben
