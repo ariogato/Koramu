@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>545</x>
-      <y>100</y>
-      <w>305</w>
-      <h>345</h>
+      <x>848</x>
+      <y>200</y>
+      <w>488</w>
+      <h>568</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 Game
@@ -39,11 +39,15 @@ Game
 + update() : void
 + render() : void
 + setGameOver() : void
++ emergenceyExit(message : const char*)
+
++ changeState(newState : GameState*) : void
++ pushState(newState : GameState*) : void
++ popState() : void
 
 + getWindow() : SDL_Window*
 + getRenderer() : SDL_Renderer*
-+ getCamera() : Camera*
-+ getStateMachine() : GameStateMachine*  
++ getCamera() : Camera*  
 + isRunning() : bool
 + getGameWidth() : int
 + getGameHeight() : int
@@ -58,10 +62,10 @@ Game
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>660</y>
-      <w>150</w>
-      <h>120</h>
+      <x>1880</x>
+      <y>1120</y>
+      <w>240</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>/GameState/
 --
@@ -83,10 +87,10 @@ Game
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>880</x>
+      <x>1544</x>
       <y>0</y>
-      <w>70</w>
-      <h>35</h>
+      <w>112</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>bg=blue
 Singleteon 
@@ -98,10 +102,10 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1370</x>
-      <y>640</y>
-      <w>60</w>
-      <h>55</h>
+      <x>2168</x>
+      <y>1088</y>
+      <w>96</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 GameStateID
@@ -116,10 +120,10 @@ howToPlayState
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>870</x>
-      <y>615</y>
-      <w>670</w>
-      <h>330</h>
+      <x>1368</x>
+      <y>1048</y>
+      <w>1072</w>
+      <h>528</h>
     </coordinates>
     <panel_attributes>FiniteStateMachine
 --
@@ -130,10 +134,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>895</x>
-      <y>645</y>
-      <w>145</w>
-      <h>100</h>
+      <x>1408</x>
+      <y>1096</y>
+      <w>232</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>GameStateMachine
 --
@@ -154,10 +158,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1175</x>
-      <y>820</y>
-      <w>100</w>
-      <h>110</h>
+      <x>1856</x>
+      <y>1376</y>
+      <w>160</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>MenuState
 --
@@ -178,10 +182,10 @@ _- exit() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1225</x>
-      <y>775</y>
-      <w>35</w>
-      <h>55</h>
+      <x>1936</x>
+      <y>1304</y>
+      <w>56</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>50.0;10.0;10.0;90.0</additional_attributes>
@@ -189,10 +193,10 @@ _- exit() : void_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1360</x>
-      <y>820</y>
-      <w>100</w>
-      <h>105</h>
+      <x>2152</x>
+      <y>1376</y>
+      <w>160</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>PauseState
 --
@@ -212,10 +216,10 @@ _- playToMenu() : void_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1280</x>
-      <y>820</y>
-      <w>75</w>
-      <h>70</h>
+      <x>2024</x>
+      <y>1376</y>
+      <w>120</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>PlayState
 --
@@ -233,10 +237,10 @@ _- playToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>775</y>
-      <w>65</w>
-      <h>55</h>
+      <x>1992</x>
+      <y>1304</y>
+      <w>104</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;110.0;90.0</additional_attributes>
@@ -244,10 +248,10 @@ _- playToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
-      <y>775</y>
-      <w>120</w>
-      <h>55</h>
+      <x>2024</x>
+      <y>1304</y>
+      <w>192</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;220.0;90.0</additional_attributes>
@@ -255,10 +259,10 @@ _- playToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1315</x>
-      <y>370</y>
-      <w>70</w>
-      <h>55</h>
+      <x>2080</x>
+      <y>656</y>
+      <w>112</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;120.0;90.0</additional_attributes>
@@ -266,10 +270,10 @@ _- playToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
-      <y>370</y>
-      <w>85</w>
-      <h>55</h>
+      <x>1928</x>
+      <y>656</y>
+      <w>136</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;90.0</additional_attributes>
@@ -277,10 +281,10 @@ _- playToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1395</x>
-      <y>315</y>
-      <w>150</w>
-      <h>160</h>
+      <x>2208</x>
+      <y>568</y>
+      <w>240</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 successor
@@ -291,10 +295,10 @@ m2=0,1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>35</y>
-      <w>305</w>
-      <h>90</h>
+      <x>1544</x>
+      <y>56</y>
+      <w>488</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 TextureManager
@@ -314,10 +318,10 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2135</x>
-      <y>365</y>
-      <w>155</w>
-      <h>55</h>
+      <x>3392</x>
+      <y>648</y>
+      <w>264</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>/GameObject/
 --
@@ -325,6 +329,8 @@ TextureManager
 /+ load(parameters : const ParamLoader&amp;) : void/
 /+ update() : void/
 /+ draw() : void/
+
+/+ collision() : void/
 
 /+ destroy() : void/
 //
@@ -334,15 +340,15 @@ TextureManager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>240</x>
-      <y>130</y>
-      <w>200</w>
-      <h>50</h>
+      <x>360</x>
+      <y>248</y>
+      <w>320</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Logger
 --
 - m_outputStream : ostream*
-- heap : bool
+- m_heap : bool
 --
 + operator&lt;&lt;(msg : T) : Logger&amp;
 + operator&lt;&lt;((*f)(std::ostream&amp;) : std::ostream&amp;) : std::ostream&amp;</panel_attributes>
@@ -351,10 +357,10 @@ TextureManager
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>435</x>
-      <y>140</y>
-      <w>120</w>
-      <h>25</h>
+      <x>672</x>
+      <y>264</y>
+      <w>192</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=2
@@ -365,24 +371,24 @@ has</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>845</x>
-      <y>205</y>
-      <w>100</w>
-      <h>450</h>
+      <x>1328</x>
+      <y>368</y>
+      <w>160</w>
+      <h>744</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=1
 m2=1
 controls</panel_attributes>
-    <additional_attributes>10.0;20.0;180.0;20.0;180.0;880.0</additional_attributes>
+    <additional_attributes>10.0;20.0;180.0;20.0;180.0;910.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1045</x>
-      <y>240</y>
-      <w>495</w>
-      <h>355</h>
+      <x>1648</x>
+      <y>448</y>
+      <w>792</w>
+      <h>568</h>
     </coordinates>
     <panel_attributes>DataStructure
 --
@@ -393,10 +399,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>305</y>
-      <w>70</w>
-      <h>25</h>
+      <x>1864</x>
+      <y>552</y>
+      <w>112</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 topNode
@@ -406,10 +412,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1035</x>
-      <y>345</y>
-      <w>90</w>
-      <h>330</h>
+      <x>1632</x>
+      <y>616</y>
+      <w>144</w>
+      <h>528</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 
@@ -424,10 +430,10 @@ m2=1
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1245</x>
-      <y>215</y>
-      <w>125</w>
-      <h>35</h>
+      <x>1968</x>
+      <y>408</y>
+      <w>200</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Der Stapel wurde als 
 Klassen-Template implementiert
@@ -438,10 +444,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1060</x>
-      <y>280</y>
-      <w>130</w>
-      <h>70</h>
+      <x>1672</x>
+      <y>512</y>
+      <w>208</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>template=T
 Stack
@@ -457,10 +463,10 @@ Stack
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1240</x>
-      <y>290</y>
-      <w>165</w>
-      <h>85</h>
+      <x>1960</x>
+      <y>528</y>
+      <w>264</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>template=T
 /StackElement/
@@ -478,10 +484,10 @@ Stack
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>410</y>
-      <w>165</w>
-      <h>85</h>
+      <x>1768</x>
+      <y>720</y>
+      <w>264</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>template=T
 Closure
@@ -500,10 +506,10 @@ Closure
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1300</x>
-      <y>410</y>
-      <w>195</w>
-      <h>95</h>
+      <x>2056</x>
+      <y>720</y>
+      <w>312</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>template=T
 Node
@@ -526,10 +532,10 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1760</x>
-      <y>340</y>
-      <w>145</w>
-      <h>45</h>
+      <x>2792</x>
+      <y>608</y>
+      <w>232</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>Player 
 --
@@ -542,43 +548,48 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1945</x>
-      <y>355</y>
-      <w>155</w>
-      <h>170</h>
+      <x>3088</x>
+      <y>632</y>
+      <w>248</w>
+      <h>272</h>
     </coordinates>
     <panel_attributes>SDL_GameObject
 --
-# m_positionVector : Vector2D
-
-# m_width : int
-# m_height : int
+# m_objectRect : ObjectRectangle
+# m_collisionRects : vector&lt;ObjectRectangle&gt;
 # m_currentRow : int
 # m_currentCol : int
-# m_numFrames : int
+# m_numCols : int
+# m_numRows : int
 # m_animSpeed : int
+# m_velocity : Vector2D
 # m_textureId : string
 # m_mapId : string
 --
-+ load(parameters : const ParamLoader&amp;) : void
-+ update() : void
-+ draw() : void
+/+ load(parameters : const ParamLoader&amp;) : void/
+/+ update() : void/
+/+ draw() : void/
+
+/+ collision() : void/
 
 /+ destroy() : void/
 
 + getPosition() : Vector2D
++ getVelocity() : Vector2D
 + getWidth() : int
 + getHeight() : int
++ getMapId() : string
++ getCollisionRects() : vector&lt;ObjectRectangle&gt;
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2095</x>
-      <y>385</y>
-      <w>50</w>
-      <h>15</h>
+      <x>3328</x>
+      <y>680</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
@@ -586,10 +597,10 @@ Node
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1900</x>
-      <y>355</y>
-      <w>55</w>
-      <h>15</h>
+      <x>3016</x>
+      <y>632</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -597,10 +608,10 @@ Node
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>435</x>
-      <y>705</y>
-      <w>135</w>
-      <h>115</h>
+      <x>672</x>
+      <y>1192</y>
+      <w>216</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>Vector2D
 --
@@ -613,23 +624,23 @@ Node
 + getY() : const float
 + getLength() : const float
 
-+ setX(float x) : void
-+ setY(float y) : void</panel_attributes>
++ setX(x : float) : void
++ setY(x : float) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>385</x>
-      <y>450</y>
-      <w>200</w>
-      <h>165</h>
+      <x>592</x>
+      <y>784</y>
+      <w>320</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 InputHandler
 --
 - m_aKeyboardState : const Uint8*
-- m_pMousePosition : Vector2D
+- m_pMousePosition : Vector2D*
 - m_mouseButtonState : vector&lt;bool&gt;
 --
 - onKeyDown() : void
@@ -641,6 +652,8 @@ InputHandler
 + handleInput() : void
 
 + isKeyDown(SDL_Scancode) : bool
++ getMousePosition() : Vector2D
+
 + getMouseButtonState() : vector&lt;bool&gt;
 
 + getLeftMouseButtonState() : bool
@@ -652,10 +665,10 @@ InputHandler
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>435</x>
-      <y>410</y>
-      <w>70</w>
-      <h>40</h>
+      <x>672</x>
+      <y>720</y>
+      <w>112</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>bg=blue
 Singleteon 
@@ -667,10 +680,10 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>765</y>
-      <w>95</w>
-      <h>60</h>
+      <x>1000</x>
+      <y>1288</y>
+      <w>152</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>Fps
 --
@@ -685,10 +698,10 @@ Singleteon
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>265</x>
-      <y>180</y>
-      <w>130</w>
-      <h>35</h>
+      <x>360</x>
+      <y>328</y>
+      <w>208</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>bg=blue
 letztere Methode sieht so komisch aus, 
@@ -699,10 +712,10 @@ Funktion übergeben wird</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1615</x>
-      <y>610</y>
-      <w>690</w>
-      <h>445</h>
+      <x>2544</x>
+      <y>1056</y>
+      <w>1336</w>
+      <h>704</h>
     </coordinates>
     <panel_attributes>Environment
 --
@@ -712,10 +725,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1635</x>
-      <y>650</y>
-      <w>225</w>
-      <h>110</h>
+      <x>2592</x>
+      <y>1104</y>
+      <w>368</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>Map 
 --
@@ -730,19 +743,23 @@ bg=pink</panel_attributes>
 + update() : void
 + render() : void
 
-+ addLayer(name : string, pNewLayer : Layer*) : void </panel_attributes>
++ addLayer(name : string, pNewLayer : Layer*) : void 
+
++ getCollisionLayer : TileLayer*
++ getObjectLayer : ObjectLayer*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1885</x>
-      <y>760</y>
-      <w>70</w>
-      <h>35</h>
+      <x>3192</x>
+      <y>1232</y>
+      <w>168</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>/Layer/
 --
+# m_positionVector : Vector2D
 --
 /+ update() : void/
 /+ render() : void/
@@ -752,40 +769,49 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1675</x>
-      <y>845</y>
-      <w>170</w>
-      <h>90</h>
+      <x>2648</x>
+      <y>1432</y>
+      <w>512</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>ObjectLayer
 --
 - m_gameObjects : vector&lt;GameObject*&gt;
 - m_player : Player
+
+- m_pCollisionLayers : vector&lt;TileLayer*&gt;*
 --
 + init(pGameObjects : vector&lt;GameObject*&gt;*) : void
 + update() : void
 + render() : void
-</panel_attributes>
+
++ addCollisionLayer(pCollisionLayer : TileLayer*) : void
+
++ getGameObjects() : vector&lt;GameObject*&gt;*
+
+- objectTileCollision(pGameObject : GameObject*) : void
+- rectRectCollisonX(pLayer : TileLayer*, rectVector : Vector2D, collisonRect : ObjectRectangle) : bool
+- rectRectCollisonY(pLayer : TileLayer*, rectVector : Vector2D, collisonRect : ObjectRectangle) : bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1790</x>
-      <y>790</y>
-      <w>115</w>
-      <h>65</h>
+      <x>2960</x>
+      <y>1296</y>
+      <w>264</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>210.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>310.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1850</x>
-      <y>845</y>
-      <w>205</w>
-      <h>90</h>
+      <x>3200</x>
+      <y>1432</y>
+      <w>328</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>TileLayer
 --
@@ -796,27 +822,30 @@ bg=pink</panel_attributes>
 + update() : void
 + render() : void
 
++ getTileIdAtPosition(positionVector : const Vector2D&amp;) : int
++ getTilesets() : vector&lt;Tileset&gt;
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1915</x>
-      <y>790</y>
-      <w>15</w>
-      <h>65</h>
+      <x>3280</x>
+      <y>1296</y>
+      <w>24</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2060</x>
-      <y>845</y>
-      <w>165</w>
-      <h>90</h>
+      <x>3568</x>
+      <y>1432</y>
+      <w>264</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>AnimationLayer
 --
@@ -831,48 +860,49 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1940</x>
-      <y>790</y>
-      <w>155</w>
-      <h>65</h>
+      <x>3304</x>
+      <y>1296</y>
+      <w>320</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;290.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;380.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2180</x>
-      <y>655</y>
-      <w>100</w>
-      <h>130</h>
+      <x>3464</x>
+      <y>1112</y>
+      <w>248</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>Tile
 --
 - m_tileID : int
 - m_positionVector : Vector2D
 - m_message : string
+
 - m_width : int
 - m_height : int
 --
-+ load() : void
++ load(parameters : const ParamLoader*) : void
 + update() : void
 + draw() : void
 
-+ getTileTextureID() : string
++ getTileID() : int
 + getMessage() : string
 + getHeight() : int
 + getWidth() : int
-+ getPositionVector : Vector2D  </panel_attributes>
++ getPositionVector() : Vector2D  </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>85</x>
-      <y>510</y>
-      <w>205</w>
-      <h>70</h>
+      <x>112</x>
+      <y>880</y>
+      <w>328</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>&lt;&lt;singleton&gt;&gt;
 GameObjectFactory
@@ -886,10 +916,10 @@ GameObjectFactory
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>225</x>
-      <y>685</y>
-      <w>130</w>
-      <h>55</h>
+      <x>336</x>
+      <y>1160</y>
+      <w>208</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>/BaseCreator/
 --
@@ -901,10 +931,10 @@ GameObjectFactory
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>275</x>
-      <y>575</y>
-      <w>15</w>
-      <h>120</h>
+      <x>416</x>
+      <y>984</y>
+      <w>24</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
@@ -912,10 +942,10 @@ GameObjectFactory
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1460</x>
-      <y>170</y>
-      <w>310</w>
-      <h>55</h>
+      <x>2328</x>
+      <y>248</y>
+      <w>496</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>StateParser
 --
@@ -929,21 +959,21 @@ _- loadGameObjects(pCurrentStateNode : XMLElement*, pObjects : vector&lt;GameObj
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2205</x>
-      <y>415</y>
-      <w>15</w>
-      <h>250</h>
+      <x>3568</x>
+      <y>760</y>
+      <w>24</w>
+      <h>368</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;480.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;440.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1760</x>
-      <y>395</y>
-      <w>145</w>
-      <h>50</h>
+      <x>2792</x>
+      <y>696</y>
+      <w>232</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Animation
 --
@@ -956,10 +986,10 @@ _- loadGameObjects(pCurrentStateNode : XMLElement*, pObjects : vector&lt;GameObj
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1900</x>
-      <y>415</y>
-      <w>55</w>
-      <h>15</h>
+      <x>3016</x>
+      <y>728</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -967,10 +997,10 @@ _- loadGameObjects(pCurrentStateNode : XMLElement*, pObjects : vector&lt;GameObj
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1780</x>
-      <y>170</y>
-      <w>475</w>
-      <h>55</h>
+      <x>2864</x>
+      <y>248</y>
+      <w>760</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>MapParser
 --
@@ -982,10 +1012,10 @@ _- parseMap(path : string, pMap : Map*) : bool_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>545</x>
-      <y>65</y>
-      <w>70</w>
-      <h>35</h>
+      <x>848</x>
+      <y>144</y>
+      <w>112</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>bg=blue
 Singleteon 
@@ -997,10 +1027,10 @@ Singleteon
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1070</x>
-      <y>820</y>
-      <w>100</w>
-      <h>95</h>
+      <x>1688</x>
+      <y>1376</y>
+      <w>160</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>HowToPlayState
 --
@@ -1019,10 +1049,10 @@ _- backToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>775</y>
-      <w>140</w>
-      <h>55</h>
+      <x>1736</x>
+      <y>1304</y>
+      <w>224</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>260.0;10.0;10.0;90.0</additional_attributes>
@@ -1030,10 +1060,10 @@ _- backToMenu() : void_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1760</x>
-      <y>460</y>
-      <w>145</w>
-      <h>100</h>
+      <x>2792</x>
+      <y>800</y>
+      <w>232</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Buttton
 --
@@ -1053,10 +1083,10 @@ _- backToMenu() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1900</x>
-      <y>475</y>
-      <w>55</w>
-      <h>15</h>
+      <x>3016</x>
+      <y>824</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -1064,10 +1094,10 @@ _- backToMenu() : void_
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>2140</x>
-      <y>520</y>
-      <w>120</w>
-      <h>15</h>
+      <x>3480</x>
+      <y>888</y>
+      <w>192</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>TODO: Vererbung implementieren
 bg=blue</panel_attributes>
@@ -1076,27 +1106,65 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>15</x>
-      <y>150</y>
-      <w>180</w>
-      <h>130</h>
+      <x>0</x>
+      <y>304</y>
+      <w>296</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>Camera
 --
 - m_positionVector : Vector2D
 - m_cameraWidth : int
 - m_cameraHeight : int
+- m_pCenterObject : SDL_GameObject*
 --
-+ centerOnGameObject(object : GameObject&amp;) : void
++ centerOnGameObject(object : SDL_GameObject*) : void
 + move(vector : Vector2D) : void
++ update() : void
 
 + getPositionVector() : Vector2D
 + getCameraWidth() : int 
 + getCameraHeight() : int
 
-+ setPositionVector() : void
-+ setCameraWidth() : void
-+ setCameraHeight() : void</panel_attributes>
++ setPositionVector(vector : Vector2D) : void
++ setCameraWidth(cameraWidth : int) : void
++ setCameraHeight(cameraHeight : int) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3744</x>
+      <y>552</y>
+      <w>264</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>ObjectRectangle
+--
++ positionVector : Vector2D
++ width : int
++ height : int
+
+- m_visible : bool
+- m_color : SDL_Color
+- m_rectAttributes : string
+- m_showText : bool
+- m_font : TTF_Font*
+--
++ load(params : const ParamLoader&amp;) : void
++ update() : void
++ draw() : void
+
++ getX() : float
++ getY() : float
++ getWidth() : int
++ getHeight() : int
++ getShowText() : bool
++ getVisible() : bool
+
++ setColor(r : int, g : int, b: int, alpha : int) : void
++ setShowText(b : bool) : void
++ setVisible(b : bool) : void</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
