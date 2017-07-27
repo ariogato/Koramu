@@ -21,16 +21,16 @@
 class SDL_GameObject : public GameObject
 {
 protected:
-	ObjectRectangle m_objectRect;					//	Position, Breite und Höhe
-	ObjectRectangle m_collisionRect;				//	Position, Breite und Höhe des Kollisionsbox
-	int m_currentRow;								//	Reihe im Spritesheet
-	int m_currentCol;								//	Spalte im Spritesheet
-	int m_numCols;									//	Die Anzahl der Spalten auf dem Spritesheet (horizontal)
-	int m_numRows;									//	Die Anzahl der Reihen auf dem Spritesheet (vertikal)
-	int m_animSpeed;								//	Die Animationsgeschwindigkeit (Wie schnell die Bilder hintereinander abgespielt werden)
-	Vector2D m_velocity;							//	Der Geschwindigkeitsvektor
-	std::string m_textureId;						//	Die Id, unter der die Textur im TextureManager gespeichert wurde
-	std::string m_mapId;							//	Die Id der Map, der das GameObject angehört
+	ObjectRectangle m_objectRect;								//	Position, Breite und Höhe
+	std::vector<ObjectRectangle> m_collisionRects;				//	Vektor aus Kollisionsboxen (ObjectRectangle enthält Position, Breite und Höhe)
+	int m_currentRow;											//	Reihe im Spritesheet
+	int m_currentCol;											//	Spalte im Spritesheet
+	int m_numCols;												//	Die Anzahl der Spalten auf dem Spritesheet (horizontal)
+	int m_numRows;												//	Die Anzahl der Reihen auf dem Spritesheet (vertikal)
+	int m_animSpeed;											//	Die Animationsgeschwindigkeit (Wie schnell die Bilder hintereinander abgespielt werden)
+	Vector2D m_velocity;										//	Der Geschwindigkeitsvektor
+	std::string m_textureId;									//	Die Id, unter der die Textur im TextureManager gespeichert wurde
+	std::string m_mapId;										//	Die Id der Map, der das GameObject angehört
 
 	
 public:
@@ -51,8 +51,5 @@ public:
 	int getWidth() const { return m_objectRect.width; }
 	int getHeight() const { return m_objectRect.height; }
 	std::string getMapId() const { return m_mapId; }
-
-	Vector2D getCollisionBoxPosition() const { return m_collisionRect.positionVector; }
-	int getCollisionBoxWidth() const { return m_collisionRect.width; }
-	int getCollisionBoxHeight() const { return m_collisionRect.height; }
+	std::vector<ObjectRectangle> getCollisonRects() const { return m_collisionRects; }
 };

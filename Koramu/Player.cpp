@@ -18,6 +18,8 @@ void Player::load(const ParamLoader& params)
 	 *	Die offset Variablen beschreiben die Position der Kollisionsbox
 	 *	innerhalb des 'Player'-Objekts in Abhängigkeit von der oberen linken Ecke.
 	 */
+
+	
 	ParamLoader collisionParams;
 	float offsetX, offsetY;
 	int collisionWidth, collisionHeight;
@@ -32,12 +34,17 @@ void Player::load(const ParamLoader& params)
 	collisionParams.setWidth(collisionWidth);
 	collisionParams.setHeight(collisionHeight);
 
+	ObjectRectangle tempRectangle;
+	tempRectangle.load(collisionParams);
+	m_collisionRects.push_back(tempRectangle);
+
 	/*	Die Beschreibung der Box soll nicht angzeigt werden, 
 	 *	während die Box selber durchaus angezeigt werden soll
 	 */
-	m_collisionRect.load(collisionParams);
-	m_collisionRect.setShowText(false);
-	m_collisionRect.setVisible(true);
+	m_collisionRects[0].setVisible(true);
+	m_collisionRects[0].setShowText(false);
+	 
+	
 }
 
 void Player::update()

@@ -93,7 +93,7 @@ public:
 
 	//	Methoden zur Erfassung einer Zustandsänderung
 	void changeState(FiniteStateMachine::GameState* newState);
-	void pushState(FiniteStateMachine::GameState* newStates);
+	void pushState(FiniteStateMachine::GameState* newState);
 	void popState();
 
 	//	getter-Funktionen

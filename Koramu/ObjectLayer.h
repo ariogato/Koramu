@@ -35,8 +35,8 @@ namespace Environment
 
 	private:
 		void objectTileCollision(GameObject* pGameObject);
-		bool rectRectCollisionX(TileLayer* pLayer, SDL_GameObject* pSDLGameObject, Vector2D rectVector);
-		bool rectRectCollisionY(TileLayer* pLayer, SDL_GameObject* pSDLGameObject, Vector2D rectVector);
+		bool rectRectCollisionX(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle collisionRect);
+		bool rectRectCollisionY(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle collisionRect);
 
 	};
 

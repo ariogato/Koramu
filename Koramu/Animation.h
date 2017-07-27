@@ -4,6 +4,7 @@
 
 class ParamLoader;
 
+//	TODO: Klasse beschreiben
 class Animation : public SDL_GameObject
 {
 private:
