@@ -66,6 +66,12 @@
     <Filter Include="Quelldateien\Parser\MapParser">
       <UniqueIdentifier>{5e675f83-5b14-48c3-a09c-624e1a00cf7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\View">
+      <UniqueIdentifier>{4d726bc8-ca28-4361-a339-e53eadb152ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\View">
+      <UniqueIdentifier>{7145e9f2-b5a6-42cc-aa86-ddb5ba0e569e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -159,7 +165,10 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\View</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>Quelldateien\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,7 +284,10 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\View</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>Headerdateien\View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

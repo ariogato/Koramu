@@ -172,6 +172,7 @@
     <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -212,6 +213,7 @@
     <ClInclude Include="TileLayer.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="View.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\maps.xml">
