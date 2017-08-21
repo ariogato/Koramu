@@ -300,7 +300,7 @@
     <Xml Include="xmlFiles\maps.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
-    <Xml Include="collisionRects.xml">
+    <Xml Include="xmlFiles\collisionRects.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
   </ItemGroup>

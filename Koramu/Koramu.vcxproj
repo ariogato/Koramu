@@ -216,7 +216,7 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="collisionRects.xml">
+    <Xml Include="xmlFiles\collisionRects.xml">
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="xmlFiles\maps.xml">
