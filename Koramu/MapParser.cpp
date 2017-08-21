@@ -514,7 +514,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 
 			for(XMLElement* o = oG->FirstChildElement("object"); o != nullptr; o = o->NextSiblingElement("object"))
 			{
-				//	Bis auf weiters immer 1
+				//	Bis auf weiteres immer 1
 				numCols = 1;
 				numRows = 1;
 				

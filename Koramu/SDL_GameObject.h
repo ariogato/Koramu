@@ -22,7 +22,7 @@ class SDL_GameObject : public GameObject
 {
 protected:
 	ObjectRectangle m_objectRect;								//	Position, Breite und Höhe
-	std::vector<ObjectRectangle> m_collisionRects;				//	Vektor aus Kollisionsboxen (ObjectRectangle enthält Position, Breite und Höhe)
+	std::vector<ObjectRectangle> m_collisionRects;				//	Vector aus Kollisionsboxen (ObjectRectangle enthält Position, Breite und Höhe)
 	int m_currentRow;											//	Reihe im Spritesheet
 	int m_currentCol;											//	Spalte im Spritesheet
 	int m_numCols;												//	Die Anzahl der Spalten auf dem Spritesheet (horizontal)
@@ -50,6 +50,10 @@ public:
 	Vector2D getVelocity() const { return m_velocity; }
 	int getWidth() const { return m_objectRect.width; }
 	int getHeight() const { return m_objectRect.height; }
+	std::string getTextureId() const { return m_textureId; }
 	std::string getMapId() const { return m_mapId; }
-	std::vector<ObjectRectangle> getCollisonRects() const { return m_collisionRects; }
+	std::vector<ObjectRectangle> getCollisionRects() const { return m_collisionRects; }
+
+	//	setter-Funktionen
+	void addCollisionRects(std::vector<ObjectRectangle> cRects) { m_collisionRects = cRects; }
 };

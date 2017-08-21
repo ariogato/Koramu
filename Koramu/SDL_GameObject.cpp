@@ -45,17 +45,18 @@ void SDL_GameObject::update()
 
 	//	Den Geschwindigkeitsvektor zum Ortsvektor addieren
 	m_objectRect.positionVector += m_velocity;
-	for (auto c : m_collisionRects)
+	for (int i = 0; i<m_collisionRects.size(); i++)
 	{
-		c.positionVector += m_velocity;
+		m_collisionRects[i].positionVector += m_velocity;
+	}
+		
+	//	Im Debugmodus werden 'objectRect' und 'collisionRects' mitgeupdatet
+	for(int i = 0; i<m_collisionRects.size(); i++)
+	{
+		m_collisionRects[i].update();
 	}
 
-	//	Im Debugmodus werden 'objectRect' und 'collisionRects' mitgeupdatet
 	m_objectRect.update();
-	for (auto c : m_collisionRects)
-	{
-		c.update();
-	}
 }
 
 void SDL_GameObject::draw()
@@ -71,9 +72,9 @@ void SDL_GameObject::draw()
 
 	//	Im Debugmodus werden 'objectRect' und 'collisionRect' mitgerendert
 	m_objectRect.draw();
-	for (auto c : m_collisionRects)
+	for (int i = 0; i<m_collisionRects.size(); i++)
 	{
-		c.draw();
+		m_collisionRects[i].draw();
 	}
 }
 
@@ -83,10 +84,11 @@ void SDL_GameObject::collision()
 	 *	damit die Bewegung aus 'update()' wieder rückgängig gemacht wird.
 	 */
 	m_objectRect.positionVector -= m_velocity;
-	for (auto c : m_collisionRects)
+	for (int i = 0; i<m_collisionRects.size(); i++)
 	{
-		c.positionVector -= m_velocity;;
+		m_collisionRects[i].positionVector -= m_velocity;
 	}
+
 	m_currentCol = 0; // TODO: wollen wir das?
 }
 

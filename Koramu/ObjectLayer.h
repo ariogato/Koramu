@@ -14,8 +14,7 @@ namespace Environment
 	class ObjectLayer : public Layer
 	{
 	private:
-		std::vector<GameObject*>* m_pGameObjects;		//	Array der GameObjects 
-		Player m_player;								//	Der Spieler ist Teil des ObjectLayers und wird von diesem gerendert
+		std::vector<GameObject*>* m_pGameObjects;				//	Array der GameObjects 
 
 		std::vector<TileLayer*>* m_pCollisionLayers;			//	Ein Pointer auf alle Layer, mit denen Spielobjekte kollidieren sollen
 
@@ -34,9 +33,9 @@ namespace Environment
 		std::vector<GameObject*>* getGameObjects() const { return m_pGameObjects; }
 
 	private:
-		void objectTileCollision(GameObject* pGameObject);
-		bool rectRectCollisionX(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle collisionRect);
-		bool rectRectCollisionY(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle collisionRect);
+		void objectTileCollision(GameObject* pGameObject);													//	Spielobjekt auf Kollision mit Tile überprüfen
+		bool rectRectCollisionX(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect);	//	Kollisionsermiitlung in x-Richtung
+		bool rectRectCollisionY(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect);	//	KOllisionsermittlung in y-Richtung
 
 	};
 
