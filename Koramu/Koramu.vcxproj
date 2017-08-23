@@ -163,6 +163,7 @@
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="SDL_GameObject.cpp" />
     <ClCompile Include="StackDefinitions.cpp" />
     <ClCompile Include="StateParser.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="UniqueIdGenerator.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
@@ -196,6 +198,7 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectRectangle.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RenderObject.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MenuState.h" />
@@ -212,6 +215,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileLayer.h" />
     <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="UniqueIdGenerator.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>

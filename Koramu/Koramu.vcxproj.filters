@@ -33,9 +33,6 @@
     <Filter Include="Quelldateien\DataStructures">
       <UniqueIdentifier>{9a120265-3da2-42c4-9e89-e9566ca09316}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Input">
-      <UniqueIdentifier>{ba7cec71-7450-4d0f-8275-e464fb720337}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Input">
       <UniqueIdentifier>{5afc9361-fdd9-49df-9ccd-c36c060c7061}</UniqueIdentifier>
     </Filter>
@@ -71,6 +68,15 @@
     </Filter>
     <Filter Include="Quelldateien\View">
       <UniqueIdentifier>{7145e9f2-b5a6-42cc-aa86-ddb5ba0e569e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Utility">
+      <UniqueIdentifier>{5162fad0-0a0f-4370-8524-81c6fd01991c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Utility">
+      <UniqueIdentifier>{76c2de37-0029-4fdc-93c7-9d65d837e972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Parser\Input">
+      <UniqueIdentifier>{ba7cec71-7450-4d0f-8275-e464fb720337}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +176,12 @@
     <ClCompile Include="View.cpp">
       <Filter>Quelldateien\View</Filter>
     </ClCompile>
+    <ClCompile Include="RenderObject.cpp">
+      <Filter>Quelldateien\View</Filter>
+    </ClCompile>
+    <ClCompile Include="UniqueIdGenerator.cpp">
+      <Filter>Quelldateien\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -233,7 +245,7 @@
       <Filter>Headerdateien\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
-      <Filter>Headerdateien\Input</Filter>
+      <Filter>Headerdateien\Parser\Input</Filter>
     </ClInclude>
     <ClInclude Include="Fps.h">
       <Filter>Headerdateien</Filter>
@@ -288,6 +300,12 @@
     </ClInclude>
     <ClInclude Include="View.h">
       <Filter>Headerdateien\View</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderObject.h">
+      <Filter>Headerdateien\View</Filter>
+    </ClInclude>
+    <ClInclude Include="UniqueIdGenerator.h">
+      <Filter>Headerdateien\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

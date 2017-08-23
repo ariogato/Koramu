@@ -10,6 +10,13 @@ Camera::Camera()
 {
 }
 
+Camera::Camera(int width, int height)
+	: m_positionVector(0.0f, 0.0f),
+	  m_cameraWidth(width), m_cameraHeight(height),
+	  m_pCenterObject(nullptr)
+{
+}
+
 Camera::~Camera()
 {
 	/*	Nicht zu löschende Pointer:

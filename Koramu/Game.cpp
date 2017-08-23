@@ -30,8 +30,7 @@ Game::Game()									//	Konstruktor
 	m_gameWidth(0), m_gameHeight(0),
 	m_gameXPos(0), m_gameYPos(0),
 	m_pStateMachine(nullptr), m_pCurrentState(nullptr),
-	m_pWindow(nullptr), m_pRenderer(nullptr),
-	m_pCamera(nullptr)
+	m_pWindow(nullptr), m_pRenderer(nullptr)
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
@@ -57,7 +56,6 @@ Game::~Game()									//	Destruktor
 	delete m_pStandardLog;
 	delete m_pErrorLog;
 	delete m_pStateMachine;
-	delete m_pCamera;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
@@ -134,11 +132,6 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	m_gameHeight = height;
 	m_gameXPos = xPos;
 	m_gameYPos = yPos;
-
-	//	Kamera initialisieren
-	m_pCamera = new Camera();
-	m_pCamera->setCameraWidth(m_gameWidth);
-	m_pCamera->setCameraHeight(m_gameHeight);
 
 #pragma region registerType
 	TheGameObjectFactory::Instance()->registerType("button", new ButtonCreator());

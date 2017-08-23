@@ -20,6 +20,7 @@ private:
 
 public:
 	Camera();										//	Konstruktor
+	Camera(int width, int height);
 	~Camera();										//	Destruktor
 	
 	void centerOnGameObject(SDL_GameObject* object);	//	Kamera wird auf das übergebene Objekt zentriert
