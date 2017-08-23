@@ -45,26 +45,14 @@
     <Filter Include="xmlFiles">
       <UniqueIdentifier>{0b5dad66-feb9-4e48-82b5-9a72a0b3baa2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Parser\StateParser">
-      <UniqueIdentifier>{0bb497c1-a017-4b7e-940f-c84d9ba50711}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Parser">
       <UniqueIdentifier>{930af4d8-4893-4be4-acd2-bb4e672f2bab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Parser\StateParser">
-      <UniqueIdentifier>{411bce94-36f1-4baf-8097-857f6e4004aa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Environment">
       <UniqueIdentifier>{da5ed21d-e8ea-4306-bae3-50281b67cfc3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Environment">
       <UniqueIdentifier>{91836f7b-198e-4e94-ae27-29eb99baa035}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Parser\MapParser">
-      <UniqueIdentifier>{cfac6a57-a98f-43be-95a3-9db17af5aae6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Parser\MapParser">
-      <UniqueIdentifier>{5e675f83-5b14-48c3-a09c-624e1a00cf7f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\View">
       <UniqueIdentifier>{4d726bc8-ca28-4361-a339-e53eadb152ff}</UniqueIdentifier>
@@ -128,9 +116,6 @@
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="StateParser.cpp">
-      <Filter>Quelldateien\Parser\StateParser</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Quelldateien\Environment</Filter>
     </ClCompile>
@@ -148,9 +133,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectFactory.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="MapParser.cpp">
-      <Filter>Quelldateien\Parser\MapParser</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
@@ -171,7 +153,13 @@
       <Filter>Quelldateien\View</Filter>
     </ClCompile>
     <ClCompile Include="CollisionRectParser.cpp">
-      <Filter>Quelldateien\Parser\CollisionRectParser</Filter>
+      <Filter>Quelldateien\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="MapParser.cpp">
+      <Filter>Quelldateien\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="StateParser.cpp">
+      <Filter>Quelldateien\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,14 +226,8 @@
     <ClInclude Include="InputHandler.h">
       <Filter>Headerdateien\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Fps.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Headerdateien\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="StateParser.h">
-      <Filter>Headerdateien\Parser\StateParser</Filter>
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Headerdateien</Filter>
@@ -271,9 +253,6 @@
     <ClInclude Include="GameObjectFactory.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="MapParser.h">
-      <Filter>Headerdateien\Parser\MapParser</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
@@ -292,8 +271,17 @@
     <ClInclude Include="View.h">
       <Filter>Headerdateien\View</Filter>
     </ClInclude>
+    <ClInclude Include="MapParser.h">
+      <Filter>Headerdateien\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="StateParser.h">
+      <Filter>Headerdateien\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Fps.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
     <ClInclude Include="CollisionRectParser.h">
-      <Filter>Headerdateien\Parser\CollisionRectParser</Filter>
+      <Filter>Headerdateien\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
