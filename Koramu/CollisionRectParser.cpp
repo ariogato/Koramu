@@ -101,6 +101,9 @@ bool CollisionRectParser::parse(std::string filename, std::vector<GameObject*>* 
 			//	Erstellen des "ObjectRectangle"s mit den gewünschten Attributen ("parameters")
 			ObjectRectangle tempRectangle;
 			tempRectangle.load(parameters);
+			tempRectangle.setVisible(true);
+			tempRectangle.setShowText(false);
+			tempRectangle.setColor(0, 0, 255, 255);
 
 			//	Hinzufügen des "collisionRect"s in den Vector mit den anderen "collisionRects"s des Objekttypen
 			tempCollisionRects.push_back(tempRectangle);
@@ -109,13 +112,26 @@ bool CollisionRectParser::parse(std::string filename, std::vector<GameObject*>* 
 		//	Über die übergebenen "GameObject"s iterieren
 		for (auto gameObject : *pObjects)
 		{
-			//	Überprüfen, ob "gameObject" dén selben Typ (entspricht der TextureID!) hat, wie das Objekt, das gerade geparst wird 
+			//	Überprüfen, ob "gameObject" den selben Typ (entspricht der TextureID!) hat, wie das Objekt, das gerade geparst wird 
 			if (gameObject->getTextureId() == o->Attribute("name"))
 			{
+				//	Casten, um die "collisionRect"s zum SDL_GameObject hinzufügen zu können
 				SDL_GameObject* gameObjectSDL = dynamic_cast<SDL_GameObject*>(gameObject);
+
+				/*	Über die geparsten "collisionRect"s iterieren und die Position des Objektes zum Ortsvektor des "collisionRect"s addieren.
+				 *	Dies muss getan werden, da die Position in der xml-Datei logischerweise relativ zum Objekt angegeben wird.
+				 */	
+				for(int i = 0; i < tempCollisionRects.size(); i++)
+				{
+					tempCollisionRects[i].positionVector.setX(tempCollisionRects[i].getX() + gameObject->getPosition().getX());
+					tempCollisionRects[i].positionVector.setY(tempCollisionRects[i].getY() + gameObject->getPosition().getY());
+				}
+
+				//	"collsionRect"s zum "SDL_GameObject" hinzufügen
 				gameObjectSDL->addCollisionRects(tempCollisionRects);
 			}
 		}
 	}
+	//	Es wurde erfolgreich geparst
 	return true;
 }
