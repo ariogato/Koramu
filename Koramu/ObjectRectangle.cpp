@@ -2,12 +2,15 @@
 #include "ParamLoader.h"
 #include "Game.h"
 
+TTF_Font* ObjectRectangle::m_font = nullptr;
+
 ObjectRectangle::ObjectRectangle()
 	: positionVector(0.0f, 0.0f),
 	  width(0), height(0), 
 	  m_visible(false), m_showText(false)
 {
-	m_font = TTF_OpenFont("../assets/consola.ttf", 12);
+	if(!m_font)
+		m_font = TTF_OpenFont("../assets/consola.ttf", 12);
 
 
 	//	Default Farbe ist rot
@@ -20,8 +23,6 @@ ObjectRectangle::ObjectRectangle()
 
 ObjectRectangle::~ObjectRectangle()
 {
-	TTF_CloseFont(m_font);
-	m_font = nullptr;
 }
 
 void ObjectRectangle::load(const ParamLoader& params)
@@ -47,7 +48,6 @@ void ObjectRectangle::update()
 						 + "height: " + std::to_string(height) + "\n"
 						 + "xPos: " + std::to_string(static_cast<int>(positionVector.getX())) + "\n"
 						 + "yPos: " + std::to_string(static_cast<int>(positionVector.getY())) + "\n";
-
 	}
 }
 

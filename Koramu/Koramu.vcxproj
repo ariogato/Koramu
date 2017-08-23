@@ -146,6 +146,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
+    <ClCompile Include="CollisionRectParser.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
+    <ClInclude Include="CollisionRectParser.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -214,6 +216,9 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="xmlFiles\collisionRects.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="xmlFiles\maps.xml">
       <SubType>Designer</SubType>
     </Xml>

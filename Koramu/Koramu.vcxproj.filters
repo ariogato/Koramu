@@ -66,6 +66,12 @@
     <Filter Include="Quelldateien\Parser\MapParser">
       <UniqueIdentifier>{5e675f83-5b14-48c3-a09c-624e1a00cf7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Parser\CollisionRectParser">
+      <UniqueIdentifier>{d99c3be4-6b64-4368-bbb6-3640fd8287aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Parser\CollisionRectParser">
+      <UniqueIdentifier>{c220b0f5-bb8b-4652-bbd3-cf463f7128c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionRectParser.cpp">
+      <Filter>Quelldateien\Parser\CollisionRectParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +286,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionRectParser.h">
+      <Filter>Headerdateien\Parser\CollisionRectParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -286,6 +298,9 @@
       <Filter>xmlFiles</Filter>
     </Xml>
     <Xml Include="xmlFiles\maps.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
+    <Xml Include="xmlFiles\collisionRects.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
   </ItemGroup>

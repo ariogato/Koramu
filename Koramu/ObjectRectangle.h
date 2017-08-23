@@ -1,7 +1,7 @@
 #pragma once
 
 #include"Vector2D.h"
-#include "SDL_ttf.h"
+#include <SDL_ttf.h>
 #include <string>
 
 class ParamLoader;
@@ -25,7 +25,7 @@ private:
 
 	std::string m_rectAttributes;		//	Attribute, die unter dem Rechteck gerendert werden.
 	bool m_showText;					//	Indikator ob die 'rectAttributes' gerendert werden sollen
-	TTF_Font* m_font;					//	Vorläufige Speicherung der Schriftart (bis TextureManager auch Schriftarten händeln kann)
+	static TTF_Font* m_font;			//	Vorläufige Speicherung der Schriftart (bis TextureManager auch Schriftarten händeln kann - vorläufig "static" aufgrung eines Workarounds)
 
 public:
 	ObjectRectangle();
