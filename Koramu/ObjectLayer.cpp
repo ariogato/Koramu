@@ -68,7 +68,7 @@ void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 	//	Ein Zwischenspeicher für die Geschwindigkeit des Objekts
 	Vector2D objectVelocity = pGameObject->getVelocity();
 
-	//	Zuerst wird gecheckt ob das Objekt sich überhaupt bewegt
+	//	Zuerst wird gecheckt, ob das Objekt sich überhaupt bewegt
 	if (objectVelocity.getLength() > 0)
 	{
 		//	Es wird über die Kollisionsrectecke des Objekts iteriert, um jedes einzelne auf Kollision zu übeprüfen
@@ -134,199 +134,253 @@ void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 
 bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect)
 {
-	//	Variable, die festhält, ob überhaupt noch auf Kollision überprüft werden muss
-	bool possibleCollision = true;
-
-	//	Der "rectVector" wird so lange in y-Richtung verschoben, bis er auf alle für die Kollision relevanten Tiles gezeigt hat
-	while (rectVector.getY() <= collisionRect->getY() + collisionRect->getHeight())
-	{	
-		//	Überprüfen, ob das aktuelle "Layer" überhaupt Tiles hat
-		if(pLayer->getTilesets().size())
+	//	Überprüfen, ob das aktuelle "Layer" überhaupt Tiles hat
+	if (pLayer->getTilesets().size())
+	{
+		//	Der "rectVector" wird so lange in y-Richtung verschoben, bis er auf alle für die Kollisionerkennung relevanten Tiles gezeigt hat
+		while (rectVector.getY() <= collisionRect->getY() + collisionRect->getHeight())
 		{
+			/*	Variable, die festhält, ob auf Kollision mit dem gesamten Tile überprüft werden muss.
+			 *	Dies soll nicht geschehen, wenn für das Tile Kollisionsboxen festgelegt wurden ("Tiled")
+			 */
+			bool collisionWithEntireTile = true;
+
 			//	Id des Tiles, auf das der "rectVector" zeigt
 			int destinationTileId = pLayer->getTileIdAtPosition(rectVector);
-		
-			//	Ermmitteln des Tilesets, auf dem sich das betreffende Tile befindet
-			Tileset tSet;
-			for(int i = 0; i < pLayer->getTilesets().size(); i++)
+
+			/*	Überprüfen, ob sich, in dem übergebenen Kollisionslayer, überhaupt ein Tile an dieser Position befindet.
+			 *	"destinationTileId" ist 0, wenn dies nicht der Fall ist
+			 */
+			if(destinationTileId)
 			{
-				if(destinationTileId < pLayer->getTilesets()[i].firstgid + pLayer->getTilesets()[i].tilecount)
+				//	Ermmitteln des Tilesets, auf dem sich das betreffende Tile befindet
+				Tileset tSet;
+				for (int i = 0; i < pLayer->getTilesets().size(); i++)
 				{
-					tSet = pLayer->getTilesets()[i];
-					break;
-				}
-			}
-			
-			// Überprüfen, ob das Tile, in "Tiled" festgelegte, Kollisionsboxen besitzt
-			if(tSet.collisionMap.count(destinationTileId - tSet.firstgid))
-			{
-				for(int i = 0; i < tSet.collisionMap[destinationTileId - tSet.firstgid].size(); i++)
-				{
-					int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-					int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
-
-					Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
-
-					int topA, topB;
-					int bottomA, bottomB;
-					int leftA, leftB;
-					int rightA, rightB;
-
-					leftA = collisionRect->getX();
-					leftB = x + cBox.xPos;
-
-					rightA = collisionRect->getX() + collisionRect->getWidth();
-					rightB = leftB + cBox.width;
-
-					topA = collisionRect->getY();
-					topB = y + cBox.yPos;
-
-					bottomA = collisionRect->getY() + collisionRect->getHeight();
-					bottomB = topB + cBox.height;
-
-					
-					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+					if (destinationTileId < pLayer->getTilesets()[i].firstgid + pLayer->getTilesets()[i].tilecount)
 					{
-						return true;
-					}				
+						tSet = pLayer->getTilesets()[i];
+						break;
+					}
 				}
-				possibleCollision = false;
-			}
-		}
-	
-		if(possibleCollision)
-		{
-			if (pLayer->getTileIdAtPosition(rectVector))
-			{
+
+				//	x- und y-Position des Tiles berechnen
 				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
 				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
 
-				int topA, topB;
-				int bottomA, bottomB;
-				int leftA, leftB;
-				int rightA, rightB;
+				//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
+				int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
+				int bottomA, bottomB;				//	y-Wert von Punkten auf der unteren Kante
+				int leftA, leftB;					//	x-Wert von Punkten auf der linken Kante
+				int rightA, rightB;					//	x-Wert von Punkten auf der rechten Kante
 
-				leftA = collisionRect->getX();
-				leftB = x;
-
-				rightA = collisionRect->getX() + collisionRect->getWidth();
-				rightB = x + 64;
-
-				topA = collisionRect->getY();
-				topB = y;
-
-				bottomA = collisionRect->getY() + collisionRect->getHeight();
-				bottomB = y + 64;
-
-
-				if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+				//	Überprüfen, ob das Tile, in "Tiled" festgelegte, Kollisionsboxen besitzt
+				if (tSet.collisionMap.count(destinationTileId - tSet.firstgid))
 				{
-					return true;
+					//	Das Tile besitzt Kollisionboxen - es muss nur noch die Kollision mit diesen überprüft werden
+					collisionWithEntireTile = false;
+
+					//	Über die Kollisionsboxen des Tiles iterieren
+					for (int i = 0; i < tSet.collisionMap[destinationTileId - tSet.firstgid].size(); i++)
+					{
+						//	Aktuelle Kollisionsbox kopieren
+						Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
+
+						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+						*
+						*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+						*	und die aktuelle Kollisionsbox ("cBox").
+						*
+						*	x- und y-Position der Kollisionsbox sind relativ zur Position des Tiles gespeichert
+						*/
+						leftA = collisionRect->getX();
+						leftB = x + cBox.xPos;
+
+						rightA = collisionRect->getX() + collisionRect->getWidth();
+						rightB = leftB + cBox.width;
+
+						topA = collisionRect->getY();
+						topB = y + cBox.yPos;
+
+						bottomA = collisionRect->getY() + collisionRect->getHeight();
+						bottomB = topB + cBox.height;
+
+						//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+						if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+						{
+							return true;
+						}
+					}
+				}
+
+				//	Ermitteln, ob noch auf Kollsion mit dem gesamten Tile überprüft werden soll
+				if (collisionWithEntireTile)
+				{
+						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+						*
+						*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+						*	und das aktuelle Tile (64px x 64px).
+						*/
+						leftA = collisionRect->getX();
+						leftB = x;
+
+						rightA = collisionRect->getX() + collisionRect->getWidth();
+						rightB = x + 64;
+
+						topA = collisionRect->getY();
+						topB = y;
+
+						bottomA = collisionRect->getY() + collisionRect->getHeight();
+						bottomB = y + 64;
+
+						//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+						if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+						{
+							return true;
+						}
 				}
 			}
+			/*	Der "rectVector" wird solange es möglich ist in 64er-Schritten nach unten verschoben.
+			*
+			*	Dannach wird er um genau den Wert nach unten verschoben, der zur unteren Kannte des "collisionRect"s fehlt.
+			*
+			*	Damit wir keine Endlosschleife erzeugen, verschiebem wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach unten.
+			*/
+			if (rectVector.getY() + 64 <= collisionRect->getY() + collisionRect->getHeight())
+				rectVector.setY(rectVector.getY() + 64);
+			else if (rectVector.getY() == collisionRect->getY() + collisionRect->getHeight())
+				rectVector.setY(rectVector.getY() + 1);
+			else
+				rectVector.setY(rectVector.getY() + (collisionRect->getHeight() - (rectVector.getY() - collisionRect->getY())));
 		}
-		if (rectVector.getY() + 64 <= collisionRect->getY() + collisionRect->getHeight())
-			rectVector.setY(rectVector.getY() + 64);
-		else if (rectVector.getY() == collisionRect->getY() + collisionRect->getHeight())
-			rectVector.setY(rectVector.getY() + 1);
-		else
-			rectVector.setY(rectVector.getY() + (collisionRect->getHeight() - (rectVector.getY() - collisionRect->getY())));
 	}
+	//	Es liegt keine Kollision vor
 	return false;
 }
 
 bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect)
 {
-	bool possibleCollision = true;
-
-	while (rectVector.getX() <= collisionRect->getX() + collisionRect->getWidth())
+	//	Überprüfen, ob das aktuelle "Layer" überhaupt Tiles hat
+	if (pLayer->getTilesets().size())
 	{
-		if (pLayer->getTilesets().size())
+		//	Der "rectVector" wird so lange in x-Richtung verschoben, bis er auf alle für die Kollisionerkennung relevanten Tiles gezeigt hat
+		while (rectVector.getX() <= collisionRect->getX() + collisionRect->getWidth())
 		{
+
+			/*	Variable, die festhält, ob auf Kollision mit dem gesamten Tile überprüft werden muss.
+			*	Dies soll nicht geschehen, wenn für das Tile Kollisionsboxen festgelegt wurden ("Tiled")
+			*/
+			bool collisionWithEntireTile = true;
+
+			//	Id des Tiles, auf das der "rectVector" zeigt
 			int destinationTileId = pLayer->getTileIdAtPosition(rectVector);
 
-			Tileset tSet;
-			for (int i = 0; i < pLayer->getTilesets().size(); i++)
+			/*	Überprüfen, ob sich in dem übergebenen Kollisionslayer überhaupt ein Tile an dieser Position befindet.
+			*	"destinationTileId" ist 0, wenn dies nicht der Fall ist
+			*/
+			if (destinationTileId)
 			{
-				if (destinationTileId < pLayer->getTilesets()[i].firstgid + pLayer->getTilesets()[i].tilecount)
+				//	Ermmitteln des Tilesets, auf dem sich das betreffende Tile befindet
+				Tileset tSet;
+				for (int i = 0; i < pLayer->getTilesets().size(); i++)
 				{
-					tSet = pLayer->getTilesets()[i];
-					break;
+					if (destinationTileId < pLayer->getTilesets()[i].firstgid + pLayer->getTilesets()[i].tilecount)
+					{
+						tSet = pLayer->getTilesets()[i];
+						break;
+					}
 				}
-			}
 
+				//	x- und y-Position des Tiles berechnen
+				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
+				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
 
-			if (tSet.collisionMap.count(destinationTileId - tSet.firstgid))
-			{
-				for (int i = 0; i < tSet.collisionMap[destinationTileId - tSet.firstgid].size(); i++)
+				//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
+				int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
+				int bottomA, bottomB;				//	y-Wert von Punkten auf der unteren Kante
+				int leftA, leftB;					//	x-Wert von Punkten auf der linken Kante
+				int rightA, rightB;					//	x-Wert von Punkten auf der rechten Kante
+
+				//	Überprüfen, ob das Tile, in "Tiled" festgelegte, Kollisionsboxen besitzt
+				if (tSet.collisionMap.count(destinationTileId - tSet.firstgid))
 				{
-					int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-					int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+					//	Das Tile besitzt Kollisionboxen - es muss nur noch die Kollision mit diesen überprüft werden
+					collisionWithEntireTile = false;
 
-					Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
+					//	Über die Kollisionsboxen des Tiles iterieren
+					for (int i = 0; i < tSet.collisionMap[destinationTileId - tSet.firstgid].size(); i++)
+					{
+						//	Aktuelle Kollisionsbox kopieren
+						Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
 
-					int topA, topB;
-					int bottomA, bottomB;
-					int leftA, leftB;
-					int rightA, rightB;
+						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+						*
+						*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+						*	und die aktuelle Kollisionsbox ("cBox").
+						*
+						*	x- und y-Position der Kollisionsbox sind relativ zur Position des Tiles gespeichert
+						*/
+						leftA = collisionRect->getX();
+						leftB = x + cBox.xPos;
 
+						rightA = collisionRect->getX() + collisionRect->getWidth();
+						rightB = leftB + cBox.width;
+
+						topA = collisionRect->getY();
+						topB = y + cBox.yPos;
+
+						bottomA = collisionRect->getY() + collisionRect->getHeight();
+						bottomB = topB + cBox.height;
+
+						//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+						if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+						{
+							return true;
+						}
+					}
+				}
+
+				//	Ermitteln, ob noch auf Kollsion mit dem gesamten Tile überprüft werden soll
+				if (collisionWithEntireTile)
+				{
+					/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+					*
+					*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+					*	und das aktuelle Tile (64px x 64px).
+					*/
 					leftA = collisionRect->getX();
-					leftB = x + cBox.xPos;
+					leftB = x;
 
 					rightA = collisionRect->getX() + collisionRect->getWidth();
-					rightB = leftB + cBox.width;
+					rightB = x + 64;
 
 					topA = collisionRect->getY();
-					topB = y + cBox.yPos;
+					topB = y;
 
 					bottomA = collisionRect->getY() + collisionRect->getHeight();
-					bottomB = topB + cBox.height;
-					
+					bottomB = y + 64;
+
+					//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
 					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
 					{
 						return true;
 					}
 				}
-				possibleCollision = false;
 			}
+			/*	Der "rectVector" wird solange es möglich ist in 64er-Schritten nach rechts verschoben.
+			*
+			*	Dannach wird er um genau den Wert nach rechts verschoben, der zur rechten Kannte des "collisionRects" fehlt.
+			*
+			*	Damit wir keine Endlosschleife erzeugen, verschiebem wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach rechts.
+			*/
+			if (rectVector.getX() + 64 <= collisionRect->getX() + collisionRect->getWidth())
+				rectVector.setX(rectVector.getX() + 64);
+			else if (rectVector.getX() == collisionRect->getX() + collisionRect->getWidth())
+				rectVector.setX(rectVector.getX() + 1);
+			else
+				rectVector.setX(rectVector.getX() + (collisionRect->getWidth() - (rectVector.getX() - collisionRect->getX())));
 		}
-
-		if(possibleCollision)
-		{
-			if (pLayer->getTileIdAtPosition(rectVector))
-			{
-				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
-
-				int topA, topB;
-				int bottomA, bottomB;
-				int leftA, leftB;
-				int rightA, rightB;
-
-				leftA = collisionRect->getX();
-				leftB = x;
-
-				rightA = collisionRect->getX() + collisionRect->getWidth();
-				rightB = x + 64;
-
-				topA = collisionRect->getY();
-				topB = y;
-
-				bottomA = collisionRect->getY() + collisionRect->getHeight();
-				bottomB = y + 64;
-
-				if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
-				{
-					return true;
-				}
-			}
-		}
-		if (rectVector.getX() + 64 <= collisionRect->getX() + collisionRect->getWidth())
-			rectVector.setX(rectVector.getX() + 64);
-		else if (rectVector.getX() == collisionRect->getX() + collisionRect->getWidth())
-			rectVector.setX(rectVector.getX() + 1);
-		else
-			rectVector.setX(rectVector.getX() + (collisionRect->getWidth() - (rectVector.getX() - collisionRect->getX())));
 	}
+	//	Es liegt keine Kollision vor
 	return false;
 }
