@@ -4,6 +4,8 @@
 #include "MapParser.h"
 #include "InputHandler.h"
 #include "PauseState.h"
+#include "ParamLoader.h"
+#include "CollisionRectParser.h"
 
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
@@ -39,9 +41,21 @@ void FiniteStateMachine::PlayState::onEnter()
 		TheGame::Instance()->emergencyExit("Fehler beim Parsen der Maps des PlayStates!");
 	}
 
+	// Über alle Maps iterieren, die Objekte in den "OjektLayer"n werden dann an den "CollisionRectParser" übergeben
+	for(auto const &pair : m_mapDict)
+	{
+		//	Überprüfen, ob die "collisionRects" erfolgreich geparst wurden
+		if (!CollisionRectParser::parse("xmlFiles/collisionRects.xml", pair.second->getObjectLayer()->getGameObjects()))
+		{
+			TheGame::Instance()->logError() << "PlayState::onEnter(): \n\tFehler beim Parsen der 'collisionRects'" << std::endl << std::endl;
+
+			//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
+			TheGame::Instance()->emergencyExit("Fehler beim Parsen der 'collisionRects' des PlayStates!");
+		}
+	}
+
 	//	Die Anfangsmap aufstapeln
 	m_maps.push(m_mapDict["mainMap"]);
-
 	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
 }
 

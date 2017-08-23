@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+#include "Vector2D.h"
+#include "ObjectRectangle.h"
 
 #include "UniqueIdGenerator.h"
 
@@ -33,6 +36,12 @@ public:
 	virtual void draw() = 0;
 
 	virtual void collision() = 0;
+
+	//	ssshhh (Workaround) - Implementierung in "SDL_GameObject"
+	virtual Vector2D getVelocity() const = 0;
+	virtual Vector2D getPosition() const = 0;
+	virtual std::string getTextureId() const = 0;
+	virtual std::vector<ObjectRectangle> getCollisionRects() const = 0;
 	
 	//	getter-Funktionen
 	unsigned long long getUniqueId() const { return m_uniqueId; }

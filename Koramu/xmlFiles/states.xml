@@ -16,7 +16,7 @@
     <texture id="koramu" path="../assets/Koramu.png"/>
     <texture id="player" path="../assets/Player.png"/>
     <texture id="greyLayer" path="../assets/Grey_Layer.png"/>
-    <texture id="tree" path="../assets/Tree.png"/>
+    <texture id="tree" path="../assets/TreeNew.png"/>
   </textures>
 
   <menu>

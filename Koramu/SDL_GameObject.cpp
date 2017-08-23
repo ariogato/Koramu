@@ -35,15 +35,7 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	 */
 	m_objectRect.load(parameters);
 	m_objectRect.setShowText(true);
-	m_objectRect.setVisible(true);
-
-	/*	Attribute des 'collisionRect's sollen hier ausdrücklich nicht gesetzt werden
-	 *		Ob für das Objekt eine Kollisionsbox vorhanden sein soll, 
-	 *		wird erst bei den Erben von 'SDL_GameObject' (Player, Button, ...) festgelegt.
-	 */
-	m_collisionRect.setColor(0, 0, 255, 255);
-	m_collisionRect.setShowText(false);
-	m_collisionRect.setVisible(false);
+	m_objectRect.setVisible(true);	
 }
 
 void SDL_GameObject::update()
@@ -53,11 +45,18 @@ void SDL_GameObject::update()
 
 	//	Den Geschwindigkeitsvektor zum Ortsvektor addieren
 	m_objectRect.positionVector += m_velocity;
-	m_collisionRect.positionVector += m_velocity;
+	for (int i = 0; i<m_collisionRects.size(); i++)
+	{
+		m_collisionRects[i].positionVector += m_velocity;
+	}
+		
+	//	Im Debugmodus werden 'objectRect' und 'collisionRects' mitgeupdatet
+	for(int i = 0; i<m_collisionRects.size(); i++)
+	{
+		m_collisionRects[i].update();
+	}
 
-	//	Im Debugmodus werden 'objectRect' und 'collisionRect' mitgeupdatet
 	m_objectRect.update();
-	m_collisionRect.update();
 }
 
 void SDL_GameObject::draw()
@@ -73,7 +72,10 @@ void SDL_GameObject::draw()
 
 	//	Im Debugmodus werden 'objectRect' und 'collisionRect' mitgerendert
 	m_objectRect.draw();
-	m_collisionRect.draw();
+	for (int i = 0; i<m_collisionRects.size(); i++)
+	{
+		m_collisionRects[i].draw();
+	}
 }
 
 void SDL_GameObject::collision()
@@ -82,7 +84,11 @@ void SDL_GameObject::collision()
 	 *	damit die Bewegung aus 'update()' wieder rückgängig gemacht wird.
 	 */
 	m_objectRect.positionVector -= m_velocity;
-	m_collisionRect.positionVector -= m_velocity;
+	for (int i = 0; i<m_collisionRects.size(); i++)
+	{
+		m_collisionRects[i].positionVector -= m_velocity;
+	}
+
 	m_currentCol = 0; // TODO: wollen wir das?
 }
 

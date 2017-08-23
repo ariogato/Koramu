@@ -6,19 +6,19 @@
 
 class GameObject;
 
+using namespace tinyxml2;
+
 /*	Diese Klasse hat den Zweck Spielzustände aus der "states.xml" Datei auszulesen.
-*	Methoden geben bei Erfolg "true", andernfalls "false" zurück.
 *	
+*	Methoden geben bei Erfolg "true", andernfalls "false" zurück.
+*
 *	Der jeweilige State ruft die parse() Funktion einer Instanz des Parsers auf,
 *	sobald der State ganz oben im State-Stapel ist und seine onEnter() Funktion aufgerufen wird.
-*	Die parse() Funktion übergibt der State einen Pointer auf seine Liste aus GameObjects 
-*	(die muss er irgendwie von den Layern bekommen).
-*	
+*	Die parse() Funktion übergibt der State einen Pointer auf seine Liste aus GameObjects.
+*
 *	Die Methoden wurden als 'static' deklariert, um auch ohne Instanziierung eines Objektes auf
 *	sie zugreifen zu können.
 */
-
-using namespace tinyxml2;
 
 class StateParser
 {
@@ -28,9 +28,9 @@ public:
 	StateParser();			//	Konstruktor
 	~StateParser();			//	Destruktor
 
-	static bool parse(std::string filename, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);					//	Parsen initialisieren
+	static bool parse(std::string filename, std::vector<GameObject*>* pObjects, FiniteStateMachine::GameStateID stateID);				//	Parsen initialisieren
 
 private:
-	static bool loadTextures(XMLElement* pTextureNode);																		//	Texturen laden
+	static bool loadTextures(XMLElement* pTextureNode);																					//	Texturen laden
 	static bool loadGameObjects(XMLElement* pCurrentStateNode, std::vector<GameObject*>* pObjects);										//	GameObjects laden
 };
