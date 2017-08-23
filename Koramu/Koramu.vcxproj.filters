@@ -66,11 +66,11 @@
     <Filter Include="Quelldateien\Parser\MapParser">
       <UniqueIdentifier>{5e675f83-5b14-48c3-a09c-624e1a00cf7f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Parser\CollisionRectParser">
-      <UniqueIdentifier>{d99c3be4-6b64-4368-bbb6-3640fd8287aa}</UniqueIdentifier>
+    <Filter Include="Headerdateien\View">
+      <UniqueIdentifier>{4d726bc8-ca28-4361-a339-e53eadb152ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Parser\CollisionRectParser">
-      <UniqueIdentifier>{c220b0f5-bb8b-4652-bbd3-cf463f7128c9}</UniqueIdentifier>
+    <Filter Include="Quelldateien\View">
+      <UniqueIdentifier>{7145e9f2-b5a6-42cc-aa86-ddb5ba0e569e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +165,10 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\View</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>Quelldateien\View</Filter>
     </ClCompile>
     <ClCompile Include="CollisionRectParser.cpp">
       <Filter>Quelldateien\Parser\CollisionRectParser</Filter>
@@ -284,7 +287,10 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\View</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>Headerdateien\View</Filter>
     </ClInclude>
     <ClInclude Include="CollisionRectParser.h">
       <Filter>Headerdateien\Parser\CollisionRectParser</Filter>
