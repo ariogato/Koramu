@@ -129,6 +129,16 @@ bool CollisionRectParser::parse(std::string filename, std::vector<GameObject*>* 
 
 				//	"collsionRect"s zum "SDL_GameObject" hinzufügen
 				gameObjectSDL->addCollisionRects(tempCollisionRects);
+
+				/*	Über die geparsten "collisionRect"s iterieren und die Position des Objektes wieder vom Ortsvektor des "collisionRect"s subtrahieren.
+				*	Dies muss getan werden, damit die Position wieder relativ zum Objekt gespeichert ist 
+				*	und für das nächste Objekt korrekt berechnet wird.
+				*/
+				for (int i = 0; i < tempCollisionRects.size(); i++)
+				{
+					tempCollisionRects[i].positionVector.setX(tempCollisionRects[i].getX() - gameObject->getPosition().getX());
+					tempCollisionRects[i].positionVector.setY(tempCollisionRects[i].getY() - gameObject->getPosition().getY());
+				}
 			}
 		}
 	}
