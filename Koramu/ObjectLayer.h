@@ -36,6 +36,7 @@ namespace Environment
 		void objectTileCollision(GameObject* pGameObject);													//	Spielobjekt auf Kollision mit Tile überprüfen
 		bool rectRectCollisionX(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect);	//	Kollisionsermiitlung in x-Richtung
 		bool rectRectCollisionY(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect);	//	KOllisionsermittlung in y-Richtung
+		void objectObjectCollison(std::vector<GameObject*>* pMovingObjects);								//	Sich bewegende Spielobjekte auf Kollison mit anderen Spielobjekten überprüfen
 
 	};
 

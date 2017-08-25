@@ -38,14 +38,80 @@ void Environment::ObjectLayer::init(std::vector<GameObject*>* pGameObjects)
 
 void Environment::ObjectLayer::update()
 {
+	//	Array, in welchem Objekte gespeichert werden, die aktuell in Bewegung sind (für "objectObjectCollision")
+	std::vector<GameObject*> movingObjects;
+		
 	/*	Jedes Spielobjekt wird iterativ geupdatet
-	 *	Außerdem wird bei jedem Objekt gecheckt, ob eine Kollision vorliegt
+	 *	Außerdem wird bei jedem, sich bewegenden, Objekt gecheckt, ob eine Kollision vorliegt
 	 */
 	for (GameObject* g : *m_pGameObjects)
 	{
 		g->update();
-		objectTileCollision(g);
+
+		//	Es wird gecheckt, ob das Objekt in Bewegung ist
+		if(g->getVelocity().getLength())
+		{
+			//	Das Objekt bewegt sich und wird daher in "movingObjects" eingetragen
+			movingObjects.push_back(g);
+
+			//	Das, sich bewegende, Objekt wird auf Kollision mit Tiles überprüft
+			objectTileCollision(g);
+		}
 	}
+
+	//	Die Objekte in Bewegung ("movingObjects") werden auf Kollision mit anderen Objekten überprüft
+	objectObjectCollison(&movingObjects);
+
+	/*	Der nachfolgende Code ist für das sogenannte "Z-ordering" zuständig.
+	 *	Wieso wir das machen und was das genau bedeutet, ist in Ticket #34 "Z-Order Rendering" festgehalten.
+	 *	
+	 *	Die Spielobjekte ("m_pGameObjects") werden aufsteigend nach dem am weitesten unten liegenden Punkt (größter y-Wert)
+	 *	ihrer Kollisionsrechtecke sortiert. Ein kleinerer y-Wert bedeuetet, dass sie weiter vorne im "std::vector" stehen und
+	 *	demnach zuerst gerendert werden. Dadurch entsteht für den Betrachter der Eindruck von Tiefe.
+	 *	
+	 *	Die Sortierung wird erreicht, indem wir "std::sort()" über den "std::vector" iterieren lassen und im dritten Parameter
+	 *	eine (Lambda-)Funktion definieren, nach der geordnet wird.
+	 */
+	std::sort(m_pGameObjects->begin(), m_pGameObjects->end(), [](const GameObject* objectA, const GameObject* objectB)
+	{
+		//	Kollisionsrechtecke der zu vergleichenden Objekte (objectA und objectB) holen
+		std::vector<ObjectRectangle> collisionRectsA = objectA->getCollisionRects();
+		std::vector<ObjectRectangle> collisionRectsB = objectB->getCollisionRects();
+
+		//	Speicher für den maximalen y-Wert der Kollisionsrechtecke der beiden Objekte
+		int maxValueA = 0; 
+		int maxValueB = 0;
+
+		//	Über die Kollisonsrechtecke von "objectA" iterieren
+		for(auto collisionRect : collisionRectsA)
+		{
+			/*	Ist der maximale y-Wert des aktuellen Kollisionsrechtecks größer, 
+			 *	als der bisher ermittlete Maximalwert, so wird er als neuer Maximalwert festgelegt
+			 */
+			if( (collisionRect.getY() + collisionRect.getHeight()) > maxValueA)
+			{
+				maxValueA = (collisionRect.getY() + collisionRect.getHeight());
+			}
+		}
+
+		//	Über die Kollisonsrechtecke von "objectB" iterieren
+		for (auto collisionRect : collisionRectsB)
+		{
+			/*	Ist der maximale y-Wert des aktuellen Kollisionsrechtecks größer,
+			*	als der bisher ermittlete Maximalwert, so wird er als neuer Maximalwert festgelegt
+			*/
+			if ((collisionRect.getY() + collisionRect.getHeight()) > maxValueB)
+			{
+				maxValueB = (collisionRect.getY() + collisionRect.getHeight());
+			}
+		}
+
+		/*	Vergleichen der beiden Maximalwerte und Rückgabe eines für "std::sort()" verwertbaren Wahrheitswertes
+		 *	
+		 *	(Das "<"-Zeichen sorgt für eine aufsteigende Sortierung, ">" hätte eine absteigende zur Folge)
+		 */
+		return maxValueA < maxValueB;
+	});
 }
 
 void Environment::ObjectLayer::render()
@@ -54,6 +120,11 @@ void Environment::ObjectLayer::render()
 	for (GameObject* g : *m_pGameObjects)
 		g->draw();
 }
+
+
+/*	Die nachfolgenden vier Methoden beschäftigen sich mit der Kollisonserkennung. 
+ *	Für grundlegenede Informationen hierzu siehe: https://github.com/ariogato/Koramu/wiki/Unsere-Spielkonzepte -> Collsion Detection
+ */
 
 void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 {
@@ -68,68 +139,64 @@ void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 	//	Ein Zwischenspeicher für die Geschwindigkeit des Objekts
 	Vector2D objectVelocity = pGameObject->getVelocity();
 
-	//	Zuerst wird gecheckt, ob das Objekt sich überhaupt bewegt
-	if (objectVelocity.getLength() > 0)
+	//	Es wird über die Kollisionsrechtecke des Objekts iteriert, um jedes einzelne auf Kollision zu überprüfen
+	for(auto collisionRect : pGameObject->getCollisionRects())
 	{
-		//	Es wird über die Kollisionsrectecke des Objekts iteriert, um jedes einzelne auf Kollision zu übeprüfen
-		for(auto collisionRect : pGameObject->getCollisionRects())
-		{
-			/*	Der Ortsvektor des Objekts wird kopiert.
-			*	Der 'collisionVector' soll in die Richtung/auf den Tile zeigen,
-			*	in der eine Kollision möglich wäre.
-			*/
-			Vector2D collisionVector = collisionRect.positionVector;
+		/*	Der Ortsvektor des Objekts wird kopiert.
+		*	Der 'collisionVector' soll in die Richtung/auf den Tile zeigen,
+		*	in der eine Kollision möglich wäre.
+		*/
+		Vector2D collisionVector = collisionRect.positionVector;
 				
-			//	Es wird über die Kollisionslayer iteriert, um zu checken ob eine Kollision mit einem Tile auf dem Kollisionlayer vorliegt
-			for (auto layer : *m_pCollisionLayers)
-			{
-					//	Hier wird geschaut, in welche Richtung sich das Objekt im Moment bewegt
-					if (objectVelocity.getX() > 0)													//	nach rechts
-					{
-						//	Die Breite zur x-Komponente des Ortsvektors addieren
-						collisionVector.setX(collisionVector.getX() + collisionRect.getWidth());
+		//	Es wird über die Kollisionslayer iteriert, um zu checken, ob eine Kollision mit einem Tile auf dem Kollisionlayer vorliegt
+		for (auto layer : *m_pCollisionLayers)
+		{
+				//	Hier wird geschaut, in welche Richtung sich das Objekt im Moment bewegt
+				if (objectVelocity.getX() > 0)													//	nach rechts
+				{
+					//	Die Breite zur x-Komponente des Ortsvektors addieren
+					collisionVector.setX(collisionVector.getX() + collisionRect.getWidth());
 
-						//	Auf Kollision in x-Richtung überprüfen und entsprechend reagieren
-						if (rectRectCollisionX(layer, collisionVector, &collisionRect))
-						{
-							pGameObject->collision();
-							return;
-						}
-					}
-					if (objectVelocity.getX() < 0)													//	nach links
+					//	Auf Kollision in x-Richtung überprüfen und entsprechend reagieren
+					if (rectRectCollisionX(layer, collisionVector, &collisionRect))
 					{
-						//	Auf Kollision in x-Richtung überprüfen und entsprechend reagieren
-						if (rectRectCollisionX(layer, collisionVector, &collisionRect))
-						{
-							pGameObject->collision();
-							return;
-						}
+						pGameObject->collision();
+						return;
 					}
-					if (objectVelocity.getY() > 0)													//	nach unten
-					{
-						//	Die Höhe zur y-Komponente des Ortsvektors addieren
-						collisionVector.setY(collisionVector.getY() + collisionRect.getHeight());
-
-						//	Auf Kollision in y-Richtung überprüfen und entsprechend reagieren
-						if (rectRectCollisionY(layer, collisionVector, &collisionRect))
-						{
-							pGameObject->collision();
-							return;
-						}
-					}
-					if (objectVelocity.getY() < 0)													//	nach oben
-					{
-						//	Auf Kollision in y-Richtung überprüfen und entsprechend reagieren
-						if (rectRectCollisionY(layer, collisionVector, &collisionRect))
-						{
-							pGameObject->collision();
-							return;
-						}
-					}
-
 				}
+				if (objectVelocity.getX() < 0)													//	nach links
+				{
+					//	Auf Kollision in x-Richtung überprüfen und entsprechend reagieren
+					if (rectRectCollisionX(layer, collisionVector, &collisionRect))
+					{
+						pGameObject->collision();
+						return;
+					}
+				}
+				if (objectVelocity.getY() > 0)													//	nach unten
+				{
+					//	Die Höhe zur y-Komponente des Ortsvektors addieren
+					collisionVector.setY(collisionVector.getY() + collisionRect.getHeight());
+
+					//	Auf Kollision in y-Richtung überprüfen und entsprechend reagieren
+					if (rectRectCollisionY(layer, collisionVector, &collisionRect))
+					{
+						pGameObject->collision();
+						return;
+					}
+				}
+				if (objectVelocity.getY() < 0)													//	nach oben
+				{
+					//	Auf Kollision in y-Richtung überprüfen und entsprechend reagieren
+					if (rectRectCollisionY(layer, collisionVector, &collisionRect))
+					{
+						pGameObject->collision();
+						return;
+					}
+				}
+
 			}
-	}
+		}
 }
 
 bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D rectVector, ObjectRectangle* collisionRect)
@@ -369,7 +436,7 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 			}
 			/*	Der "rectVector" wird solange es möglich ist in 64er-Schritten nach rechts verschoben.
 			*
-			*	Dannach wird er um genau den Wert nach rechts verschoben, der zur rechten Kannte des "collisionRects" fehlt.
+			*	Dannach wird er um genau den Wert nach rechts verschoben, der zur rechten Kannte des "collisionRect"s fehlt.
 			*
 			*	Damit wir keine Endlosschleife erzeugen, verschiebem wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach rechts.
 			*/
@@ -383,4 +450,79 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 	}
 	//	Es liegt keine Kollision vor
 	return false;
+}
+
+void Environment::ObjectLayer::objectObjectCollison(std::vector<GameObject*>* pMovingObjects)
+{
+	//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
+	int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
+	int bottomA, bottomB;				//	y-Wert von Punkten auf der unteren Kante
+	int leftA, leftB;					//	x-Wert von Punkten auf der linken Kante
+	int rightA, rightB;					//	x-Wert von Punkten auf der rechten Kante
+
+	//	Über die übergebenen, sich bewegenden, Objekte iterieren
+	for(GameObject* gA : *pMovingObjects)
+	{
+		//	Variable, die festhält, ob bereits eine Kollision für das aktuelle Objekt festgestellt wurde
+		bool collision = false;
+
+		//	Über die Kollisionsrechtecke des aktuellen Spielobjekts iterieren
+		for(auto collisionRectA : gA->getCollisionRects())
+		{
+			/*	Über alle Spielobjekte iterieren, um das aktuelle Kollisionsrechteck auf Kollision mit den Kollisionsrechtecken dieser zu überprüfen.
+			 *	
+			 *	Dies ist sehr naiv und ineffizient, da die meisten Objekte viel zu weit weg sind, als dass es überhaupt Sinn macht, auf Kollision mit ihnen zu überprüfen.
+			 *	Hier muss man sich bei evtl. auftretenden Performanzproblemen noch etwas geschickteres einfallen lassen (Idee: Quad Trees).
+			 */
+			for(GameObject* gB : *m_pGameObjects)
+			{
+				//	Wenn das Objekt das selbe ist, wie das aktuelle Objekt aus "pMovingObjekts", soll mit dem nächsten Objekt weiter gemacht werden
+				if(gA == gB)
+					continue;
+
+				//	Über die Kollisionsrechtecke des Spielobjekts "gB" iterieren
+				for(auto collisionRectB : gB->getCollisionRects())
+				{
+					/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+					 *	
+					 *	Zu vergleichen sind "collisionRectA", das aktuell betrachtete Kollisionsrechteck von "gA"
+					 *	und "collsionRectB", das aktuell betrachtete Kollisionrechteck von "gB"
+					 */
+					leftA = collisionRectA.getX();
+					leftB = collisionRectB.getX();
+
+					rightA = collisionRectA.getX() + collisionRectA.getWidth();
+					rightB = collisionRectB.getX() + collisionRectB.getWidth();
+
+					topA = collisionRectA.getY();
+					topB = collisionRectB.getY();
+
+					bottomA = collisionRectA.getY() + collisionRectA.getHeight();
+					bottomB = collisionRectB.getY() + collisionRectB.getHeight();
+
+					//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+					{
+						//	Kollision für "gA" auslösen
+						gA->collision();
+
+						//	Festhalten, dass bereits eien Kollision für "gA" festgestellt wurde
+						collision = true;
+
+						//	Diesen for-loop verlassen
+						break;
+					}
+					//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
+					if (collision)
+						break;
+				}
+				//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
+				if (collision)
+					break;
+			}
+			//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
+			if (collision)
+				break;
+		}
+	}
 }
