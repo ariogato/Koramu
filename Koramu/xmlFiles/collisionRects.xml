@@ -2,9 +2,7 @@
 
 <objects>
   <objectType name="tree">
-    <collisionRect xPos="41" yPos="204" width="22" height="22" />
-    <collisionRect xPos="64" yPos="192" width="64" height="37" />
+    <collisionRect xPos="0" yPos="192" width="192" height="37" />
     <collisionRect xPos="81" yPos="229" width="22" height="14" />
-    <collisionRect xPos="128" yPos="204" width="17" height="26" />
   </objectType>  
 </objects>

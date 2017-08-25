@@ -24,9 +24,9 @@ void Player::load(const ParamLoader& params)
 	float offsetX, offsetY;
 	int collisionWidth, collisionHeight;
 
-	collisionWidth = 70;
+	collisionWidth = 60;
 	collisionHeight = 30;
-	offsetX = params.getWidth() - collisionWidth;
+	offsetX = 5;	
 	offsetY = params.getHeight() - collisionHeight;
 
 	collisionParams.setX(params.getX() + offsetX);
