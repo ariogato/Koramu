@@ -66,7 +66,7 @@ void Environment::ObjectLayer::update()
 	 *	Wieso wir das machen und was das genau bedeutet, ist in Ticket #34 "Z-Order Rendering" festgehalten.
 	 *	
 	 *	Die Spielobjekte ("m_pGameObjects") werden aufsteigend nach dem am weitesten unten liegenden Punkt (größter y-Wert)
-	 *	ihrer Kollisionsrechtecke sortiert. Ein kleinerer y-Wert bedeuetet, dass sie weiter vorne im "std::vector" stehen und
+	 *	ihrer Kollisionsrechtecke sortiert. Ein kleinerer y-Wert bedeutet, dass sie weiter vorne im "std::vector" stehen und
 	 *	demnach zuerst gerendert werden. Dadurch entsteht für den Betrachter der Eindruck von Tiefe.
 	 *	
 	 *	Die Sortierung wird erreicht, indem wir "std::sort()" über den "std::vector" iterieren lassen und im dritten Parameter
@@ -86,7 +86,7 @@ void Environment::ObjectLayer::update()
 		for(auto collisionRect : collisionRectsA)
 		{
 			/*	Ist der maximale y-Wert des aktuellen Kollisionsrechtecks größer, 
-			 *	als der bisher ermittlete Maximalwert, so wird er als neuer Maximalwert festgelegt
+			 *	als der bisher ermittelte Maximalwert, so wird er als neuer Maximalwert festgelegt
 			 */
 			if( (collisionRect.getY() + collisionRect.getHeight()) > maxValueA)
 			{
@@ -98,7 +98,7 @@ void Environment::ObjectLayer::update()
 		for (auto collisionRect : collisionRectsB)
 		{
 			/*	Ist der maximale y-Wert des aktuellen Kollisionsrechtecks größer,
-			*	als der bisher ermittlete Maximalwert, so wird er als neuer Maximalwert festgelegt
+			*	als der bisher ermittelte Maximalwert, so wird er als neuer Maximalwert festgelegt
 			*/
 			if ((collisionRect.getY() + collisionRect.getHeight()) > maxValueB)
 			{
@@ -108,7 +108,7 @@ void Environment::ObjectLayer::update()
 
 		/*	Vergleichen der beiden Maximalwerte und Rückgabe eines für "std::sort()" verwertbaren Wahrheitswertes
 		 *	
-		 *	(Das "<"-Zeichen sorgt für eine aufsteigende Sortierung, ">" hätte eine absteigende zur Folge)
+		 *	(Das "<"-Zeichen sorgt für eine aufsteigende Sortierung, ">" hätte eine absteigende Sortierung zur Folge)
 		 */
 		return maxValueA < maxValueB;
 	});
@@ -123,7 +123,7 @@ void Environment::ObjectLayer::render()
 
 
 /*	Die nachfolgenden vier Methoden beschäftigen sich mit der Kollisonserkennung. 
- *	Für grundlegenede Informationen hierzu siehe: https://github.com/ariogato/Koramu/wiki/Unsere-Spielkonzepte -> Collsion Detection
+ *	Für grundlegenede Informationen hierzu siehe: https://github.com/ariogato/Koramu/wiki/Unsere-Spielkonzepte -> Collision Detection
  */
 
 void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
@@ -132,7 +132,7 @@ void Environment::ObjectLayer::objectTileCollision(GameObject* pGameObject)
 	if (!m_pCollisionLayers->size())
 		return;
 	
-	//	Besitzt das Objekt keine Kolllisionsboxen, so kann es auch nicht kollidieren
+	//	Besitzt das Objekt keine Kollisionsboxen, so kann es auch nicht kollidieren
 	if (!pGameObject->getCollisionRects().size())
 		return;
 
@@ -220,7 +220,7 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D re
 			 */
 			if(destinationTileId)
 			{
-				//	Ermmitteln des Tilesets, auf dem sich das betreffende Tile befindet
+				//	Ermitteln des Tilesets, auf dem sich das betreffende Tile befindet
 				Tileset tSet;
 				for (int i = 0; i < pLayer->getTilesets().size(); i++)
 				{
@@ -253,9 +253,9 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D re
 						//	Aktuelle Kollisionsbox kopieren
 						Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
 
-						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+						/*	Im folgenden werden die Extremwerte der zu vergleichenden Rechtecke ermittelt.
 						*
-						*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+						*	Zu vergleichen sind das übergebene Kollisionsrechteck des Spielobjekts ("collisionRect")
 						*	und die aktuelle Kollisionsbox ("cBox").
 						*
 						*	x- und y-Position der Kollisionsbox sind relativ zur Position des Tiles gespeichert
@@ -280,12 +280,12 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D re
 					}
 				}
 
-				//	Ermitteln, ob noch auf Kollsion mit dem gesamten Tile überprüft werden soll
+				//	Ermitteln, ob noch auf Kollision mit dem gesamten Tile überprüft werden soll
 				if (collisionWithEntireTile)
 				{
 						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
 						*
-						*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+						*	Zu vergleichen sind das übergebene Kollisionsrechteck des Spielobjekts ("collisionRect")
 						*	und das aktuelle Tile (64px x 64px).
 						*/
 						leftA = collisionRect->getX();
@@ -300,7 +300,7 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D re
 						bottomA = collisionRect->getY() + collisionRect->getHeight();
 						bottomB = y + 64;
 
-						//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+						//	Wenn folgende Bedingungen alle zutreffen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
 						if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
 						{
 							return true;
@@ -309,9 +309,9 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D re
 			}
 			/*	Der "rectVector" wird solange es möglich ist in 64er-Schritten nach unten verschoben.
 			*
-			*	Dannach wird er um genau den Wert nach unten verschoben, der zur unteren Kannte des "collisionRect"s fehlt.
+			*	Danach wird er um genau den Wert nach unten verschoben, der zur unteren Kannte des "collisionRect"s fehlt.
 			*
-			*	Damit wir keine Endlosschleife erzeugen, verschiebem wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach unten.
+			*	Damit wir keine Endlosschleife erzeugen, verschieben wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach unten.
 			*/
 			if (rectVector.getY() + 64 <= collisionRect->getY() + collisionRect->getHeight())
 				rectVector.setY(rectVector.getY() + 64);
@@ -330,7 +330,7 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 	//	Überprüfen, ob das aktuelle "Layer" überhaupt Tiles hat
 	if (pLayer->getTilesets().size())
 	{
-		//	Der "rectVector" wird so lange in x-Richtung verschoben, bis er auf alle für die Kollisionerkennung relevanten Tiles gezeigt hat
+		//	Der "rectVector" wird so lange in x-Richtung verschoben, bis er auf alle für die Kollisionserkennung relevanten Tiles gezeigt hat
 		while (rectVector.getX() <= collisionRect->getX() + collisionRect->getWidth())
 		{
 
@@ -347,7 +347,7 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 			*/
 			if (destinationTileId)
 			{
-				//	Ermmitteln des Tilesets, auf dem sich das betreffende Tile befindet
+				//	Ermitteln des Tilesets, auf dem sich das betreffende Tile befindet
 				Tileset tSet;
 				for (int i = 0; i < pLayer->getTilesets().size(); i++)
 				{
@@ -371,7 +371,7 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 				//	Überprüfen, ob das Tile, in "Tiled" festgelegte, Kollisionsboxen besitzt
 				if (tSet.collisionMap.count(destinationTileId - tSet.firstgid))
 				{
-					//	Das Tile besitzt Kollisionboxen - es muss nur noch die Kollision mit diesen überprüft werden
+					//	Das Tile besitzt Kollisionsboxen - es muss nur noch die Kollision mit diesen überprüft werden
 					collisionWithEntireTile = false;
 
 					//	Über die Kollisionsboxen des Tiles iterieren
@@ -380,9 +380,9 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 						//	Aktuelle Kollisionsbox kopieren
 						Collisionbox cBox = tSet.collisionMap[destinationTileId - tSet.firstgid][i];
 
-						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+						/*	Im folgenden werden die Extremwerte der zu vergleichenden Rechtecke ermittelt.
 						*
-						*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+						*	Zu vergleichen sind das übergebene Kollisionsrechteck des Spielobjekts ("collisionRect")
 						*	und die aktuelle Kollisionsbox ("cBox").
 						*
 						*	x- und y-Position der Kollisionsbox sind relativ zur Position des Tiles gespeichert
@@ -399,7 +399,7 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 						bottomA = collisionRect->getY() + collisionRect->getHeight();
 						bottomB = topB + cBox.height;
 
-						//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+						//	Wenn folgende Bedingungen alle zutreffen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
 						if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
 						{
 							return true;
@@ -407,12 +407,12 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 					}
 				}
 
-				//	Ermitteln, ob noch auf Kollsion mit dem gesamten Tile überprüft werden soll
+				//	Ermitteln, ob noch auf Kollision mit dem gesamten Tile überprüft werden soll
 				if (collisionWithEntireTile)
 				{
 					/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
 					*
-					*	Zu vergleichen sind das übergebene Kollisionrechteck des Spielobjekts ("collisionRect")
+					*	Zu vergleichen sind das übergebene Kollisionsrechteck des Spielobjekts ("collisionRect")
 					*	und das aktuelle Tile (64px x 64px).
 					*/
 					leftA = collisionRect->getX();
@@ -436,9 +436,9 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 			}
 			/*	Der "rectVector" wird solange es möglich ist in 64er-Schritten nach rechts verschoben.
 			*
-			*	Dannach wird er um genau den Wert nach rechts verschoben, der zur rechten Kannte des "collisionRect"s fehlt.
+			*	Danach wird er um genau den Wert nach rechts verschoben, der zur rechten Kante des "collisionRect"s fehlt.
 			*
-			*	Damit wir keine Endlosschleife erzeugen, verschiebem wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach rechts.
+			*	Damit wir keine Endlosschleife erzeugen, verschieben wir den "rectVector" im nächsten Schleifendurchlauf um 1 nach rechts.
 			*/
 			if (rectVector.getX() + 64 <= collisionRect->getX() + collisionRect->getWidth())
 				rectVector.setX(rectVector.getX() + 64);
@@ -483,10 +483,10 @@ void Environment::ObjectLayer::objectObjectCollison(std::vector<GameObject*>* pM
 				//	Über die Kollisionsrechtecke des Spielobjekts "gB" iterieren
 				for(auto collisionRectB : gB->getCollisionRects())
 				{
-					/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+					/*	Im folgenden werden die Extremwerte der zu vergleichenden Rechtecke ermittelt.
 					 *	
 					 *	Zu vergleichen sind "collisionRectA", das aktuell betrachtete Kollisionsrechteck von "gA"
-					 *	und "collsionRectB", das aktuell betrachtete Kollisionrechteck von "gB"
+					 *	und "collsionRectB", das aktuell betrachtete Kollisionsrechteck von "gB"
 					 */
 					leftA = collisionRectA.getX();
 					leftB = collisionRectB.getX();
@@ -500,13 +500,13 @@ void Environment::ObjectLayer::objectObjectCollison(std::vector<GameObject*>* pM
 					bottomA = collisionRectA.getY() + collisionRectA.getHeight();
 					bottomB = collisionRectB.getY() + collisionRectB.getHeight();
 
-					//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+					//	Wenn folgende Bedingungen alle zutreffen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
 					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
 					{
 						//	Kollision für "gA" auslösen
 						gA->collision();
 
-						//	Festhalten, dass bereits eien Kollision für "gA" festgestellt wurde
+						//	Festhalten, dass bereits eine Kollision für "gA" festgestellt wurde
 						collision = true;
 
 						//	Diesen for-loop verlassen
