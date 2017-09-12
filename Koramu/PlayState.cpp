@@ -6,10 +6,14 @@
 #include "PauseState.h"
 #include "ParamLoader.h"
 #include "CollisionRectParser.h"
+#include "Camera.h"
 
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
 	m_stateID = playState;
+	//	"m_pCenterObject" enhält das Spielobjekt, auf welches die Kamera für diesen Zustand zentriert werden soll
+	//	"nullptr" setzt die Position der Kamera in "update()" auf (0|0)
+	m_pCenterObject = nullptr;
 }
 
 FiniteStateMachine::PlayState::~PlayState()		//	Konstruktor
@@ -54,6 +58,8 @@ void FiniteStateMachine::PlayState::onEnter()
 		}
 	}
 
+	m_pCenterObject = dynamic_cast<SDL_GameObject*>(pObjects->at(0));
+
 	//	Die Anfangsmap aufstapeln
 	m_maps.push(m_mapDict["mainMap"]);
 	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
@@ -76,6 +82,9 @@ void FiniteStateMachine::PlayState::handleInput()
 
 void FiniteStateMachine::PlayState::update()
 {
+	//	Kamera auf das aktuell "zentrale Objekt" dieses Spielzustandes zentrieren
+	TheGame::Instance()->getCamera()->centerOnGameObject(m_pCenterObject);
+
 	//	Die aktuelle Map wird geupdatet
 	m_maps.getTopNodeData()->update();
 
@@ -92,7 +101,7 @@ void FiniteStateMachine::PlayState::update()
 }
 
 void FiniteStateMachine::PlayState::render()
-{
+{	 
 	//	Die aktuelle Map wird gerendert
 	m_maps.getTopNodeData()->render();
 }

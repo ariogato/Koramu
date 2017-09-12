@@ -32,16 +32,11 @@ void Camera::centerOnGameObject(SDL_GameObject* object)
 	 *	Zu diesem Zwecke speichern wir eine Referenz auf ein Spielobjekt.
 	 *	Die Memberfunktion 'update()' errechnet dann aus der Position des Objektes
 	 *	die Position der Kamera. (auf der Map)
+	 *	
+	 *	Es kann auch "nullptr" übergeben werden. Hier wird die Position der Kamera auf (0|0) gesetzt.
 	 */
-
-	//	Es wird gecheckt, ob 'nullptr' übergeben wurde
-	if (!object)
-	{
-		TheGame::Instance()->logError() << "Camera::centerOnGameObject():\n\tEs wurde nullptr übergeben!" << std::endl << std::endl;
-		return;
-	}
-
 	m_pCenterObject = object;
+	update();
 }
 
 void Camera::move(Vector2D& vector)
@@ -55,25 +50,52 @@ void Camera::update()
 	/*	Hier wird der Ortsvektor der Kamera so berrechnet, dass 
 	 *	das zentrierte Objekt immer im Mittelpunkt der Kamera steht.
 	 */
-
+	
 	//	Checken ob überhaupt ein zu zentrierdendes Objekt vorhanden ist
 	if (m_pCenterObject)
 	{
 		/*	Berrechnung:
 		 *		1. Zuerst wird der Vektor einfach übernommen.
-		 *		2. Danach soll von den Komponenten jeweils Breite bei x bzw. Höhe bei y
+		 *		2. Danach soll von den Komponenten jeweils die Hälfte der Breite bei x bzw. der Höhe bei y
 		 *		   abgezogen werden.
-		 *		3. Zuletzt soll die Hälfte der Breite bei x bzw. Höhe bei y zu den Komponenten addiert werden,
+		 *		3. Zuletzt soll die Hälfte der Breite des zu zentrierenden Objekts bei x bzw. der Höhe bei y zu den Komponenten addiert werden,
 		 *		   damit das 'SDL_GameObject' tatsächlich ganz in der Mitte der Kamera ist. 
 		 */
 
-		m_positionVector = m_pCenterObject->getPosition();
+		Vector2D tempVector = m_pCenterObject->getPosition();
 		
-		m_positionVector.setX(m_positionVector.getX() - static_cast<float>(m_cameraWidth));
-		m_positionVector.setY(m_positionVector.getY() - static_cast<float>(m_cameraHeight));
+		tempVector.setX(tempVector.getX() - static_cast<float>(m_cameraWidth) / 2.0f);
+		tempVector.setY(tempVector.getY() - static_cast<float>(m_cameraHeight) / 2.0f);
 
-		m_positionVector.setX(m_positionVector.getX() + static_cast<float>(m_pCenterObject->getWidth()) / 2.0f);
-		m_positionVector.setY(m_positionVector.getY() + static_cast<float>(m_pCenterObject->getHeight()) / 2.0f);
+		tempVector.setX(tempVector.getX() + static_cast<float>(m_pCenterObject->getWidth()) / 2.0f);
+		tempVector.setY(tempVector.getY() + static_cast<float>(m_pCenterObject->getHeight()) / 2.0f);
+
+		//	Hier wird sichergestellt, dass die Kamera die Grenzen der Map nicht verlässt.
+		//	Todo: aktuell sind die Grenzen der Map noch hard gecodet, das muss sich ändern --> wir brauchen Variablen
+		//	Idee: Maximale Werte der aktuellen Map in der "Camera"-Klasse festhalten.
+		if (tempVector.getX() <= 0)
+		{
+			//	Es wird verhindert, dass die Kamera die linke Grenze nicht überschreitet
+			tempVector.setX(0.0f);
+		}
+		if(tempVector.getY() <= 0)
+		{
+			//	Es wird verhindet, dass die obere Grenze überschritten wird
+			tempVector.setY(0.0f);
+		}
+		if(tempVector.getX() + m_cameraWidth >= 6400)
+		{
+			//	Es wird verhindert, dass die rechte Grenze überschritten wird
+			tempVector.setX(6400 - m_cameraWidth);
+		}
+		if(tempVector.getY() + m_cameraHeight >= 5120)
+		{
+			//	Es wird verhindert, dass die untere Grente überschritten wird
+			tempVector.setY(5120 - m_cameraHeight);
+		}
+
+		//	Der korrekte Vektor wird übernommen
+		m_positionVector = tempVector;
 	}
 	else
 	{

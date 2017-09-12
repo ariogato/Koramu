@@ -40,7 +40,7 @@ public:
 
 	virtual void load(const ParamLoader& parameters);			//	Hier wird das Objekt geladen
 	virtual void update();										//	Hier werden die Membervariablen aktualisiert
-	virtual void draw();										//	Hier wird das Objekt auf den Bildschirm geschmissen
+	virtual void draw(const Vector2D& layerPosition);										//	Hier wird das Objekt auf den Bildschirm geschmissen
 
 	virtual void collision();									//	Hier wird festgelegt, was passiert, wenn das Objekt kollidiert
 

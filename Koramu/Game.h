@@ -57,6 +57,9 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
+	//	Kamera 
+	Camera* m_pCamera;
+
 	//	Zustandsmaschine
 	FiniteStateMachine::GameStateMachine* m_pStateMachine;
 
@@ -78,7 +81,7 @@ private:
 	bool isPopState = false;
 
 public:
-	bool init(	std::string title,		//	Das Spiel (und SDL) initialisieren
+	bool init(	std::string title,				//	Das Spiel (und SDL) initialisieren
 		int width, int height, 
 		int xPos, int yPos, 
 		int flags);
@@ -96,6 +99,7 @@ public:
 	//	getter-Funktionen
 	SDL_Window* getWindow() { return m_pWindow; }
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
+	Camera* getCamera() const { return m_pCamera; }
 	bool isRunning() const { return m_running; }
 	int getGameWidth() const { return m_gameWidth; }
 	int getGameHeight() const { return m_gameHeight; }

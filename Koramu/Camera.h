@@ -31,6 +31,7 @@ public:
 	Vector2D getPositionVector() const { return m_positionVector; }
 	int getCameraWidth() const { return m_cameraWidth; }
 	int getCameraHeight() const { return m_cameraHeight; }
+	SDL_GameObject* getCenterObject() const { return m_pCenterObject; }
 
 	//	setter-Funktionen
 	void setPositionVector(Vector2D vector) { m_positionVector = vector; }

@@ -15,7 +15,7 @@ public:
 
 	virtual void load(const ParamLoader& params);
 	virtual void update();
-	virtual void draw();
+	virtual void draw(const Vector2D& layerPosition);
 };
 
 /*

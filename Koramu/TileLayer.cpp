@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "ObjectRectangle.h"
 #include "ParamLoader.h"
+#include "Camera.h"
 
 Environment::TileLayer::TileLayer()
 {
@@ -33,7 +34,27 @@ void Environment::TileLayer::update()
 
 void Environment::TileLayer::render()
 {
-	//	Die folgenden for-Schleifen iterieren über alle Tiles, damit jedes einzeln gerendert werden kann.
+	/*	Im Folgenden wird für jedes Tile des "TileLayer"s überprüft, ob es sich (zumindest teilweise)
+	*	innerhalb des durch die Kamera festgelegten Rechtecks befindet.
+	*	Nur Tiles, für die das der Fall ist sollen gezeichnet werden. Die anderen sind für den Benutzer sowieso nicht sichtbar.
+	*
+	*	Diese Überprüfung ähnelt stark der Kollisionserkennung. Betrachtet werden hier die Tiles und das, durch die
+	*	Kamera festgelegte Rechteck. Für weitere Informationen siehe "ObjectLayer.cpp" oder unser Wiki.
+	*/
+
+	//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
+	int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
+	int bottomA, bottomB;				//	y-Wert von Punkten auf der unteren Kante
+	int leftA, leftB;					//	x-Wert von Punkten auf der linken Kante
+	int rightA, rightB;					//	x-Wert von Punkten auf der rechten Kante
+
+	//	Extremwerte des durch die Kamera festgelegten Rechtecks
+	topA = TheGame::Instance()->getCamera()->getPositionVector().getY();
+	bottomA = topA + TheGame::Instance()->getCamera()->getCameraHeight();
+	leftA = TheGame::Instance()->getCamera()->getPositionVector().getX();
+	rightA = leftA + TheGame::Instance()->getCamera()->getCameraWidth();
+
+	//	Die folgenden for-Schleifen iterieren über alle Tiles, damit jedes, das obige Bedingung erfüllt, gerendert werden kann.
 	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		for (int j = 0; j < m_tiles[i].size(); j++)
@@ -48,39 +69,42 @@ void Environment::TileLayer::render()
 				return tileId < t.firstgid + t.tilecount;
 			});
 
-			
-			//	Zuletzt wird das Tile mit Hilfe des 'TextureManager's gerenderts.
-			TheTextureManager::Instance()->drawTile(*tilesetToUse, m_tiles[i][j]->getTileID(), j * 64 + m_tiles[i][j]->getPostionVector().getX(), i * 64 + m_tiles[i][j]->getPostionVector().getY());
+			//	Extremwerte des aktuellen Tiles
+			topB = i * 64 + m_tiles[i][j]->getPostionVector().getY();
+			bottomB = topB + 64;
+			leftB = j * 64 + m_tiles[i][j]->getPostionVector().getX();
+			rightB = leftB + 64;
 
-			if(tilesetToUse->collisionMap.count(tileId - tilesetToUse->firstgid))
+			//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - das Tile soll gerendert werden
+			if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
 			{
-				for (int k = 0; k < tilesetToUse->collisionMap[tileId - tilesetToUse->firstgid].size(); k++)
+				/*	Zuletzt wird das Tile mit Hilfe des 'TextureManager's gerendert.
+				 *	Die Posiition ist dabei abhängig von der Position des Layers, welche abhängig von der Position der Kamera ist
+				 *	und in "Map::update()" für jeden Frame aktualisiert wird.
+				 */
+				TheTextureManager::Instance()->drawTile(*tilesetToUse, m_tiles[i][j]->getTileID(), j * 64 + m_tiles[i][j]->getPostionVector().getX() + m_positionVector.getX(), i * 64 + m_tiles[i][j]->getPostionVector().getY() + m_positionVector.getY());
+				
+				//	Folgender Code zeichnet die Kollisionsrechtecke des Tiles, falls es welche hat. Dies ist nur zum Debuggen wichtig, bedarf also keiner ausführlichen Erklärung.
+				if (tilesetToUse->collisionMap.count(tileId - tilesetToUse->firstgid))
 				{
-					Collisionbox cBox = tilesetToUse->collisionMap[tileId - tilesetToUse->firstgid][k];
-					/*
-					ObjectRectangle cRect;
-					ParamLoader params;
-					params.setX(j * 64 + m_tiles[i][j]->getPostionVector().getX() + cBox.xPos);
-					params.setY(i * 64 + m_tiles[i][j]->getPostionVector().getY() + cBox.yPos);
-					params.setWidth(cBox.width);
-					params.setHeight(cBox.height);
-					cRect.load(params);
-					cRect.setVisible(true);
-					cRect.setShowText(true);
-					cRect.draw();
-					*/
-					
-					SDL_Color cRectColor;
-					cRectColor.r = 0; cRectColor.g = 0, cRectColor.b = 255, cRectColor.a = 255;
-					SDL_Rect rect = { j * 64 + m_tiles[i][j]->getPostionVector().getX() + cBox.xPos, i * 64 + m_tiles[i][j]->getPostionVector().getY() + cBox.yPos, cBox.width, cBox.height };
-					SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), cRectColor.r, cRectColor.g, cRectColor.b, cRectColor.a);
-					SDL_RenderDrawRect(TheGame::Instance()->getRenderer(), &rect);
-					SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0, 0, 0, 255);
-					
-				}				
+					for (int k = 0; k < tilesetToUse->collisionMap[tileId - tilesetToUse->firstgid].size(); k++)
+					{
+						Collisionbox cBox = tilesetToUse->collisionMap[tileId - tilesetToUse->firstgid][k];
+						
+						ObjectRectangle cRect;
+						ParamLoader params;
+						params.setX(j * 64 + m_tiles[i][j]->getPostionVector().getX() + cBox.xPos);
+						params.setY(i * 64 + m_tiles[i][j]->getPostionVector().getY() + cBox.yPos);
+						params.setWidth(cBox.width);
+						params.setHeight(cBox.height);
+						cRect.load(params);
+						cRect.setVisible(true);
+						cRect.setShowText(false);
+						cRect.setColor(0, 0, 255, 255);
+						cRect.draw(m_positionVector);
+					}
+				}
 			}
-			
-			
 		}
 	}
 }

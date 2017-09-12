@@ -21,7 +21,7 @@ public:
 	
 	void load(const ParamLoader& params);
 	void update();
-	void draw();
+	void draw(const Vector2D& layerPosition);
 
 
 	//	getter-Funktionen

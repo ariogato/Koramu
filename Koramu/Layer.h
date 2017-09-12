@@ -24,5 +24,8 @@ namespace Environment
 
 		//	getter-Funktionen
 		Vector2D getPosition() const { return m_positionVector; }
+
+		//	setter-Funktionen
+		void setPosition(Vector2D& newPosition) { m_positionVector = newPosition; }
 	};
 }

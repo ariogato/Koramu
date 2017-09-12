@@ -1,6 +1,7 @@
 #include "ObjectLayer.h"
 #include "TileLayer.h"
 #include "Game.h"
+#include "Camera.h"
 #include <algorithm>
 
 Environment::ObjectLayer::ObjectLayer()
@@ -116,9 +117,42 @@ void Environment::ObjectLayer::update()
 
 void Environment::ObjectLayer::render()
 {
-	//	Jedes Spielobjekt wird iterativ gerendert
+	/*	Im Folgenden wird für jedes Spielobjekt des "ObjectLayer"s überprüft, ob es sich (zumindest teilweise)
+	 *	innerhalb des durch die Kamera festgelegten Rechtecks befindet.
+	 *	Nur Spielobjekte, für die das der Fall ist sollen gezeichnet werden. Die anderen sind für den Benutzer sowieso nicht sichtbar.
+	 *	
+	 *	Diese Überprüfung ähnelt stark der Kollisionserkennung. Betrachtet werden hier die "ObjectRectangle"s der Spielobjekte und das, durch die 
+	 *	Kamera festgelegte Rechteck. Für weitere Informationen siehe unten.
+	 */
+
+	//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
+	int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
+	int bottomA, bottomB;				//	y-Wert von Punkten auf der unteren Kante
+	int leftA, leftB;					//	x-Wert von Punkten auf der linken Kante
+	int rightA, rightB;					//	x-Wert von Punkten auf der rechten Kante
+
+	//	Extremwerte des durch die Kamera festgelegten Rechtecks
+	topA = TheGame::Instance()->getCamera()->getPositionVector().getY();
+	bottomA = topA + TheGame::Instance()->getCamera()->getCameraHeight();
+	leftA = TheGame::Instance()->getCamera()->getPositionVector().getX();
+	rightA = leftA + TheGame::Instance()->getCamera()->getCameraWidth();
+
+	//	Es wird über alle Spielobjekte iteriert und nach obiger Bedingung ggf. gerendert
 	for (GameObject* g : *m_pGameObjects)
-		g->draw();
+	{
+		//	Extremwerte, des "ObjectRectangle"s des Spielobjekts
+		topB = g->getPosition().getY();
+		bottomB = topB + g->getHeight();
+		leftB = g->getPosition().getX();
+		rightB = leftB + g->getWidth();
+		
+		//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - das Spielobjekt soll gezeichnet werden
+		if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+		{
+			g->draw(m_positionVector);
+		}
+
+	}
 }
 
 
@@ -232,8 +266,8 @@ bool Environment::ObjectLayer::rectRectCollisionX(TileLayer* pLayer, Vector2D re
 				}
 
 				//	x- und y-Position des Tiles berechnen
-				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+				int x = static_cast<int>(rectVector.getX() / 64) * 64;
+				int y = static_cast<int>(rectVector.getY() / 64) * 64;
 
 				//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
 				int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
@@ -359,8 +393,8 @@ bool Environment::ObjectLayer::rectRectCollisionY(TileLayer* pLayer, Vector2D re
 				}
 
 				//	x- und y-Position des Tiles berechnen
-				int x = static_cast<int>(rectVector.getX() / 64) * 64 + pLayer->getPosition().getX();
-				int y = static_cast<int>(rectVector.getY() / 64) * 64 + pLayer->getPosition().getY();
+				int x = static_cast<int>(rectVector.getX() / 64) * 64;
+				int y = static_cast<int>(rectVector.getY() / 64) * 64;
 
 				//	Definition von Variablen zur Speicherung der Extremwerte der zu vergleichenden Rechtecke (axis-aligned - entlang der Achsen ausgerichtet)
 				int topA, topB;						//	y-Wert von Punkten auf der oberen Kante
@@ -467,58 +501,83 @@ void Environment::ObjectLayer::objectObjectCollison(std::vector<GameObject*>* pM
 		bool collision = false;
 
 		//	Über die Kollisionsrechtecke des aktuellen Spielobjekts iterieren
-		for(auto collisionRectA : gA->getCollisionRects())
+		for (auto collisionRectA : gA->getCollisionRects())
 		{
-			/*	Über alle Spielobjekte iterieren, um das aktuelle Kollisionsrechteck auf Kollision mit den Kollisionsrechtecken dieser zu überprüfen.
-			 *	
-			 *	Dies ist sehr naiv und ineffizient, da die meisten Objekte viel zu weit weg sind, als dass es überhaupt Sinn macht, auf Kollision mit ihnen zu überprüfen.
-			 *	Hier muss man sich bei evtl. auftretenden Performanzproblemen noch etwas geschickteres einfallen lassen (Idee: Quad Trees).
-			 */
-			for(GameObject* gB : *m_pGameObjects)
+			//	Extremwerte des aktuellen Kollisionsrechtecks ermitteln
+			topA = collisionRectA.getY();
+			bottomA = collisionRectA.getY() + collisionRectA.getHeight();
+			leftA = collisionRectA.getX();
+			rightA = collisionRectA.getX() + collisionRectA.getWidth();
+
+			//	Hard gecodete Extremwerte der Map - Todo: schlauer implementieren
+			topB = 0;
+			bottomB = 5120;
+			leftB = 0;
+			rightB = 6400;
+
+			//	Überprüfen, ob das Spielobjekt sich über den Rand der Map bewegen will
+			if (topA < topB || bottomA > bottomB || leftA < leftB || rightA > rightB)
 			{
-				//	Wenn das Objekt das selbe ist, wie das aktuelle Objekt aus "pMovingObjekts", soll mit dem nächsten Objekt weiter gemacht werden
-				if(gA == gB)
-					continue;
+				//	Kollision auslösen
+				gA->collision();
+				//	Festhalten, dass das Spielobjekt bereits kollidiert ist
+				collision = true;
+			}
 
-				//	Über die Kollisionsrechtecke des Spielobjekts "gB" iterieren
-				for(auto collisionRectB : gB->getCollisionRects())
+			//	Überprüfen, ob das Spielobjekt schon kollidiert ist, wenn ja, muss nicht mehr auf Kollision überprüft werden
+			if(!collision)
+			{
+				/*	Über alle Spielobjekte iterieren, um das aktuelle Kollisionsrechteck auf Kollision mit den Kollisionsrechtecken dieser zu überprüfen.
+				*
+				*	Dies ist sehr naiv und ineffizient, da die meisten Objekte viel zu weit weg sind, als dass es überhaupt Sinn macht, auf Kollision mit ihnen zu überprüfen.
+				*	Hier muss man sich bei evtl. auftretenden Performanzproblemen noch etwas geschickteres einfallen lassen (Idee: Quad Trees).
+				*/
+				for (GameObject* gB : *m_pGameObjects)
 				{
-					/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
-					 *	
-					 *	Zu vergleichen sind "collisionRectA", das aktuell betrachtete Kollisionsrechteck von "gA"
-					 *	und "collsionRectB", das aktuell betrachtete Kollisionrechteck von "gB"
-					 */
-					leftA = collisionRectA.getX();
-					leftB = collisionRectB.getX();
+					//	Wenn das Objekt das selbe ist, wie das aktuelle Objekt aus "pMovingObjekts", soll mit dem nächsten Objekt weiter gemacht werden
+					if (gA == gB)
+						continue;
 
-					rightA = collisionRectA.getX() + collisionRectA.getWidth();
-					rightB = collisionRectB.getX() + collisionRectB.getWidth();
-
-					topA = collisionRectA.getY();
-					topB = collisionRectB.getY();
-
-					bottomA = collisionRectA.getY() + collisionRectA.getHeight();
-					bottomB = collisionRectB.getY() + collisionRectB.getHeight();
-
-					//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
-					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+					//	Über die Kollisionsrechtecke des Spielobjekts "gB" iterieren
+					for (auto collisionRectB : gB->getCollisionRects())
 					{
-						//	Kollision für "gA" auslösen
-						gA->collision();
+						/*	Im folgenden werden die Extremwerte der zu vegleichenden Rechtecke ermittelt.
+						*
+						*	Zu vergleichen sind "collisionRectA", das aktuell betrachtete Kollisionsrechteck von "gA"
+						*	und "collsionRectB", das aktuell betrachtete Kollisionrechteck von "gB"
+						*/
+						leftA = collisionRectA.getX();
+						leftB = collisionRectB.getX();
 
-						//	Festhalten, dass bereits eien Kollision für "gA" festgestellt wurde
-						collision = true;
+						rightA = collisionRectA.getX() + collisionRectA.getWidth();
+						rightB = collisionRectB.getX() + collisionRectB.getWidth();
 
-						//	Diesen for-loop verlassen
-						break;
+						topA = collisionRectA.getY();
+						topB = collisionRectB.getY();
+
+						bottomA = collisionRectA.getY() + collisionRectA.getHeight();
+						bottomB = collisionRectB.getY() + collisionRectB.getHeight();
+
+						//	Wenn folgende Bedingungen alle zutrefen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
+						if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
+						{
+							//	Kollision für "gA" auslösen
+							gA->collision();
+
+							//	Festhalten, dass bereits eien Kollision für "gA" festgestellt wurde
+							collision = true;
+
+							//	Diesen for-loop verlassen
+							break;
+						}
+						//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
+						if (collision)
+							break;
 					}
 					//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
 					if (collision)
 						break;
 				}
-				//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
-				if (collision)
-					break;
 			}
 			//	Wurde bereits eine Kollision festgestellt, so wird dieser for-loop verlassen
 			if (collision)

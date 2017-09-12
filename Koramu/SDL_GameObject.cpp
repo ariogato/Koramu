@@ -59,22 +59,23 @@ void SDL_GameObject::update()
 	m_objectRect.update();
 }
 
-void SDL_GameObject::draw()
+void SDL_GameObject::draw(const Vector2D& layerPosition)
 {
 	/*	Dem TextureManager werden alle benötigten Daten zum Rendern des 
 	 *	Spielobjekts übergeben, damit dieser ein wunderschönes Bild
 	 *	malen kann. (im besten Fall eins vom Spielobjekt ;-) ) 
+	 *	Die Position der gerenderten Textur ist abhängig von der Position des "ObjectLayer"s.
 	 */
 	TheTextureManager::Instance()->drawFrame(m_textureId,
-		m_objectRect.positionVector.getX(), m_objectRect.positionVector.getY(),
+		m_objectRect.positionVector.getX() + layerPosition.getX(), m_objectRect.positionVector.getY() + layerPosition.getY(),
 		m_objectRect.width, m_objectRect.height,
 		m_currentRow, m_currentCol);
 
 	//	Im Debugmodus werden 'objectRect' und 'collisionRect' mitgerendert
-	m_objectRect.draw();
+	m_objectRect.draw(layerPosition);
 	for (int i = 0; i<m_collisionRects.size(); i++)
 	{
-		m_collisionRects[i].draw();
+		m_collisionRects[i].draw(layerPosition);
 	}
 }
 
@@ -89,7 +90,8 @@ void SDL_GameObject::collision()
 		m_collisionRects[i].positionVector -= m_velocity;
 	}
 
-	m_currentCol = 0; // TODO: wollen wir das?
+	//	Die Animation des Spielobjekts wird auf Stillstand mit Blick in die selbe Richtung gesetzt
+	m_currentCol = 0;
 }
 
 void SDL_GameObject::destroy()

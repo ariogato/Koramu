@@ -33,13 +33,15 @@ public:
 	//	Folgende Memberfunktionen werden erst in der abgeleiteten Klasse definiert
 	virtual void load(const ParamLoader& parameters) = 0;
 	virtual void update() = 0;
-	virtual void draw() = 0;
+	virtual void draw(const Vector2D& layerPosition) = 0;
 
 	virtual void collision() = 0;
 
 	//	ssshhh (Workaround) - Implementierung in "SDL_GameObject"
 	virtual Vector2D getVelocity() const = 0;
 	virtual Vector2D getPosition() const = 0;
+	virtual int getWidth() const = 0;
+	virtual int getHeight() const = 0;
 	virtual std::string getTextureId() const = 0;
 	virtual std::vector<ObjectRectangle> getCollisionRects() const = 0;
 	

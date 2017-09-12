@@ -18,7 +18,7 @@ void Animation::update()
 	SDL_GameObject::update();
 }
 
-void Animation::draw()
+void Animation::draw(const Vector2D& layerPosition)
 {
-	SDL_GameObject::draw();
+	SDL_GameObject::draw(layerPosition);
 }

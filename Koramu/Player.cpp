@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "ParamLoader.h"
 #include "InputHandler.h"
+#include "Game.h"
+#include "Camera.h"
 
 Player::Player()
 {}
@@ -18,8 +20,6 @@ void Player::load(const ParamLoader& params)
 	 *	Die offset Variablen beschreiben die Position der Kollisionsbox
 	 *	innerhalb des 'Player'-Objekts in Abhängigkeit von der oberen linken Ecke.
 	 */
-
-	
 	ParamLoader collisionParams;
 	float offsetX, offsetY;
 	int collisionWidth, collisionHeight;
@@ -36,6 +36,7 @@ void Player::load(const ParamLoader& params)
 
 	ObjectRectangle tempRectangle;
 	tempRectangle.load(collisionParams);
+	tempRectangle.setColor(0, 0, 255, 0);
 	m_collisionRects.push_back(tempRectangle);
 
 	/*	Die Beschreibung der Box soll nicht angzeigt werden, 
@@ -43,8 +44,6 @@ void Player::load(const ParamLoader& params)
 	 */
 	m_collisionRects[0].setVisible(true);
 	m_collisionRects[0].setShowText(false);
-	 
-	
 }
 
 void Player::update()
@@ -103,8 +102,8 @@ void Player::update()
 #pragma endregion
 }
 
-void Player::draw()
+void Player::draw(const Vector2D& layerPosition)
 {
 	//	Die Funktion der Klasse "SDL_GameObject" wird aufgerufen, um für uns den Job zu erledigen 
-	SDL_GameObject::draw();
+	SDL_GameObject::draw(layerPosition);
 }

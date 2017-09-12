@@ -52,7 +52,7 @@
 	<play>
     <gameObjects>
       <gameObject type="player" textureId="player"
-                  xPos="460" yPos="293" width="70" height="180"
+                  xPos="1000" yPos="545" width="70" height="180"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"/>
     </gameObjects>

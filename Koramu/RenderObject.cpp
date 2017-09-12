@@ -45,6 +45,6 @@ void RenderObject::update()
 
 void RenderObject::render()
 {
-	m_pReferenceObject->draw();
+	//	m_pReferenceObject->draw();
 }
 

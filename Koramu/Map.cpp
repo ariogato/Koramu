@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "ParamLoader.h"
 #include "TileLayer.h"
+#include "Camera.h"
 
 Environment::Map::Map()
 	: m_width(0), m_height(0), m_tilewidth(0), m_tileheight(0), m_positionVector(0.0f, 0.0f)
@@ -30,8 +31,12 @@ void Environment::Map::init(const ParamLoader& params, int tilewidth, int tilehe
 
 void Environment::Map::update()
 {
+	//	Position der Map in Relation zur Position der Kamera (Ursprung) 
+	m_positionVector = TheGame::Instance()->getCamera()->getPositionVector() * -1.0f;
 	for (auto layer : m_layerMap)
 	{
+		//	Layer der Map aktualisieren
+		layer.second->setPosition(m_positionVector);
 		layer.second->update();
 	}
 }

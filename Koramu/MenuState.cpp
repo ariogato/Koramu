@@ -10,16 +10,23 @@
 #include "Button.h"
 #include "PlayState.h"
 #include "HowToPlayState.h"
+#include "Camera.h"
 
 
 FiniteStateMachine::MenuState::MenuState()		//	Konstruktor
-{}
+{
+	//	"m_pCenterObject" enhält das Spielobjekt, auf welches die Kamera für diesen Zustand zentriert werden soll
+	//	"nullptr" setzt die Position der Kamera in "update()" auf (0|0)
+	m_pCenterObject = nullptr;
+}
 
 FiniteStateMachine::MenuState::~MenuState()		//	Destruktor
 {}
 
 void FiniteStateMachine::MenuState::onEnter()
 {
+	TheGame::Instance()->getCamera()->centerOnGameObject(nullptr);
+
 	//	Hier werden alle Callback Funktionen in die 'std::map' geladen
 	this->setCallbackFunctions();
 
@@ -83,6 +90,9 @@ void FiniteStateMachine::MenuState::handleInput()
 
 void FiniteStateMachine::MenuState::update()
 {
+	//	Kamera auf das aktuell "zentrale Objekt" dieses Spielzustandes zentrieren
+	TheGame::Instance()->getCamera()->centerOnGameObject(m_pCenterObject);
+
 	//	Die aktuelle Map wird geupdatet
 	m_maps.getTopNodeData()->update();
 }

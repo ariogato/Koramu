@@ -65,7 +65,7 @@ void Button::update()
 	}
 }
 
-void Button::draw()
+void Button::draw(const Vector2D& layerPosition)
 {
-	SDL_GameObject::draw();
+	SDL_GameObject::draw(layerPosition);
 }

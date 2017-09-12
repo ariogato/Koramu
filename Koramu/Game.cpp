@@ -30,7 +30,8 @@ Game::Game()									//	Konstruktor
 	m_gameWidth(0), m_gameHeight(0),
 	m_gameXPos(0), m_gameYPos(0),
 	m_pStateMachine(nullptr), m_pCurrentState(nullptr),
-	m_pWindow(nullptr), m_pRenderer(nullptr)
+	m_pWindow(nullptr), m_pRenderer(nullptr), 
+	m_pCamera(nullptr)
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
@@ -56,6 +57,7 @@ Game::~Game()									//	Destruktor
 	delete m_pStandardLog;
 	delete m_pErrorLog;
 	delete m_pStateMachine;
+	delete m_pCamera;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
@@ -124,6 +126,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	//	Der Renderer wurde erfolgreich erstellt
 	std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
+	//	Kamera initialisieren
+	m_pCamera = new Camera(width, height);
+
 	//	Zustandsmaschine initialisieren
 	m_pStateMachine = new FiniteStateMachine::GameStateMachine();
 
@@ -164,9 +169,9 @@ void Game::handleInput()
 void Game::update() 
 {
 	/*	Die Variablen isChangeState, isPushState & isPopState werden genau dann 'true' gesetzt,
-	 *	wenn eine Zustandsänderung angefordert wird. Damit wir wissen welche Art der Zustandsänderung
-	 *	vorliegt, haben wir diese drei unterschiedlichen Variablen.
-	 */
+	*	wenn eine Zustandsänderung angefordert wird. Damit wir wissen welche Art der Zustandsänderung
+	*	vorliegt, haben wir diese drei unterschiedlichen Variablen.
+	*/
 	if (isPopState)
 	{
 		isPopState = false;
@@ -186,27 +191,27 @@ void Game::update()
 		m_pStateMachine->pushState(m_pCurrentState);
 	}
 
-	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen 
-	 *	Spielzustand zu updaten.
-	 *	Welcher Spielzustand gerade geupdatet werden soll 
-	 *	interessiert die Klasse 'Game' nicht.
-	 */
+	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen
+	*	Spielzustand zu updaten.
+	*	Welcher Spielzustand gerade geupdatet werden soll
+	*	interessiert die Klasse 'Game' nicht.
+	*/
 	m_pStateMachine->update();
 }
 
 void Game::render()
 {
-	/*	Das was bis jetzt im Renderer ist soll 
+	/*	Das was bis jetzt im Renderer ist soll
 	*	rausgehauen werden.
-	*	Sonst würde man jeden Frame immer wieder sehen. 
+	*	Sonst würde man jeden Frame immer wieder sehen.
 	*/
 	SDL_RenderClear(m_pRenderer);
 
-	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen 
-	 *	Spielzustand zu rendern.
-	 *	Welcher Spielzustand gerade gerendert werden soll 
-	 *	interessiert die Klasse 'Game' nicht
-	 */
+	/*	Hier wird die 'GameStateMachine' dazu aufgefordert den aktuellen
+	*	Spielzustand zu rendern.
+	*	Welcher Spielzustand gerade gerendert werden soll
+	*	interessiert die Klasse 'Game' nicht
+	*/
 	m_pStateMachine->render();
 
 #pragma region testStuff

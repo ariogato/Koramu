@@ -51,7 +51,7 @@ void ObjectRectangle::update()
 	}
 }
 
-void ObjectRectangle::draw()
+void ObjectRectangle::draw(const Vector2D& layerPosition)
 {
 	//	Falls das Rechteck nicht sichtbar sein soll, muss an dieser Stelle die Methode beendet werden
 	if (!m_visible)
@@ -71,7 +71,7 @@ void ObjectRectangle::draw()
 		//	Breite und Höhe der Textur werden fürs Rendern in einem 'SDL_Rect' gespeichert
 		int textureWidth, textureHeight;
 		SDL_QueryTexture(pMessage, nullptr, nullptr, &textureWidth, &textureHeight);
-		SDL_Rect messageRect = { positionVector.getX(), positionVector.getY() + height + 5, textureWidth, textureHeight };
+		SDL_Rect messageRect = { positionVector.getX() + layerPosition.getX(), positionVector.getY() + layerPosition.getY() + height + 5, textureWidth, textureHeight };
 
 		//	Der Text wird gerendert
 		SDL_RenderCopy(TheGame::Instance()->getRenderer(), pMessage, nullptr, &messageRect);
@@ -81,12 +81,12 @@ void ObjectRectangle::draw()
 	}
 	/*	In den folgenden vier Zeilen wird das tatsächliche Rechteck gerendert
 	 *
-	 *		1. Position und Breite des Rechtecks festlegen
+	 *		1. Position (abhängig von der Position des Layers) und Breite des Rechtecks festlegen
 	 *		2. Farbe des Rechtecks festlegen
 	 *		3. Rechteck malen
 	 *		4. Die Farbe zum Rendern wieder neutralisieren (sonst wäre alles in der zuvor festgelegten Farbe)
 	 */
-	SDL_Rect rect = { positionVector.getX(), positionVector.getY(), width, height };
+	SDL_Rect rect = { positionVector.getX() + layerPosition.getX(), positionVector.getY() + layerPosition.getY(), width, height };
 	SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), m_color.r, m_color.g, m_color.b, m_color.a);
 	SDL_RenderDrawRect(TheGame::Instance()->getRenderer(), &rect);
 	SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0, 0, 0, 255);
