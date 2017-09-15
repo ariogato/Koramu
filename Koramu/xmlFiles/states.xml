@@ -4,7 +4,7 @@
   <!-- Texturen werden seperat geladen (unabhängig vom Spielzustand)-->
   <textures>
     <!-- Buttons-->
-    <texture id="buttonStart" path="../assets/Button_Start.png"/>
+    <texture id="buttonPlay" path="../assets/Button_Play.png"/>
     <texture id="buttonHowtoplay" path="../assets/Button_Howtoplay.png"/>
     <texture id="buttonExit" path="../assets/Button_Exit.png"/>
     <texture id="buttonResume" path="../assets/Button_Resume.png"/>
@@ -21,7 +21,7 @@
 
   <menu>
     <gameObjects>
-      <gameObject type="button" textureId="buttonStart"
+      <gameObject type="button" textureId="buttonPlay"
                   xPos="460" yPos="293" width="360" height="120"
                   numRows="1" numCols="3"
                   mapId="mainMenuMap" callbackId="menuToPlay"/>
