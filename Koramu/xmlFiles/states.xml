@@ -24,19 +24,23 @@
       <gameObject type="button" textureId="buttonPlay"
                   xPos="460" yPos="293" width="360" height="120"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap" callbackId="menuToPlay"/>
+                  mapId="mainMenuMap" callbackId="menuToPlay"
+                  uniqueId="buttonPlay"/>
       <gameObject type="button" textureId="buttonHowtoplay"
                   xPos="460" yPos="438" width="360" height="120"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap" callbackId="menuToHowToPlay"/>
+                  mapId="mainMenuMap" callbackId="menuToHowToPlay"
+                  uniqueId="buttonHowtoplay"/>
       <gameObject type="button" textureId="buttonExit"
                   xPos="460" yPos="583" width="360" height="120"
                   numRows="1" numCols="3"
-                  mapId="mainMenuMap" callbackId="exit"/>
+                  mapId="mainMenuMap" callbackId="exit"
+                  uniqueId="buttonExit"/>
       <gameObject type="animation" textureId="koramu"
                   xPos="202" yPos="31" width="877" height="181"
                   numRows="1" numCols="1"
-                  mapId="mainMenuMap"/>
+                  mapId="mainMenuMap"
+                  uniqueId="koramu"/>
     </gameObjects>
 	</menu>
 
@@ -45,7 +49,8 @@
       <gameObject type="button" textureId="buttonBack"
                   xPos="50" yPos="50" width="80" height="80"
                   numRows="1" numCols="3"
-                  mapId="howToPlayMap" callbackId="backToMenu"/>
+                  mapId="howToPlayMap" callbackId="backToMenu"
+                  uniqueId="buttonBack"/>
     </gameObjects>
   </howToPlay>
   
@@ -54,7 +59,8 @@
       <gameObject type="player" textureId="player"
                   xPos="1000" yPos="545" width="70" height="180"
                   numRows="4" numCols="4"
-                  mapId="mainMap" animSpeed="200"/>
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="player"/>
     </gameObjects>
 	</play>
 	
@@ -63,23 +69,28 @@
       <gameObject type="animation" textureId="screenshot"
                   xPos="0" yPos="0" width="1280" height="896"
                   numRows="1" numCols="1"
-                  mapId="pauseMap" animSpeed="200"/>
+                  mapId="pauseMap" animSpeed="200"
+                  uniqueId="screenshot"/>
       <gameObject type="animation" textureId="greyLayer"
                   xPos="0" yPos="0" width="1280" height="896"
                   numRows="1" numCols="1"
-                  mapId="pauseMap" animSpeed="200"/>
+                  mapId="pauseMap" animSpeed="200"
+                  uniqueId="greyLayer"/>
       <gameObject type="button" textureId="buttonResume"
                   xPos="460" yPos="263" width="360" height="80"
                   numRows="1" numCols="3"
-                  mapId="pauseMap" callbackId="resumePlay"/>
+                  mapId="pauseMap" callbackId="resumePlay"
+                  uniqueId="buttonResume"/>
       <gameObject type="button" textureId="buttonSave"
                   xPos="460" yPos="408" width="360" height="80"
                   numRows="1" numCols="3"
-                  mapId="pauseMap" callbackId="resumePlay"/>
+                  mapId="pauseMap" callbackId="resumePlay"
+                  uniqueId="buttonSave"/>
       <gameObject type="button" textureId="buttonMainMenu"
                   xPos="460" yPos="553" width="360" height="80"
                   numRows="1" numCols="3"
-                  mapId="pauseMap" callbackId="playToMenu"/>
+                  mapId="pauseMap" callbackId="playToMenu"
+                  uniqueId="buttonMainMenu"/>
     </gameObjects>
 	</pause>
 </states>

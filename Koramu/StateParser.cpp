@@ -189,7 +189,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		 *		xPos, yPos,
 		 *		width, height,
 		 *		numRows, numCols,
-		 *		mapId
+		 *		mapId, uniqueId
 		 *		
 		 *	Spezielle Attribute müssen nur bei Spielobjekten eines bestimmten Typs vorhanden sein:
 		 *		callbackId bei 'Button'
@@ -239,6 +239,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		const char* textureId = e->Attribute("textureId");
 		const char* mapId = e->Attribute("mapId");
 		const char* callbackId = e->Attribute("callbackId");
+		const char* uniqueId = e->Attribute("uniqueId");
 
 #pragma region StringValidation
 		//	Strings auf Validität prüfen
@@ -262,10 +263,18 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\t " << counter << ". Objekt vom Typ Button besitzt keine callbackId" << std::endl << std::endl;
 			return false;
 		}
+		if (!uniqueId)
+		{
+			TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\t " << counter << ". Objekt besitzt keine uniqueId" << std::endl << std::endl;
+			return false;
+		}
 #pragma endregion
 
 		//	Optionale Attribute
 		e->QueryIntAttribute("animSpeed", &animSpeed);
+
+		//	animSpeed darf nicht 0 sein, da ansonst bei SDLGameObject::update() durch 0 geteilt wird
+		if (animSpeed == 0) animSpeed = 1;
 
 		//	Ab hier sind alle Daten validiert und werden für das Laden der Objekte abgespeichert
 		parameters.setTextureId(textureId);
@@ -277,6 +286,7 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 		parameters.setNumCols(numCols);
 		parameters.setNumRows(numRows);
 		parameters.setAnimSpeed(animSpeed);
+		parameters.setUniqueId(uniqueId);
 
 		if (!strcmp(type, "button"))
 			parameters.setCallbackId(callbackId);

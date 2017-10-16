@@ -21,13 +21,16 @@ public:
 
 	//	Überladene Operatoren
 	Vector2D operator+(const Vector2D& summand) const;				//	Arithmetischer Operator +
-	Vector2D operator-(const Vector2D& subtrahend) const;				//	Arithmetischer Operator -
+	Vector2D operator-(const Vector2D& subtrahend) const;			//	Arithmetischer Operator -
 	Vector2D operator*(const float scalar) const;					//	Multiplikation mit einem Skalar (Variation in Länge)
 	float operator*(const Vector2D& vector2) const;					//	Skalarprodukt
 	Vector2D& operator+=(const Vector2D& summand);					//	Zuweisungsoperator +=
-	Vector2D& operator-=(const Vector2D& subtrahend);					//	Zuweisungsoperator -=
+	Vector2D& operator-=(const Vector2D& subtrahend);				//	Zuweisungsoperator -=
 	Vector2D& operator*=(const float scalar);						//	Zuweisungsoperator *= (Skalarmultiplikation)
 	Vector2D& operator=(const Vector2D& assign);					//	Zuweisungsoperator =
+	bool operator==(const Vector2D& other) const;					//	Vergleichsoperator ==
+	bool operator!=(const Vector2D& other) const;					//	Vergleichsoperator !=
+
 
 	//	getter-Funktionen
 	float getX() const { return m_xComponent; }

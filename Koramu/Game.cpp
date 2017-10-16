@@ -12,6 +12,7 @@
 #include "GameStateMachine.h"
 #include "MenuState.h"
 #include "Camera.h"
+#include "ScriptManager.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -125,6 +126,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	}
 	//	Der Renderer wurde erfolgreich erstellt
 	std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
+
+	//	Die Scripting Engine initialisieren
+	TheScriptManager::Instance()->init();
 
 	//	Kamera initialisieren
 	m_pCamera = new Camera(width, height);
@@ -276,10 +280,14 @@ Game* Game::Instance()
 void Game::destroy()
 {
 	//	Den TextureManager bei Beendigung des Spiels zerstören
-	TheTextureManager::Instance()->destroy();
+	TheTextureManager::destroy();
 
 	//	Den InputHandler bei Beendigung des Spiels zerstören
-	TheInputHandler::Instance()->destroy();
+	TheInputHandler::destroy();
+
+#pragma region testStuff
+	TheTester::destroy();
+#pragma endregion
 
 	//	Den Destruktor aufrufen
 	delete s_pInstance;

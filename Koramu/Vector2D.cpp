@@ -82,6 +82,16 @@ Vector2D& Vector2D::operator=(const Vector2D& assign)
 	return *this;
 }
 
+bool Vector2D::operator==(const Vector2D& other) const
+{
+	return ((this->m_xComponent == other.getX()) && (this->m_yComponent == other.getY()));
+}
+
+bool Vector2D::operator!=(const Vector2D& other) const
+{
+	return !(*this == other);
+}
+
 float Vector2D::getLength() const
 {
 	return sqrtf(m_xComponent * m_xComponent + m_yComponent * m_yComponent);

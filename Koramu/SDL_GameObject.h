@@ -32,7 +32,7 @@ protected:
 	std::string m_textureId;									//	Die Id, unter der die Textur im TextureManager gespeichert wurde
 	std::string m_mapId;										//	Die Id der Map, der das GameObject angehört
 
-	
+	virtual void loadScript();									//	Diese Funktion lädt alle Attribute, die im Skript gesetzt werden
 public:
 	SDL_GameObject();
 	~SDL_GameObject();
@@ -40,7 +40,7 @@ public:
 
 	virtual void load(const ParamLoader& parameters);			//	Hier wird das Objekt geladen
 	virtual void update();										//	Hier werden die Membervariablen aktualisiert
-	virtual void draw(const Vector2D& layerPosition);										//	Hier wird das Objekt auf den Bildschirm geschmissen
+	virtual void draw(const Vector2D& layerPosition);			//	Hier wird das Objekt auf den Bildschirm geschmissen
 
 	virtual void collision();									//	Hier wird festgelegt, was passiert, wenn das Objekt kollidiert
 

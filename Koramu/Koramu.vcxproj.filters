@@ -63,7 +63,16 @@
     <Filter Include="Quelldateien\Utility">
       <UniqueIdentifier>{76c2de37-0029-4fdc-93c7-9d65d837e972}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Parser\Input">
+    <Filter Include="Headerdateien\Scripting">
+      <UniqueIdentifier>{472743b6-2812-4571-b2e1-913fa7fe1204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Scripting">
+      <UniqueIdentifier>{565f7390-3090-4579-b9f8-0a3525d0e645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts">
+      <UniqueIdentifier>{82af50fd-0481-42d3-84d8-588c45546296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Input">
       <UniqueIdentifier>{ba7cec71-7450-4d0f-8275-e464fb720337}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -155,12 +164,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Quelldateien\View</Filter>
     </ClCompile>
-    <ClCompile Include="View.cpp">
-      <Filter>Quelldateien\View</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderObject.cpp">
-      <Filter>Quelldateien\View</Filter>
-    </ClCompile>
     <ClCompile Include="UniqueIdGenerator.cpp">
       <Filter>Quelldateien\Utility</Filter>
     </ClCompile>
@@ -172,6 +175,15 @@
     </ClCompile>
     <ClCompile Include="StateParser.cpp">
       <Filter>Quelldateien\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptLoader.cpp">
+      <Filter>Quelldateien\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>Quelldateien\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptManager.cpp">
+      <Filter>Quelldateien\Scripting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,7 +248,7 @@
       <Filter>Headerdateien\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
-      <Filter>Headerdateien\Parser\Input</Filter>
+      <Filter>Headerdateien\Input</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Headerdateien\GameObjects</Filter>
@@ -280,15 +292,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Headerdateien\View</Filter>
     </ClInclude>
-    <ClInclude Include="View.h">
-      <Filter>Headerdateien\View</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderObject.h">
-      <Filter>Headerdateien\View</Filter>
-    </ClInclude>
     <ClInclude Include="UniqueIdGenerator.h">
       <Filter>Headerdateien\Utility</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="MapParser.h">
       <Filter>Headerdateien\Parser</Filter>
     </ClInclude>
@@ -300,6 +306,15 @@
     </ClInclude>
     <ClInclude Include="CollisionRectParser.h">
       <Filter>Headerdateien\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptLoader.h">
+      <Filter>Headerdateien\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Headerdateien\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptManager.h">
+      <Filter>Headerdateien\Scripting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -315,8 +330,20 @@
     <Xml Include="xmlFiles\collisionRects.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
+    <Xml Include="xmlFiles\scripts.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="tree.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
+    <None Include="door.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
+    <None Include="player.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
   </ItemGroup>
 </Project>

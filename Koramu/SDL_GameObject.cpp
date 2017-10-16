@@ -2,13 +2,18 @@
 #include "ParamLoader.h"
 #include "TextureManager.h"
 
+
 SDL_GameObject::SDL_GameObject()
-	: m_currentRow(0), m_currentCol(0), m_numCols(0),
-	  m_numRows(0), m_animSpeed(0), m_velocity(0.0f, 0.0f)
+	: m_currentRow(0), m_currentCol(0), m_numCols(1),
+	  m_numRows(1), m_animSpeed(1), m_velocity(0.0f, 0.0f)
 {
 }
 
 SDL_GameObject::~SDL_GameObject()
+{
+}
+
+void SDL_GameObject::loadScript()
 {
 }
 
@@ -28,6 +33,7 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	m_animSpeed = parameters.getAnimSpeed();
 	m_textureId = parameters.getTextureId();
 	m_mapId = parameters.getMapId();
+	m_uniqueId = parameters.getUniqueId();
 
 	/*	Attribute des 'objectRect's werden gesetzt
 	 *		Standardmäßig wird von jedem Spielobjekt das 'objectRect'
@@ -36,6 +42,9 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	m_objectRect.load(parameters);
 	m_objectRect.setShowText(true);
 	m_objectRect.setVisible(true);	
+
+	//	Die im Script gesetzten Attribute laden
+	this->loadScript();
 }
 
 void SDL_GameObject::update()

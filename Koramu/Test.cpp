@@ -1,12 +1,14 @@
 #include "Test.h"
 #include "TextureManager.h"
 #include "InputHandler.h"
+#include "ScriptManager.h"
 #include "Game.h"
 #include "StateParser.h"
 #include "ParamLoader.h"
 #include "Player.h"
 #include <chrono>
 #include <regex>
+#include "ScriptLoader.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -14,9 +16,9 @@
 *	Wäre wichtig für mein Verständnis dafür, wie wir mit Texturen und Musik arbeiten.
 */
 
-Test* Test::s_pInstance = nullptr;	//Wichtig für Singleton-Klasse
+Test* Test::s_pInstance = nullptr;	//	Wichtig für Singleton-Klasse
 
-Test::Test()						//Konstruktor
+Test::Test()						//	Konstruktor
 {
 #pragma region PlayerTest
 	/*
@@ -48,9 +50,29 @@ Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 */
 #pragma endregion
+
+#pragma region ScriptLoaderTest
+#pragma endregion 
+
+#pragma region ScriptManagerTest
+
+	/*	Test erfolgreich
+	 *		Alle Aufrufe verhalten sich wie erwartet.
+	 *
+	 *		1. Gibt script objekt mit id "johann" zurück (beendet programm, falls nicht vorhanden)
+	 *		2. Ruft Funktion "hello" auf (macht nichts, falls nicht vorhanden)
+	 *		3-5. Gibt Variable zurück ("", 0, oder false, falls nicht vorhanden)
+	 */
+	Script s = TheScriptManager::Instance()->getScriptFromId("johann");
+	s.callFunction("hello");
+	std::cout << s.getStringFromTable("str") << std::endl;
+	std::cout << s.getIntFromTable("health") << std::endl;
+	std::cout << s.getBoolFromTable("isNPC") << std::endl;
+
+#pragma endregion 
 }
 
-Test::~Test()						//Destruktor
+Test::~Test()						//	Destruktor
 {
 #pragma region PlayerTest
 	//delete player;
@@ -62,6 +84,10 @@ Test::~Test()						//Destruktor
 	Mix_Quit();
 	*/
 #pragma endregion
+
+#pragma region ScriptManagerTest
+	TheScriptManager::destroy();
+#pragma endregion 
 }
 
 
@@ -153,6 +179,14 @@ void Test::testFunctions()
 	if (fps.getFPS() < 60)
 		TheGame::Instance()->logStandard() << "FPS low" << std::endl;
 	*/
+#pragma endregion 
+
+#pragma region ScriptManagerTest
+	/*	Test erfolgreich:
+	 *		Methode wird aufgerufen
+	 */
+	//Script s = TheScriptManager::Instance()->getScriptFromId("johann");
+	//s.callFunction("hello");
 #pragma endregion 
 }
 

@@ -2,8 +2,7 @@
 #include <vector>
 #include "Vector2D.h"
 #include "ObjectRectangle.h"
-
-#include "UniqueIdGenerator.h"
+#include <string>
 
 class ParamLoader;
 
@@ -14,13 +13,12 @@ class ParamLoader;
 class GameObject
 {
 protected:
-	unsigned long long m_uniqueId;						//	Einzigartige ID, die beim Erstellen gesetzt und danach unveränderbar ist
+	std::string m_uniqueId;						//	Einzigartige ID, die manuell gesetzt und danach unveränderbar ist
 	bool m_isVisible;									//	Indikator, ob das Objekt gerendert werden soll
 
 public:
 	GameObject()										//	Konstruktor
-		: m_uniqueId(UniqueIdGenerator::newID()),
-		  m_isVisible(true)
+		: m_isVisible(true)
 	{}
 
 	virtual ~GameObject() {}							//	Destruktor
@@ -46,7 +44,7 @@ public:
 	virtual std::vector<ObjectRectangle> getCollisionRects() const = 0;
 	
 	//	getter-Funktionen
-	unsigned long long getUniqueId() const { return m_uniqueId; }
+	std::string getUniqueId() const { return m_uniqueId; }
 	bool isVisible() const { return m_isVisible; }
 
 	//	setter-Funktionen

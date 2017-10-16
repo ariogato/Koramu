@@ -500,8 +500,10 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		pMap->addLayer(layerName, pCurrentLayer);
 	}
 
-	/*	!!!TEST!!! parsen der Objekte aus dem Objectlayer
-	 */
+
+#pragma endregion 
+
+#pragma region ObjectLayer
 	
 	for(XMLElement* oG = pMapRoot->FirstChildElement("objectgroup"); oG != nullptr; oG = oG->NextSiblingElement("objectgroup"))
 	{
@@ -511,6 +513,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 			ParamLoader parameters;
 			float x, y;
 			int width, height, numRows, numCols;
+			std::string id;
 
 			for(XMLElement* o = oG->FirstChildElement("object"); o != nullptr; o = o->NextSiblingElement("object"))
 			{
@@ -554,12 +557,21 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 					return false;
 				}
 
+				//	uniqueId
+				id = o->Attribute("name");
+				if (id.empty())
+				{
+					TheGame::Instance()->logError() << "MapParser::parseMap(): \n\t " << path << ": Das <object>-Element vom Typ " << objectType << " besitzt kein name-Attribut (uniqueId)." << std::endl << std::endl;
+					return false;
+				}
+
 				parameters.setX(x);
 				parameters.setY(y);
 				parameters.setWidth(width);
 				parameters.setHeight(height);
 				parameters.setNumCols(numCols);
 				parameters.setNumRows(numRows);
+				parameters.setUniqueId(id);
 				parameters.setTextureId(objectType);
 
 
@@ -578,9 +590,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 			}
 		}
 	}
-
-	
-#pragma endregion 
+#pragma endregion
 
 	//	Pointer löschen, um einem Speicherleck vorzubeugen.
 	delete pMapDocument;

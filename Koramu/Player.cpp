@@ -3,6 +3,7 @@
 #include "InputHandler.h"
 #include "Game.h"
 #include "Camera.h"
+#include "ScriptManager.h"
 
 Player::Player()
 {}
@@ -106,4 +107,11 @@ void Player::draw(const Vector2D& layerPosition)
 {
 	//	Die Funktion der Klasse "SDL_GameObject" wird aufgerufen, um für uns den Job zu erledigen 
 	SDL_GameObject::draw(layerPosition);
+}
+
+void Player::collision()
+{
+	SDL_GameObject::collision();
+
+	TheScriptManager::Instance()->getScriptFromId("player").callFunction("onCollision");
 }

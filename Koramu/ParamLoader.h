@@ -25,6 +25,7 @@ private:
 	int m_numRows;
 	int m_animSpeed;
 	int m_tileId;
+	std::string m_uniqueId;
 	std::string m_textureId;
 	std::string m_mapId;
 	std::string m_callbackId;
@@ -47,6 +48,7 @@ public:
 	int getNumRows() const { return m_numRows; }
 	int getAnimSpeed() const { return m_animSpeed; }
 	int getTileId() const { return m_tileId; }
+	std::string getUniqueId() const { return m_uniqueId; }
 	std::string getTextureId() const { return m_textureId; }
 	std::string getMapId() const { return m_mapId; }
 	std::string getCallbackId() const { return m_callbackId; }
@@ -60,6 +62,7 @@ public:
 	void setNumRows(int num) { m_numRows = num; }
 	void setAnimSpeed(int animspeed) { m_animSpeed = animspeed; }
 	void setTileId(int tileId) { m_tileId = tileId; }
+	void setUniqueId(std::string id) { m_uniqueId = id; }
 	void setTextureId(std::string id) { m_textureId = id; }
 	void setMapId(std::string id) { m_mapId = id; }
 	void setCallbackId(std::string id) { m_callbackId = id; }
