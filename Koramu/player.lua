@@ -3,7 +3,7 @@
 local player = {}
 
 function player:onCollision()
-	Player:sayhi ()
+	TheGame.setGameOver()
 end
 
 return player

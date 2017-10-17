@@ -200,6 +200,12 @@
     <ClCompile Include="BaseLuaRegistration.cpp">
       <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
     </ClCompile>
+    <ClCompile Include="GameLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLayerLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -338,6 +344,12 @@
       <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
     </ClInclude>
     <ClInclude Include="PlayerLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLayerLuaRegistration.h">
       <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
     </ClInclude>
   </ItemGroup>
