@@ -75,6 +75,12 @@
     <Filter Include="Headerdateien\Input">
       <UniqueIdentifier>{ba7cec71-7450-4d0f-8275-e464fb720337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Scripting\LuaRegistrations">
+      <UniqueIdentifier>{197b936e-5c23-415d-9097-e6272c76d870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Scripting\LuaRegistrations">
+      <UniqueIdentifier>{a873a3b8-d65b-4bff-97c4-a5f9fe0545b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -187,6 +193,12 @@
     </ClCompile>
     <ClCompile Include="FontManager.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +333,12 @@
     </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

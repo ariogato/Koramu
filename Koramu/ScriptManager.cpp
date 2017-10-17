@@ -1,7 +1,9 @@
 #include "ScriptManager.h"
 #include <lua.hpp>
+#include <vector>
+#include <iterator>
 #include "ScriptLoader.h"
-#include <iostream>
+#include "BaseLuaRegistration.h"
 #include "Game.h"
 
 #define FILEPATH "xmlFiles/scripts.xml"
@@ -35,6 +37,15 @@ ScriptManager::~ScriptManager()
 		m_pScriptMap->erase(it);
 	}
 	delete m_pScriptMap;
+
+	//	Alle Registrierungen müssen gelöscht werden (kann evtl. Probleme verursachen... in dem Fall einfach mit Zählervariable ersetzen)
+	for (auto it = m_registrations.begin(); it != m_registrations.end(); ++it)
+	{
+		//	Checken, ob das Element nullptr ist
+		if (*it)
+			delete *it;
+	}
+	m_registrations.clear();
 
 	//	Lua und Teilsysteme herunterfahren, falls initialisiert wurde
 	if (m_isInit)
@@ -70,6 +81,16 @@ bool ScriptManager::init()
 		lua_settop(m_pLuaState, 0);
 	}
 
+	//	Alles was zu regisitrieren ist soll an Lua weitergegeben werden
+	for (auto it = m_registrations.begin(); it != m_registrations.end(); ++it)
+	{
+		//	Checken ob das Element nullptr ist
+		if (*it)
+		{
+			//	Die Registrierungsfunktion aufrufen
+			(*it)->registerToLua(m_pLuaState);
+		}
+	}
 
 	//	Die Namen der verwendeten Dateien laden (soll nachher gelöscht werden, da die ID in m_pScriptMap übertragen wird)
 	std::map<std::string, std::string>* pScriptNameMap = ScriptLoader::loadScripts(FILEPATH);
@@ -156,6 +177,15 @@ void ScriptManager::callFunction(const char* table, const char* func)
 
 	//	Die Tabelle aus dem Stack entfernen
 	lua_pop(m_pLuaState, 1);
+}
+
+void ScriptManager::addRegistration(LuaRegistrations::BaseLuaRegistration* reg)
+{
+	//	Checken, ob nullptr übergeben wurde
+	if (!reg)
+		return;
+
+	m_registrations.push_back(reg);
 }
 
 ScriptManager* ScriptManager::Instance()

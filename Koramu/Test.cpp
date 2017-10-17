@@ -64,11 +64,11 @@ backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 	 *		2. Ruft Funktion "hello" auf (macht nichts, falls nicht vorhanden)
 	 *		3-5. Gibt Variable zurück ("", 0, oder false, falls nicht vorhanden)
 	 */
-	Script s = TheScriptManager::Instance()->getScriptFromId("johann");
-	s.callFunction("hello");
-	std::cout << s.getStringFromTable("str") << std::endl;
-	std::cout << s.getIntFromTable("health") << std::endl;
-	std::cout << s.getBoolFromTable("isNPC") << std::endl;
+	//Script s = TheScriptManager::Instance()->getScriptFromId("johann");
+	//s.callFunction("hello");
+	//std::cout << s.getStringFromTable("str") << std::endl;
+	//std::cout << s.getIntFromTable("health") << std::endl;
+	//std::cout << s.getBoolFromTable("isNPC") << std::endl;
 
 #pragma endregion 
 
@@ -91,7 +91,7 @@ Test::~Test()						//	Destruktor
 #pragma endregion
 
 #pragma region ScriptManagerTest
-	TheScriptManager::destroy();
+	//TheScriptManager::destroy();
 #pragma endregion 
 }
 
@@ -198,8 +198,8 @@ void Test::testFunctions()
 	/*	Test erfolgreich:
 	 *		Text wird gerendert
 	 */
-	//TheFontManager::Instance()->drawCharacter('!', 100, 100);
-	//TheFontManager::Instance()->drawText("Tennis", 150, 100);
+	TheFontManager::Instance()->drawCharacter('!', 100, 100);
+	TheFontManager::Instance()->drawText("Tennis", 150, 100);
 #pragma endregion 
 }
 

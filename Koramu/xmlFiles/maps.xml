@@ -14,7 +14,6 @@
   <play>
     <maps>
       <map id="mainMap" path="../assets/testMap3.tmx" />
-      <map id="houseMap1" path="../assets/testMap5.tmx"/>
     </maps>
   </play>
   <pause>

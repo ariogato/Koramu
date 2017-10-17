@@ -14,6 +14,8 @@
 #include "Camera.h"
 #include "ScriptManager.h"
 
+#include "PlayerLuaRegistration.h"
+
 /*	Wichtig für Singleton-Klasse
 *	
 *	side fact:	'nullptr' ist das Pendant zu Java's 'null'.
@@ -126,6 +128,11 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	}
 	//	Der Renderer wurde erfolgreich erstellt
 	std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
+
+#pragma region ScriptRegistration
+	//	Alles für die Lua Scripts bereitstellen
+	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::PlayerLuaRegistration());
+#pragma endregion
 
 	//	Die Scripting Engine initialisieren
 	TheScriptManager::Instance()->init();
@@ -284,6 +291,9 @@ void Game::destroy()
 
 	//	Den InputHandler bei Beendigung des Spiels zerstören
 	TheInputHandler::destroy();
+
+	//	Den ScriptManager bei Beendigung des Spiels zerstören
+	TheScriptManager::destroy();
 
 #pragma region testStuff
 	TheTester::destroy();

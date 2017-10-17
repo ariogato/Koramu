@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationLayer.cpp" />
+    <ClCompile Include="BaseLuaRegistration.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="ObjectRectangle.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerLuaRegistration.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="ScriptLoader.cpp" />
@@ -182,6 +184,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationLayer.h" />
+    <ClInclude Include="BaseLuaRegistration.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Closure.h" />
@@ -203,6 +206,7 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectRectangle.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerLuaRegistration.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptLoader.h" />
     <ClInclude Include="ScriptManager.h" />
