@@ -17,6 +17,7 @@
     <texture id="player" path="../assets/Player.png"/>
     <texture id="greyLayer" path="../assets/Grey_Layer.png"/>
     <texture id="tree" path="../assets/TreeNew.png"/>
+    <texture id="font" path="../assets/Fonts/pixelFont.png"/>
   </textures>
 
   <menu>

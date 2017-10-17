@@ -185,6 +185,9 @@
     <ClCompile Include="ScriptManager.cpp">
       <Filter>Quelldateien\Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -315,6 +318,9 @@
     </ClInclude>
     <ClInclude Include="ScriptManager.h">
       <Filter>Headerdateien\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

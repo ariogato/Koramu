@@ -9,6 +9,7 @@
 #include <chrono>
 #include <regex>
 #include "ScriptLoader.h"
+#include "FontManager.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -69,6 +70,10 @@ backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 	std::cout << s.getIntFromTable("health") << std::endl;
 	std::cout << s.getBoolFromTable("isNPC") << std::endl;
 
+#pragma endregion 
+
+#pragma region FontManagerTest 
+	TheFontManager::Instance()->parseFont();
 #pragma endregion 
 }
 
@@ -187,6 +192,14 @@ void Test::testFunctions()
 	 */
 	//Script s = TheScriptManager::Instance()->getScriptFromId("johann");
 	//s.callFunction("hello");
+#pragma endregion 
+
+#pragma region FontManager
+	/*	Test erfolgreich:
+	 *		Text wird gerendert
+	 */
+	//TheFontManager::Instance()->drawCharacter('!', 100, 100);
+	//TheFontManager::Instance()->drawText("Tennis", 150, 100);
 #pragma endregion 
 }
 
