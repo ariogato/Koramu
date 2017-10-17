@@ -13,6 +13,7 @@ private:
 	float m_yComponent;		
 
 public:
+	Vector2D();							//	Standardkonstruktor
 	Vector2D(float, float);				//	Konstruktor
 	Vector2D(const Vector2D&);			//	Kopierkonstruktor
 	~Vector2D();						//	Destruktor

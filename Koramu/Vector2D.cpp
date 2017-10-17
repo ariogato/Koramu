@@ -1,5 +1,10 @@
 #include "Vector2D.h"
 
+Vector2D::Vector2D()						
+	: m_xComponent(0), m_yComponent(0)
+{
+}
+
 Vector2D::Vector2D(float x, float y)		//	Konstruktor
 	: m_xComponent(x), m_yComponent(y)		//	Liste von Elementinitialisierungen
 {
