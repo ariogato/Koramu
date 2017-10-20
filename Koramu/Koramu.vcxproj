@@ -163,7 +163,6 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
-    <ClCompile Include="ObjectLayerLuaRegistration.cpp" />
     <ClCompile Include="ObjectRectangle.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -207,7 +206,6 @@
     <ClInclude Include="MapParser.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="ObjectLayer.h" />
-    <ClInclude Include="ObjectLayerLuaRegistration.h" />
     <ClInclude Include="ObjectRectangle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerLuaRegistration.h" />

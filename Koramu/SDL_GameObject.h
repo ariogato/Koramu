@@ -43,6 +43,7 @@ public:
 	virtual void draw(const Vector2D& layerPosition);			//	Hier wird das Objekt auf den Bildschirm geschmissen
 
 	virtual void collision();									//	Hier wird festgelegt, was passiert, wenn das Objekt kollidiert
+	virtual void onCreate();									//	Hier wird die SkriptMethode "onCreate()" aufgerufen
 
 	virtual void destroy();
 

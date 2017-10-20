@@ -67,6 +67,7 @@ namespace FiniteStateMachine
 		//	getter-Funktionen
 		GameStateID getStateID() const { return m_stateID; }
 		SDL_GameObject* getCenterObject() const { return m_pCenterObject; }
+		Environment::Map* getCurrentMap() { return m_maps.getTopNodeData(); }
 
 		//	setter-Funktionen
 		void setCenterObject(SDL_GameObject* pObject) { m_pCenterObject = pObject; }

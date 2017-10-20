@@ -13,7 +13,7 @@ class GameObject;
 class Player : public SDL_GameObject
 {
 private:
-
+	void loadScript() override;
 public: 
 	Player();					//	Konstruktor
 	~Player();					//	Destruktor
@@ -23,6 +23,7 @@ public:
 	virtual void draw(const Vector2D& layerPosition);
 
 	virtual void collision();
+	virtual void onCreate();
 };
 
 /*

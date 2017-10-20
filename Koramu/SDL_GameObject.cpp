@@ -42,9 +42,6 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 	m_objectRect.load(parameters);
 	m_objectRect.setShowText(true);
 	m_objectRect.setVisible(true);	
-
-	//	Die im Script gesetzten Attribute laden
-	this->loadScript();
 }
 
 void SDL_GameObject::update()
@@ -101,6 +98,10 @@ void SDL_GameObject::collision()
 
 	//	Die Animation des Spielobjekts wird auf Stillstand mit Blick in die selbe Richtung gesetzt
 	m_currentCol = 0;
+}
+
+void SDL_GameObject::onCreate()
+{
 }
 
 void SDL_GameObject::destroy()

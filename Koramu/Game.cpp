@@ -271,6 +271,11 @@ void Game::popState()
 }
 
 
+FiniteStateMachine::GameState* Game::getCurrentState()
+{
+	return m_pStateMachine->getCurrentState();
+}
+
 //	Wichtig für Singleton-Klasse
 Game* Game::Instance()
 {

@@ -105,6 +105,7 @@ public:
 	int getGameHeight() const { return m_gameHeight; }
 	int getGameXPos() const { return m_gameXPos; }
 	int getGameYPos() const { return m_gameYPos; }
+	FiniteStateMachine::GameState* getCurrentState();
 
 	/*	Log Objekte werden zurückgegeben, damit man mit einem
 	*	Stream Operator auf sie zugreifen kann.

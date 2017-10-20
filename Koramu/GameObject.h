@@ -34,6 +34,7 @@ public:
 	virtual void draw(const Vector2D& layerPosition) = 0;
 
 	virtual void collision() = 0;
+	virtual void onCreate() = 0;
 
 	//	ssshhh (Workaround) - Implementierung in "SDL_GameObject"
 	virtual Vector2D getVelocity() const = 0;

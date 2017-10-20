@@ -45,6 +45,13 @@ void Player::load(const ParamLoader& params)
 	 */
 	m_collisionRects[0].setVisible(true);
 	m_collisionRects[0].setShowText(false);
+
+	//	Die Skripts laden (Attribute, die im Skript gesetzt wurden evtl übernehmen + onCreate aufrufen)
+	loadScript();
+}
+
+void Player::loadScript()
+{
 }
 
 void Player::update()
@@ -113,5 +120,12 @@ void Player::collision()
 {
 	SDL_GameObject::collision();
 
-	TheScriptManager::Instance()->getScriptFromId("player").callFunction("onCollision");
+	//	Die Funktion im Script aufrufen
+	TheScriptManager::Instance()->getScriptFromId(m_uniqueId).callFunction("onCollision");
+}
+
+void Player::onCreate()
+{
+	//	Die Funktion im Script aufrufen
+	TheScriptManager::Instance()->getScriptFromId(m_uniqueId).callFunction("onCreate");
 }
