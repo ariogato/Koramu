@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <scripts>
+  <script id="default" path="default.lua"/>
+  
   <script id="johann" path="tree.lua"/>
   <script id="johanneisch" path="door.lua"/>
   <script id="player" path="player.lua"/>

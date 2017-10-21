@@ -162,6 +162,7 @@
     <ClCompile Include="MapParser.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectRectangle.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapParser.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectRectangle.h" />
     <ClInclude Include="Player.h" />
@@ -249,6 +251,7 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="door.lua" />
+    <None Include="default.lua" />
     <None Include="player.lua" />
     <None Include="tree.lua" />
   </ItemGroup>

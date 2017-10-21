@@ -9,7 +9,7 @@ end
 
 
 function player:onCollision()
-	player.instance:sayhi()
+	--player.instance:sayhi()
 end
 
 return player

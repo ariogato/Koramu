@@ -4,15 +4,17 @@
 #include <SDL_ttf.h>
 #include "TextureManager.h"
 #include "Test.h"
-#include "InputHandler.h"
-#include "GameObjectFactory.h"
-#include "Player.h"
-#include "Animation.h"
-#include "Button.h"
 #include "GameStateMachine.h"
 #include "MenuState.h"
 #include "Camera.h"
 #include "ScriptManager.h"
+#include "InputHandler.h"
+
+#include "GameObjectFactory.h"
+#include "Player.h"
+#include "Animation.h"
+#include "Button.h"
+#include "NPC.h"
 
 #include "PlayerLuaRegistration.h"
 #include "GameLuaRegistration.h"
@@ -155,6 +157,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	TheGameObjectFactory::Instance()->registerType("button", new ButtonCreator());
 	TheGameObjectFactory::Instance()->registerType("animation", new AnimationCreator());
 	TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
+	TheGameObjectFactory::Instance()->registerType("npc", new NPCCreator());
 #pragma endregion
 
 	//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen

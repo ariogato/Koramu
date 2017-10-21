@@ -5,6 +5,7 @@
 #include <string>
 
 class ParamLoader;
+class Player;
 
 /*	Abstrakte Klasse von der jede Klasse, die etwas auf dem 
 *	Bildschirm macht erbt.
@@ -35,6 +36,7 @@ public:
 
 	virtual void collision() = 0;
 	virtual void onCreate() = 0;
+	virtual void interact(Player* pPlayer) = 0;
 
 	//	ssshhh (Workaround) - Implementierung in "SDL_GameObject"
 	virtual Vector2D getVelocity() const = 0;

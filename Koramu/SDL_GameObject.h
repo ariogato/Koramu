@@ -44,6 +44,7 @@ public:
 
 	virtual void collision();									//	Hier wird festgelegt, was passiert, wenn das Objekt kollidiert
 	virtual void onCreate();									//	Hier wird die SkriptMethode "onCreate()" aufgerufen
+	virtual void interact(Player* pPlayer);						//	Bei der Interaktion mit Objekten, kann jedes Objekt selber festlegen, wie es sich verhält			
 
 	virtual void destroy();
 

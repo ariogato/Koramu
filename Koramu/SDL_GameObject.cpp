@@ -1,6 +1,7 @@
 #include "SDL_GameObject.h"
 #include "ParamLoader.h"
 #include "TextureManager.h"
+#include "ScriptManager.h"
 
 
 SDL_GameObject::SDL_GameObject()
@@ -98,9 +99,18 @@ void SDL_GameObject::collision()
 
 	//	Die Animation des Spielobjekts wird auf Stillstand mit Blick in die selbe Richtung gesetzt
 	m_currentCol = 0;
+
+	//	Die Funktion im Script aufrufen
+	TheScriptManager::Instance()->getScriptFromId(m_uniqueId).callFunction("onCollision");
 }
 
 void SDL_GameObject::onCreate()
+{
+	//	Die Funktion im Script aufrufen
+	TheScriptManager::Instance()->getScriptFromId(m_uniqueId).callFunction("onCreate");
+}
+
+void SDL_GameObject::interact(Player* pPlayer)
 {
 }
 

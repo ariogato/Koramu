@@ -13,10 +13,13 @@ class GameObject;
 class Player : public SDL_GameObject
 {
 private:
+	std::vector<ObjectRectangle> m_interactRects;		//	Eine Liste aus Rechtecken für die Interaktion mit anderen Objekten
+
+	GameObject* interactCollision();					//	Checkt, ob eine Kollision der interactRects vorliegt 						
 	void loadScript() override;
 public: 
-	Player();					//	Konstruktor
-	~Player();					//	Destruktor
+	Player();											//	Konstruktor
+	~Player();											//	Destruktor
 
 	virtual void load(const ParamLoader& params);
 	virtual void update();

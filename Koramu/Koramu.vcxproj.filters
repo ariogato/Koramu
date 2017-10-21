@@ -203,6 +203,9 @@
     <ClCompile Include="GameLuaRegistration.cpp">
       <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -346,6 +349,9 @@
     <ClInclude Include="GameLuaRegistration.h">
       <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
     </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -373,6 +379,9 @@
       <Filter>Lua Skripts</Filter>
     </None>
     <None Include="player.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
+    <None Include="default.lua">
       <Filter>Lua Skripts</Filter>
     </None>
   </ItemGroup>
