@@ -29,6 +29,7 @@ public:
 	//	setter-Funktionen
 	void setVelocity(Vector2D v) { m_velocity = v; }
 	void setTextureId(std::string id) { m_textureId = id; }
+	void setCurrentCol(int col) { m_currentCol = col; }
 };
 
 /*

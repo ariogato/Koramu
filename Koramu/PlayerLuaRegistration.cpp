@@ -24,7 +24,7 @@ void PlayerLuaRegistration::registerToLua(lua_State* pLuaState)
 	luaL_Reg regs[] =
 	{
 		{ "getInstance", l_playerInstance },
-		{"sayhi", sayhi},
+		{ "sayhi", sayhiPlayer },
 		{nullptr, nullptr}
 	};
 
@@ -40,13 +40,12 @@ Player* PlayerLuaRegistration::checkAndGetPlayer(lua_State* pLuaState, int argNu
 	return *static_cast<Player**>(luaL_checkudata(pLuaState, argNum, "luaL_Player"));
 }
 
-int LuaRegistrations::sayhi(lua_State* L)
+int LuaRegistrations::sayhiPlayer(lua_State* L)
 {
 	//	Referenz auf den Player (nicht zu löschen)
 	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(L, 1);
 
-	std::cout	<< "You're colliding at... \n\tX: " << pPlayerInstance->getPosition().getX() << std::endl 
-				<< "\tY: " << pPlayerInstance->getPosition().getY() << std::endl << std::endl;
+	std::cout << "Player " << pPlayerInstance->getUniqueId() << " says hi!" << std::endl;
 
 	return 0;
 }

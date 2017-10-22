@@ -19,6 +19,7 @@
 
 #include "PlayerLuaRegistration.h"
 #include "GameLuaRegistration.h"
+#include "NPCLuaRegistration.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -141,6 +142,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	//	Alles für die Lua Scripts bereitstellen
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::PlayerLuaRegistration());
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::GameLuaRegistration());
+	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::NPCLuaRegistration());
 #pragma endregion
 
 	//	Die Scripting Engine initialisieren

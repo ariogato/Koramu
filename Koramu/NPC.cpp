@@ -1,4 +1,6 @@
 #include "NPC.h"
+#include "ScriptManager.h"
+#include <iostream>
 
 
 NPC::NPC()
@@ -43,6 +45,22 @@ void NPC::onCreate()
 
 void NPC::interact(Player* pPlayer)
 {
-	SDL_GameObject::interact(pPlayer);
+	/*	Zuerst werden die Argumente über das Script Objekt auf den Stack gepusht.
+	 *	Anschließend wird die Methode mit 3 Argumenten aufgerufen.
+	 *	
+	 *	1. eine Referenz auf self
+	 *	2. der npc
+	 *	3. der player
+	 */
+	Script s =
+		TheScriptManager::Instance()->getScriptFromId(m_uniqueId);
+
+	s.pushTable();
+	s.pushArgumentMetatable(this, NPC_TYPE);
+	s.pushArgumentMetatable(pPlayer, PLAYER_TYPE);
+
+
+	s.callVoidWithArgs("interact", 3);
 }
+
 

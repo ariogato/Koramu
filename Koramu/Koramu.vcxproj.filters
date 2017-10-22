@@ -212,6 +212,9 @@
     <ClCompile Include="StoryParser.cpp">
       <Filter>Quelldateien\Parser</Filter>
     </ClCompile>
+    <ClCompile Include="NPCLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -364,6 +367,9 @@
     <ClInclude Include="StoryParser.h">
       <Filter>Headerdateien\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="NPCLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -397,6 +403,9 @@
       <Filter>Lua Skripts</Filter>
     </None>
     <None Include="default.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
+    <None Include="npc1.lua">
       <Filter>Lua Skripts</Filter>
     </None>
   </ItemGroup>

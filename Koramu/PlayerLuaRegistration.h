@@ -24,7 +24,7 @@ namespace LuaRegistrations
 	};
 
 	//	Zu übergebene Funktionen
-	int sayhi(lua_State* L);
+	int sayhiPlayer(lua_State* L);
 
 	int l_playerInstance(lua_State* pLuaState);
 }

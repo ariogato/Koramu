@@ -3,6 +3,9 @@
 #include "ScriptManager.h"
 #include "Game.h"
 
+#include "NPC.h"
+#include "Player.h"
+
 
 Script::Script()
 	: m_pLuaState(TheScriptManager::Instance()->getLuaState()), 
@@ -70,6 +73,95 @@ void Script::callFunction(const char* func)
 
 	//	Die Tabelle wieder vom Stack poppen
 	lua_pop(m_pLuaState, 1);
+}
+
+void Script::pushArgumentMetatable(void* pObject, OBJECT_TYPE type)
+{
+	//	Variable die abhängig vom Argument 'type' gesetzt wird
+	std::string tableName;
+
+	/*	Wie verfahren wird, ist abhängig vom Typen des Objekts.
+	 *	'pObject' wird gecastet und zu seiner zugehörigen Metatabelle hinzugefügt.
+	 */
+	switch (type)
+	{
+	case PLAYER_TYPE: {
+		//	Namen der Metatabelle setzen
+		tableName = "luaL_Player";
+
+		//	Eine userdata Variable für das Objekt wird erstellt und auf den Stack gepusht
+		Player** pPlayerUserData = static_cast<Player**>(lua_newuserdata(m_pLuaState, sizeof(Player*)));
+
+		//	Die userdata Variable auf dem Stack befüllen
+		*pPlayerUserData = static_cast<Player*>(pObject);
+
+		break; }
+
+	case NPC_TYPE: {
+		//	Namen der Metatabelle setzen
+		tableName = "luaL_NPC";
+
+		//	Eine userdata Variable für das Objekt wird erstellt und auf den Stack gepusht
+		NPC** pNPCUserData = static_cast<NPC**>(lua_newuserdata(m_pLuaState, sizeof(NPC*)));
+
+		//	Die userdata Variable auf dem Stack befüllen
+		*pNPCUserData = static_cast<NPC*>(pObject);
+
+		break; }
+
+	default:
+		//	Das darf nicht passieren
+		TheGame::Instance()->logError() << "Script::pushArgumentMetatable():\n\tTyp " << type << " existiert nicht" << std::endl << std::endl;
+		return;
+	}
+
+	//	Die zum Objekt gehörige Metatabelle auf den Stack pushen
+	luaL_getmetatable(m_pLuaState, tableName.c_str());
+
+	//	Das Objekt mit der Metatabelle verknüpfen
+	lua_setmetatable(m_pLuaState, -2);
+}
+
+void Script::callVoidWithArgs(const char* func, int numArgs)
+{
+	//	Checken, ob sich genug Argumente auf dem Stack befinden
+	if (numArgs > lua_gettop(m_pLuaState))
+	{
+		TheGame::Instance()->logError() << "Script::callVoidWithArgs():\n\tEs befinden sich weniger als " << numArgs << " Werte auf dem Stack" << std::endl << std::endl;
+		lua_settop(m_pLuaState, 0);
+		return;
+	}
+
+	//	Die Tabelle auf den Stack pushen
+	if (!pushTable())
+		return;
+
+	//	Die Funktion der Tabelle wird auf den Stack gepusht
+	lua_getfield(m_pLuaState, -1, func);
+
+	/*	Checken, ob tatsächlich eine Funktion gepusht wurde.
+	*	Falls nicht, soll das gepushte einfach wieder gepoppt werden.
+	*/
+	if (lua_isfunction(m_pLuaState, -1))
+	{
+		//	Die Tabelle wieder vom Stack entfernen
+		lua_remove(m_pLuaState, -2);
+
+		//	Die Lua Funktion unter die Argumente einsetzen (so will es 'lua_pcall()')
+		lua_insert(m_pLuaState, 1);
+
+		//	Funktion aufrufen und checken, ob Fehler aufgetreten sind
+		if (lua_pcall(m_pLuaState, numArgs, 0, 0))
+		{
+			TheGame::Instance()->logError() << "Script::callVoidWithArgs():\n\tFunktion: " << func << " in der Tabelle " << m_scriptId << "\n\t" << lua_tostring(m_pLuaState, -1) << std::endl << std::endl;
+			TheGame::Instance()->emergencyExit("Fehler beim Aufruf einer Lua Funktion!\nSiehe error log");
+		}
+	}
+	else
+	{
+		//	Den Stack leeren
+		lua_settop(m_pLuaState, 0);
+	}
 }
 
 std::string Script::getStringFromTable(const char* name)

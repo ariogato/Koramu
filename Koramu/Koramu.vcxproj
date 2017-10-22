@@ -163,6 +163,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NPCLuaRegistration.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectRectangle.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="NPCLuaRegistration.h" />
     <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
     <ClInclude Include="InputHandler.h" />
@@ -257,6 +259,7 @@
     <None Include="ClassDiagram.cd" />
     <None Include="door.lua" />
     <None Include="default.lua" />
+    <None Include="npc1.lua" />
     <None Include="player.lua" />
     <None Include="tree.lua" />
   </ItemGroup>
