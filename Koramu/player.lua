@@ -4,7 +4,7 @@ local player = {}
 
 function player:onCreate()
 	player.instance = Player.getInstance ()
-	print("I'm here")
+	print("Aktuelle Quest: \n\t" .. TheGame.getMainQuestId() .. " : " .. TheGame.getPartQuestId())
 end
 
 
