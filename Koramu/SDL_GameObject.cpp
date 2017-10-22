@@ -2,16 +2,20 @@
 #include "ParamLoader.h"
 #include "TextureManager.h"
 #include "ScriptManager.h"
+#include "CommandQueue.h"
+#include "MoveCommand.h"
 
 
 SDL_GameObject::SDL_GameObject()
 	: m_currentRow(0), m_currentCol(0), m_numCols(1),
-	  m_numRows(1), m_animSpeed(1), m_velocity(0.0f, 0.0f)
+	  m_numRows(1), m_animSpeed(1), m_velocity(0.0f, 0.0f),
+	  m_pCommands(new CommandQueue(*this))
 {
 }
 
 SDL_GameObject::~SDL_GameObject()
 {
+	delete m_pCommands;
 }
 
 void SDL_GameObject::loadScript()
@@ -88,6 +92,11 @@ void SDL_GameObject::draw(const Vector2D& layerPosition)
 
 void SDL_GameObject::collision()
 {
+	//	Falls gerade ein Move Befehl vorliegt, soll dieser gelöscht werden, da bei einer Kollision Schluss ist
+	if (!m_pCommands->isEmpty())
+		if (m_pCommands->getCurrentCommand()->getType() == COMMAND_MOVE)
+			m_pCommands->popCommand();
+
 	/*	Der Geschwindigkeitsvektor wird wieder vom Ortsvektor subtrahiert,
 	 *	damit die Bewegung aus 'update()' wieder rückgängig gemacht wird.
 	 */
@@ -112,6 +121,16 @@ void SDL_GameObject::onCreate()
 
 void SDL_GameObject::interact(Player* pPlayer)
 {
+}
+
+void SDL_GameObject::moveToPosition(Vector2D v)
+{
+	m_pCommands->pushCommand(new MoveCommand(v));
+}
+
+void SDL_GameObject::moveRelative(Vector2D v)
+{
+	m_pCommands->pushCommand(new MoveCommand(getPosition() + v));
 }
 
 void SDL_GameObject::destroy()

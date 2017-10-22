@@ -23,4 +23,6 @@ namespace LuaRegistrations {
 	int sayhiNPC(lua_State* L);
 	int l_getNPCInstance(lua_State* pLuaState);
 	int l_setCurrentCol(lua_State* pLuaState);
+	int l_NPCMoveToPosition(lua_State* pLuaState);
+	int l_NPCMoveRelative(lua_State* pLuaState);
 }

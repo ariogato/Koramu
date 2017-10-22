@@ -1,6 +1,6 @@
 #include "NPC.h"
 #include "ScriptManager.h"
-#include <iostream>
+#include "CommandQueue.h"
 
 
 NPC::NPC()
@@ -25,7 +25,20 @@ void NPC::loadScript()
 
 void NPC::update()
 {
-	
+	m_velocity *= 0;
+	m_currentCol = 0;
+
+	//	Falls ein Befehl vorhanden ist, ausführen
+	if (!m_pCommands->isEmpty())
+	{
+		m_pCommands->update();
+	}
+
+	//	Falls sich der NPC bewegt, updaten
+	if (m_velocity.getLength())
+	{
+		SDL_GameObject::update();
+	}
 }
 
 void NPC::draw(const Vector2D& layerPosition)

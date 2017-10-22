@@ -81,6 +81,12 @@
     <Filter Include="Quelldateien\Scripting\LuaRegistrations">
       <UniqueIdentifier>{a873a3b8-d65b-4bff-97c4-a5f9fe0545b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\GameObjects\Commands">
+      <UniqueIdentifier>{11729c06-3663-4e02-8cee-68add4a62454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\GameObjects\Commands">
+      <UniqueIdentifier>{0d51c2e7-1efd-4531-863c-95238383468d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -214,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="NPCLuaRegistration.cpp">
       <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandQueue.cpp">
+      <Filter>Quelldateien\GameObjects\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveCommand.cpp">
+      <Filter>Quelldateien\GameObjects\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +381,15 @@
     </ClInclude>
     <ClInclude Include="NPCLuaRegistration.h">
       <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQueue.h">
+      <Filter>Headerdateien\GameObjects\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCommand.h">
+      <Filter>Headerdateien\GameObjects\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveCommand.h">
+      <Filter>Headerdateien\GameObjects\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
