@@ -20,6 +20,7 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "setGameOver", l_setGameOver },
 		{ "getMainQuestId", l_getMainQuestId },
 		{ "getPartQuestId", l_getPartQuestId },
+		{ "nextQuest", l_nextQuest },
 		{nullptr, nullptr}
 	};
 
@@ -51,4 +52,13 @@ int LuaRegistrations::l_getPartQuestId(lua_State* pLuaState)
 
 	//	Es gibt einen Rückgabewert (part quest id)
 	return 1;
+}
+
+int LuaRegistrations::l_nextQuest(lua_State* pLuaState)
+{
+	//	Die nächste Quest einleiten
+	TheGame::Instance()->getStory()->nextQuest();
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
 }

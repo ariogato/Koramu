@@ -65,14 +65,14 @@ void Story::nextQuest()
 	}
 }
 
-void Story::setQuest(std::string main, std::string part)
+void Story::setQuest(std::string mainQuest, std::string partQuest)
 {
 	//	Schauen ob sich 'main' in der Liste aus Quests befindet, indem das Element gesucht wird
 	std::vector<std::pair<std::string, std::vector<std::string>>>::iterator it 
 		= std::find_if(m_questList.begin(), m_questList.end(), 
-			[main](std::pair<std::string, std::vector<std::string>> elem)
+			[mainQuest](std::pair<std::string, std::vector<std::string>> elem)
 	{
-		return elem.first == main;
+		return elem.first == mainQuest;
 	});
 
 	//	Falls die Suche nicht erfolgreich war
@@ -80,10 +80,10 @@ void Story::setQuest(std::string main, std::string part)
 		return;
 
 	//	Checken, ob die übergebene part quest zur main quest gehört
-	if (std::find(it->second.begin(), it->second.end(), part) == it->second.end())
+	if (std::find(it->second.begin(), it->second.end(), partQuest) == it->second.end())
 		return;
 
 	//	Ab hier ist klar, dass die Eingabe valide ist, also können die Werte gesetzt werdens
-	m_currentMainQuest = main;
-	m_currentMainQuest = part;
+	m_currentMainQuest = mainQuest;
+	m_currentMainQuest = partQuest;
 }

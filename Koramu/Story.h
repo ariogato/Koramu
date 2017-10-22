@@ -39,5 +39,5 @@ public:
 	std::string getPartQuest() const { return m_currentPartQuest; }
 
 	//	setter-Funktionen
-	void setQuest(std::string main, std::string part);
+	void setQuest(std::string mainQuest, std::string partQuest);
 };
