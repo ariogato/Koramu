@@ -206,6 +206,12 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Story.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="StoryParser.cpp">
+      <Filter>Quelldateien\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -352,6 +358,12 @@
     <ClInclude Include="NPC.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Story.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="StoryParser.h">
+      <Filter>Headerdateien\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -367,6 +379,9 @@
       <Filter>xmlFiles</Filter>
     </Xml>
     <Xml Include="xmlFiles\scripts.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
+    <Xml Include="xmlFiles\quests.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
   </ItemGroup>

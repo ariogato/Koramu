@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "ScriptManager.h"
 #include "InputHandler.h"
+#include "Story.h"
 
 #include "GameObjectFactory.h"
 #include "Player.h"
@@ -42,6 +43,9 @@ Game::Game()									//	Konstruktor
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
 	m_pErrorLog = new Logger("../logs/errors.txt");
+
+	//	Story Objekt erstellen
+	m_pStory = new Story();
 }
 
 /*	!! WICHTIG !!
@@ -64,6 +68,7 @@ Game::~Game()									//	Destruktor
 	delete m_pErrorLog;
 	delete m_pStateMachine;
 	delete m_pCamera;
+	delete m_pStory;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
@@ -146,6 +151,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 	//	Zustandsmaschine initialisieren
 	m_pStateMachine = new FiniteStateMachine::GameStateMachine();
+
+	//	Story initialisieren
+	m_pStory->init();
 
 	//	Informationen über das Fenster speichern
 	m_gameWidth = width;

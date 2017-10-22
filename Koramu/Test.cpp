@@ -10,6 +10,7 @@
 #include <regex>
 #include "ScriptLoader.h"
 #include "FontManager.h"
+#include "Story.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -75,6 +76,23 @@ backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 #pragma region FontManagerTest 
 	TheFontManager::Instance()->parseFont();
 #pragma endregion 
+
+#pragma region StoryTest
+	/*	Test erfolgreich
+	 *		Alle Aufrufe verhalten sich wie erwartet.
+	 *
+	 *	1. init() wirft keine Fehler
+	 *	2. nextQuest() funktioniert auch nachdem alles quests abgeschlossen wurden
+	 */
+	/*
+	Story s;
+	s.init();
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << s.getMainQuest() << ": " << s.getPartQuest() << std::endl;
+		s.nextQuest();
+	}*/
+#pragma endregion
 }
 
 Test::~Test()						//	Destruktor

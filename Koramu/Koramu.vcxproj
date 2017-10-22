@@ -175,6 +175,8 @@
     <ClCompile Include="SDL_GameObject.cpp" />
     <ClCompile Include="StackDefinitions.cpp" />
     <ClCompile Include="StateParser.cpp" />
+    <ClCompile Include="Story.cpp" />
+    <ClCompile Include="StoryParser.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -200,6 +202,7 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Layer.h" />
@@ -225,6 +228,7 @@
     <ClInclude Include="StackDeclarations.h" />
     <ClInclude Include="StackElement.h" />
     <ClInclude Include="StateParser.h" />
+    <ClInclude Include="StoryParser.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />
@@ -240,6 +244,7 @@
     <Xml Include="xmlFiles\maps.xml">
       <SubType>Designer</SubType>
     </Xml>
+    <Xml Include="xmlFiles\quests.xml" />
     <Xml Include="xmlFiles\scripts.xml">
       <SubType>Designer</SubType>
     </Xml>

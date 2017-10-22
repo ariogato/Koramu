@@ -9,7 +9,6 @@ ScriptLoader::~ScriptLoader()
 {}
 
 using namespace tinyxml2;
-#define FILENAME "xmlFiles/scripts1.xml"
 #define ERR_MESSAGE "Fehler beim Laden der Scripts!"
 
 std::map<std::string, std::string>* ScriptLoader::loadScripts(const char* filename)
@@ -28,8 +27,8 @@ std::map<std::string, std::string>* ScriptLoader::loadScripts(const char* filena
 	}
 
 	//	Ermitteln des Wurzelelementes
-	XMLElement* pStateRoot = pDocument->RootElement();
-	if (!pStateRoot)
+	XMLElement* pScriptRoot = pDocument->RootElement();
+	if (!pScriptRoot)
 	{
 
 		TheGame::Instance()->logError() << "ScriptLoader::loadScripts(): \n\t" << filename << " hat kein <scripts>-Element." << std::endl << std::endl;
@@ -38,7 +37,7 @@ std::map<std::string, std::string>* ScriptLoader::loadScripts(const char* filena
 
 	//	Über jedes <script> Element iterieren 
 	int counter = 0;
-	for (XMLElement* e = pStateRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement(), counter++)
+	for (XMLElement* e = pScriptRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement(), counter++)
 	{
 		//	ID und Path aus der XML Datei extrahieren
 		const char* id = e->Attribute("id");
