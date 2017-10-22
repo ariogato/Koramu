@@ -141,6 +141,8 @@ bool CollisionRectParser::parse(std::string filename, std::vector<GameObject*>* 
 				}
 			}
 		}
+		//	Den Vektor für den nächsten Objekttypen frei machen
+		tempCollisionRects.clear();
 	}
 	//	Es wurde erfolgreich geparst
 	return true;
