@@ -48,6 +48,11 @@ void FontManager::parseFont()
 
 void FontManager::drawCharacter(char character, int x, int y)
 {
+	//	Checken, ob Zeichen mit dem die Methode aufgerufen wird im Alphabet enthalten ist
+	if (m_texturePositionMap.count(character) == 0)
+	{
+		return;
+	}
 	//	Eine bestimmte Textur zeichnen
 	TheTextureManager::Instance()->drawFrame("font",															
 		x, y, m_width, m_height,
