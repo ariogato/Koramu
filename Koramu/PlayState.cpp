@@ -62,6 +62,13 @@ void FiniteStateMachine::PlayState::onEnter()
 
 	//	Die Anfangsmap aufstapeln
 	m_maps.push(m_mapDict["mainMap"]);
+
+	//	die "onCreate" Funktion aller Objekte aufrufen
+	for (auto i : *(m_maps.getTopNodeData()->getObjectLayer()->getGameObjects()))
+	{
+		i->onCreate();
+	}
+
 	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
 }
 

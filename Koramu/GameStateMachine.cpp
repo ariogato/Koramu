@@ -47,8 +47,8 @@ void FiniteStateMachine::GameStateMachine::pushState(GameState* newState)
 	}
 
 	//	Einen neuen Spielzustand aufstapeln und die Methode "onEnter()" aufrufen, die bestimmte Aktionen für das Eintreten des neuen Spielzustandes ausführt
-	newState->onEnter();
 	m_stateStack.push(newState);
+	newState->onEnter();
 }
 
 void FiniteStateMachine::GameStateMachine::popState()
@@ -86,6 +86,6 @@ void FiniteStateMachine::GameStateMachine::changeState(GameState* newState)
 	//	Den aktuellen Spielzustand entfernen:
 	m_stateStack.pop();
 	//	Einen neuen Spielzustand aufstapeln und die Methode "onEnter()" aufrufen, die bestimmte Aktionen für das Eintreten des neuen Spielzustandes ausführt
-	newState->onEnter();
 	m_stateStack.push(newState);
+	newState->onEnter();
 }

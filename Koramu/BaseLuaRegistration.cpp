@@ -1,5 +1,6 @@
 #include "BaseLuaRegistration.h"
 #include <lua.hpp>
+#include <string>
 
 void LuaRegistrations::BaseLuaRegistration::registerMetatable(const char* name, lua_State* pLuaState, const luaL_Reg* pRegs)
 {
@@ -11,8 +12,8 @@ void LuaRegistrations::BaseLuaRegistration::registerMetatable(const char* name, 
 	 *	die Möglichkeit eines Zugriffs auf eine Klasse und seine Member.
 	 */
 
-	//	Eine neue Metatabelle wird auf den Stack gepusht
-	luaL_newmetatable(pLuaState, "luaL_Player");
+	//	Eine neue Metatabelle wird auf den Stack gepusht (Form: luaL_ + name)
+	luaL_newmetatable(pLuaState, (std::string("luaL_") + std::string(name)).c_str());
 
 	//	Die zuvor definierten Funktionen (befindlich in pRegs) werden in die Tabelle an oberster Stelle im Stack registriert
 	luaL_setfuncs(pLuaState, pRegs, 0);

@@ -23,5 +23,8 @@ namespace LuaRegistrations
 
 	//	Zu übergebene Funktionen
 	int l_setGameOver(lua_State* pLuaState);
+	int l_getMainQuestId(lua_State* pLuaState);
+	int l_getPartQuestId(lua_State* pLuaState);
+	int l_nextQuest(lua_State* pLuaState);
 }
 

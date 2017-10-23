@@ -4,18 +4,22 @@
 #include <SDL_ttf.h>
 #include "TextureManager.h"
 #include "Test.h"
-#include "InputHandler.h"
-#include "GameObjectFactory.h"
-#include "Player.h"
-#include "Animation.h"
-#include "Button.h"
 #include "GameStateMachine.h"
 #include "MenuState.h"
 #include "Camera.h"
 #include "ScriptManager.h"
+#include "InputHandler.h"
+#include "Story.h"
+
+#include "GameObjectFactory.h"
+#include "Player.h"
+#include "Animation.h"
+#include "Button.h"
+#include "NPC.h"
 
 #include "PlayerLuaRegistration.h"
 #include "GameLuaRegistration.h"
+#include "NPCLuaRegistration.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -40,6 +44,9 @@ Game::Game()									//	Konstruktor
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
 	m_pErrorLog = new Logger("../logs/errors.txt");
+
+	//	Story Objekt erstellen
+	m_pStory = new Story();
 }
 
 /*	!! WICHTIG !!
@@ -62,6 +69,7 @@ Game::~Game()									//	Destruktor
 	delete m_pErrorLog;
 	delete m_pStateMachine;
 	delete m_pCamera;
+	delete m_pStory;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
@@ -134,6 +142,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	//	Alles für die Lua Scripts bereitstellen
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::PlayerLuaRegistration());
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::GameLuaRegistration());
+	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::NPCLuaRegistration());
 #pragma endregion
 
 	//	Die Scripting Engine initialisieren
@@ -145,6 +154,9 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	//	Zustandsmaschine initialisieren
 	m_pStateMachine = new FiniteStateMachine::GameStateMachine();
 
+	//	Story initialisieren
+	m_pStory->init();
+
 	//	Informationen über das Fenster speichern
 	m_gameWidth = width;
 	m_gameHeight = height;
@@ -155,6 +167,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	TheGameObjectFactory::Instance()->registerType("button", new ButtonCreator());
 	TheGameObjectFactory::Instance()->registerType("animation", new AnimationCreator());
 	TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
+	TheGameObjectFactory::Instance()->registerType("npc", new NPCCreator());
 #pragma endregion
 
 	//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
@@ -270,6 +283,11 @@ void Game::popState()
 	isPopState = true;
 }
 
+
+FiniteStateMachine::GameState* Game::getCurrentState()
+{
+	return m_pStateMachine->getCurrentState();
+}
 
 //	Wichtig für Singleton-Klasse
 Game* Game::Instance()

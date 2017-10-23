@@ -148,6 +148,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="CollisionRectParser.cpp" />
+    <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -161,9 +162,11 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapParser.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
+    <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NPCLuaRegistration.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
-    <ClCompile Include="ObjectLayerLuaRegistration.cpp" />
     <ClCompile Include="ObjectRectangle.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -175,6 +178,8 @@
     <ClCompile Include="SDL_GameObject.cpp" />
     <ClCompile Include="StackDefinitions.cpp" />
     <ClCompile Include="StateParser.cpp" />
+    <ClCompile Include="Story.cpp" />
+    <ClCompile Include="StoryParser.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -192,6 +197,8 @@
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
     <ClInclude Include="CollisionRectParser.h" />
+    <ClInclude Include="BaseCommand.h" />
+    <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="Game.h" />
@@ -200,14 +207,17 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="MoveCommand.h" />
+    <ClInclude Include="NPCLuaRegistration.h" />
+    <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapParser.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="ObjectLayer.h" />
-    <ClInclude Include="ObjectLayerLuaRegistration.h" />
     <ClInclude Include="ObjectRectangle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerLuaRegistration.h" />
@@ -225,6 +235,7 @@
     <ClInclude Include="StackDeclarations.h" />
     <ClInclude Include="StackElement.h" />
     <ClInclude Include="StateParser.h" />
+    <ClInclude Include="StoryParser.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />
@@ -240,6 +251,7 @@
     <Xml Include="xmlFiles\maps.xml">
       <SubType>Designer</SubType>
     </Xml>
+    <Xml Include="xmlFiles\quests.xml" />
     <Xml Include="xmlFiles\scripts.xml">
       <SubType>Designer</SubType>
     </Xml>
@@ -251,6 +263,8 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="door.lua" />
+    <None Include="default.lua" />
+    <None Include="npc1.lua" />
     <None Include="player.lua" />
     <None Include="tree.lua" />
   </ItemGroup>
