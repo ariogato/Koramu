@@ -2,6 +2,7 @@
 #include <string>
 #include "TextureManager.h"
 #include <iostream>
+#include <vector>
 
 //	Wichtig für Singleton-Klasse
 FontManager* FontManager::s_pInstance = nullptr;
@@ -65,6 +66,69 @@ void FontManager::drawText(std::string text, int x, int y)
 		//	Verschieben der x-Position um +32, um das Rendern vieler Buchstaben auf einer Position zu verhindern
 		x = x + m_width; 
 	}
+}
+
+void FontManager::drawTextBox(std::string text, ObjectRectangle textBox)
+{
+	//	Rausfinden der x-Position, y-Position, Breite und Höhe der Box
+	int x = textBox.getX();			
+	int y = textBox.getY();
+	int width = textBox.getWidth();
+	int height = textBox.getHeight();
+	
+	//	x-Posititon und y-Position des Wortes	
+	int wordX = x;
+	int wordY = y;
+
+	//	Eine Liste aus Wörten des Textes
+	std::vector<std::string> words;
+		
+	//	Erstes Leerzeichen speichern
+	int lastSpace = 0;
+
+	//	Durchgehen durch Text
+	for (int i = 0; i < text.size(); i++)
+	{
+		//	Schauen, ob jetziges Zeichen ein Leerzeichen ist
+		if (text.at(i) == ' ') 
+		{
+			//	Speichern des Textes vom davor gespeicherten Leerzeichen bis zum Jetzigen
+			words.push_back(text.substr(lastSpace, i - lastSpace));
+			//	Jetziges Leerzeichen als Letztes speichern
+			lastSpace = i + 1;
+		}
+		else if (i == text.size() - 1)
+		{
+			words.push_back(text.substr(lastSpace, i - lastSpace + 1));
+		}
+	}
+	
+	for (int i = 0; i < words.size(); i++)
+	{
+	
+		//	Wort mit der Position i innerhalb des Arrays
+		std::string word = words.at(i);
+
+		if (wordX + m_width * word.size() < x + width)
+		{
+			//	Rendern eines Wortes
+			drawText(word, wordX, wordY);
+		}
+		else
+		{
+			//	Verschieben der y-Position um m_height, um das Rendern in die nächste Zeile zu Verschieben
+			wordY = wordY + m_height + 10;
+			wordX = x;
+			//	Rendern eines Wortes
+			drawText(word, wordX, wordY);
+		}
+		//	Verschieben der x-Position um die Länge eines Wortes, um das Rendern vieler Wörter auf einer Position zu verhindern
+		wordX = wordX + m_width * word.size();
+		//	Rendern eines Leerzeichens nach jedem Wort
+		drawCharacter(' ', wordX, wordY);
+		//	Verschieben des nächsten Wortes um es nicht auf dem Leerzeichen zu rendern
+		wordX = wordX + m_width;
+	}	
 }
 
 FontManager* FontManager::Instance()
