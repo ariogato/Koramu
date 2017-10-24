@@ -148,6 +148,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="CollisionRectParser.cpp" />
+    <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -161,8 +162,10 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapParser.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NPCLuaRegistration.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectRectangle.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -194,6 +197,8 @@
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
     <ClInclude Include="CollisionRectParser.h" />
+    <ClInclude Include="BaseCommand.h" />
+    <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="Game.h" />
@@ -202,6 +207,8 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="MoveCommand.h" />
+    <ClInclude Include="NPCLuaRegistration.h" />
     <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
     <ClInclude Include="InputHandler.h" />
@@ -260,6 +267,7 @@
     <None Include="ClassDiagram.cd" />
     <None Include="door.lua" />
     <None Include="default.lua" />
+    <None Include="npc1.lua" />
     <None Include="player.lua" />
     <None Include="tree.lua" />
   </ItemGroup>

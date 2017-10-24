@@ -3,8 +3,7 @@
 #include "ParamLoader.h"
 #include "InputHandler.h"
 #include "Game.h"
-#include "Camera.h"
-#include "ScriptManager.h"
+#include "CommandQueue.h"
 
 Player::Player()
 {}
@@ -182,65 +181,92 @@ void Player::update()
 	m_currentCol = 0;
 	m_velocity.setX(0.0f);
 	m_velocity.setY(0.0f);
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+
+	//	Falls ein Befehl vorliegt, soll der Input nicht entgegengenommen werden
+	if (m_pCommands->isEmpty())
 	{
-		m_currentRow = 2;
-
-		Vector2D temp(2.0f, 0.0f);
-
-		m_velocity += temp;
-	}
-	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
-	{
-		m_currentRow = 3;
-
-		Vector2D temp(-2.0f, 0.0f);
-
-		m_velocity += temp;
-	}
-	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
-	{
-		m_currentRow = 1;
-
-		Vector2D temp(0.0f, -2.0f);
-
-		m_velocity += temp;
-	}
-	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
-	{
-		m_currentRow = 0;
-
-		Vector2D temp(0.0f, 2.0f);
-
-		m_velocity += temp;
-	}
-
-	//	Checken, ob ein Objekt zum interagieren vohanden ist (nicht löschen; gehört ObjectLayer)
-	GameObject* pInteractionObject = interactCollision();
-	if (pInteractionObject)
-	{
-		//	Checken, ob die Interaktionstaste bedient wurde
-		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 		{
-			//	Warten, bis die Taste losgelassen wurde
-			while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-			{
-				//	Diese Lösung ist nicht ansatzweise elegant, aber es funktioniert
-				TheInputHandler::Instance()->handleInput();
-				TheGame::Instance()->render();
-				SDL_Delay(20);
-			}
+			Vector2D temp(2.0f, 0.0f);
 
-			TheGame::Instance()->logStandard() << "Interaktion mit: " << pInteractionObject->getUniqueId() << std::endl;
-
-			//	Die Interaktionsmethode des Objektes aufrufen
-			pInteractionObject->interact(this);
+			m_velocity += temp;
 		}
+		else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+		{
+			Vector2D temp(-2.0f, 0.0f);
+
+			m_velocity += temp;
+		}
+		else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+		{
+			Vector2D temp(0.0f, -2.0f);
+
+			m_velocity += temp;
+		}
+		else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+		{
+			Vector2D temp(0.0f, 2.0f);
+
+			m_velocity += temp;
+		}
+
+		//	Checken, ob ein Objekt zum interagieren vohanden ist (nicht löschen; gehört ObjectLayer)
+		GameObject* pInteractionObject = interactCollision();
+		if (pInteractionObject)
+		{
+			//	Checken, ob die Interaktionstaste bedient wurde
+			if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+			{
+				//	Warten, bis die Taste losgelassen wurde
+				while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+				{
+					//	Diese Lösung ist nicht ansatzweise elegant, aber es funktioniert
+					TheInputHandler::Instance()->handleInput();
+					TheGame::Instance()->render();
+					SDL_Delay(20);
+				}
+
+				TheGame::Instance()->logStandard() << "Interaktion mit: " << pInteractionObject->getUniqueId() << std::endl;
+
+				//	Die Interaktionsmethode des Objektes aufrufen
+				pInteractionObject->interact(this);
+			}
+		}
+	}
+	else
+	{
+		//	Den aktuellen Befehl ausführen
+		m_pCommands->update();
 	}
 
 	//	Falls sich der Spieler bewegt, updaten
 	if (m_velocity.getLength())
 	{
+		//	currentRow abhängig von der Bewegungsrichtung setzen
+
+		//	Bewegung in x-Richtung
+		if (m_velocity.getX() != 0)
+		{
+			//	Bewegung in positive x-Richtung
+			if (m_velocity.getX() > 0)
+				m_currentRow = 2;
+
+			//	Bewegung in negative x-Richtung
+			if (m_velocity.getX() < 0)
+				m_currentRow = 3;
+		}
+		//	Bewegung in y-Richtung
+		else
+		{
+			//	Bewegung in positive y-Richtung
+			if (m_velocity.getY() > 0)
+				m_currentRow = 0;
+
+			//	Bewegung in negative y-Richtung
+			if (m_velocity.getY() < 0)
+				m_currentRow = 1;
+		}
+
 		//	Die Funktion der Klasse "SDL_GameObject" wird aufgerufen, um für uns den Job zu erledigen 
 		SDL_GameObject::update();
 

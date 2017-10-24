@@ -6,6 +6,8 @@
 #include "Vector2D.h"
 #include "ObjectRectangle.h"
 
+class CommandQueue;
+
 /*	Diese Klasse erbt von der abstrakten Klasse GameObject.
 *	Andere Klassen wie der Player wiederum erben von SDL_GameObject
 *
@@ -31,6 +33,7 @@ protected:
 	Vector2D m_velocity;										//	Der Geschwindigkeitsvektor
 	std::string m_textureId;									//	Die Id, unter der die Textur im TextureManager gespeichert wurde
 	std::string m_mapId;										//	Die Id der Map, der das GameObject angehört
+	CommandQueue* m_pCommands;									//	Eine Warteschlange mit allen Befehlen für das Objekt
 
 	virtual void loadScript();									//	Diese Funktion lädt alle Attribute, die im Skript gesetzt werden
 public:
@@ -44,7 +47,10 @@ public:
 
 	virtual void collision();									//	Hier wird festgelegt, was passiert, wenn das Objekt kollidiert
 	virtual void onCreate();									//	Hier wird die SkriptMethode "onCreate()" aufgerufen
-	virtual void interact(Player* pPlayer);						//	Bei der Interaktion mit Objekten, kann jedes Objekt selber festlegen, wie es sich verhält			
+	virtual void interact(Player* pPlayer);						//	Bei der Interaktion mit Objekten, kann jedes Objekt selber festlegen, wie es sich verhält	
+	
+	virtual void moveToPosition(Vector2D v);					//	Bewegt das Objekt (per Befehl) an eine absolute Position
+	virtual void moveRelative(Vector2D v);						//	Bewegt das Objekt (per Befehl) um einen bestimmten Vektor
 
 	virtual void destroy();
 
@@ -56,8 +62,10 @@ public:
 	std::string getTextureId() const { return m_textureId; }
 	std::string getMapId() const { return m_mapId; }
 	std::vector<ObjectRectangle> getCollisionRects() const { return m_collisionRects; }
+	CommandQueue* getCommands() const { return m_pCommands; }
 
 	//	setter-Funktionen
+	void setVelocity(Vector2D v) { m_velocity = v; }
 	void addCollisionRects(std::vector<ObjectRectangle> cRects) { m_collisionRects = cRects; }
 	virtual void setPosition(float x, float y);
 };

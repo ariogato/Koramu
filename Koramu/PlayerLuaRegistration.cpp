@@ -24,7 +24,9 @@ void PlayerLuaRegistration::registerToLua(lua_State* pLuaState)
 	luaL_Reg regs[] =
 	{
 		{ "getInstance", l_playerInstance },
-		{"sayhi", sayhi},
+		{ "sayhi", sayhiPlayer },
+		{ "moveToPosition", l_playerMoveToPosition },
+		{ "moveRelative", l_playerMoveRelative },
 		{nullptr, nullptr}
 	};
 
@@ -40,13 +42,12 @@ Player* PlayerLuaRegistration::checkAndGetPlayer(lua_State* pLuaState, int argNu
 	return *static_cast<Player**>(luaL_checkudata(pLuaState, argNum, "luaL_Player"));
 }
 
-int LuaRegistrations::sayhi(lua_State* L)
+int LuaRegistrations::sayhiPlayer(lua_State* L)
 {
 	//	Referenz auf den Player (nicht zu löschen)
 	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(L, 1);
 
-	std::cout	<< "You're colliding at... \n\tX: " << pPlayerInstance->getPosition().getX() << std::endl 
-				<< "\tY: " << pPlayerInstance->getPosition().getY() << std::endl << std::endl;
+	std::cout << "Player " << pPlayerInstance->getUniqueId() << " says hi!" << std::endl;
 
 	return 0;
 }
@@ -83,6 +84,50 @@ int LuaRegistrations::l_playerInstance(lua_State* pLuaState)
 
 	//	Der Rückgabewert ist ein Zeiger auf den Spieler (oder nil)
 	return 1;
+}
+
+int LuaRegistrations::l_playerMoveToPosition(lua_State* pLuaState)
+{
+	//	Die Anzahl der Argumente muss 3 sein (x, y) + userdata
+	if (lua_gettop(pLuaState) < 3)
+	{
+		lua_settop(pLuaState, 0);
+		return 0;
+	}
+
+	//	Referenz auf den Player aus den Argumenten holen (nicht zu löschen)
+	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(pLuaState, 1);
+
+	//	Einen Vektor mit den Argumenten erstellen
+	Vector2D v(lua_tointeger(pLuaState, -2), lua_tointeger(pLuaState, -1));
+
+	//	Die Funktion des Players aufrufen
+	pPlayerInstance->moveToPosition(v);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_playerMoveRelative(lua_State* pLuaState)
+{
+	//	Die Anzahl der Argumente muss 3 sein (x, y) + userdata
+	if (lua_gettop(pLuaState) < 3)
+	{
+		lua_settop(pLuaState, 0);
+		return 0;
+	}
+
+	//	Referenz auf den Player aus den Argumenten holen (nicht zu löschen)
+	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(pLuaState, 1);
+
+	//	Einen Vektor mit den Argumenten erstellen
+	Vector2D v(lua_tointeger(pLuaState, -2), lua_tointeger(pLuaState, -1));
+
+	//	Die Funktion des Players aufrufen
+	pPlayerInstance->moveRelative(v);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
 }
 
 

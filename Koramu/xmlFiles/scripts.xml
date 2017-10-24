@@ -6,4 +6,5 @@
   <script id="johann" path="tree.lua"/>
   <script id="johanneisch" path="door.lua"/>
   <script id="player" path="player.lua"/>
+  <script id="test" path="npc1.lua"/>
 </scripts>

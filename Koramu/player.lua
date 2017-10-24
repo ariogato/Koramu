@@ -9,9 +9,6 @@ end
 
 
 function player:onCollision()
---player.instance:sayhi()
-	TheGame.nextQuest ()
-	print ("Aktuelle Quest: \n\t" .. TheGame.getMainQuestId () .. " : " .. TheGame.getPartQuestId ())
 end
 
 return player
