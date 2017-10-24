@@ -11,7 +11,7 @@ CommandQueue::~CommandQueue()
 void CommandQueue::update()
 {
 	//	Checken, ob es einen Befehl gibt, der ausgeführt werden soll
-	if (m_commandList.empty())
+	if (m_commandList.empty() || !m_commandList.front())
 		return;
 
 	//	Den Befehl ausführen
@@ -44,6 +44,10 @@ void CommandQueue::popCommand()
 	//	Checken, ob die Liste leer ist
 	if (m_commandList.empty())
 		return;
+
+	//	Das Objekt löschen, falls der Pointer nicht auf null zeigt
+	if (m_commandList.front())
+		delete m_commandList.front();
 
 	//	Das erste Element entfernen
 	m_commandList.pop_front();

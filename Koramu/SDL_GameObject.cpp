@@ -4,6 +4,7 @@
 #include "ScriptManager.h"
 #include "CommandQueue.h"
 #include "MoveCommand.h"
+#include "StunCommand.h"
 
 
 SDL_GameObject::SDL_GameObject()
@@ -133,9 +134,44 @@ void SDL_GameObject::moveRelative(Vector2D v)
 	m_pCommands->pushCommand(new MoveCommand(getPosition() + v));
 }
 
+void SDL_GameObject::stun(float sec)
+{
+	m_pCommands->pushCommand(new StunCommand(sec));
+}
+
+void SDL_GameObject::pushCommand(BaseCommand* pCommand)
+{
+	//	Checken, ob nullptr übergeben wurde
+	if (!pCommand)
+		return;
+	
+	//	Falls nicht, soll der Befehl gepusht werden
+	m_pCommands->pushCommand(pCommand);
+}
+
+void SDL_GameObject::popCommand()
+{
+	//	Checken, ob die Liste leer ist
+	if (m_pCommands->isEmpty())
+		return;
+
+	//	Falls nicht, soll das erste Element entfernt werden
+	m_pCommands->popCommand();
+}
+
 void SDL_GameObject::destroy()
 {
 	SDL_GameObject::~SDL_GameObject();
+}
+
+BaseCommand* SDL_GameObject::getCurrentCommand() const
+{
+	//	Falls die Liste leer ist, soll nullptr zurückgegeben werden
+	if (m_pCommands->isEmpty())
+		return nullptr;
+
+	//	Andernfalls soll das Element am Anfang der Liste zurückgegeben werden
+	return m_pCommands->getCurrentCommand();
 }
 
 void SDL_GameObject::setPosition(float x, float y)

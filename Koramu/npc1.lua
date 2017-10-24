@@ -9,8 +9,10 @@ function npc1:interact (n, p)
 	interact.pl = p
 	interact.np = n
 
-	interact.np:moveRelative (100, 0)
-	interact.pl:moveRelative ((-100), 0)
+	TheGame:startDialog ("Ich haue jetzt ab...\nDu Arsch.", interact.np, interact.pl)
+
+	interact.np:moveRelative (2000, 0)
+	interact.pl:stun(1)
 end
 
 return npc1

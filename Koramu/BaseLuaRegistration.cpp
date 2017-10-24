@@ -27,3 +27,16 @@ void LuaRegistrations::BaseLuaRegistration::registerMetatable(const char* name, 
 	//	Die Metatabelle wird unter der Bezeichnung name global sichtbar
 	lua_setglobal(pLuaState, name);
 }
+
+#include <iostream>
+
+void LuaRegistrations::printStack(lua_State* L)
+{
+	//	Über den Stack iterieren
+	for (int i = 1; i <= lua_gettop(L); i++)
+	{
+		//	Den Typen der Variablen auf der Position -1 * i (von oben nach unten) ausgeben lassen
+		std::cout << lua_typename(L, lua_type(L, -1 * i)) << std::endl;
+	}
+	std::cout << std::endl;
+}

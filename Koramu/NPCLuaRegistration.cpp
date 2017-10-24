@@ -25,6 +25,7 @@ void LuaRegistrations::NPCLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "setCurrentCol", l_setCurrentCol },
 		{ "moveToPosition", l_NPCMoveToPosition },
 		{ "moveRelative", l_NPCMoveRelative },
+		{ "stun", l_NPCStun },
 		{ nullptr, nullptr }
 	};
 
@@ -42,7 +43,7 @@ NPC* LuaRegistrations::NPCLuaRegistration::checkAndGetNPC(lua_State* pLuaState, 
 
 int LuaRegistrations::sayhiNPC(lua_State* L)
 {
-	//	Referenz auf den Player (nicht zu löschen)
+	//	Referenz auf den NPC (nicht zu löschen)
 	NPC* pNPCInstance = NPCLuaRegistration::checkAndGetNPC(L, 1);
 
 	std::cout << "NPC " << pNPCInstance->getUniqueId() << " says hi!" << std::endl;
@@ -62,6 +63,7 @@ int LuaRegistrations::l_getNPCInstance(lua_State* pLuaState)
 		return 1;
 	}
 
+	printStack(pLuaState);
 	//	Die GameObjects vo, ObjectLayer werden geholt (Objekt nicht löschen)
 	std::vector<GameObject*>* pGameObjects = TheGame::Instance()->getCurrentState()->getCurrentMap()->getObjectLayer()->getGameObjects();
 
@@ -108,7 +110,7 @@ int LuaRegistrations::l_getNPCInstance(lua_State* pLuaState)
 
 int LuaRegistrations::l_setCurrentCol(lua_State* pLuaState)
 {
-	//	Referenz auf den Player (nicht zu löschen)
+	//	Referenz auf den NPC (nicht zu löschen)
 	NPC* pNPCInstance = NPCLuaRegistration::checkAndGetNPC(pLuaState, 1);
 
 	//	Checken, ob ein Integer übergeben wurde
@@ -136,7 +138,7 @@ int LuaRegistrations::l_NPCMoveToPosition(lua_State* pLuaState)
 		return 0;
 	}
 
-	//	Referenz auf den Player aus den Argumenten holen (nicht zu löschen)
+	//	Referenz auf den NPC aus den Argumenten holen (nicht zu löschen)
 	NPC* pNPCInstance = NPCLuaRegistration::checkAndGetNPC(pLuaState, 1);
 
 	//	Einen Vektor mit den Argumenten erstellen
@@ -166,6 +168,21 @@ int LuaRegistrations::l_NPCMoveRelative(lua_State* pLuaState)
 
 	//	Die Funktion des NPC aufrufen
 	pNPCInstance->moveRelative(v);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_NPCStun(lua_State* pLuaState)
+{
+	//	Referenz auf den NPC aus den Argumenten holen (nicht zu löschen)
+	NPC* pNPCInstance = NPCLuaRegistration::checkAndGetNPC(pLuaState, 1);
+
+	//	Das Argument der Zeit vom Stack holen
+	int sec = lua_tointeger(pLuaState, 2);
+
+	//	Den NPC stunnen
+	pNPCInstance->stun(sec);
 
 	//	Es gibt keinen Rückgabewert
 	return 0;

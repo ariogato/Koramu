@@ -27,4 +27,6 @@ namespace LuaRegistrations
 		virtual void registerToLua(lua_State* pLuaState) = 0;						//	Registriert alles was zu registrieren ist (Implementierung hängt von Unterklasse ab)
 	};
 
+	//	Dies ist lediglich eine kleine Hilfsfunktion, die mir einiges beim debugging erleichtert
+	void printStack(lua_State* L);
 }

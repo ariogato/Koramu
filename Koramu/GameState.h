@@ -3,6 +3,7 @@
 #include <map>
 #include "Stack.h"
 #include "Map.h"
+#include "Dialog.h"
 
 
 /*	In diesen namespace gehört alles, was mit dem Zustandsautomaten
@@ -45,6 +46,7 @@ namespace FiniteStateMachine
 		std::map<std::string, Environment::Map*> m_mapDict;											//	'std::map' aus allen für den Spielzustand relevanten Maps
 		DataStructure::Stack<Environment::Map> m_maps;												//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
 		SDL_GameObject* m_pCenterObject;															//	Objekt, auf das die die Kamera zentriert wird, wenn das Spiel sich in diesem Zustand befindet
+		Dialog m_dialog;																			//	Die Dialogbox
 		std::map<std::string, void(*)()> m_callbackFunctions;										//	'std::map' aus allen für das jeweilige Menü relevanten Callback Funktionen
 
 	public:
@@ -69,6 +71,7 @@ namespace FiniteStateMachine
 		SDL_GameObject* getCenterObject() const { return m_pCenterObject; }
 		Environment::Map* getCurrentMap() { return m_maps.getTopNodeData(); }
 		std::map<std::string, Environment::Map*> getMapDict() const { return m_mapDict; }
+		Dialog* getDialog() { return &m_dialog; }
 
 		//	setter-Funktionen
 		void setCenterObject(SDL_GameObject* pObject) { m_pCenterObject = pObject; }

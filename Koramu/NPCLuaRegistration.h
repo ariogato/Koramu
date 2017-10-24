@@ -25,4 +25,5 @@ namespace LuaRegistrations {
 	int l_setCurrentCol(lua_State* pLuaState);
 	int l_NPCMoveToPosition(lua_State* pLuaState);
 	int l_NPCMoveRelative(lua_State* pLuaState);
+	int l_NPCStun(lua_State* pLuaState);
 }

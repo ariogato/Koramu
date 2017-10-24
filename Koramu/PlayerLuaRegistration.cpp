@@ -27,6 +27,7 @@ void PlayerLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "sayhi", sayhiPlayer },
 		{ "moveToPosition", l_playerMoveToPosition },
 		{ "moveRelative", l_playerMoveRelative },
+		{ "stun", l_PlayerStun },
 		{nullptr, nullptr}
 	};
 
@@ -125,6 +126,21 @@ int LuaRegistrations::l_playerMoveRelative(lua_State* pLuaState)
 
 	//	Die Funktion des Players aufrufen
 	pPlayerInstance->moveRelative(v);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_PlayerStun(lua_State* pLuaState)
+{
+	//	Referenz auf den Player aus den Argumenten holen (nicht zu löschen)
+	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(pLuaState, 1);
+
+	//	Das Argument der Zeit vom Stack holen
+	int sec = lua_tointeger(pLuaState, 2);
+
+	//	Den Player stunnen
+	pPlayerInstance->stun(sec);
 
 	//	Es gibt keinen Rückgabewert
 	return 0;

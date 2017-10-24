@@ -10,12 +10,12 @@ class SDL_GameObject;
 
 enum COMMAND_TYPE
 {
-	COMMAND_MOVE = 0,
+	COMMAND_MOVE = 0, COMMAND_DIALOG, COMMAND_STUN,
 };
 
 
 static const char* COMMAND_TYPE_STRING[] =
-{ "COMMAND_MOVE", };
+{ "COMMAND_MOVE", "COMMAND_DIALOG", "COMMAND_STUN", };
 
 /*	Diese Klasse beschreibt einen beliebigen Befehl für ein Objekt.
  *	Damit man beispielsweise nicht bei jedem Frame die Position aktualisieren muss, gibt es

@@ -156,8 +156,9 @@ Script& ScriptManager::getScriptFromId(std::string id) const
 	//	Checken, ob das Script mit der gegebenen ID existiert
 	if (m_pScriptMap->find(id) == m_pScriptMap->end())
 	{
+		//	Es braucht keinen Error log, da einige Objekte kein Script haben werden
+
 		//	Eine Referenz auf das leere Default Skript zurückgeben
-		TheGame::Instance()->logError() << "ScriptManager::getScriptFromId():\n\tEs existiert kein Script mit der id " << id << std::endl << std::endl;
 		return (*(*m_pScriptMap)[std::string("default")]);
 	}
 

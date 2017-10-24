@@ -227,6 +227,15 @@
     <ClCompile Include="MoveCommand.cpp">
       <Filter>Quelldateien\GameObjects\Commands</Filter>
     </ClCompile>
+    <ClCompile Include="Dialog.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogCommand.cpp">
+      <Filter>Quelldateien\GameObjects\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="StunCommand.cpp">
+      <Filter>Quelldateien\GameObjects\Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -389,6 +398,15 @@
       <Filter>Headerdateien\GameObjects\Commands</Filter>
     </ClInclude>
     <ClInclude Include="MoveCommand.h">
+      <Filter>Headerdateien\GameObjects\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialog.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogCommand.h">
+      <Filter>Headerdateien\GameObjects\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="StunCommand.h">
       <Filter>Headerdateien\GameObjects\Commands</Filter>
     </ClInclude>
   </ItemGroup>

@@ -109,10 +109,16 @@ void FiniteStateMachine::PlayState::update()
 
 		TheGame::Instance()->pushState(new PauseState());
 	}
+
+	//	Die Dialogbox updaten
+	m_dialog.update();
 }
 
 void FiniteStateMachine::PlayState::render()
 {	 
 	//	Die aktuelle Map wird gerendert
 	m_maps.getTopNodeData()->render();
+
+	//	Die Dialogbox über alles andere zeichnen
+	m_dialog.draw();
 }

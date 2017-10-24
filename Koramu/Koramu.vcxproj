@@ -149,6 +149,7 @@
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="CollisionRectParser.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
+    <ClCompile Include="DialogCommand.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerLuaRegistration.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="Dialog.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="ScriptLoader.cpp" />
     <ClCompile Include="ScriptManager.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="StateParser.cpp" />
     <ClCompile Include="Story.cpp" />
     <ClCompile Include="StoryParser.cpp" />
+    <ClCompile Include="StunCommand.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -199,6 +202,7 @@
     <ClInclude Include="CollisionRectParser.h" />
     <ClInclude Include="BaseCommand.h" />
     <ClInclude Include="CommandQueue.h" />
+    <ClInclude Include="DialogCommand.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="Game.h" />
@@ -207,6 +211,7 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="Dialog.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="NPCLuaRegistration.h" />
     <ClInclude Include="Story.h" />
@@ -236,6 +241,7 @@
     <ClInclude Include="StackElement.h" />
     <ClInclude Include="StateParser.h" />
     <ClInclude Include="StoryParser.h" />
+    <ClInclude Include="StunCommand.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />

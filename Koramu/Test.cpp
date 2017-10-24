@@ -219,14 +219,14 @@ void Test::testFunctions()
 	//TheFontManager::Instance()->drawCharacter('!', 100, 100);
 	//TheFontManager::Instance()->drawText("Tennis", 150, 100);
 
-	ObjectRectangle testRectangle;
-	testRectangle.height = 200;
-	testRectangle.width = 1000;
-	testRectangle.positionVector.setX(100);
-	testRectangle.positionVector.setY(100);
-	testRectangle.setVisible(true);
-	TheFontManager::Instance()->drawTextBox("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam", testRectangle);
-	testRectangle.draw(Vector2D ());
+	//ObjectRectangle testRectangle;
+	//testRectangle.height = 200;
+	//testRectangle.width = 1000;
+	//testRectangle.positionVector.setX(100);
+	//testRectangle.positionVector.setY(100);
+	//testRectangle.setVisible(true);
+	//TheFontManager::Instance()->drawTextBox("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam", testRectangle);
+	//testRectangle.draw(Vector2D ());
 #pragma endregion 
 }
 

@@ -7,6 +7,7 @@
 #include "ObjectRectangle.h"
 
 class CommandQueue;
+class BaseCommand;
 
 /*	Diese Klasse erbt von der abstrakten Klasse GameObject.
 *	Andere Klassen wie der Player wiederum erben von SDL_GameObject
@@ -51,6 +52,10 @@ public:
 	
 	virtual void moveToPosition(Vector2D v);					//	Bewegt das Objekt (per Befehl) an eine absolute Position
 	virtual void moveRelative(Vector2D v);						//	Bewegt das Objekt (per Befehl) um einen bestimmten Vektor
+	virtual void stun(float sec);										//	Betäubt das Objekt (per Befehl) um 'sec' Sekunden
+
+	virtual void pushCommand(BaseCommand* pCommand);			//	Fügt einen beliebigen Befehl ans Ende der Befehlsliste ein
+	virtual void popCommand();									//	Entfernt den Befehl am Anfang der Befehlsliste
 
 	virtual void destroy();
 
@@ -63,6 +68,7 @@ public:
 	std::string getMapId() const { return m_mapId; }
 	std::vector<ObjectRectangle> getCollisionRects() const { return m_collisionRects; }
 	CommandQueue* getCommands() const { return m_pCommands; }
+	BaseCommand* getCurrentCommand() const;
 
 	//	setter-Funktionen
 	void setVelocity(Vector2D v) { m_velocity = v; }
