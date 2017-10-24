@@ -118,3 +118,23 @@ void SDL_GameObject::destroy()
 {
 	SDL_GameObject::~SDL_GameObject();
 }
+
+void SDL_GameObject::setPosition(float x, float y)
+{
+	//	Ermitteln, um wie weit das Objekt und eine Kollisionsrechtecke zu bewegen sind
+	Vector2D* moveVector = new Vector2D(x, y);
+	*moveVector -= m_objectRect.positionVector;
+	
+	//	Object(Rectangle) mithilfe des "moveVector"s auf die gewünschte Position setzen
+	m_objectRect.positionVector += *moveVector;
+	//	Aktualisieren, damit der angezeigte Text von Anfang an stimmt
+	m_objectRect.update();
+
+	//	Über die Kollsionsrechtecke des Objekts iterieren
+	for(auto &cRect : m_collisionRects)
+	{
+		//	Aktuelles Kollisionsrechteck an die gewünschte Position verschieben
+		cRect.positionVector += *moveVector;
+		cRect.update();
+	}
+}

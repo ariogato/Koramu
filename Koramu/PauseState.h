@@ -25,6 +25,7 @@ namespace FiniteStateMachine
 	private:
 		//	Callback Funktionen
 		static void resumePlay();
+		static void save();
 		static void playToMenu();
 
 		void setCallbackFunctions();				//	Callback Funktionen in die 'std::map' laden

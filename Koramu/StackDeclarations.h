@@ -53,7 +53,10 @@ namespace DataStructure
 		{
 			return m_pTopNode->getData();
 		}
-		
+		T* getSecondNodeData()							//	Gibt das Datenelement für den zweiten Knoten zurück
+		{
+			return m_pTopNode->getSuccessor()->getData();
+		}
 	};
 
 }

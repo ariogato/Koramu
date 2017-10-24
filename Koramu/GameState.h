@@ -68,8 +68,10 @@ namespace FiniteStateMachine
 		GameStateID getStateID() const { return m_stateID; }
 		SDL_GameObject* getCenterObject() const { return m_pCenterObject; }
 		Environment::Map* getCurrentMap() { return m_maps.getTopNodeData(); }
+		std::map<std::string, Environment::Map*> getMapDict() const { return m_mapDict; }
 
 		//	setter-Funktionen
 		void setCenterObject(SDL_GameObject* pObject) { m_pCenterObject = pObject; }
+		void pushMap(std::string mapId) { m_maps.push(m_mapDict[mapId]); }					//	Eine Map anhand ihrer Id aufstapeln
 	};
 };

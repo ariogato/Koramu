@@ -27,6 +27,9 @@ public:
 
 	virtual void collision();
 	virtual void onCreate();
+
+	//	setter-Funktionen
+	virtual void setPosition(float x, float y);
 };
 
 /*

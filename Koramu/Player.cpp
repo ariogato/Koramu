@@ -36,16 +36,13 @@ void Player::load(const ParamLoader& params)
 	collisionParams.setWidth(collisionWidth);
 	collisionParams.setHeight(collisionHeight);
 
-	ObjectRectangle tempRectangle;
-	tempRectangle.load(collisionParams);
-	tempRectangle.setColor(0, 0, 255, 0);
-	m_collisionRects.push_back(tempRectangle);
+	ObjectRectangle collisionRect;
+	collisionRect.load(collisionParams);
+	collisionRect.setColor(0, 0, 255, 0);
+	collisionRect.setVisible(true);
+	collisionRect.setShowText(false);
+	m_collisionRects.push_back(collisionRect);
 
-	/*	Die Beschreibung der Box soll nicht angzeigt werden, 
-	 *	während die Box selber durchaus angezeigt werden soll
-	 */
-	m_collisionRects[0].setVisible(true);
-	m_collisionRects[0].setShowText(false);
 
 	/*	Hier werden die Interaktionsboxen des 'Player's definiert.
 	 *	Es läuft ähnlich wie bei den Kollisionsboxen
@@ -278,4 +275,22 @@ void Player::collision()
 void Player::onCreate()
 {
 	SDL_GameObject::onCreate();
+}
+
+void Player::setPosition(float x, float y)
+{
+	//	Ermitteln, um wie weit die Interaktionsrechtecke des Players zu bewegen sind
+	Vector2D* moveVector = new Vector2D(x, y);
+	*moveVector -= m_objectRect.positionVector;
+
+	//	Positon des Objekts und der Kollisionsrechtecke setzen
+	SDL_GameObject::setPosition(x, y);
+
+	//	Über die Interaktionsrechtecke iterieren
+	for(auto &iRect : m_interactRects)
+	{
+		//	Aktuelles Interaktionsrechteck auf die gewünschte Position verschieben
+		iRect.positionVector += *moveVector;
+		iRect.update();
+	}
 }

@@ -5,7 +5,8 @@
 #include "Game.h"
 
 Button::Button()
-	: m_callbackFunction(nullptr)
+	: m_callbackFunction(nullptr),
+	m_fixCol(0)
 {
 }
 
@@ -27,11 +28,12 @@ void Button::update()
 	//	Die Maus-Position speichern
 	Vector2D mousePosition(TheInputHandler::Instance()->getMousePosition());
 
-	//	m_currentCol wird standardmäßig auf 0 gesetzt
-	m_currentCol = 0;
+	//	m_currentCol wird gesetzt (standardmäßig auf 0)
+	m_currentCol = m_fixCol;
 
+	//	Ist "m_fixCol" nicht 0, so soll das Bild des Buttons nichtmehr geändert werden. Auch bei einem Klick soll nichts passieren.
 	//	Checken ob die xPosition der Maus in dem Bereich des Buttons ist
-	if (mousePosition.getX() >= m_objectRect.positionVector.getX() && mousePosition.getX() <= m_objectRect.positionVector.getX() + m_objectRect.width)
+	if (mousePosition.getX() >= m_objectRect.positionVector.getX() && mousePosition.getX() <= m_objectRect.positionVector.getX() + m_objectRect.width && !m_fixCol)
 	{
 		//	Checken ob die yPosition der Maus in dem Bereich des Buttons ist
 		if (mousePosition.getY() >= m_objectRect.positionVector.getY() && mousePosition.getY() <= m_objectRect.positionVector.getY() + m_objectRect.height)

@@ -85,7 +85,7 @@
       <gameObject type="button" textureId="buttonSave"
                   xPos="460" yPos="408" width="360" height="80"
                   numRows="1" numCols="3"
-                  mapId="pauseMap" callbackId="resumePlay"
+                  mapId="pauseMap" callbackId="save"
                   uniqueId="buttonSave"/>
       <gameObject type="button" textureId="buttonMainMenu"
                   xPos="460" yPos="553" width="360" height="80"

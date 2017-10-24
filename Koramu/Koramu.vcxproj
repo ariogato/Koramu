@@ -245,6 +245,9 @@
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="xmlFiles\quests.xml" />
+    <Xml Include="xmlFiles\save.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="xmlFiles\scripts.xml">
       <SubType>Designer</SubType>
     </Xml>

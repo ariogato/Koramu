@@ -384,6 +384,9 @@
     <Xml Include="xmlFiles\quests.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
+    <Xml Include="xmlFiles\save.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

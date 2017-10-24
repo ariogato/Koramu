@@ -4,9 +4,9 @@
 #include "MapParser.h"
 #include "InputHandler.h"
 #include "PauseState.h"
-#include "ParamLoader.h"
 #include "CollisionRectParser.h"
 #include "Camera.h"
+#include "StoryParser.h"
 
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
@@ -27,10 +27,10 @@ void FiniteStateMachine::PlayState::onEnter()
 	//	Hier fügt der 'StateParser' die geparsten 'GameObject's ein
 	std::vector<GameObject*>* pObjects = new std::vector<GameObject*>();
 
-	//	Überprüfen, ob erfolgreich geparst wurde
+	//	Überprüfen, ob die Objekte des PlayStates erfolgreich geparst wurden
 	if (!StateParser::parse("xmlFiles/states.xml", pObjects, this->getStateID()))
 	{
-		TheGame::Instance()->logError() << "PlayState::onEnter(): \n\tFehler beim Parsen der States" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "PlayState::onEnter(): \n\tFehler beim Parsen des States" << std::endl << std::endl;
 
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->emergencyExit("Fehler beim Parsen des PlayStates!");
@@ -45,7 +45,16 @@ void FiniteStateMachine::PlayState::onEnter()
 		TheGame::Instance()->emergencyExit("Fehler beim Parsen der Maps des PlayStates!");
 	}
 
-	// Über alle Maps iterieren, die Objekte in den "OjektLayer"n werden dann an den "CollisionRectParser" übergeben
+	//	Überprüfen, ob der Spielstand erfolgreich geladen wurde
+	if(!StoryParser::loadGame("xmlFiles/save.xml", this))
+	{
+		TheGame::Instance()->logError() << "PlayState::onEnter(): \n\tFehler beim Laden des Spielstandes" << std::endl << std::endl;
+
+		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
+		TheGame::Instance()->emergencyExit("Fehler beim Laden des Spielstandes!");
+	}
+
+	//	Über alle Maps iterieren, die Objekte in den "OjektLayer"n werden dann an den "CollisionRectParser" übergeben
 	for(auto const &pair : m_mapDict)
 	{
 		//	Überprüfen, ob die "collisionRects" erfolgreich geparst wurden
@@ -58,12 +67,7 @@ void FiniteStateMachine::PlayState::onEnter()
 		}
 	}
 
-	m_pCenterObject = dynamic_cast<SDL_GameObject*>(pObjects->at(0));
-
-	//	Die Anfangsmap aufstapeln
-	m_maps.push(m_mapDict["mainMap"]);
-
-	//	die "onCreate" Funktion aller Objekte aufrufen
+	//	Die "onCreate" Funktion aller Objekte aufrufen
 	for (auto i : *(m_maps.getTopNodeData()->getObjectLayer()->getGameObjects()))
 	{
 		i->onCreate();

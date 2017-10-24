@@ -92,6 +92,7 @@ public:
 	void handleInput();							//	Eingaben bearbeiten
 	void update();								//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 	void render();								//	Alles auf den Bildschirm schmeißen
+	void saveGame();							//	Aktuellen Spielstand speichern
 	void setGameOver();							//	Um z.B. vom InputHandler aus das Spiel zu beenden
 	void emergencyExit(const char* message);	//	Um, im Fall eines fatalen Fehlers, das Programm sofort zu beenden (nicht empfohlen!)
 
@@ -109,7 +110,7 @@ public:
 	int getGameHeight() const { return m_gameHeight; }
 	int getGameXPos() const { return m_gameXPos; }
 	int getGameYPos() const { return m_gameYPos; }
-	FiniteStateMachine::GameState* getCurrentState();
+	FiniteStateMachine::GameState* getCurrentState() const;
 	Story* getStory() const { return m_pStory; }
 
 	/*	Log Objekte werden zurückgegeben, damit man mit einem

@@ -19,6 +19,7 @@
 
 #include "PlayerLuaRegistration.h"
 #include "GameLuaRegistration.h"
+#include "StoryParser.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -246,6 +247,43 @@ void Game::render()
 	SDL_RenderPresent(m_pRenderer);
 }
 
+void Game::saveGame()
+{
+	//	Pointer auf den "PlayState" (im Stapel aktuell unter dem "PauseState") 
+	FiniteStateMachine::GameState* playState = m_pStateMachine->getPreviousState();
+
+	//	Spielstand speichern. Auf Erfolg überprüfen
+	if(!StoryParser::saveGame("xmlFiles/save.xml", playState))
+	{
+		logError() << "Game::saveGame(): \n\tFehler beim Spechern des Spielstandes" << std::endl << std::endl;
+
+		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
+		emergencyExit("Fehler beim Speichern des Spielstandes!");
+	}
+
+	/*	Es wurde Erfolgreich gepeichert. Abschließend soll der Button "buttonSave" im PauseState auf "grün" gesetzt werden 
+	 *	und ein erneutes Auslösen des Speichervorgangs verhindert werden. 
+	 */	
+	//	Über die Einträge im "mapDict" des PausStates iterieren
+	for(auto const &entry : m_pStateMachine->getCurrentState()->getMapDict())
+	{
+		//	Über die "GameObject"s der aktuellen Map iterieren
+		for(auto o : *entry.second->getObjectLayer()->getGameObjects())
+		{
+			//	Überprüfen, ob die Id des aktuellen Objekts "buttonSave" ist
+			if(!o->getUniqueId().compare("buttonSave"))
+			{
+				//	Die id ist "buttonSave"
+				
+				//	"GameObject" zu einem "Button" casten
+				Button* saveButton = dynamic_cast<Button*>(o);
+				//	Textur des Buttons auf die zweite (0-indexed) Spalte setzen und weiter Interaktion verhindern.
+				saveButton->lockOnCol(2);
+			}
+		}
+	}
+}
+
 void Game::setGameOver()
 {
 	m_running = false;
@@ -282,7 +320,7 @@ void Game::popState()
 }
 
 
-FiniteStateMachine::GameState* Game::getCurrentState()
+FiniteStateMachine::GameState* Game::getCurrentState() const
 {
 	return m_pStateMachine->getCurrentState();
 }

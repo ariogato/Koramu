@@ -30,6 +30,7 @@ namespace FiniteStateMachine
 		
 		//	getter-Funktionen:
 		GameState* getCurrentState() { return m_stateStack.getTopNodeData(); }		//	Den aktuellen Spielzustand zurückgeben
+		GameState* getPreviousState() { return m_stateStack.getSecondNodeData(); }	//	Den vorherigen Spielzustand zurückgeben
 
 	};
 }

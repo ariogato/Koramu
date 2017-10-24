@@ -48,7 +48,7 @@ bool CollisionRectParser::parse(std::string filename, std::vector<GameObject*>* 
 	}
 #pragma endregion 
 
-	//	Hier werden alle Daten des GameObjects gespeichert
+	//	Hier werden alle Daten des "collisonRect"s gespeichert
 	ParamLoader parameters;										//	Parameter Objekt für load()
 	int x, y, width, height;									//	Integer Daten 
 	int counter = 1;											//	Hilfsvariable für die Fehlerausgabe

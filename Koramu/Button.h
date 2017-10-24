@@ -12,8 +12,10 @@
 class Button : public SDL_GameObject
 {
 private:
-	std::string m_callbackId; 
-	void(*m_callbackFunction)();
+	std::string m_callbackId;			//	Id der der Callback-Funktion
+	void(*m_callbackFunction)();		//	Callback-Funktion (wird aufgerufen, wenn der Button angeklickt wird)
+	int m_fixCol;						//	Spaltennummer, die die Textur des Buttons festgelegt (standardmäßig auf 0)
+										//	Wird "m_fixCol" auf einen anderen Wert, als "0" gesetzt, so ist keine weitere Interaktion mit diesem Button möglich
 
 public:
 	Button();
@@ -30,6 +32,7 @@ public:
 	//	setter-Funktionen
 	void setCallback(void(*callback)()) { m_callbackFunction = callback; }
 	void setCallbackId(std::string callbackId) { m_callbackId = callbackId; }
+	void lockOnCol(int col) { m_fixCol = col; }									
 };
 
 /*

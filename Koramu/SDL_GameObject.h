@@ -59,4 +59,5 @@ public:
 
 	//	setter-Funktionen
 	void addCollisionRects(std::vector<ObjectRectangle> cRects) { m_collisionRects = cRects; }
+	virtual void setPosition(float x, float y);
 };

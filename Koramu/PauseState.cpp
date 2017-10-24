@@ -117,7 +117,7 @@ void FiniteStateMachine::PauseState::update()
 		{
 			TheInputHandler::Instance()->handleInput();
 		}
-
+		//	Der Pause State wird abgestapelt. Der PlayState wird wieder aktiv
 		TheGame::Instance()->popState();
 	}
 }
@@ -134,10 +134,15 @@ void FiniteStateMachine::PauseState::resumePlay()
 	TheGame::Instance()->popState();
 }
 
+void FiniteStateMachine::PauseState::save()
+{
+	//	Wir übergeben die Aufgabe des Speicherns des Spielstandes an "Game"
+	TheGame::Instance()->saveGame();
+}
+
 void FiniteStateMachine::PauseState::playToMenu()
 {
 	//	PauseState & PlayState werden abgestapelt; MenuState wird aufgestapelt
-
 	TheGame::Instance()->popState();
 	TheGame::Instance()->changeState(new MenuState());
 }
@@ -145,5 +150,6 @@ void FiniteStateMachine::PauseState::playToMenu()
 void FiniteStateMachine::PauseState::setCallbackFunctions()
 {
 	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("resumePlay", resumePlay));
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("save", save));
 	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("playToMenu", playToMenu));
 }

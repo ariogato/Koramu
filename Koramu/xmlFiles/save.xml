@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saveState>
+    <questState mainQuest="lorem2" partQuest="tutorial1"/>
+    <currentMap mapId="mainMap"/>
+    <centerObject objectId="player"/>
+    <objectState>
+        <mainMap>
+            <object id="tree1" xPos="1088" yPos="384"/>
+            <object id="johann" xPos="595" yPos="583"/>
+            <object id="player" xPos="1540" yPos="775"/>
+            <object id="tree2" xPos="576" yPos="1045"/>
+        </mainMap>
+    </objectState>
+</saveState>
