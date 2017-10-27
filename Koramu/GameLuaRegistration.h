@@ -6,7 +6,7 @@ struct lua_State;
 
 /*	Erbt von BaseLuaRagistration.
 *	Sämtliche Member von TheGame, die den Skripten offengelegt werden sollen werden
-*	hier festgelegt und werden global an weitergegeben.
+*	hier festgelegt und werden global an Lua weitergegeben.
 */
 
 namespace LuaRegistrations

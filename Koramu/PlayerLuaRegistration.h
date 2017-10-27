@@ -7,7 +7,7 @@ class Player;
 
 /*	Erbt von BaseLuaRagistration.
  *	S‰mtliche Member der Player Klasse, die den Skripten offengelegt werden sollen werden 
- *	hier festgelegt und werden global an weitergegeben.
+ *	hier festgelegt und werden global an Lua weitergegeben.
  */
 
 namespace LuaRegistrations
@@ -19,7 +19,7 @@ namespace LuaRegistrations
 		~PlayerLuaRegistration();												//	Destruktor
 
 		void registerToLua(lua_State* pluaState) override;						//	Siehe Oberklasse
-		static Player* checkAndGetPlayer(lua_State* pLuaState, int argNum);		//	Holt das Player Objekt aus den Argumenten (Ich weiﬂ der Name ist speziell...)
+		static Player* checkAndGetPlayer(lua_State* pLuaState, int argNum);		//	Holt das Player Objekt aus den Argumenten (Ich weiﬂ, der Name ist speziell...)
 
 	};
 

@@ -82,7 +82,7 @@ void StoryParser::parseStory(std::vector<std::pair<std::string, std::vector<std:
 	delete pDocument;
 }
 
-bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* playState)
+bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* pPlayState)
 {
 	//	Ein neues Dokument wird erstellt und geöffnet
 	XMLDocument* pDocument = new XMLDocument();
@@ -127,7 +127,7 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 
 	//	Element, in dem die Id des Objekts, auf das die Kamera zentriert wird, fesgehalten wird.
 	XMLElement* pCenterObject = pDocument->NewElement("centerObject");
-	pCenterObject->SetAttribute("objectId", playState->getCenterObject()->getUniqueId().c_str());
+	pCenterObject->SetAttribute("objectId", pPlayState->getCenterObject()->getUniqueId().c_str());
 	pRoot->InsertEndChild(pCenterObject);
 
 	//	Element, als dessen "Kinder", die Objekte (ihrer jeweiligen Map zugeordnet) mit Id und Position, festgehalten werden
@@ -135,10 +135,10 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 	pRoot->InsertEndChild(pObjectState);
 
 	//	Über die Einträge im "mapDict" des "PlayState"s iterieren
-	for(auto const &entry : playState->getMapDict())
+	for(auto const &entry : pPlayState->getMapDict())
 	{
 		//	Die aktuell betrachtete Map wird mit der aktuellen/obersten Map des PlaySates verglichen
-		if(entry.second == playState->getCurrentMap())
+		if(entry.second == pPlayState->getCurrentMap())
 		{
 			//	Die Id der aktuellen Map wird gespeichert
 			pMap->SetAttribute("mapId", entry.first.c_str());
@@ -167,7 +167,7 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 	return true;
 }
 
-bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* playState)
+bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* pPlayState)
 {
 	//	Ein neues Dokument wird erstellt und geöffnet
 	XMLDocument* pDocument = new XMLDocument();
@@ -228,7 +228,7 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 	TheGame::Instance()->getStory()->setQuest(mainQuest, partQuest);
 
 	//	Aufstapeln der gewünschten Map, anhand der Id. Diese Map wird gerendert und geupdated
-	TheGame::Instance()->getCurrentState()->pushMap(mapId);
+	pPlayState->pushMap(mapId);
 
 	//	Varieblen, in denen im Folgenden die relevanten Daten eines Spielobjekts festgehalten werden
 	std::string id;
@@ -264,13 +264,13 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 
 			//	Anhand des Namens des aktuell betrachteten Map-Elemtent wird die entsprechende "Map" des "PlayState"s ermittelt.
 			//	Es wird über die Objekte im "ObjectLayer" dieser Map iteriert
-			for(auto pObject : *playState->getMapDict()[pMap->Name()]->getObjectLayer()->getGameObjects())
+			for(auto pObject : *pPlayState->getMapDict()[pMap->Name()]->getObjectLayer()->getGameObjects())
 			{
 				//	Die Id des aktuellen Spielbjekts wird mit der geparsten des "centerObject"s verglichen
-				if(!pObject->getUniqueId().compare(centerObjectId) && !playState->getCenterObject())
+				if(!pObject->getUniqueId().compare(centerObjectId) && !pPlayState->getCenterObject())
 				{
 					//	Die Ids sind identisch. Das aktuelle Objekt wird als zentrales Objekt des "PlayState" gesetzt
-					playState->setCenterObject(dynamic_cast<SDL_GameObject*>(pObject));
+					pPlayState->setCenterObject(dynamic_cast<SDL_GameObject*>(pObject));
 				}
 
 				//	Die Id des aktuellen Spielbjekts wird mit der id des aktuellen object-Elements der xml-Datei verglichen

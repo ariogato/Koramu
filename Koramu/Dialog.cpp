@@ -67,7 +67,7 @@ void Dialog::update()
 			SDL_Delay(20);
 		}
 		
-		//	Die nächste Zeile soll erst angezeigt werden, wenn die aktuell fertig ist
+		//	Die nächste Zeile soll erst angezeigt werden, wenn die aktuelle fertig ist
 		if (!m_lineFinished)
 			return;
 
@@ -91,8 +91,8 @@ void Dialog::draw()
 		return;
 
 	/*
-	 *	Der Text soll nicht direkt auf dem Bildschirm erscheinen, 
-	 *	sondern per Animation stück für Stück geschrieben werden.
+	 *	Der Text soll nicht sofort auf dem Bildschirm erscheinen, 
+	 *	sondern per Animation Stück für Stück geschrieben werden.
 	 *	
 	 *	Zu diesem Zwecke wird immer ein Teil des Gesamttextes gerendert, welcher immer größer 
 	 *	wird. Dies simuliert ein Schreiben. 
@@ -101,7 +101,7 @@ void Dialog::draw()
 	//	Die Länge des Teiltextes ( / animSpeed)
 	static unsigned int part = 0;
 	
-	//	Die Schnelligkeit wie der Text geschrieben wird (kleiner = schneller)
+	//	Die Schnelligkeit, in der der Text geschrieben wird (kleiner = schneller)
 	unsigned int charPerSec = 5;
 
 	//	Teil der Zeile, der gerendert werden soll  (falls die Animation abgeschlossen ist, einfach alles rendern)

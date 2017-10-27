@@ -26,7 +26,7 @@ public:
 
 	void update();									//	Wird dann aufgerufen, wenn die Liste nicht leer ist 
 	void pushCommand(BaseCommand* pCommand);		//	Fügt einen neuen Befehl in die Liste (hinten) ein
-	void popCommand();
+	void popCommand();								//	Entfernt das erste Element der Liste
 
 	//	getter-Funktionen
 	bool isEmpty() const { return m_commandList.empty(); }

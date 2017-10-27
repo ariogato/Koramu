@@ -18,9 +18,9 @@ public:
 
 	static void parseStory(std::vector<std::pair<std::string, std::vector<std::string>>>* pQuestList, const char* filename);		//	Parsen der xml Datei, die die Quests enthält
 
-	static bool saveGame(const char* filename, FiniteStateMachine::GameState* playState);											//	Schreiben des aktuellen Spielstandes in eine xml-Datei
+	static bool saveGame(const char* filename, FiniteStateMachine::GameState* pPlayState);											//	Schreiben des aktuellen Spielstandes in eine xml-Datei
 
-	static bool loadGame(const char* filename, FiniteStateMachine::GameState* playState);											//	Laden des gespeicherten Spielstandes aus der xml-Datei
+	static bool loadGame(const char* filename, FiniteStateMachine::GameState* pPlayState);											//	Laden des gespeicherten Spielstandes aus der xml-Datei
 
 
 };

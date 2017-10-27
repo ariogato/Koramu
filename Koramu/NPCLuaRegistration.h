@@ -16,7 +16,7 @@ namespace LuaRegistrations {
 		~NPCLuaRegistration();												//	Destruktor
 
 		void registerToLua(lua_State* pLuaState) override;					//	Siehe Oberklasse
-		static NPC* checkAndGetNPC(lua_State* pLuaState, int argNum);		//	Holt das Player Objekt aus den Argumenten (Ich weiß der Name ist speziell...)
+		static NPC* checkAndGetNPC(lua_State* pLuaState, int argNum);		//	Holt das NPC Objekt aus den Argumenten (Ich weiß, der Name ist speziell...)
 	};
 
 	//	Zu übergebene Funktionen
