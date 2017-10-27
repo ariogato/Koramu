@@ -122,3 +122,15 @@ int LuaRegistrations::l_startNarrator(lua_State* pLuaState)
 	//	Es gibt keinen Rückgabewert
 	return 0;
 }
+
+int LuaRegistrations::l_enterMap(lua_State* pLuaState)
+{
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_exitMap(lua_State* pLuaState)
+{
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}

@@ -229,6 +229,8 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 
 	//	Aufstapeln der gewünschten Map, anhand der Id. Diese Map wird gerendert und geupdated
 	pPlayState->pushMap(mapId);
+	pPlayState->popMap();
+	pPlayState->pushMap(mapId);
 
 	//	Varieblen, in denen im Folgenden die relevanten Daten eines Spielobjekts festgehalten werden
 	std::string id;

@@ -22,7 +22,10 @@ FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
 }
 
 FiniteStateMachine::PauseState::~PauseState()		//	Destruktor
-{}
+{
+	//	Löscht alle Maps
+	deleteMaps();
+}
 
 void FiniteStateMachine::PauseState::onEnter()
 {

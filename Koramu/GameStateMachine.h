@@ -13,7 +13,7 @@ namespace FiniteStateMachine
 	class GameStateMachine
 	{
 	private:
-		DataStructure::Stack<GameState> m_stateStack;		//	Stapel aus Spielzuständen, um diese zu verwalten
+		DataStructure::Stack<GameState*> m_stateStack;		//	Stapel aus Spielzuständen, um diese zu verwalten
 
 	public:
 		GameStateMachine();			//	Konstruktor
@@ -30,7 +30,7 @@ namespace FiniteStateMachine
 		
 		//	getter-Funktionen:
 		GameState* getCurrentState() { return m_stateStack.getTopNodeData(); }		//	Den aktuellen Spielzustand zurückgeben
-		GameState* getPreviousState() { return m_stateStack.getSecondNodeData(); }	//	Den vorherigen Spielzustand zurückgeben
+		GameState* getPreviousState() { return m_stateStack[1]; }					//	Den vorherigen Spielzustand zurückgeben
 
 	};
 }

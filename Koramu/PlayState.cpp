@@ -16,8 +16,11 @@ FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 	m_pCenterObject = nullptr;
 }
 
-FiniteStateMachine::PlayState::~PlayState()		//	Konstruktor
-{}
+FiniteStateMachine::PlayState::~PlayState()		//	Destruktor
+{
+	//	Löscht alle Maps
+	deleteMaps();
+}
 
 void FiniteStateMachine::PlayState::onEnter()
 {

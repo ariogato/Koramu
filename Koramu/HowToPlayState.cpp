@@ -21,6 +21,8 @@ FiniteStateMachine::HowToPlayState::HowToPlayState()
 
 FiniteStateMachine::HowToPlayState::~HowToPlayState()
 {
+	//	Löscht alle Maps
+	deleteMaps();
 }
 
 void FiniteStateMachine::HowToPlayState::onEnter()

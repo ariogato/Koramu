@@ -62,7 +62,8 @@ void FiniteStateMachine::GameStateMachine::popState()
 
 	//	Der aktuelle Spielzustand soll noch bestimmte Aktionen ausführen, sobald er verlassen wird
 	m_stateStack.getTopNodeData()->onExit();
-	//	Den aktuellen Spielzustand entfernen (der Vorherige wird nun "aktiv"):
+	//	Den aktuellen Spielzustand löschen und entfernen (der Vorherige wird nun "aktiv"):
+	delete m_stateStack[0];
 	m_stateStack.pop();
 }
 
@@ -83,8 +84,11 @@ void FiniteStateMachine::GameStateMachine::changeState(GameState* newState)
 
 	//	Der aktuelle Spielzustand soll noch bestimmte Aktionen ausführen, bevor er entfernt wird
 	m_stateStack.getTopNodeData()->onExit();
-	//	Den aktuellen Spielzustand entfernen:
+
+	//	Den aktuellen Spielzustand löschen und entfernen:
+	delete m_stateStack[0];
 	m_stateStack.pop();
+
 	//	Einen neuen Spielzustand aufstapeln und die Methode "onEnter()" aufrufen, die bestimmte Aktionen für das Eintreten des neuen Spielzustandes ausführt
 	m_stateStack.push(newState);
 	newState->onEnter();

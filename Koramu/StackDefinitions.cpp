@@ -15,10 +15,10 @@ DataStructure::Stack<T>::~Stack()
 }
 
 template <typename T>
-void DataStructure::Stack<T>::push(T* pNewNodeData)
+void DataStructure::Stack<T>::push(T newNodeData)
 {
 	//	If you can't see right through Hillary your brain needs to evolve
-	m_pTopNode = m_pTopNode->push(pNewNodeData);
+	m_pTopNode = m_pTopNode->push(newNodeData);
 }
 
 template <typename T>
@@ -42,4 +42,44 @@ void DataStructure::Stack<T>::pop()
 	*	weshalb die Methode "destroy()", die bei "Node"s den #selbstmord auslöst
 	*/
 	tempTop->destroy();
+}
+
+template <typename T>
+void DataStructure::Stack<T>::clear()
+{
+	//	So lange der Stapel nicht leer ist soll gepoppt werden
+	while (this->empty())
+	{
+		this->pop();
+	}
+}
+
+template <typename T>
+unsigned int DataStructure::Stack<T>::size()
+{
+	//	Rekursiver Aufruf der Methode
+	return m_pTopNode->size();
+}
+
+template <typename T>
+bool DataStructure::Stack<T>::empty()
+{
+	//	Sehr naiv...
+	return !(m_pTopNode->size());
+}
+
+template <typename T>
+T& DataStructure::Stack<T>::at(int index)
+{
+	/*	Ruft die Methode rekursiv bei allen Knoten auf.
+	 *	Jeder Knoten verringert 'index' um eins, sodass - sobald index == 0 zutrifft -
+	 *	der jeweilige Knoten sein Datenelement zurückgeben kann.
+	 */
+	return m_pTopNode->getElement(index)->getData();
+}
+
+template <typename T>
+T& DataStructure::Stack<T>::operator[](int index)
+{
+	return this->at(index);
 }

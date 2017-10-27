@@ -44,19 +44,19 @@ namespace DataStructure
 		Stack();									//	Konstruktor
 		~Stack();									//	Destruktor
 
-		void push(T* pNewNodeData);								//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)			
+		void push(T newNodeData);					//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)			
 		void pop();									//	Um einen Knoten vom Stapel zu nehmen - Immer den ersten (entspricht "entfernen" aus dem Infounterricht)
-
+		void clear();								//	Jeden iterativ Knoten poppen (Datenelemente, die Pointer sind werden hiermit nicht glöscht!)
+		unsigned int size();						//	Gibt die Anzahl der auf dem Stack befindlichen Knoten zurück
+		bool empty();								//	Zeigt an, ob der Stapel leer ist (ob sich ein Abschluss an erster Stelle befindet)
 
 		//	getter-Funktionen
-		T* getTopNodeData()							//	Gibt das Datenelement des obersten Knotens zurück
+		T& at(int index);							//	Gibt das Element an 'index' zurück, wobei 0 das erste und Stack<T>::size() - 1  das letzte Element ist
+		T& getTopNodeData()							//	Gibt das Datenelement des obersten Knotens zurück
 		{
 			return m_pTopNode->getData();
 		}
-		T* getSecondNodeData()							//	Gibt das Datenelement für den zweiten Knoten zurück
-		{
-			return m_pTopNode->getSuccessor()->getData();
-		}
+		T& operator[](int index);					//	Ruft im Grunde genommen einfach nur 'getElement()' auf
 	};
 
 }

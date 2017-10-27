@@ -21,7 +21,10 @@ FiniteStateMachine::MenuState::MenuState()		//	Konstruktor
 }
 
 FiniteStateMachine::MenuState::~MenuState()		//	Destruktor
-{}
+{
+	//	Löscht alle Maps
+	deleteMaps();
+}
 
 void FiniteStateMachine::MenuState::onEnter()
 {

@@ -16,25 +16,27 @@ namespace DataStructure
 	class Node : public StackElement<T>
 	{
 	private:
-		StackElement<T>* m_pSuccessor;				//	Entspricht dem Attribut "nachfolger" aus dem Infounterricht
-		T* m_pData;									//	Entspricht dem Attribut "daten" aus dem Infounterricht 
-													//	Dank der Implementierung des Stapels als Klassentemplate, können beliebige Datentypen verwaltet werden
+		StackElement<T>* m_pSuccessor;							//	Entspricht dem Attribut "nachfolger" aus dem Infounterricht
+		T m_data;												//	Entspricht dem Attribut "daten" aus dem Infounterricht 
+																//	Dank der Implementierung des Stapels als Klassentemplate, können beliebige Datentypen verwaltet werden
 
 	public:
-		Node(T* pData);								//	Konstruktor (R.I.P Sack ... you won't be forgotten)
-		~Node();									//	Destruktor
+		Node(T data);											//	Konstruktor (R.I.P Sack ... you won't be forgotten)
+		~Node();												//	Destruktor
 
-		StackElement<T>* push(T*);					//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
+		StackElement<T>* push(T) override;						//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
+		unsigned int size() override;							//	Gibt die Anzahl der auf dem Stack befindlichen Knoten zurück
 
 		//	getter-Funktionen
-		StackElement<T>* getSuccessor();			//	Gibt den Nachfolger des Knotens zurück
-		T* getData();								//	Gibt das Datenelement des Knotens zurück
+		StackElement<T>* getElement(int index) override;		//	Gibt das Element an 'index' zurück, wobei 0 das erste und Stack<T>::size() das letzte Element ist
+		StackElement<T>* getSuccessor() override;				//	Gibt den Nachfolger des Knotens zurück
+		T& getData() override;									//	Gibt das Datenelement des Knotens zurück
 
 		//	setter-Funktionen
 		void setSuccessor(StackElement<T>* pNewSuccessor);		//	Den Nachfolger eines Knotens setzen
 
 		//	killer-Funktionen
-		void destroy();								//	#selbstmord
-		void destroyAll();							//	#massenselbstmord
+		void destroy() override;								//	#selbstmord
+		void destroyAll() override;								//	#massenselbstmord
 	};
 }

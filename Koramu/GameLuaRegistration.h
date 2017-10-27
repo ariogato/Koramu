@@ -28,5 +28,7 @@ namespace LuaRegistrations
 	int l_nextQuest(lua_State* pLuaState);
 	int l_startDialog(lua_State* pLuaState);
 	int l_startNarrator(lua_State* pLuaState);
+	int l_enterMap(lua_State* pLuaState);
+	int l_exitMap(lua_State* pLuaState);
 }
 
