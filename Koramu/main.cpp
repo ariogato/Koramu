@@ -18,7 +18,7 @@
 #define WINDOW_HEIGHT 896
 
 //	für die smoothness 
-const int FPS = 120;
+const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char** argv)

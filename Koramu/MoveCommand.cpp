@@ -26,5 +26,5 @@ void MoveCommand::update(SDL_GameObject& object)
 	}
 
 	//	Geschwindigkeit in Richtung Zielposition setzen
-	object.setVelocity(way.normalize());
+	object.setVelocity(way.normalize() * 2);
 }

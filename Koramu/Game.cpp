@@ -127,7 +127,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 
 	//	Renderer erstellen.
-	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_PRESENTVSYNC);
 
 	//	Überprüfen, ob der Renderer erfolgreich erstellt wurde:
 	if (!m_pRenderer)

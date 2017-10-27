@@ -187,25 +187,25 @@ void Player::update()
 	{
 		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 		{
-			Vector2D temp(2.0f, 0.0f);
+			Vector2D temp(4.0f, 0.0f);
 
 			m_velocity += temp;
 		}
 		else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 		{
-			Vector2D temp(-2.0f, 0.0f);
+			Vector2D temp(-4.0f, 0.0f);
 
 			m_velocity += temp;
 		}
 		else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 		{
-			Vector2D temp(0.0f, -2.0f);
+			Vector2D temp(0.0f, -4.0f);
 
 			m_velocity += temp;
 		}
 		else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 		{
-			Vector2D temp(0.0f, 2.0f);
+			Vector2D temp(0.0f, 4.0f);
 
 			m_velocity += temp;
 		}

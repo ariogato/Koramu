@@ -102,7 +102,7 @@ void Dialog::draw()
 	static unsigned int part = 0;
 	
 	//	Die Schnelligkeit, in der der Text geschrieben wird (kleiner = schneller)
-	unsigned int charPerSec = 5;
+	unsigned int charPerSec = 2;
 
 	//	Teil der Zeile, der gerendert werden soll  (falls die Animation abgeschlossen ist, einfach alles rendern)
 	std::string text = (m_lineFinished) ? (m_message[0]) : m_message[0].substr(0, (part / charPerSec));
