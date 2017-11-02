@@ -108,11 +108,13 @@ bool ScriptManager::init()
 		 */
 		if (luaL_dofile(m_pLuaState, (it->second).c_str()))
 		{
+			TheGame::Instance()->logError() << "SciptManager::init(): \n\tDas Skript " << it->second << " konnte nicht ausgeführt werden. Das Skript ist fehlerhaft." << std::endl << std::endl;
 			return false;
 		}
 
 		//	Checken, ob tatsächlich eine Tabelle vom Script zurückgegeben wurde
 		if (!lua_istable(m_pLuaState, -1))
+			//	Todo: evtl. Fehlermeldung einbauen
 			continue;
 
 		/*	Hier wird die Tabelle, die vom ausgeführten Skript auf den Stack gepusht wurde, abgerufen.

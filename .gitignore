@@ -248,7 +248,7 @@ logs/
 **/screenshot.bmp
 
 # Testmaps
-assets/testMap*.tmx
+# assets/testMap*.tmx
 
 # Savefiles
-Koramu/xmlFiles/save.xml
+# Koramu/xmlFiles/save.xml

@@ -121,14 +121,31 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 	//	Hier wird "questState" als "child" des Wurzelelements eingefügt
 	pRoot->InsertEndChild(pQuestState);
 
-	//	Element für die aktuelle Map (oberste auf dem Stapel) erstellen. Attribute werden später gesetzt, wenn sie leichter zu extrahieren sind
-	XMLElement* pMap = pDocument->NewElement("currentMap");
-	pRoot->InsertEndChild(pMap);
+	//	Element für die aktuellen Maps (diejenigen auf dem Stapel) erstellen
+	XMLElement* pMapStack = pDocument->NewElement("mapStack");
+	pRoot->InsertEndChild(pMapStack);
 
-	//	Element, in dem die Id des Objekts, auf das die Kamera zentriert wird, fesgehalten wird.
-	XMLElement* pCenterObject = pDocument->NewElement("centerObject");
-	pCenterObject->SetAttribute("objectId", pPlayState->getCenterObject()->getUniqueId().c_str());
-	pRoot->InsertEndChild(pCenterObject);
+	//	Über alle Maps auf dem Stack iterieren
+	for(int i = 0; i < pPlayState->getMapStack()->size(); i++)
+	{
+		//	Über das "mapDict" des "PlayState"s iterieren, um an die Ids der Maps auf dem Stapel zu kommen
+		for(auto const &entry : pPlayState->getMapDict())
+		{
+			//	Überprüfen, ob die aktuell betrachtete Map des "mapDict"s mit der aktuell betrachteten des Stapel übereinstimmt
+			if (entry.second == pPlayState->getMapStack()->at(i))
+			{
+				//	Element für die aktuell betrachtete "aktive" Map (sie befindet sich auf dem Stapel) erstellen
+				XMLElement* pMap = pDocument->NewElement("activeMap");
+				//	Id der aktiven Map speichern 
+				pMap->SetAttribute("mapId", entry.first.c_str());
+				/*	Das "activeMap"-Element als erstes "Kind" des "mapStack"-Elements einfügen. So sind die Maps am Ende in umgekehrter Reihenfolge,
+				 *	in Relation zum Stapel, gelistet.
+				 */	
+				pMapStack->InsertFirstChild(pMap);
+			}
+		}
+		
+	}
 
 	//	Element, als dessen "Kinder", die Objekte (ihrer jeweiligen Map zugeordnet) mit Id und Position, festgehalten werden
 	XMLElement* pObjectState = pDocument->NewElement("objectState");
@@ -137,16 +154,18 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 	//	Über die Einträge im "mapDict" des "PlayState"s iterieren
 	for(auto const &entry : pPlayState->getMapDict())
 	{
-		//	Die aktuell betrachtete Map wird mit der aktuellen/obersten Map des PlaySates verglichen
-		if(entry.second == pPlayState->getCurrentMap())
-		{
-			//	Die Id der aktuellen Map wird gespeichert
-			pMap->SetAttribute("mapId", entry.first.c_str());
-		}
-
 		//	Element für die aktuell betrachtete Map. Als Kinder werden die Objekte dieser Map mit ihren Positionen festgehalten
 		XMLElement* pMap = pDocument->NewElement(entry.first.c_str());
 		pObjectState->InsertEndChild(pMap);
+
+		//	Element für das zentrale Objekt der aktuell betrachteten Map erstellen
+		XMLElement* pMapCenterObject = pDocument->NewElement("centerObject");
+		//	Id dieses aktuell zentralen Objektes festhalten. Wird auf kein Objekt (nullptr) zentriert, so soll "nullptr" gespeichert werden
+		if(entry.second->getCenterObject())
+			pMapCenterObject->SetAttribute("id", entry.second->getCenterObject()->getUniqueId().c_str());
+		else
+			pMapCenterObject->SetAttribute("id", "nullptr");
+		pMap->InsertEndChild(pMapCenterObject);
 
 		//	Über die Objekte der Map iterieren
 		for(auto const &o : *entry.second->getObjectLayer()->getGameObjects())
@@ -192,14 +211,6 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 	std::string mainQuest = pQuestState->Attribute("mainQuest");
 	std::string partQuest = pQuestState->Attribute("partQuest");
 
-	//	Extrahieren der Id der Map, die aufgestapelt werden soll
-	XMLElement* pMap = pRoot->FirstChildElement("currentMap");
-	std::string mapId = pMap->Attribute("mapId");
-
-	//	Ermitteln der Id des Objekts, auf das die Kamera zentriert werden soll. 
-	XMLElement* pCenterObject = pRoot->FirstChildElement("centerObject");
-	std::string centerObjectId = pCenterObject->Attribute("objectId");
-
 # pragma region string validation
 	//	Hier wird überprüft, ob die Daten extrahiert werden konnten. Wenn nicht, dann macht es keinen Sinn fortzufahren.
 	if (mainQuest.empty())
@@ -212,36 +223,49 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 		TheGame::Instance()->logError() << "StoryParser::loadGame(): \n\t " << filename << ": Das <questState>-Element besitzt kein mainQuest-Attribut." << std::endl << std::endl;
 		return false;
 	}
-	if (mapId.empty())
-	{
-		TheGame::Instance()->logError() << "StoryParser::loadGame(): \n\t " << filename << ": Das <currentMap>-Element besitzt kein mapId-Attribut." << std::endl << std::endl;
-		return false;
-	}
-	if (centerObjectId.empty())
-	{
-		TheGame::Instance()->logError() << "StoryParser::loadGame(): \n\t " << filename << ": Das <centerObject>-Element besitzt kein objectId-Attribut." << std::endl << std::endl;
-		return false;
-	}
 # pragma endregion 
-	
+
 	//	Setzen der geparsten Werte im "Story"-Objekt von "Game"
 	TheGame::Instance()->getStory()->setQuest(mainQuest, partQuest);
 
-	//	Aufstapeln der gewünschten Map, anhand der Id. Diese Map wird gerendert und geupdated
-	pPlayState->pushMap(mapId);
-	pPlayState->popMap();
-	pPlayState->pushMap(mapId);
+	//	Extrahieren der Ids der Maps, die aufgestapelt werden sollen
+	std::string mapId;
+	XMLElement* pMapStack = pRoot->FirstChildElement("mapStack");
+	for(XMLElement* pMap = pMapStack->FirstChildElement("activeMap"); pMap != nullptr; pMap = pMap->NextSiblingElement("activeMap"))
+	{
+		//	Extrahieren der "mapId" des aktuell betrachteten "activeMap"-Elements
+		mapId = pMap->Attribute("mapId");
+		if (mapId.empty())
+		{
+			TheGame::Instance()->logError() << "StoryParser::loadGame(): \n\t " << filename << ": Ein <activeMap>-Element besitzt kein mapId-Attribut." << std::endl << std::endl;
+			return false;
+		}
+		//	Aufstapeln der gewünschten Map, anhand der Id
+		pPlayState->pushMap(mapId);
+	}
 
-	//	Varieblen, in denen im Folgenden die relevanten Daten eines Spielobjekts festgehalten werden
+	//	Variablen, in denen im Folgenden die relevanten Daten eines Spielobjekts festgehalten werden
 	std::string id;
 	float xPos;
 	float yPos;
 
+	//	Variable zur Speicherung der Id des Spielobjekts, auf welches die Kamera, auf der entsprechenden Map, zentriert werden soll
+	std::string centerObjectId;
+
 	//	Über die "Kinder" von "objectSate" iterieren. Es handelt sich dabei um "Maps", die wiederum die zugehörigen Objekte enthalten
 	for(XMLElement* pMap = pRoot->FirstChildElement("objectState")->FirstChildElement(); pMap != nullptr; pMap = pMap->NextSiblingElement())
 	{
+		//	Extrahieren der Id des zentralen Objekts auf der aktuell betrachteten Map
+		XMLElement* pMapCenterObject = pMap->FirstChildElement("centerObject");
+		centerObjectId = pMapCenterObject->Attribute("id");
+		if (centerObjectId.empty())
+		{
+			TheGame::Instance()->logError() << "StoryParser::loadGame(): \n\t " << filename << ": Das aktuelle <object>-Element besitzt kein id-Attribut." << std::endl << std::endl;
+			return false;
+		}
+		
 		//	Über die "object"-Elemente des aktuellen Map-Elements iterieren
-		for(XMLElement* pObjectData = pMap->FirstChildElement(); pObjectData != nullptr; pObjectData = pObjectData->NextSiblingElement("object"))
+		for(XMLElement* pObjectData = pMap->FirstChildElement("object"); pObjectData != nullptr; pObjectData = pObjectData->NextSiblingElement("object"))
 		{
 			//	Parsen der Daten des aktuellen "object"s:
 			//	id
@@ -268,14 +292,17 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 			//	Es wird über die Objekte im "ObjectLayer" dieser Map iteriert
 			for(auto pObject : *pPlayState->getMapDict()[pMap->Name()]->getObjectLayer()->getGameObjects())
 			{
-				//	Die Id des aktuellen Spielbjekts wird mit der geparsten des "centerObject"s verglichen
-				if(!pObject->getUniqueId().compare(centerObjectId) && !pPlayState->getCenterObject())
+				//	Die Id des aktuellen Spielbjekts wird mit der geparsten des "centerObject"s verglichen und es wird geschaut, ob das selbe Object schon als zentrales Objekt gesetz wurde
+				if (!pObject->getUniqueId().compare(centerObjectId) && pPlayState->getMapDict()[pMap->Name()]->getCenterObject()->getUniqueId().compare(centerObjectId))
 				{
-					//	Die Ids sind identisch. Das aktuelle Objekt wird als zentrales Objekt des "PlayState" gesetzt
-					pPlayState->setCenterObject(dynamic_cast<SDL_GameObject*>(pObject));
+					//	Die Ids sind identisch. Das aktuelle Objekt wird als zentrales Objekt der aktuell betrachteten Map gesetzt
+					pPlayState->getMapDict()[pMap->Name()]->setCenterObject(dynamic_cast<SDL_GameObject*>(pObject));
 				}
+				//	Ist die "centerObjectId" "nullptr", so soll auf kein Objekt (nullptr) zentriert werden
+				else if (centerObjectId == "nullptr")
+					pPlayState->getMapDict()[pMap->Name()]->setCenterObject(nullptr);
 
-				//	Die Id des aktuellen Spielbjekts wird mit der id des aktuellen object-Elements der xml-Datei verglichen
+				//	Die Id des aktuellen Spielbjekts wird mit der id des aktuellen "object"-Elements der xml-Datei verglichen
 				if(!pObject->getUniqueId().compare(id))
 				{
 					//	Die Ids sind identisch. Wir setzen die Position des Spielobjekts anhand der geparsten Daten

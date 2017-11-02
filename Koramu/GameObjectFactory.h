@@ -44,6 +44,7 @@ public:
 
 	bool registerType(std::string id, BaseCreator* pCreator);		//	Neuen Typ registrieren ("id") und mit dem übergebenen "Creator" verknüpfen
 	GameObject* create(std::string id);								//	Spielobjekt anhand des übergebenen Typs ("id") erstellen und Pointer darauf zurückgeben
+	bool typeExists(std::string id);								//	Überprüfen, ob ein Typ registriert ist bzw. existiert
 
 	/*	Funktion 'Instance()', die bei Aufruf die statische
 	 *	Member-Variable 's_pInstance' zurückgibt.

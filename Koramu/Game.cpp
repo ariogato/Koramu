@@ -21,6 +21,7 @@
 #include "GameLuaRegistration.h"
 #include "NPCLuaRegistration.h"
 #include "StoryParser.h"
+#include "Door.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -169,6 +170,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	TheGameObjectFactory::Instance()->registerType("animation", new AnimationCreator());
 	TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
 	TheGameObjectFactory::Instance()->registerType("npc", new NPCCreator());
+	TheGameObjectFactory::Instance()->registerType("door", new DoorCreator());
 #pragma endregion
 
 	//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen

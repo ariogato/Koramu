@@ -54,14 +54,15 @@ void Environment::ObjectLayer::update()
 		{
 			//	Das Objekt bewegt sich und wird daher in "movingObjects" eingetragen
 			movingObjects.push_back(g);
-
-			//	Das, sich bewegende, Objekt wird auf Kollision mit Tiles überprüft
-			objectTileCollision(g);
 		}
 	}
-
 	//	Die Objekte in Bewegung ("movingObjects") werden auf Kollision mit anderen Objekten überprüft
 	objectObjectCollison(&movingObjects);
+	//	Die Objeke in Bewegung werden auf Kollision mit Tiles überprüft
+	for(auto &g : movingObjects)
+	{
+		objectTileCollision(g);
+	}
 
 	/*	Der nachfolgende Code ist für das sogenannte "Z-ordering" zuständig.
 	 *	Wieso wir das machen und was das genau bedeutet, ist in Ticket #34 "Z-Order Rendering" festgehalten.
@@ -509,11 +510,11 @@ void Environment::ObjectLayer::objectObjectCollison(std::vector<GameObject*>* pM
 			leftA = collisionRectA.getX();
 			rightA = collisionRectA.getX() + collisionRectA.getWidth();
 
-			//	Hard gecodete Extremwerte der Map - Todo: schlauer implementieren
+			//	Extremwerte der Map
 			topB = 0;
-			bottomB = 5120;
+			bottomB = TheGame::Instance()->getCurrentState()->getCurrentMap()->getHeight();
 			leftB = 0;
-			rightB = 6400;
+			rightB = TheGame::Instance()->getCurrentState()->getCurrentMap()->getWidth();
 
 			//	Überprüfen, ob das Spielobjekt sich über den Rand der Map bewegen will
 			if (topA < topB || bottomA > bottomB || leftA < leftB || rightA > rightB)
@@ -561,8 +562,9 @@ void Environment::ObjectLayer::objectObjectCollison(std::vector<GameObject*>* pM
 					//	Wenn folgende Bedingungen alle zutreffen, dann berühren oder überlappen sich die Rechtecke - es liegt eine Kollision vor
 					if (rightA >= leftB && bottomA >= topB && topA <= bottomB && leftA <= rightB)
 					{
-						//	Kollision für "gA" auslösen
+						//	Kollision für beide Objekte auslösen
 						gA->collision();
+						gB->collision();
 
 						//	Festhalten, dass bereits eine Kollision für "gA" festgestellt wurde
 						collision = true;

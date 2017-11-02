@@ -306,8 +306,8 @@ void Player::onCreate()
 void Player::setPosition(float x, float y)
 {
 	//	Ermitteln, um wie weit die Interaktionsrechtecke des Players zu bewegen sind
-	Vector2D* moveVector = new Vector2D(x, y);
-	*moveVector -= m_objectRect.positionVector;
+	Vector2D moveVector(x, y);
+	moveVector -= m_objectRect.positionVector;
 
 	//	Positon des Objekts und der Kollisionsrechtecke setzen
 	SDL_GameObject::setPosition(x, y);
@@ -315,8 +315,8 @@ void Player::setPosition(float x, float y)
 	//	Über die Interaktionsrechtecke iterieren
 	for(auto &iRect : m_interactRects)
 	{
-		//	Aktuelles Interaktionsrechteck auf die gewünschte Position verschieben
-		iRect.positionVector += *moveVector;
+		//	Aktuelles Interaktionsrechteck an die gewünschte Position verschieben
+		iRect.positionVector += moveVector;
 		iRect.update();
 	}
 }

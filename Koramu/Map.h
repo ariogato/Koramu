@@ -56,6 +56,7 @@ namespace Environment
 		int m_tilewidth;									//	Breite der Tiles in Pixel
 		int m_tileheight;									//	Höhe der Tiles in Pixel
 		Vector2D m_positionVector;							//	Ortsvektor
+		SDL_GameObject* m_pCenterObject;					//	Objekt, auf das die die Kamera zentriert wird, wenn diese Map aktiv ist
 		std::map<std::string, Layer*> m_layerMap;			//	Dictionary/Map aus zur Map gehörigen Layern
 
 	public:
@@ -70,7 +71,13 @@ namespace Environment
 		void addLayer(std::string name, Layer* pNewLayer);
 
 		//	getter-Funktionen
+		int getWidth() const { return m_width * m_tilewidth; }
+		int getHeight() const { return m_height * m_tileheight; }
 		TileLayer* getCollisionLayer();
 		ObjectLayer* getObjectLayer();
+		SDL_GameObject* getCenterObject() const { return m_pCenterObject; }
+
+		//	setter-Funktionen
+		void setCenterObject(SDL_GameObject* pObject) { m_pCenterObject = pObject; }
 	};
 }

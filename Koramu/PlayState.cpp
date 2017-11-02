@@ -11,9 +11,6 @@
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
 	m_stateID = playState;
-	//	"m_pCenterObject" enhält das Spielobjekt, auf welches die Kamera für diesen Zustand zentriert werden soll
-	//	"nullptr" setzt die Position der Kamera in "update()" auf (0|0)
-	m_pCenterObject = nullptr;
 }
 
 FiniteStateMachine::PlayState::~PlayState()		//	Destruktor
@@ -47,6 +44,7 @@ void FiniteStateMachine::PlayState::onEnter()
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->emergencyExit("Fehler beim Parsen der Maps des PlayStates!");
 	}
+
 
 	//	Überprüfen, ob der Spielstand erfolgreich geladen wurde
 	if(!StoryParser::loadGame("xmlFiles/save.xml", this))
@@ -96,9 +94,6 @@ void FiniteStateMachine::PlayState::handleInput()
 
 void FiniteStateMachine::PlayState::update()
 {
-	//	Kamera auf das aktuell "zentrale Objekt" dieses Spielzustandes zentrieren
-	TheGame::Instance()->getCamera()->centerOnGameObject(m_pCenterObject);
-
 	//	Die aktuelle Map wird geupdatet
 	m_maps.getTopNodeData()->update();
 

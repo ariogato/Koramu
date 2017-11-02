@@ -16,9 +16,6 @@
 FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
 {
 	m_stateID = pauseState;
-	//	"m_pCenterObject" enhält das Spielobjekt, auf welches die Kamera für diesen Zustand zentriert werden soll
-	//	"nullptr" setzt die Position der Kamera in "update()" auf (0|0)
-	m_pCenterObject = nullptr;
 }
 
 FiniteStateMachine::PauseState::~PauseState()		//	Destruktor
@@ -107,9 +104,6 @@ void FiniteStateMachine::PauseState::handleInput()
 
 void FiniteStateMachine::PauseState::update()
 {
-	//	Kamera auf das aktuell "zentrale Objekt" dieses Spielzustandes zentrieren
-	TheGame::Instance()->getCamera()->centerOnGameObject(m_pCenterObject);
-
 	//	Die aktuelle Map wird geupdatet
 	m_maps.getTopNodeData()->update();
 	

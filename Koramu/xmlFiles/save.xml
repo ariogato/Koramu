@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <saveState>
-    <questState mainQuest="tutorial" partQuest="tutorial1"/>
-    <currentMap mapId="mainMap"/>
-    <centerObject objectId="player"/>
+    <questState mainQuest="tutorial1" partQuest="tutorial1"/>
+    <mapStack>
+        <activeMap mapId="mainMap"/>
+    </mapStack>
     <objectState>
+        <houseMap1>
+            <centerObject id="player"/>
+            <object id="player" xPos="584" yPos="697"/>
+            <object id="door2" xPos="560" yPos="880"/>
+        </houseMap1>
         <mainMap>
+            <centerObject id="player"/>
+            <object id="door1" xPos="704" yPos="320"/>
+            <object id="player" xPos="702" yPos="365"/>
             <object id="tree1" xPos="1088" yPos="384"/>
-            <object id="test" xPos="1800" yPos="690"/>
+            <object id="test" xPos="2218" yPos="690"/>
+            <object id="door3" xPos="368" yPos="752"/>
             <object id="johann" xPos="595" yPos="583"/>
-            <object id="player" xPos="1702" yPos="775"/>
             <object id="tree2" xPos="576" yPos="1045"/>
         </mainMap>
     </objectState>

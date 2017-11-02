@@ -150,6 +150,7 @@
     <ClCompile Include="CollisionRectParser.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="DialogCommand.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="BaseCommand.h" />
     <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="DialogCommand.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="Game.h" />
@@ -271,8 +273,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="door1.lua" />
     <None Include="door.lua" />
     <None Include="default.lua" />
+    <None Include="door2.lua" />
     <None Include="npc1.lua" />
     <None Include="player.lua" />
     <None Include="tree.lua" />

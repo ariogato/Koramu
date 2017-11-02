@@ -130,28 +130,38 @@ bool MapParser::parse(std::string filename, std::map<std::string, Environment::M
 		}
 #pragma endregion 
 
+		//	Hier wird die Map aus 'parseMap()' hineingeparst
+		Environment::Map* pCurrentMap = new Environment::Map();
+
 		//	'ObjectLayer' wird erstellt und befüllt
 		Environment::ObjectLayer* pObjectLayer = new Environment::ObjectLayer();
 
-
+		//	Hier werden die Objekte, mit denen das 'ObjectLayer' befüllt werden soll, fesgehalten
 		std::vector<GameObject*>* pCurrentMapObjects = new std::vector<GameObject*>();
 
+		//	Über die übergebenen Spielobjekte iterieren
 		for (auto g : *pObjects)
 		{
 			if (SDL_GameObject* sdlG = dynamic_cast<SDL_GameObject*>(g))
 			{
+				//	Überprüfen, ob das Spielobjekt zu diese map gehört
 				if (sdlG->getMapId() == mapId)
 				{
+					//	Spielobjekt zu den Objekten dieser Map hinzufügen
 					pCurrentMapObjects->push_back(sdlG);
+
+					//	Überprüfen, ob es sich um das "Player"-Objekt der Map handelt (id == "player")
+					if (!sdlG->getUniqueId().compare("player"))
+					{
+						//	Es handelt sich um den Player. Dieser wird prinzipiell als zentrales Objekt der Map gesetzt
+						pCurrentMap->setCenterObject(sdlG);
+					}
 				}
 			}
 		}
 
+		//	'ObjektLayer' mit den ermittelten Objekten initialisieren
 		pObjectLayer->init(pCurrentMapObjects);
-
-		//	Hier wird die Map aus 'parseMap()' hineingeparst
-		Environment::Map* pCurrentMap = new Environment::Map();
-
 
 		//	'ObjectLayer' (pObjectLayer) in 'pCurrentMap' einfügen
 		pCurrentMap->addLayer("Objectlayer", pObjectLayer);
@@ -574,8 +584,18 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 				parameters.setUniqueId(id);
 				parameters.setTextureId(objectType);
 
-
-				SDL_GameObject* objectToLoad = new SDL_GameObject;
+				GameObject* objectToLoad;
+				//	Überprüfen, ob der Typ des Objekts registriert ist
+				if(TheGameObjectFactory::Instance()->typeExists(objectType))
+				{
+					//	Der Typ ist registriert. Es wird ein Objekt dieses Typs erstellt
+					objectToLoad = TheGameObjectFactory::Instance()->create(objectType);
+				}
+				else
+				{
+					//	Der Typ ist nicht registriert. Es wird ein einfaches "SDL_GameObject" erzeugt
+					objectToLoad = new SDL_GameObject;
+				}
 
 				//	Ermitteln ob das Objekt erfolgreich geladen wurde
 				if (!objectToLoad)

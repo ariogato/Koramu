@@ -19,6 +19,7 @@
     <texture id="tree" path="../assets/TreeNew.png"/>
     <texture id="font" path="../assets/Fonts/pixelFont.png"/>
     <texture id="test" path="../assets/test.png"/>
+    <texture id="door" path="../assets/Transparent.png"/>
   </textures>
 
   <menu>
@@ -62,6 +63,11 @@
                   xPos="1000" yPos="545" width="70" height="180"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
+                  uniqueId="player"/>
+      <gameObject type="player" textureId="player"
+                  xPos="1000" yPos="545" width="70" height="180"
+                  numRows="4" numCols="4"
+                  mapId="houseMap1" animSpeed="200"
                   uniqueId="player"/>
       <gameObject type="npc" textureId="test"
                   xPos="1000" yPos="690" width="128" height="82"

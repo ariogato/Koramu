@@ -71,8 +71,11 @@ void Camera::update()
 		tempVector.setY(tempVector.getY() + static_cast<float>(m_pCenterObject->getHeight()) / 2.0f);
 
 		//	Hier wird sichergestellt, dass die Kamera die Grenzen der Map nicht verlässt.
-		//	Todo: aktuell sind die Grenzen der Map noch hard gecodet, das muss sich ändern --> wir brauchen Variablen
-		//	Idee: Maximale Werte der aktuellen Map in der "Camera"-Klasse festhalten.
+		
+		//	Extremwerte der aktuellen Map
+		int maxX = TheGame::Instance()->getCurrentState()->getCurrentMap()->getWidth();
+		int maxY = TheGame::Instance()->getCurrentState()->getCurrentMap()->getHeight();
+
 		if (tempVector.getX() <= 0)
 		{
 			//	Es wird verhindert, dass die Kamera die linke Grenze nicht überschreitet
@@ -83,15 +86,15 @@ void Camera::update()
 			//	Es wird verhindet, dass die obere Grenze überschritten wird
 			tempVector.setY(0.0f);
 		}
-		if(tempVector.getX() + m_cameraWidth >= 6400)
+		if(tempVector.getX() + m_cameraWidth >= maxX)
 		{
 			//	Es wird verhindert, dass die rechte Grenze überschritten wird
-			tempVector.setX(6400 - m_cameraWidth);
+			tempVector.setX(maxX - m_cameraWidth);
 		}
-		if(tempVector.getY() + m_cameraHeight >= 5120)
+		if(tempVector.getY() + m_cameraHeight >= maxY)
 		{
 			//	Es wird verhindert, dass die untere Grente überschritten wird
-			tempVector.setY(5120 - m_cameraHeight);
+			tempVector.setY(maxY - m_cameraHeight);
 		}
 
 		//	Der korrekte Vektor wird übernommen

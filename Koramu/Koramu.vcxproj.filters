@@ -236,6 +236,9 @@
     <ClCompile Include="StunCommand.cpp">
       <Filter>Quelldateien\GameObjects\Commands</Filter>
     </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -409,6 +412,9 @@
     <ClInclude Include="StunCommand.h">
       <Filter>Headerdateien\GameObjects\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -448,6 +454,12 @@
       <Filter>Lua Skripts</Filter>
     </None>
     <None Include="npc1.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
+    <None Include="door1.lua">
+      <Filter>Lua Skripts</Filter>
+    </None>
+    <None Include="door2.lua">
       <Filter>Lua Skripts</Filter>
     </None>
   </ItemGroup>

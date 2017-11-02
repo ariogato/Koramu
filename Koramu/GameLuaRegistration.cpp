@@ -19,7 +19,7 @@ GameLuaRegistration::~GameLuaRegistration()
 
 void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 {
-	luaL_Reg regs[] = 
+	luaL_Reg regs[] =
 	{
 		{ "setGameOver", l_setGameOver },
 		{ "getMainQuestId", l_getMainQuestId },
@@ -27,6 +27,8 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "nextQuest", l_nextQuest },
 		{ "startDialog", l_startDialog },
 		{ "startNarrator", l_startNarrator },
+		{ "enterMap", l_enterMap },
+		{ "exitMap", l_exitMap },
 		{nullptr, nullptr}
 	};
 
@@ -125,12 +127,28 @@ int LuaRegistrations::l_startNarrator(lua_State* pLuaState)
 
 int LuaRegistrations::l_enterMap(lua_State* pLuaState)
 {
+	//	Den übergebenen string speichern 
+	const char* mapId = luaL_checkstring(pLuaState, 2);
+
+	//	Checken, ob das übergebene Argument ein string ist (wenn nicht wäre nullptr übergeben worden)
+	if (!mapId)
+	{
+		TheGame::Instance()->logError() << "LuaRegistrations::l_enterMap():\n\t1. Argument ist kein string." << std::endl << std::endl;
+		return 0;
+	}
+
+	//	Map anhand des übergebenen strings (Id der Map) aufstapeln
+	TheGame::Instance()->getCurrentState()->pushMap(mapId);
+
 	//	Es gibt keinen Rückgabewert
 	return 0;
 }
 
 int LuaRegistrations::l_exitMap(lua_State* pLuaState)
 {
+	//	Aktuelle Map abstapeln
+	TheGame::Instance()->getCurrentState()->popMap();
+
 	//	Es gibt keinen Rückgabewert
 	return 0;
 }

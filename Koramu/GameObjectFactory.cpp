@@ -57,6 +57,18 @@ GameObject* GameObjectFactory::create(std::string id)
 	return m_creatorMap[id]->createGameObject();
 }
 
+bool GameObjectFactory::typeExists(std::string id)
+{
+	//	Überprüfen, ob die übergebene "id" (key) in "m_creatorMap" existiert
+	if (m_creatorMap.count(id))
+	{
+		//	Die "id" existiert
+		return true;
+	}
+	//	Die "id" existiert nicht
+	return false;
+}
+
 void GameObjectFactory::destroy()
 {
 	//	Den Destruktor aufrufen

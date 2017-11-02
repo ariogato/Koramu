@@ -5,7 +5,7 @@
 #include "Camera.h"
 
 Environment::Map::Map()
-	: m_width(0), m_height(0), m_tilewidth(0), m_tileheight(0), m_positionVector(0.0f, 0.0f)
+	: m_width(0), m_height(0), m_tilewidth(0), m_tileheight(0), m_positionVector(0.0f, 0.0f), m_pCenterObject(nullptr)
 {
 }
 
@@ -31,6 +31,9 @@ void Environment::Map::init(const ParamLoader& params, int tilewidth, int tilehe
 
 void Environment::Map::update()
 {
+	//	Kamera auf das aktuell "zentrale Objekt" dieser Map zentrieren
+	TheGame::Instance()->getCamera()->centerOnGameObject(m_pCenterObject);
+
 	//	Position der Map in Relation zur Position der Kamera (Ursprung) 
 	m_positionVector = TheGame::Instance()->getCamera()->getPositionVector() * -1.0f;
 	for (auto layer : m_layerMap)
