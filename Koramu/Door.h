@@ -3,8 +3,9 @@
 #include "SDL_GameObject.h"
 #include "GameObjectFactory.h"
 
-/*
- *
+/*	Instanzen dieser Klasse repräsentieren Türen.
+ *	Die Existenz dieser Klasse als Erweiterung von "SDL_GameObject" wird dadurch gerechtfertigt,
+ *	dass es möglich ist Türen jeglicher Größe zu erstellen. Die Kollisionsbox entspricht dabei immer dem "objectRect".
  */
 
 class Door : public SDL_GameObject

@@ -14,10 +14,9 @@ void Door::load(const ParamLoader& params)
 {
 	SDL_GameObject::load(params);
 
-	/*	Hier wird die Kollisionsbox des 'Player's definiert.
-	*	Die offset Variablen beschreiben die Position der Kollisionsbox
-	*	innerhalb des 'Player'-Objekts in Abhängigkeit von der oberen linken Ecke.
-	*/
+	/*	Hier wird die Kollisionsbox der "Door" definiert.
+	 *	Die Kollisionsbox enstpricht dabei immer dem "objectRect"
+	 */
 	ParamLoader collisionParams;
 	collisionParams.setWidth(m_objectRect.getWidth());
 	collisionParams.setHeight(m_objectRect.getHeight());
