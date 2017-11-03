@@ -56,6 +56,7 @@ public:
 
 	virtual void pushCommand(BaseCommand* pCommand);			//	Fügt einen beliebigen Befehl ans Ende der Befehlsliste ein
 	virtual void popCommand();									//	Entfernt den Befehl am Anfang der Befehlsliste
+	virtual void onCommandDone(const char* commandType);		//	Wird aufgerufen, sobald ein Befehl fertig ausgeführt wurde
 
 	virtual void destroy();
 

@@ -122,6 +122,16 @@ void Script::pushArgumentMetatable(void* pObject, OBJECT_TYPE type)
 	lua_setmetatable(m_pLuaState, -2);
 }
 
+void Script::pushArgumentString(const char* arg)
+{
+	//	Checken, ob nullptr übergeben wurde
+	if (!arg)
+		return;
+
+	//	Lediglich ein Wrapper um die Lua API Funktion
+	lua_pushstring(m_pLuaState, arg);
+}
+
 void Script::callVoidWithArgs(const char* func, int numArgs)
 {
 	//	Checken, ob sich genug Argumente auf dem Stack befinden
