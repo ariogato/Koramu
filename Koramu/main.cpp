@@ -34,10 +34,10 @@ int main(int argc, char** argv)
 	/*	Das Programm/Spiel wird initialisiert
 	*	Gleichzeitig wird geprüft ob alles gut lief
 	*/
-	if ((TheGame::Instance()->init("Koramu", 
+	if (TheGame::Instance()->init("Koramu", 
 		WINDOW_WIDTH, WINDOW_HEIGHT, 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-		0)))
+		SDL_WINDOW_BORDERLESS))
 	{
 		/*	Solange das Spiel noch läuft...
 		*	Der Gameover-Zustand wird dies ändern können
