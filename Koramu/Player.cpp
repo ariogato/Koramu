@@ -182,7 +182,9 @@ void Player::update()
 	m_velocity.setX(0.0f);
 	m_velocity.setY(0.0f);
 
-	//	Falls ein Befehl vorliegt, soll der Input nicht entgegengenommen werden. Der Befehl soll ungestört zu Ende gebracht werden
+	/*	Falls ein Befehl vorliegt, soll der Input nicht entgegengenommen werden. Der Befehl soll ungestört zu Ende gebracht werden.
+	 *	Falls die Liste der Befehle leer ist, liegt kein Command vor und die Eingabe soll entgegengenommen werden.
+	 */
 	if (m_pCommands->isEmpty())
 	{
 		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))

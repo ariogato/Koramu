@@ -159,6 +159,26 @@ void SDL_GameObject::popCommand()
 	m_pCommands->popCommand();
 }
 
+void SDL_GameObject::onCommandDone(const char* commandType)
+{
+	//	Checken, ob nullptr übergeben wurde
+	if (!commandType)
+		return;
+
+	//	Das Skript wird zwischengespeichert
+	Script s =
+		TheScriptManager::Instance()->getScriptFromId(m_uniqueId);
+
+	//	self wird gepusht (das muss einfach so sein)
+	s.pushTable();
+
+	//	Den Typen des Befehls als string Argument auf den Stack pushen
+	s.pushArgumentString(commandType);
+
+	//	Die Funktion des Scripts aufrufen
+	s.callVoidWithArgs("onCommandDone", 2);
+}
+
 void SDL_GameObject::destroy()
 {
 	SDL_GameObject::~SDL_GameObject();
