@@ -20,6 +20,17 @@
     <texture id="font" path="../assets/Fonts/pixelFont.png"/>
     <texture id="test" path="../assets/test.png"/>
     <texture id="door" path="../assets/Transparent.png"/>
+    <texture id="keyM" path="../assets/M.png"/>
+    <texture id="Dp" path="../assets/Doppelpunkt.png"/>
+    <texture id="chart" path="../assets/Chart.png"/>
+    <texture id="Esc" path="../assets/esc.png"/>
+    <texture id="Walking" path="../assets/Gehen.png"/>
+    <texture id="Space" path="../assets/Leertaste.png"/>
+    <texture id="Interaction" path="../assets/Interaktion.png"/>
+    <texture id="Pfeiltasten" path="../assets/Pfeiltasten.png"/>
+    <texture id="Pause" path="../assets/Pause.png"/>
+    <texture id="keyN" path="../assets/N.png"/>
+    <texture id="Notizblock" path="../assets/Notizbuch.png"/>
   </textures>
 
   <menu>

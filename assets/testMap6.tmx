@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="64" nextobjectid="36">
+ <tileset firstgid="1" name="M" tilewidth="80" tileheight="80" tilecount="1" columns="1">
+  <image source="M.png" width="80" height="80"/>
+ </tileset>
+ <objectgroup name="Objectlayer">
+  <object id="14" name="keyM" type="keyM" x="194.667" y="109.333" width="80" height="80"/>
+  <object id="16" name="Dp1" type="Dp" x="298.667" y="112" width="20" height="80"/>
+  <object id="18" name="chart" type="chart" x="333.333" y="94.6667" width="128" height="96"/>
+  <object id="19" name="keyN" type="keyN" x="194.667" y="238.667" width="80" height="80"/>
+  <object id="20" name="Dp2" type="Dp" x="299.333" y="238.667" width="20" height="80"/>
+  <object id="21" name="Notizblock" type="Notizblock" x="332" y="221.333" width="128" height="96"/>
+  <object id="22" name="Esc" type="Esc" x="144" y="365.333" width="128" height="80"/>
+  <object id="25" name="Dp3" type="Dp" x="298" y="365.333" width="20" height="80"/>
+  <object id="26" name="Pause" type="Pause" x="330.667" y="364" width="80" height="80"/>
+  <object id="27" name="Pfeiltasten" type="Pfeiltasten" x="109.333" y="493.333" width="160" height="80"/>
+  <object id="29" name="Dp4" type="Dp" x="296.667" y="493.333" width="20" height="80"/>
+  <object id="30" name="Walking" type="Walking" x="329.333" y="445.333" width="128" height="128"/>
+  <object id="32" name="Space" type="Space" x="81.3333" y="637.333" width="192" height="64"/>
+  <object id="34" name="Dp5" type="Dp" x="296.667" y="622.667" width="20" height="80"/>
+  <object id="35" name="Interaction" type="Interaction" x="333.333" y="610.667" width="128" height="92"/>
+ </objectgroup>
+</map>

@@ -8,7 +8,7 @@
   </menu>
   <howToPlay>
     <maps>
-      <map id="howToPlayMap" path="../assets/testMap2.tmx" />
+      <map id="howToPlayMap" path="../assets/testMap6.tmx" />
     </maps>
   </howToPlay>
   <play>
