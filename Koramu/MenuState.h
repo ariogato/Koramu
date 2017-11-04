@@ -30,6 +30,7 @@ namespace FiniteStateMachine
 		static void menuToPlay();
 		static void menuToHowToPlay();
 		static void exit();
+		static void resize();
 
 		void setCallbackFunctions();				//	Callback Funktionen in die 'std::map' laden
 	};

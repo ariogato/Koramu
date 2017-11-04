@@ -93,6 +93,7 @@ public:
 	void update();								//	"Back-End"-Sachen (basierend auf den Eingaben) berechnen
 	void render();								//	Alles auf den Bildschirm schmeißen
 	void saveGame();							//	Aktuellen Spielstand speichern
+	void resize(bool changeSize = true);				//	Größe des Fensters ändern
 	void setGameOver();							//	Um z.B. vom InputHandler aus das Spiel zu beenden
 	void emergencyExit(const char* message);	//	Um, im Fall eines fatalen Fehlers, das Programm sofort zu beenden (nicht empfohlen!)
 

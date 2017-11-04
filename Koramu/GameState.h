@@ -5,7 +5,6 @@
 #include "Map.h"
 #include "Dialog.h"
 
-
 /*	In diesen namespace gehört alles, was mit dem Zustandsautomaten
 *	des Spiels zu tun hat.
 */

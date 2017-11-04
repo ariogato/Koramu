@@ -32,6 +32,7 @@ public:
 	bool pushTable();												//	Pusht die referenzierte Tabelle auf den Stack
 	void callFunction(const char* func);							//	Ruft eine Funktion auf der Tabelle mit 0 Parametern und 0 Rückgabewerten auf
 	void pushArgumentMetatable(void* pObject, OBJECT_TYPE type);	//	Pusht eine Metatabelle des angegebenen Typs auf den Stack
+	void pushArgumentString(const char* arg);						//	Pusht einen (c-)string auf den Stack
 	void callVoidWithArgs(const char* func, int numArgs);			//	Ruft eine void Funktion mit 'numArgs' Argumenten vom Stack auf
 
 	//	getter-Funktionen

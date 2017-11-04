@@ -1,17 +1,18 @@
 #include "PauseState.h"
 #include "MenuState.h"
+#include <SDL.h>
 #include <vector>
+#include "ParamLoader.h"
 #include "GameObject.h"
+#include "Animation.h"
+#include "Button.h"
 #include "StateParser.h"
 #include "Game.h"
 #include "MapParser.h"
-#include "Stack.h"
 #include "Map.h"
-#include "Button.h"
-#include <SDL.h>
+#include "Stack.h"
 #include "InputHandler.h"
 #include "TextureManager.h"
-#include "Camera.h"
 
 FiniteStateMachine::PauseState::PauseState()		//	Konstruktor
 {
@@ -44,12 +45,54 @@ void FiniteStateMachine::PauseState::onEnter()
 		TheGame::Instance()->emergencyExit("Fehler beim Parsen des PauseStates!");
 	}
 
+	/*	Hier wird das Objekt für den Screenshot, der im Hintergrund 
+	 *	des Pausemenüs angezeigt wird, hardgecodet. 
+	 *	Gleichzeitig wird der Grauschleier, der drüber gerendert wird hardgecodet
+	 */
+	Animation* pScreenshot = new Animation();
+	Animation* pGreyLayer = new Animation();
+
+	//	Die Attribute für den Screenshot werden hier gesetzt
+	ParamLoader params;
+	params.setX(0.0f);
+	params.setX(0.0f);
+	params.setWidth(TheGame::Instance()->getGameWidth());
+	params.setHeight(TheGame::Instance()->getGameHeight());
+	params.setNumRows(1);
+	params.setNumCols(1);
+	params.setAnimSpeed(100);
+	params.setMapId("pauseMap");
+	params.setUniqueId("screenshot");
+	params.setTextureId("screenshot");
+	
+	//	Das Objekt wird geladen
+	pScreenshot->load(params);
+
+	//	Parameter auf den Grauschleier anpassen
+	params.setTextureId("greyLayer");
+	params.setUniqueId("greyLayer");
+
+	//	Das Objekt wird geladen
+	pGreyLayer->load(params);
+
+	//	Die Objekte in die Liste aus Objekten einfügen
+	pObjects->insert(pObjects->begin(), pGreyLayer);
+	pObjects->insert(pObjects->begin(), pScreenshot);
+
 	//	Ario darf diesen wundervollen Teil des Codes kommentieren. Küsschen Roman und Tobi :*
+	//	Ein sehr lieber Kommentar von euch :*
+	
+	//	Hier wird eine Speicherstruktur erstellt, die den Screenshot speichern kann
 	SDL_Surface* screenshot = SDL_CreateRGBSurface(0, TheGame::Instance()->getGameWidth(), TheGame::Instance()->getGameHeight(), 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	
+	//Der Screenshot wird erstellt und anschließend als BMP-Datei gespeichert
 	SDL_RenderReadPixels(TheGame::Instance()->getRenderer(), NULL, SDL_PIXELFORMAT_ARGB8888, screenshot->pixels, screenshot->pitch);
 	SDL_SaveBMP(screenshot, "../assets/screenshot.bmp");
+	
+	//	Der Speicher der zuvor erstellten Datenstruktur wird wieder freigegeben
 	SDL_FreeSurface(screenshot);
 	
+	//	Den alten Screenshot löschen und dafür den neuen hinzufügen
 	TheTextureManager::Instance()->clearFromTextureMap("screenshot");
 	TheTextureManager::Instance()->load("screenshot", "../assets/screenshot.bmp", TheGame::Instance()->getRenderer());
 

@@ -20,6 +20,11 @@ void CommandQueue::update()
 	//	Falls der Befehl zu ende ausgeführt wurde, entfernen
 	if (m_commandList.front()->isDone())
 	{
+		/*	Sobald der Command ausgeführt wurde, muss das Objekt, 
+		 *	zu dem der Befehl gehört, die Methode 'onCommandDone()' im Skript aufrufen.
+		 */
+		m_objectRef.onCommandDone(COMMAND_TYPE_STRING[m_commandList.front()->getType()]);
+
 		//	Das Objekt löschen
 		if (m_commandList.front())
 			delete m_commandList.front();

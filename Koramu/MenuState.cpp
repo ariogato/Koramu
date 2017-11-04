@@ -72,6 +72,8 @@ void FiniteStateMachine::MenuState::onEnter()
 
 	//	Die Anfangsmap aufstapeln
 	m_maps.push(m_mapDict["mainMenuMap"]);
+	//	Dieser Aufruf dient lediglich dazu, den Button, zur Änderung der Fenstergröße, auf die richtige Textur zu setzen
+	TheGame::Instance()->resize(false);
 
 	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde betreten." << std::endl << std::endl;
 }
@@ -122,9 +124,19 @@ void FiniteStateMachine::MenuState::exit()
 	TheGame::Instance()->setGameOver();
 }
 
+void FiniteStateMachine::MenuState::resize()
+{
+	/*	Die Fenstegröße wird geändert.
+	 *	Ist das Fenster im "fullscreen"-Zustand, so wird es nun in den "windowed"-Zustand gesetzt.
+	 *	Umgekehrt gilt das genauso.
+	 */
+	TheGame::Instance()->resize();
+}
+
 void FiniteStateMachine::MenuState::setCallbackFunctions()
 {
 	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("menuToPlay", menuToPlay));
 	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("menuToHowToPlay", menuToHowToPlay));
 	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("exit", exit));
+	m_callbackFunctions.insert(std::pair<std::string, void(*)()>("resize", resize));
 }

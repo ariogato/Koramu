@@ -11,6 +11,7 @@
     <texture id="buttonSave" path="../assets/Button_Save.png"/>
     <texture id="buttonMainMenu" path="../assets/Button_MainMenu.png"/>
     <texture id="buttonBack" path="../assets/Button_Back.png"/>
+    <texture id="buttonResize" path="../assets/Button_Resize.png"/>
 
     <!-- keine Buttons-->
     <texture id="koramu" path="../assets/Koramu.png"/>
@@ -50,6 +51,11 @@
                   numRows="1" numCols="3"
                   mapId="mainMenuMap" callbackId="exit"
                   uniqueId="buttonExit"/>
+      <gameObject type="button" textureId="buttonResize"
+                  xPos="1200" yPos="0" width="80" height="80"
+                  numRows="2" numCols="3"
+                  mapId="mainMenuMap" callbackId="resize"
+                  uniqueId="buttonResize"/>
       <gameObject type="animation" textureId="koramu"
                   xPos="202" yPos="31" width="877" height="181"
                   numRows="1" numCols="1"
@@ -90,16 +96,6 @@
 	
   <pause>
     <gameObjects>
-      <gameObject type="animation" textureId="screenshot"
-                  xPos="0" yPos="0" width="1280" height="896"
-                  numRows="1" numCols="1"
-                  mapId="pauseMap" animSpeed="200"
-                  uniqueId="screenshot"/>
-      <gameObject type="animation" textureId="greyLayer"
-                  xPos="0" yPos="0" width="1280" height="896"
-                  numRows="1" numCols="1"
-                  mapId="pauseMap" animSpeed="200"
-                  uniqueId="greyLayer"/>
       <gameObject type="button" textureId="buttonResume"
                   xPos="460" yPos="263" width="360" height="80"
                   numRows="1" numCols="3"

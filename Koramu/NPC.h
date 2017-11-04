@@ -28,7 +28,6 @@ public:
 
 	//	setter-Funktionen
 	void setTextureId(std::string id) { m_textureId = id; }
-	void setCurrentCol(int col) { m_currentCol = col; }
 };
 
 /*

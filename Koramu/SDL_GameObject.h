@@ -52,10 +52,11 @@ public:
 	
 	virtual void moveToPosition(Vector2D v);					//	Bewegt das Objekt (per Befehl) an eine absolute Position
 	virtual void moveRelative(Vector2D v);						//	Bewegt das Objekt (per Befehl) um einen bestimmten Vektor
-	virtual void stun(float sec);										//	Betäubt das Objekt (per Befehl) um 'sec' Sekunden
+	virtual void stun(float sec);								//	Betäubt das Objekt (per Befehl) um 'sec' Sekunden
 
 	virtual void pushCommand(BaseCommand* pCommand);			//	Fügt einen beliebigen Befehl ans Ende der Befehlsliste ein
 	virtual void popCommand();									//	Entfernt den Befehl am Anfang der Befehlsliste
+	virtual void onCommandDone(const char* commandType);		//	Wird aufgerufen, sobald ein Befehl fertig ausgeführt wurde
 
 	virtual void destroy();
 
@@ -73,5 +74,7 @@ public:
 	//	setter-Funktionen
 	void setVelocity(Vector2D v) { m_velocity = v; }
 	void addCollisionRects(std::vector<ObjectRectangle> cRects) { m_collisionRects = cRects; }
+	void setCurrentRow(int row) { m_currentRow = row; }
+	void setCurrentCol(int col) { m_currentRow = col; }
 	virtual void setPosition(float x, float y);
 };

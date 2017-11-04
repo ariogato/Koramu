@@ -288,6 +288,68 @@ void Game::saveGame()
 	}
 }
 
+void Game::resize(bool changeSize)
+{
+	//	Button, der für das Ändern der Fenstergröße verantwortlich ist ermitteln
+	Button* resizeButton = nullptr;
+	//	Über die Objekte des aktuellen Spielzustandes iterieren
+	for (auto g : *m_pStateMachine->getCurrentState()->getCurrentMap()->getObjectLayer()->getGameObjects())
+	{
+		if (g->getUniqueId() == "buttonResize")
+		{
+			//	Ermitteltes "GameObject" zu einem "Button" casten
+			resizeButton = dynamic_cast<Button*>(g);
+		}
+	}
+
+	/*	Standardmäßig ist der Parameter "changeSize" = "true". 
+	 *	Ist dies nicht der Fall, so soll nur die Textur des Buttons, 
+	 *	dem Fensterzustand entsprechend, gesetzt werden. 
+	 *	
+	 *	Im Normalfall muss zusätzlich der Fensterzustand geändert werden.
+	 *	Die Fensterzustände sind:
+	 *		fullscreen (SDL_WindowFlag: "SDL_WINDOW_FULLSCREEN_DESKTOP")
+	 *		windowed (SDL_WindowFlag: "0")
+	 */
+	if(!changeSize && (SDL_GetWindowFlags(m_pWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP))
+	{
+		//	Textur des Buttons, dem "fullscreen"-Zustand entsprechend, setzen
+		resizeButton->setCurrentRow(1);
+	}
+	else if(!changeSize)
+	{
+		//	Textur des Buttons, dem "windowed"-Zustand entsprechend, setzen
+		resizeButton->setCurrentRow(0);
+	}
+	else
+	{
+		if (!(SDL_GetWindowFlags(m_pWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP))
+		{
+			//	Das Fenster in den "fullscreen"-Zustand setzen
+			SDL_SetWindowFullscreen(getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
+			//	Textur des Buttons, dem "fullscreen"-Zustand entsprechend, setzen
+			resizeButton->setCurrentRow(1);
+		}
+		else
+		{
+			//	Das Fenster in den "windowed"-Zustand setzen
+			SDL_SetWindowFullscreen(getWindow(), 0);
+			//	Textur des Buttons, dem "windowed"-Zustand entsprechend, setzen
+			resizeButton->setCurrentRow(0);
+		}
+		//	Variablen für die neuen Fenstermaße
+		int windowWidth;
+		int windowHeight;
+		//	Die neuen Fenstermaße ermitteln und die Variablen damit befüllen
+		SDL_GetWindowSize(m_pWindow, &windowWidth, &windowHeight);
+		//	Maße der Kamera und des Spiels, den Fenstermaßen entsprechend, setzen
+		m_pCamera->setCameraWidth(windowWidth);
+		m_pCamera->setCameraHeight(windowHeight);
+		m_gameWidth = windowWidth;
+		m_gameHeight = windowHeight;
+	}
+}
+
 void Game::setGameOver()
 {
 	m_running = false;
