@@ -75,6 +75,12 @@ void FiniteStateMachine::MenuState::onEnter()
 	//	Dieser Aufruf dient lediglich dazu, den Button, zur Änderung der Fenstergröße, auf die richtige Textur zu setzen
 	TheGame::Instance()->resize(false);
 
+	//	Die "onCreate" Funktion aller Objekte aufrufen
+	for (auto i : *(m_maps.getTopNodeData()->getObjectLayer()->getGameObjects()))
+	{
+		i->onCreate();
+	}
+
 	TheGame::Instance()->logStandard() << "Der 'MenuState' wurde betreten." << std::endl << std::endl;
 }
 

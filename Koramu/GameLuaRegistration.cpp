@@ -21,6 +21,8 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 {
 	luaL_Reg regs[] =
 	{
+		{ "getGameWidth", l_getGameWidth },
+		{ "getGameHeight", l_getGameHeight },
 		{ "setGameOver", l_setGameOver },
 		{ "getMainQuestId", l_getMainQuestId },
 		{ "getPartQuestId", l_getPartQuestId },
@@ -33,6 +35,24 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 	};
 
 	this->registerMetatable("TheGame", pLuaState, regs);
+}
+
+int LuaRegistrations::l_getGameWidth(lua_State* pLuaState)
+{
+	//	Den Integer auf den Lua Stack pushen
+	lua_pushinteger(pLuaState, TheGame::Instance()->getGameWidth());
+
+	//	Es gibt einen Rückgabewert: Die Breite des Fensters als int
+	return 1;
+}
+
+int LuaRegistrations::l_getGameHeight(lua_State* pLuaState)
+{
+	//	Den Integer auf den Lua Stack pushen
+	lua_pushinteger(pLuaState, TheGame::Instance()->getGameHeight());
+	
+	//	Es gibt einen Rückgabewert: Die Höhe des Fensters als int
+	return 1;
 }
 
 int LuaRegistrations::l_setGameOver(lua_State* pLuaState)

@@ -13,9 +13,6 @@
 *	sind nur zum Debuggen da. Sie werden später evtl. ersetzt
 */
 
-//	(64x10) : (64x8)
-#define WINDOW_WIDTH 1280	
-#define WINDOW_HEIGHT 896
 
 //	für die smoothness 
 const int FPS = 60;
@@ -35,9 +32,8 @@ int main(int argc, char** argv)
 	*	Gleichzeitig wird geprüft ob alles gut lief
 	*/
 	if (TheGame::Instance()->init("Koramu", 
-		WINDOW_WIDTH, WINDOW_HEIGHT, 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-		SDL_WINDOW_BORDERLESS))
+		0))
 	{
 		/*	Solange das Spiel noch läuft...
 		*	Der Gameover-Zustand wird dies ändern können

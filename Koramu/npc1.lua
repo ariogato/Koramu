@@ -2,8 +2,6 @@
 
 local npc1 = {}
 
-npc1.currentCol = 0
-
 function npc1:interact (n, p)
 	interact = {}
 	interact.pl = p
@@ -11,8 +9,11 @@ function npc1:interact (n, p)
 
 	TheGame:startDialog ("Ich haue jetzt ab...\nDu Arsch.", interact.np, interact.pl)
 
-	interact.np:moveRelative (2000, 0)
+	interact.np:moveRelative (500, 0)
 	interact.pl:stun(1)
+end
+
+function npc1:onCommandDone (commandType)
 end
 
 return npc1

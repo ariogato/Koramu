@@ -10,18 +10,20 @@
 #include "ScriptManager.h"
 #include "InputHandler.h"
 #include "Story.h"
+#include "StoryParser.h"
 
 #include "GameObjectFactory.h"
 #include "Player.h"
 #include "Animation.h"
 #include "Button.h"
 #include "NPC.h"
+#include "Door.h"
 
 #include "PlayerLuaRegistration.h"
+#include "ButtonLuaRegistration.h"
 #include "GameLuaRegistration.h"
 #include "NPCLuaRegistration.h"
-#include "StoryParser.h"
-#include "Door.h"
+#include "SDL_ObjectLuaRegistration.h"
 
 /*	Wichtig für Singleton-Klasse
 *	
@@ -81,7 +83,7 @@ Game::~Game()									//	Destruktor
 }
 
 
-bool Game::init(std::string title, int width, int height, int xPos, int yPos, int flags)
+bool Game::init(std::string title, int xPos, int yPos, int flags)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
 	{
@@ -113,6 +115,16 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 					"SDL_ttf wurde erfolgreich initialisiert!" << std::endl;
 
 
+	//	Die Breite und Höhe des Bildschirms speichern, um basierend darauf die Maße des Fensters zu setzen
+	SDL_DisplayMode dm_drogerieMarkt;
+	SDL_GetCurrentDisplayMode(0, &dm_drogerieMarkt);
+	int width = dm_drogerieMarkt.w * 75/100;
+	int height= dm_drogerieMarkt.h * 75/100;
+
+	//	Mindestgröße für das Fenster
+	width = (width < 6 * 64) ? (6 * 64) : width;
+	height = (height < 6 * 64) ? (6 * 64) : height;
+
 	//	Fenster erstellen. Es werden Parameter, die Game::init mitgegeben worden sind an SDL_CreateWindow() weitergegeben:
 	m_pWindow = SDL_CreateWindow(title.c_str(), xPos, yPos, width, height, flags);
 
@@ -142,9 +154,11 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 
 #pragma region ScriptRegistration
 	//	Alles für die Lua Scripts bereitstellen
+	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::SDL_ObjectLuaRegistration());
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::PlayerLuaRegistration());
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::GameLuaRegistration());
 	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::NPCLuaRegistration());
+	TheScriptManager::Instance()->addRegistration(new LuaRegistrations::ButtonLuaRegistration());
 #pragma endregion
 
 	//	Die Scripting Engine initialisieren
@@ -171,6 +185,7 @@ bool Game::init(std::string title, int width, int height, int xPos, int yPos, in
 	TheGameObjectFactory::Instance()->registerType("player", new PlayerCreator());
 	TheGameObjectFactory::Instance()->registerType("npc", new NPCCreator());
 	TheGameObjectFactory::Instance()->registerType("door", new DoorCreator());
+	TheGameObjectFactory::Instance()->registerType("gameObject", new SDL_GameObjectCreator());
 #pragma endregion
 
 	//	Zu Beginn des Spiels wird der 'MenuState' aufgerufen
@@ -347,6 +362,13 @@ void Game::resize(bool changeSize)
 		m_pCamera->setCameraHeight(windowHeight);
 		m_gameWidth = windowWidth;
 		m_gameHeight = windowHeight;
+
+		//	Die Buttons müssen wieder an ihre relative Position gebracht werden
+		for (auto g : *m_pStateMachine->getCurrentState()->getCurrentMap()->getObjectLayer()->getGameObjects())
+		{
+			TheScriptManager::Instance()->getScriptFromId(g->getUniqueId()).callFunction("align");
+		}
+
 	}
 }
 

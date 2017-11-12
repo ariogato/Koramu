@@ -86,7 +86,6 @@ private:
 
 public:
 	bool init(	std::string title,				//	Das Spiel (und SDL) initialisieren
-		int width, int height, 
 		int xPos, int yPos, 
 		int flags);
 	void handleInput();							//	Eingaben bearbeiten

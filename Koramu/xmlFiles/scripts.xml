@@ -9,4 +9,6 @@
   <script id="test" path="npc1.lua"/>
   <script id="door1" path="door1.lua"/>
   <script id="door2" path="door2.lua"/>
+  <script id="buttonPlay" path="buttonPlay.lua"/>
+  <script id="koramu" path="koramu.lua"/>
 </scripts>

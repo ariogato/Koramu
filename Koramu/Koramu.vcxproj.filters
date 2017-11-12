@@ -96,6 +96,9 @@
     <Filter Include="Lua Skripts\Stuff">
       <UniqueIdentifier>{9abd2a4e-1af3-4375-985e-e7aaa93c3173}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua Skripts\Buttons">
+      <UniqueIdentifier>{90e751dc-3804-4af7-b589-4434f49ed995}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -247,6 +250,12 @@
     </ClCompile>
     <ClCompile Include="Door.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL_ObjectLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonLuaRegistration.cpp">
+      <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +433,12 @@
     <ClInclude Include="Door.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="SDL_ObjectLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonLuaRegistration.h">
+      <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -470,6 +485,12 @@
     </None>
     <None Include="npc1.lua">
       <Filter>Lua Skripts\NPCs</Filter>
+    </None>
+    <None Include="buttonPlay.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="koramu.lua">
+      <Filter>Lua Skripts\Stuff</Filter>
     </None>
   </ItemGroup>
 </Project>

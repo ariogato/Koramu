@@ -175,10 +175,12 @@
     <ClCompile Include="PlayerLuaRegistration.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Dialog.cpp" />
+    <ClCompile Include="ButtonLuaRegistration.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="ScriptLoader.cpp" />
     <ClCompile Include="ScriptManager.cpp" />
     <ClCompile Include="SDL_GameObject.cpp" />
+    <ClCompile Include="SDL_ObjectLuaRegistration.cpp" />
     <ClCompile Include="StackDefinitions.cpp" />
     <ClCompile Include="StateParser.cpp" />
     <ClCompile Include="Story.cpp" />
@@ -197,6 +199,7 @@
     <ClInclude Include="AnimationLayer.h" />
     <ClInclude Include="BaseLuaRegistration.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonLuaRegistration.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
@@ -216,6 +219,7 @@
     <ClInclude Include="Dialog.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="NPCLuaRegistration.h" />
+    <ClInclude Include="SDL_ObjectLuaRegistration.h" />
     <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
     <ClInclude Include="InputHandler.h" />
@@ -272,11 +276,13 @@
     <Xml Include="xmlFiles\stinker.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="buttonPlay.lua" />
     <None Include="ClassDiagram.cd" />
     <None Include="door1.lua" />
     <None Include="door.lua" />
     <None Include="default.lua" />
     <None Include="door2.lua" />
+    <None Include="koramu.lua" />
     <None Include="npc1.lua" />
     <None Include="player.lua" />
     <None Include="tree.lua" />

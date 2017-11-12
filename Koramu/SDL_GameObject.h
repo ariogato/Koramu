@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Vector2D.h"
 #include "ObjectRectangle.h"
+#include "GameObjectFactory.h"
 
 class CommandQueue;
 class BaseCommand;
@@ -77,4 +78,18 @@ public:
 	void setCurrentRow(int row) { m_currentRow = row; }
 	void setCurrentCol(int col) { m_currentRow = col; }
 	virtual void setPosition(float x, float y);
+};
+
+/*
+*	SDL_GameObjectCreator erbt von BaseCreator und hat den Zweck ein Objekt/Objekte der Klasse Player zu erstellen.
+*	In Verbindung mit der "GameObjectFactory" ermöglicht uns dies Objekte eines bestimmten registrierten Typs zu erstellen.
+*	In diesem Fall ist das der Typ "gameObject".
+*/
+class SDL_GameObjectCreator : public BaseCreator
+{
+public:
+	GameObject* createGameObject() const
+	{
+		return new SDL_GameObject();	//	Ein neues Objekt wird erstellt und anschließend zurückgegeben. 
+	}
 };
