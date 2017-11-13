@@ -492,5 +492,14 @@
     <None Include="koramu.lua">
       <Filter>Lua Skripts\Stuff</Filter>
     </None>
+    <None Include="buttonExit.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="buttonHowToPlay.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="buttonResize.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
   </ItemGroup>
 </Project>

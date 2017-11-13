@@ -3,6 +3,7 @@
 #include <algorithm>
 #include "SDL_GameObject.h"
 #include "Game.h"
+#include "ButtonLuaRegistration.h"
 
 using namespace LuaRegistrations;
 
@@ -19,19 +20,22 @@ void SDL_ObjectLuaRegistration::registerToLua(lua_State* pLuaState)
 	luaL_Reg regs[] =
 	{
 		{ "getInstance", l_SDL_GameObjectGetInstance },
+		{ "setPosition", l_SDL_GameObjectSetPosition },
+		{ "getSize", l_SDL_GameObjectGetSize },
+		{ "getPosition", l_SDL_GameObjectGetPosition },
 		{ nullptr, nullptr }
 	};
 
 	//	Die Metatabelle mit den zuvor gesetzten Werten wird an Lua übergeben
-	this->registerMetatable("SDL_Object", pLuaState, regs);
+	this->registerMetatable("GameObject", pLuaState, regs);
 }
 
 SDL_GameObject* SDL_ObjectLuaRegistration::checkAndGetObject(lua_State* pLuaState, int argNum)
 {
 	/*	Gibt die Referenz auf die userdata Variable (im Grunde die Referenz auf das Objekt) zurück
-	*	Dabei wird gleichzeitig gecheckt, ob die Metatabelle "luaL_SDL_Object" ist
+	*	Dabei wird gleichzeitig gecheckt, ob die Metatabelle "luaL_GameObject" ist
 	*/
-	return *static_cast<SDL_GameObject**>(luaL_checkudata(pLuaState, argNum, "luaL_SDL_Object"));
+	return *static_cast<SDL_GameObject**>(luaL_checkudata(pLuaState, argNum, "luaL_GameObject"));
 }
 
 int LuaRegistrations::l_SDL_GameObjectGetInstance(lua_State* pLuaState)
@@ -70,7 +74,7 @@ int LuaRegistrations::l_SDL_GameObjectGetInstance(lua_State* pLuaState)
 	*pObjectUserData = static_cast<SDL_GameObject*>(*it);
 
 	//	Die Metatabelle - definiert in "registerToLua" - auf den Stack pushen (siehe BaseLuaRegistration für den Namen der Metatabelle)
-	luaL_getmetatable(pLuaState, "luaL_SDL_Object");
+	luaL_getmetatable(pLuaState, "luaL_GameObject");
 
 	//	Die Metatabelle (erstes Objekt auf dem Stack) für das User data Objekt vom SDL_GameObject (zweites Objekt auf dem Stack) setzen
 	lua_setmetatable(pLuaState, -2);

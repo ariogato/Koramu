@@ -276,7 +276,10 @@
     <Xml Include="xmlFiles\stinker.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="buttonExit.lua" />
+    <None Include="buttonHowToPlay.lua" />
     <None Include="buttonPlay.lua" />
+    <None Include="buttonResize.lua" />
     <None Include="ClassDiagram.cd" />
     <None Include="door1.lua" />
     <None Include="door.lua" />

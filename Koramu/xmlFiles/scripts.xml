@@ -9,6 +9,17 @@
   <script id="test" path="npc1.lua"/>
   <script id="door1" path="door1.lua"/>
   <script id="door2" path="door2.lua"/>
-  <script id="buttonPlay" path="buttonPlay.lua"/>
   <script id="koramu" path="koramu.lua"/>
+  
+  <!--Buttons MenuState-->
+  <script id="buttonPlay" path="buttonPlay.lua"/>
+  <script id="buttonHowtoplay" path="buttonHowToPlay.lua"/>
+  <script id="buttonExit" path="buttonExit.lua"/>
+  <script id="buttonResize" path="buttonResize.lua"/>
+
+  <!--Buttons PauseState-->
+  <!--<script id="buttonResume" path="buttonResume.lua"/>
+  <script id="buttonSave" path="buttonResume.lua"/>
+  <script id="buttonMainMenu" path="buttonResume.lua"/>-->
+  
 </scripts>

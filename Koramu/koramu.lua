@@ -3,8 +3,9 @@
 local koramu = {}
 
 function koramu:onCreate ()
-	koramu.instance = Button.getInstance ("koramu")
 
+	koramu.instance = GameObject.getInstance ("koramu")
+	
 	koramu:align ()
 end
 
