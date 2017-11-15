@@ -501,5 +501,14 @@
     <None Include="buttonResize.lua">
       <Filter>Lua Skripts\Buttons</Filter>
     </None>
+    <None Include="buttonResume.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="buttonSave.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="buttonMainMenu.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
   </ItemGroup>
 </Project>

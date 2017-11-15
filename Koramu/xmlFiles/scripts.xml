@@ -18,8 +18,8 @@
   <script id="buttonResize" path="buttonResize.lua"/>
 
   <!--Buttons PauseState-->
-  <!--<script id="buttonResume" path="buttonResume.lua"/>
-  <script id="buttonSave" path="buttonResume.lua"/>
-  <script id="buttonMainMenu" path="buttonResume.lua"/>-->
+  <script id="buttonResume" path="buttonResume.lua"/>
+  <script id="buttonSave" path="buttonSave.lua"/>
+  <script id="buttonMainMenu" path="buttonMainMenu.lua"/>
   
 </scripts>

@@ -11,11 +11,12 @@ end
 function buttonHowToPlay:align ()
 
 	gameWidth = TheGame:getGameWidth ()
+	gameHeight = TheGame:getGameHeight ()
 
 	width, height = buttonHowToPlay.instance:getSize ()
 	xPos, yPos = buttonHowToPlay.instance:getPosition ()
 
-	buttonHowToPlay.instance:setPosition ((gameWidth - width) / 2, yPos)
+	buttonHowToPlay.instance:setPosition ((gameWidth - width) / 2, 0.49 * gameHeight)
 
 end
 

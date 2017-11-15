@@ -2,6 +2,107 @@
 <map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="20" height="14" tilewidth="64" tileheight="64" nextobjectid="2">
  <tileset firstgid="1" name="Indoor" tilewidth="64" tileheight="64" tilecount="84" columns="7">
   <image source="Tilesets/tilesetformattedupdate1-sheet.png" width="448" height="768"/>
+  <tile id="15">
+   <objectgroup draworder="index">
+    <object id="1" x="9" y="43" width="42" height="21"/>
+   </objectgroup>
+  </tile>
+  <tile id="22">
+   <objectgroup draworder="index">
+    <object id="1" x="8" y="0" width="43" height="63"/>
+   </objectgroup>
+  </tile>
+  <tile id="23">
+   <objectgroup draworder="index">
+    <object id="1" x="13" y="21" width="39" height="43"/>
+    <object id="4" x="44" y="0" width="10" height="25"/>
+   </objectgroup>
+  </tile>
+  <tile id="45">
+   <objectgroup draworder="index">
+    <object id="1" x="24" y="17" width="39" height="46"/>
+   </objectgroup>
+  </tile>
+  <tile id="46">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="18" width="41" height="46"/>
+   </objectgroup>
+  </tile>
+  <tile id="52">
+   <objectgroup draworder="index">
+    <object id="1" x="25" y="0" width="38" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="53">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="2" width="37" height="57"/>
+   </objectgroup>
+  </tile>
+  <tile id="56">
+   <objectgroup draworder="index">
+    <object id="1" x="25" y="43" width="38" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="60">
+   <objectgroup draworder="index">
+    <object id="1" x="1" y="44" width="38" height="19"/>
+   </objectgroup>
+  </tile>
+  <tile id="63">
+   <objectgroup draworder="index">
+    <object id="1" x="24" y="1" width="39" height="63"/>
+   </objectgroup>
+  </tile>
+  <tile id="67">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="38" height="63"/>
+   </objectgroup>
+  </tile>
+  <tile id="70">
+   <objectgroup draworder="index">
+    <object id="1" x="25" y="0" width="38" height="63"/>
+   </objectgroup>
+  </tile>
+  <tile id="74">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="37" height="63"/>
+   </objectgroup>
+  </tile>
+  <tile id="76">
+   <objectgroup draworder="index">
+    <object id="1" x="13" y="5" width="34" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="77">
+   <objectgroup draworder="index">
+    <object id="1" x="25" y="0" width="37" height="62"/>
+   </objectgroup>
+  </tile>
+  <tile id="78">
+   <objectgroup draworder="index">
+    <object id="1" x="1" y="6" width="62" height="56"/>
+   </objectgroup>
+  </tile>
+  <tile id="79">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="63" height="59"/>
+   </objectgroup>
+  </tile>
+  <tile id="80">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="5" width="63" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="81">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="-1" width="38" height="65"/>
+   </objectgroup>
+  </tile>
+  <tile id="83">
+   <objectgroup draworder="index">
+    <object id="1" x="13" y="0" width="35" height="62"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="85" name="Indoor2" tilewidth="64" tileheight="64" tilecount="28" columns="7">
   <image source="Tilesets/16x16extratiles-sheet.png" width="448" height="256"/>
@@ -25,6 +126,12 @@
   <tile id="26" terrain="0,0,,"/>
   <tile id="27" terrain="0,,,"/>
  </tileset>
+ <tileset firstgid="113" name="base_out_atlas-sheet" tilewidth="64" tileheight="64" tilecount="1024" columns="32">
+  <image source="Tilesets/base_out_atlas-sheet.png" width="2048" height="2048"/>
+ </tileset>
+ <tileset firstgid="1137" name="Door" tilewidth="64" tileheight="64" tilecount="2" columns="1">
+  <image source="Door.png" width="64" height="128"/>
+ </tileset>
  <layer name="Backgroundlayer" width="20" height="14">
   <data encoding="csv">
 88,89,90,89,90,89,90,89,89,90,89,89,89,89,90,90,91,88,90,91,
@@ -45,25 +152,25 @@
  </layer>
  <layer name="Collisionlayer" width="20" height="14">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+29,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,31,
+36,65,0,0,0,0,0,0,0,0,0,0,0,0,0,46,47,46,47,38,
+36,57,0,0,0,61,0,0,0,0,0,0,0,0,0,53,54,53,54,38,
+36,64,0,16,0,68,0,0,0,0,0,0,0,0,0,0,0,0,77,38,
+36,71,0,23,0,75,0,0,0,0,0,0,0,0,0,0,0,0,84,38,
+36,78,79,80,81,82,0,0,0,0,0,0,0,0,0,0,0,0,77,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,84,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,
+36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer name="Bridgelayer" width="20" height="14">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,42,0,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -99,23 +206,23 @@
  </layer>
  <layer name="Foregroundlayer" width="20" height="14">
   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,42,42,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+43,44,44,44,44,44,44,44,44,1137,44,44,44,44,44,44,44,44,44,45
 </data>
  </layer>
  <objectgroup name="Objectlayer">
-  <object id="1" name="door2" type="door" x="560" y="880" width="64" height="16"/>
+  <object id="1" name="door2" type="door" x="577" y="875" width="64" height="20"/>
  </objectgroup>
 </map>

@@ -278,8 +278,11 @@
   <ItemGroup>
     <None Include="buttonExit.lua" />
     <None Include="buttonHowToPlay.lua" />
+    <None Include="buttonMainMenu.lua" />
     <None Include="buttonPlay.lua" />
     <None Include="buttonResize.lua" />
+    <None Include="buttonResume.lua" />
+    <None Include="buttonSave.lua" />
     <None Include="ClassDiagram.cd" />
     <None Include="door1.lua" />
     <None Include="door.lua" />

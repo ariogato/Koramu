@@ -127,6 +127,13 @@ void FiniteStateMachine::PauseState::onEnter()
 	//	Die Anfangsmap aufstapeln
 	m_maps.push(m_mapDict["pauseMap"]);
 
+	//	Über die Objekte des "PauseState"s iterieren
+	for(auto &object : *pObjects)
+	{
+		//	"onCreate()" jedes Objektes aufrufen. Hier primär dazu da, um die Buttons an die richtige Position zu setzen (abhängig vom Fensterzustand)
+		object->onCreate();
+	}
+
 	TheGame::Instance()->logStandard() << "Der 'PauseState' wurde betreten." << std::endl << std::endl;
 }
 
