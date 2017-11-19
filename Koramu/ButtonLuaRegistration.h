@@ -24,4 +24,5 @@ namespace LuaRegistrations {
 	int l_ButtonSetPosition(lua_State* pLuaState);
 	int l_ButtonGetSize(lua_State* pLuaState);
 	int l_ButtonGetPosition(lua_State* pLuaState);
+	int l_ButtonSetSize(lua_State* pLuaState);
 }

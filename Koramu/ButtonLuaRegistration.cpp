@@ -21,6 +21,7 @@ void LuaRegistrations::ButtonLuaRegistration::registerToLua(lua_State* pLuaState
 		{ "setPosition", l_ButtonSetPosition },
 		{ "getSize", l_ButtonGetSize },
 		{ "getPosition", l_ButtonGetPosition },
+		{ "setSize", l_ButtonSetSize },
 		{ nullptr, nullptr }
 	};
 
@@ -131,4 +132,17 @@ int LuaRegistrations::l_ButtonGetPosition(lua_State* pLuaState)
 
 	//	Es gibt zwei Rückgabewerte (x, y)
 	return 2;
+}
+
+int LuaRegistrations::l_ButtonSetSize(lua_State * pLuaState)
+{
+	//	Die Referenz auf den Button aus den Argumenten holen
+	Button* pButton = ButtonLuaRegistration::checkAndGetButton(pLuaState, 1);
+
+	int width = lua_tointeger(pLuaState, -2);
+	int height = lua_tointeger(pLuaState, -1);
+	pButton->setHeight(height);
+	pButton->setWidth(width);
+
+	return 0;
 }

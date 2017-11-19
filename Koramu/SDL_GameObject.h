@@ -77,6 +77,8 @@ public:
 	void addCollisionRects(std::vector<ObjectRectangle> cRects) { m_collisionRects = cRects; }
 	void setCurrentRow(int row) { m_currentRow = row; }
 	void setCurrentCol(int col) { m_currentRow = col; }
+	void setWidth(int width) { m_objectRect.width = width; }
+	void setHeight(int height) { m_objectRect.height = height; }
 	virtual void setPosition(float x, float y);
 };
 
