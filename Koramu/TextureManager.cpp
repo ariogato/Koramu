@@ -130,6 +130,51 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect);
 }
 
+void TextureManager::drawScaledFrame(std::string id, int x, int y, int width, int height, int frameRow, int frameCol, int numRows, int numCols)
+{
+	/*	Diese Methode ermöglicht und das skalierte Zeichnen eines Ausschnittes einer Textur.
+	 *	Der ausgeschnittene Teil ("srcRect") wird also skaliert, er wird in ein Rechteck ("destRect") gezeichnet, 
+	 *	das möglicherweise eine andere Größe hat.
+	 */
+	//	Für mehr Info siehe Kommentare in TextureManager::draw
+
+	//	Deklaration der beiden Rechtecke
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+
+	//	Ermitteln der Breite und Höhe der Textur
+	SDL_QueryTexture(m_textureMap[id], nullptr, nullptr, &srcRect.w, &srcRect.h);
+	//	Ermitteln der Breite und Höhe der Einzelbilder auf der Textur (Anhand der Reihen- und Spaltenanzahl)
+	srcRect.w = srcRect.w / numCols; 
+	srcRect.h = srcRect.h / numRows;
+
+	//	Die Textur soll in ein Rechteck der übergebenen Breite und Höhe gezeichnet werden
+	destRect.w = width;
+	destRect.h = height;
+
+	/*	Wir wollen nur ein Bild in dem Spritesheet erfassen.
+	*	Um das zu erreichen wird die x- & y-Position des Source Rectangles
+	*	variiert.
+	*
+	*	frameRow (Reihe):
+	*		- y-Position... wird mit der Höhe der einzelnen Bilder (Frames) multipliziert,
+	*		  damit die nächste Reihe erreicht wird.
+	*	frameCol (Spalte):
+	*		- Das Gleiche wie frameRow in grün.
+	*
+	*	--> Man fängt bei 0 an zu zählen.
+	*/
+	srcRect.x = frameCol * srcRect.w;
+	srcRect.y = frameRow * srcRect.h;
+
+	//	Der Bildausschnitt soll an die übergebene Position gezeichnet werden
+	destRect.x = x;
+	destRect.y = y;
+
+	//	Rendern
+	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect);
+}
+
 void TextureManager::drawTile(const Environment::Tileset& tileset, int tileId, int x, int y)
 {
 	//	Die Tiles mit einer 'tileId' von '0' sollen nicht gerendert werden. 

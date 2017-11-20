@@ -36,6 +36,10 @@ public:
 	void drawFrame(std::string id,														//	Einen Teil einer Textur zeichnen
 		int x, int y, int width, int height,
 		int frameRow, int frameCol);
+	void drawScaledFrame(std::string id,												//	Einen Teil einer Textur skaliert zeichnen
+		int x, int y, int width, int height,
+		int frameRow, int frameCol,
+		int numRows, int numCols);
 	void drawTile(const Environment::Tileset& tileset,									//	Ein Tile aus einem Tileset (als Textur gespeichert) zeichnen
 		int tileId, 
 		int x, int y);

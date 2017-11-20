@@ -3,6 +3,7 @@
 #include "InputHandler.h"
 #include "Vector2D.h"
 #include "Game.h"
+#include "TextureManager.h"
 
 Button::Button()
 	: m_callbackFunction(nullptr),
@@ -69,5 +70,21 @@ void Button::update()
 
 void Button::draw(const Vector2D& layerPosition)
 {
-	SDL_GameObject::draw(layerPosition);
+	/*	Dem TextureManager werden alle benötigten Daten zum Rendern des
+	*	Buttons übergeben, damit dieser ein wunderschönes Bild
+	*	malen kann.
+	*	Die Position der gerenderten Textur ist abhängig von der Position des "ObjectLayer"s.
+	*	Der Button kann dank dieser Methode (im Gegensatz zu einem "SDL_GameObject") auch skaliert werden. 
+	*/
+	TheTextureManager::Instance()->drawScaledFrame(m_textureId,
+		m_objectRect.positionVector.getX() + layerPosition.getX(), m_objectRect.positionVector.getY() + layerPosition.getY(),
+		m_objectRect.width, m_objectRect.height,
+		m_currentRow, m_currentCol, m_numRows, m_numCols);
+
+	//	Im Debugmodus werden 'objectRect' und eventuelles 'collisionRect' mitgerendert
+	m_objectRect.draw(layerPosition);
+	for (int i = 0; i<m_collisionRects.size(); i++)
+	{
+		m_collisionRects[i].draw(layerPosition);
+	}
 }
