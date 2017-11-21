@@ -1,6 +1,7 @@
 #include "Story.h"
 #include <algorithm>
 #include "StoryParser.h"
+#include "ScriptManager.h"
 
 Story::Story()
 {
@@ -15,27 +16,27 @@ void Story::init()
 	//	Die Datei mit den quests parsen
 	StoryParser::parseStory(&m_questList, "xmlFiles/quests.xml");
 
-	m_currentMainQuest = "tutorial";
-	m_currentPartQuest = "tutorial1";
+	m_currentMainQuest = m_questList[0].first;
+	m_currentPartQuest = m_questList[0].second[0];
 }
 
 void Story::nextQuest()
 {
 	//	Eine Kopie der Quest id member anlegen, da die Lambda Funktionen sie brauchen
-	std::string main = m_currentMainQuest;
-	std::string part = m_currentPartQuest;
+	std::string mainQuest = m_currentMainQuest;
+	std::string partQuest = m_currentPartQuest;
 
 	//	Die Position der momentanen main quest heraussuchen
 	std::vector<std::pair<std::string, std::vector<std::string>>>::iterator mainIterator =
 		std::find_if(m_questList.begin(), m_questList.end(), 
-			[main](std::pair<std::string, std::vector<std::string>> elem)
+			[mainQuest](std::pair<std::string, std::vector<std::string>> elem)
 	{
-		return elem.first == main;
+		return elem.first == mainQuest;
 	});
 
 	//	Die Position der momentanen part quest heraussuchen
 	std::vector<std::string>::iterator partIterator = 
-		std::find((*mainIterator).second.begin(), mainIterator->second.end(), part);
+		std::find((*mainIterator).second.begin(), mainIterator->second.end(), partQuest);
 	
 	//	Die nächste part quest über den iterator referenzieren
 	++partIterator;
@@ -63,6 +64,10 @@ void Story::nextQuest()
 		//	Hier wird lediglich der Wert der part quest gesetzt
 		m_currentPartQuest = *partIterator;
 	}
+
+	//	Die Scripts legen fest, was beim Questübergang passiert
+	TheScriptManager::Instance()->getScriptFromId(partQuest).callFunction("onDone");
+	TheScriptManager::Instance()->getScriptFromId(m_currentPartQuest).callFunction("onStart");
 }
 
 void Story::setQuest(std::string mainQuest, std::string partQuest)
@@ -85,5 +90,5 @@ void Story::setQuest(std::string mainQuest, std::string partQuest)
 
 	//	Ab hier ist klar, dass die Eingabe valide ist, also können die Werte gesetzt werdens
 	m_currentMainQuest = mainQuest;
-	m_currentMainQuest = partQuest;
+	m_currentPartQuest = partQuest;
 }

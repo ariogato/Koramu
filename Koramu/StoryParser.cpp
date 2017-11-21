@@ -46,7 +46,7 @@ void StoryParser::parseStory(std::vector<std::pair<std::string, std::vector<std:
 		//	Checken, ob das Attribut vorhanden war
 		if (!mainQuestId)
 		{
-			TheGame::Instance()->logError() << "StoryParser::lparseStoryoadScripts(): \n\t" << filename << ": Die " << counterMain << ". main quest hat keine id." << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StoryParser::parseStory(): \n\t" << filename << ": Die " << counterMain << ". main quest hat keine id." << std::endl << std::endl;
 			TheGame::Instance()->emergencyExit(ERR_MESSAGE);
 		}
 
@@ -65,7 +65,7 @@ void StoryParser::parseStory(std::vector<std::pair<std::string, std::vector<std:
 			//	Checken, ob das Attribut vorhanden war
 			if (!partQuestId)
 			{
-				TheGame::Instance()->logError() << "StoryParser::lparseStoryoadScripts(): \n\t" << filename 
+				TheGame::Instance()->logError() << "StoryParser::parseStory(): \n\t" << filename 
 					<< ": Die " << counterMain << "." << counterPart <<" part quest hat keine id." << std::endl << std::endl;
 				TheGame::Instance()->emergencyExit(ERR_MESSAGE);
 			}

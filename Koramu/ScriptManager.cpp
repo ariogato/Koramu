@@ -108,7 +108,8 @@ bool ScriptManager::init()
 		 */
 		if (luaL_dofile(m_pLuaState, (it->second).c_str()))
 		{
-			TheGame::Instance()->logError() << "SciptManager::init(): \n\tDas Skript " << it->second << " konnte nicht ausgeführt werden. Das Skript ist fehlerhaft." << std::endl << std::endl;
+			TheGame::Instance()->logError() << "SciptManager::init(): \n\tDas Skript " << it->second << " konnte nicht ausgeführt werden. Das Skript ist fehlerhaft." 
+											<< "\n\t" << lua_tostring(m_pLuaState, -1) << std::endl << std::endl;
 			return false;
 		}
 
