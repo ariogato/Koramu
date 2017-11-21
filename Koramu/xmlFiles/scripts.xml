@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <scripts>
-  <script id="default" path="default.lua"/>
+  <!--Ein Default Skript für GameObjects ohne eigenes Skript (wegen getScriptFromId)-->
+  <script id="default" path="Scripts/default.lua"/>
   
-  <script id="johann" path="tree.lua"/>
-  <script id="johanneisch" path="door.lua"/>
-  <script id="player" path="player.lua"/>
-  <script id="test" path="npc1.lua"/>
-  <script id="door1" path="door1.lua"/>
-  <script id="door2" path="door2.lua"/>
-  <script id="koramu" path="koramu.lua"/>
+  <!--Der Player-->
+  <script id="player" path="Scripts/Objects/player.lua"/>
+  
+  <!--Türen-->
+  <script id="test" path="Scripts/test/npc1.lua"/>
+  <script id="door1" path="Scripts/Doors/door1.lua"/>
+  <script id="door2" path="Scripts/Doors/door2.lua"/>
   
   <!--Buttons MenuState-->
-  <script id="buttonPlay" path="buttonPlay.lua"/>
-  <script id="buttonHowtoplay" path="buttonHowToPlay.lua"/>
-  <script id="buttonExit" path="buttonExit.lua"/>
-  <script id="buttonResize" path="buttonResize.lua"/>
+  <script id="buttonPlay" path="Scripts/Buttons/buttonPlay.lua"/>
+  <script id="buttonHowtoplay" path="Scripts/Buttons/buttonHowToPlay.lua"/>
+  <script id="buttonExit" path="Scripts/Buttons/buttonExit.lua"/>
+  <script id="buttonResize" path="Scripts/Buttons/buttonResize.lua"/>
 
   <!--Buttons PauseState-->
-  <script id="buttonResume" path="buttonResume.lua"/>
-  <script id="buttonSave" path="buttonSave.lua"/>
-  <script id="buttonMainMenu" path="buttonMainMenu.lua"/>
+  <script id="buttonResume" path="Scripts/Buttons/buttonResume.lua"/>
+  <script id="buttonSave" path="Scripts/Buttons/buttonSave.lua"/>
+  <script id="buttonMainMenu" path="Scripts/Buttons/buttonMainMenu.lua"/>
   
+  <!--Miscellaneous-->
+  <script id="koramu" path="Scripts/Misc/koramu.lua"/>
 </scripts>

@@ -1,5 +1,4 @@
 -- player.lua
-
 local player = {}
 
 function player:onCreate()
