@@ -90,14 +90,17 @@
     <Filter Include="Lua Skripts\Doors">
       <UniqueIdentifier>{9bc1e19f-e771-4c41-9a33-ef0e4e339e3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lua Skripts\NPCs">
-      <UniqueIdentifier>{d35a887b-4cb5-4824-b2e1-c088f2d81ce3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lua Skripts\Stuff">
-      <UniqueIdentifier>{9abd2a4e-1af3-4375-985e-e7aaa93c3173}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lua Skripts\Buttons">
       <UniqueIdentifier>{90e751dc-3804-4af7-b589-4434f49ed995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts\Misc">
+      <UniqueIdentifier>{4315966e-9d94-4553-9d5a-9989d6e614c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts\Objects">
+      <UniqueIdentifier>{d35a887b-4cb5-4824-b2e1-c088f2d81ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts\Objects\NPCs">
+      <UniqueIdentifier>{61d3914c-404c-4668-9c17-1522a2648a46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -465,50 +468,44 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-    <None Include="tree.lua">
+    <None Include="Scripts\default.lua">
       <Filter>Lua Skripts</Filter>
     </None>
-    <None Include="door.lua">
-      <Filter>Lua Skripts</Filter>
+    <None Include="Scripts\Buttons\buttonExit.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
     </None>
-    <None Include="player.lua">
-      <Filter>Lua Skripts</Filter>
+    <None Include="Scripts\Buttons\buttonHowToPlay.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
     </None>
-    <None Include="default.lua">
-      <Filter>Lua Skripts</Filter>
+    <None Include="Scripts\Buttons\buttonMainMenu.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
     </None>
-    <None Include="door1.lua">
+    <None Include="Scripts\Buttons\buttonPlay.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="Scripts\Buttons\buttonResize.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="Scripts\Buttons\buttonResume.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="Scripts\Buttons\buttonSave.lua">
+      <Filter>Lua Skripts\Buttons</Filter>
+    </None>
+    <None Include="Scripts\Doors\door1.lua">
       <Filter>Lua Skripts\Doors</Filter>
     </None>
-    <None Include="door2.lua">
+    <None Include="Scripts\Doors\door2.lua">
       <Filter>Lua Skripts\Doors</Filter>
     </None>
-    <None Include="npc1.lua">
-      <Filter>Lua Skripts\NPCs</Filter>
+    <None Include="Scripts\Misc\koramu.lua">
+      <Filter>Lua Skripts\Misc</Filter>
     </None>
-    <None Include="buttonPlay.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
+    <None Include="Scripts\Objects\player.lua">
+      <Filter>Lua Skripts\Objects</Filter>
     </None>
-    <None Include="koramu.lua">
-      <Filter>Lua Skripts\Stuff</Filter>
-    </None>
-    <None Include="buttonExit.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
-    </None>
-    <None Include="buttonHowToPlay.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
-    </None>
-    <None Include="buttonResize.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
-    </None>
-    <None Include="buttonResume.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
-    </None>
-    <None Include="buttonSave.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
-    </None>
-    <None Include="buttonMainMenu.lua">
-      <Filter>Lua Skripts\Buttons</Filter>
+    <None Include="Scripts\test\npc1.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
     </None>
   </ItemGroup>
 </Project>

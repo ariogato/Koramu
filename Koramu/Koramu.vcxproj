@@ -276,22 +276,20 @@
     <Xml Include="xmlFiles\stinker.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="buttonExit.lua" />
-    <None Include="buttonHowToPlay.lua" />
-    <None Include="buttonMainMenu.lua" />
-    <None Include="buttonPlay.lua" />
-    <None Include="buttonResize.lua" />
-    <None Include="buttonResume.lua" />
-    <None Include="buttonSave.lua" />
     <None Include="ClassDiagram.cd" />
-    <None Include="door1.lua" />
-    <None Include="door.lua" />
-    <None Include="default.lua" />
-    <None Include="door2.lua" />
-    <None Include="koramu.lua" />
-    <None Include="npc1.lua" />
-    <None Include="player.lua" />
-    <None Include="tree.lua" />
+    <None Include="Scripts\Buttons\buttonExit.lua" />
+    <None Include="Scripts\Buttons\buttonHowToPlay.lua" />
+    <None Include="Scripts\Buttons\buttonMainMenu.lua" />
+    <None Include="Scripts\Buttons\buttonPlay.lua" />
+    <None Include="Scripts\Buttons\buttonResize.lua" />
+    <None Include="Scripts\Buttons\buttonResume.lua" />
+    <None Include="Scripts\Buttons\buttonSave.lua" />
+    <None Include="Scripts\default.lua" />
+    <None Include="Scripts\Doors\door1.lua" />
+    <None Include="Scripts\Doors\door2.lua" />
+    <None Include="Scripts\Misc\koramu.lua" />
+    <None Include="Scripts\Objects\player.lua" />
+    <None Include="Scripts\test\npc1.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
