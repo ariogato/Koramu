@@ -25,8 +25,6 @@ FiniteStateMachine::MenuState::~MenuState()		//	Destruktor
 
 void FiniteStateMachine::MenuState::onEnter()
 {
-	TheGame::Instance()->getCamera()->centerOnGameObject(nullptr);
-
 	//	Hier werden alle Callback Funktionen in die 'std::map' geladen
 	this->setCallbackFunctions();
 

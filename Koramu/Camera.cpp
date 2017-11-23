@@ -50,7 +50,12 @@ void Camera::update()
 	/*	Hier wird der Ortsvektor der Kamera so berrechnet, dass 
 	 *	das zentrierte Objekt immer im Mittelpunkt der Kamera steht.
 	 */
-	
+
+	//	Größe der aktuellen Map
+	FiniteStateMachine::GameState* currentMap = TheGame::Instance()->getCurrentState();
+	int mapWidth = TheGame::Instance()->getCurrentState()->getCurrentMap()->getWidth();
+	int mapHeight = TheGame::Instance()->getCurrentState()->getCurrentMap()->getHeight();
+
 	//	Checken ob überhaupt ein zu zentrierdendes Objekt vorhanden ist
 	if (m_pCenterObject)
 	{
@@ -70,12 +75,8 @@ void Camera::update()
 		tempVector.setX(tempVector.getX() + static_cast<float>(m_pCenterObject->getWidth()) / 2.0f);
 		tempVector.setY(tempVector.getY() + static_cast<float>(m_pCenterObject->getHeight()) / 2.0f);
 
-		//	Hier wird sichergestellt, dass die Kamera die Grenzen der Map nicht verlässt.
 		
-		//	Extremwerte der aktuellen Map
-		int maxX = TheGame::Instance()->getCurrentState()->getCurrentMap()->getWidth();
-		int maxY = TheGame::Instance()->getCurrentState()->getCurrentMap()->getHeight();
-
+		//	Hier wird sichergestellt, dass die Kamera die Grenzen der Map nicht verlässt.
 		if (tempVector.getX() <= 0)
 		{
 			//	Es wird verhindert, dass die Kamera die linke Grenze nicht überschreitet
@@ -86,15 +87,15 @@ void Camera::update()
 			//	Es wird verhindet, dass die obere Grenze überschritten wird
 			tempVector.setY(0.0f);
 		}
-		if(tempVector.getX() + m_cameraWidth >= maxX)
+		if(tempVector.getX() + m_cameraWidth >= mapWidth)
 		{
 			//	Es wird verhindert, dass die rechte Grenze überschritten wird
-			tempVector.setX(maxX - m_cameraWidth);
+			tempVector.setX(mapWidth - m_cameraWidth);
 		}
-		if(tempVector.getY() + m_cameraHeight >= maxY)
+		if(tempVector.getY() + m_cameraHeight >= mapHeight)
 		{
 			//	Es wird verhindert, dass die untere Grente überschritten wird
-			tempVector.setY(maxY - m_cameraHeight);
+			tempVector.setY(mapHeight - m_cameraHeight);
 		}
 
 		//	Der korrekte Vektor wird übernommen
@@ -105,5 +106,28 @@ void Camera::update()
 		//	Falls kein Objekt vorhanden ist auf (0 | 0) setzen
 		m_positionVector.setX(0.0f);
 		m_positionVector.setY(0.0f);
+	}
+
+	/*	Ist die aktuelle Map kleiner, als das Fenster, so soll sie im Fenster zentriert werden
+	 *	Dies soll nur passieren, wenn wir uns im "PlayState" befinden.
+	 */
+	if(TheGame::Instance()->getCurrentState()->getStateID() == FiniteStateMachine::playState)
+	{
+		//	Größe des Fensters
+		int windowWidth = TheGame::Instance()->getGameWidth();
+		int windowHeight = TheGame::Instance()->getGameHeight();
+
+		//	Checken, ob die Map schmaler ist, als das Fenster
+		if (mapWidth < windowWidth)
+		{
+			//	Map in x-Richtung zentrieren
+			m_positionVector.setX(m_positionVector.getX() + (windowWidth - mapWidth) / 2);
+		}
+		//	Checken, ob die Map niedriger ist, als das Fenster
+		if (mapHeight < windowHeight)
+		{
+			//	Map in y-Richtung zentrieren
+			m_positionVector.setY(m_positionVector.getY() + (windowHeight - mapHeight) / 2);
+		}
 	}
 }
