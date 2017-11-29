@@ -14,8 +14,11 @@ function buttonResume:align ()
 	gameHeight = TheGame:getGameHeight ()
 
 	width, height = buttonResume.instance:getSize ()
-	xPos, yPos = buttonResume.instance:getPosition ()
+	widthToHeight = 4.5
+	height = (80 / 896) * gameHeight
+	width = widthToHeight * height
 
+	buttonResume.instance:setSize (width, height)
 	buttonResume.instance:setPosition ((gameWidth - width) / 2, 0.29 * gameHeight)
 
 end

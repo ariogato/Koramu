@@ -139,10 +139,14 @@ int LuaRegistrations::l_ButtonSetSize(lua_State * pLuaState)
 	//	Die Referenz auf den Button aus den Argumenten holen
 	Button* pButton = ButtonLuaRegistration::checkAndGetButton(pLuaState, 1);
 
-	int width = lua_tointeger(pLuaState, -2);
-	int height = lua_tointeger(pLuaState, -1);
+	//	Höhe und Breite vom Stack holen
+	int width = lua_tonumber(pLuaState, -2);
+	int height = lua_tonumber(pLuaState, -1);
+
+	//	Höhe und Breite setzen
 	pButton->setHeight(height);
 	pButton->setWidth(width);
 
+	//	Es gibt keinen Rückgabewert
 	return 0;
 }

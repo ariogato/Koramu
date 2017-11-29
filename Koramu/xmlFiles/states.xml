@@ -56,7 +56,7 @@
                   numRows="2" numCols="3"
                   mapId="mainMenuMap" callbackId="resize"
                   uniqueId="buttonResize"/>
-      <gameObject type="gameObject" textureId="koramu"
+      <gameObject type="animation" textureId="koramu"
                   xPos="202" yPos="31" width="877" height="181"
                   numRows="1" numCols="1"
                   mapId="mainMenuMap"

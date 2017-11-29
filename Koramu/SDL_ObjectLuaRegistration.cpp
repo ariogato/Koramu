@@ -23,6 +23,7 @@ void SDL_ObjectLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "setPosition", l_SDL_GameObjectSetPosition },
 		{ "getSize", l_SDL_GameObjectGetSize },
 		{ "getPosition", l_SDL_GameObjectGetPosition },
+		{ "setSize", l_SDL_GameObjectSetSize },
 		{ nullptr, nullptr }
 	};
 
@@ -122,4 +123,21 @@ int LuaRegistrations::l_SDL_GameObjectGetPosition(lua_State* pLuaState)
 
 	//	Es gibt zwei Rückgabewerte (x, y)
 	return 2;
+}
+
+int LuaRegistrations::l_SDL_GameObjectSetSize(lua_State* pLuaState)
+{
+	//	Die Referenz auf den Button aus den Argumenten holen
+	SDL_GameObject* pSDL_GameObject = SDL_ObjectLuaRegistration::checkAndGetObject(pLuaState, 1);
+
+	//	Höhe und Breite vom Stack holen
+	int width = lua_tonumber(pLuaState, -2);
+	int height = lua_tonumber(pLuaState, -1);
+
+	//	Hreite und Böhe setzen
+	pSDL_GameObject->setHeight(height);
+	pSDL_GameObject->setWidth(width);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
 }

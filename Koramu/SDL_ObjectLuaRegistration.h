@@ -28,4 +28,5 @@ namespace LuaRegistrations {
 	int l_SDL_GameObjectSetPosition(lua_State* pLuaState);
 	int l_SDL_GameObjectGetSize(lua_State* pLuaState);
 	int l_SDL_GameObjectGetPosition(lua_State* pLuaState);
+	int l_SDL_GameObjectSetSize(lua_State* pLuaState);
 }

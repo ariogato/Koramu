@@ -12,10 +12,10 @@ function buttonResize:align ()
 
 	gameWidth = TheGame:getGameWidth ()
 
+	buttonResize.instance:setSize (60, 60)
 	width, height = buttonResize.instance:getSize ()
-	xPos, yPos = buttonResize.instance:getPosition ()
 
-	buttonResize.instance:setPosition ((gameWidth - width), yPos)
+	buttonResize.instance:setPosition ((gameWidth - width), 0.0)
 
 end
 

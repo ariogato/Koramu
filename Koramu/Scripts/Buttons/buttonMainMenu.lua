@@ -14,8 +14,11 @@ function buttonMainMenu:align ()
 	gameHeight = TheGame:getGameHeight ()
 
 	width, height = buttonMainMenu.instance:getSize ()
-	xPos, yPos = buttonMainMenu.instance:getPosition ()
+	widthToHeight = 4.5
+	height = (80 / 896) * gameHeight
+	width = widthToHeight * height
 
+	buttonMainMenu.instance:setSize (width, height)
 	buttonMainMenu.instance:setPosition ((gameWidth - width) / 2, 0.62 * gameHeight)
 
 end

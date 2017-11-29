@@ -14,8 +14,11 @@ function buttonSave:align ()
 	gameHeight = TheGame:getGameHeight ()
 
 	width, height = buttonSave.instance:getSize ()
-	xPos, yPos = buttonSave.instance:getPosition ()
+	widthToHeight = 4.5
+	height = (80 / 896) * gameHeight
+	width = widthToHeight * height
 
+	buttonSave.instance:setSize (width, height)
 	buttonSave.instance:setPosition ((gameWidth - width) / 2, 0.45 * gameHeight)
 
 end
