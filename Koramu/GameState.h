@@ -20,14 +20,15 @@ namespace FiniteStateMachine
 		/*	Mögliche Zustände:
 		*	Wir können im Menü unseren Spiels sein (MenuState), das Spiel tatsächlich spielen (PlayState),
 		*	eine Pause machen (PauseState) oder aus dem Menu eine Spielanleitung (HowToPlayState) aufrufen.
+		*	Zusätlich steht dem Benutzer aus dem PlayState heraus ein Notizbuch zur verfügung.
 		*/
-		menuState = 0, playState, pauseState, howToPlayState
+		menuState = 0, playState, pauseState, howToPlayState, notebookState
 	};
 
 	/*	!!! Bei einer Erweiterung der Enumeration, muss der neue Spielzustand auch in dieses Array aufgenommen werden. !!! 	
 	 *	Ein statisches Array zur Zuordnung der GameStateID (sonst kann der Parser nichts damit anfangen).
 	 */
-	static const char* s_stateNames[] = { "menu", "play", "pause", "howToPlay" };
+	static const char* s_stateNames[] = { "menu", "play", "pause", "howToPlay", "notebook" };
 
 	/*	Diese Klasse ist Basis für alle Zustände, die 
 	*	man in unserem Spiel erreichen kann.

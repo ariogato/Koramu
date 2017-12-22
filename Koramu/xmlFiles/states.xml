@@ -113,4 +113,14 @@
                   uniqueId="buttonMainMenu"/>
     </gameObjects>
 	</pause>
+
+  <notebook>
+    <gameObjects>
+      <gameObject type="animation" textureId="door"
+                 xPos="0" yPos="0" width="0" height="0"
+                 numRows="1" numCols="3"
+                 mapId="notebookMap"
+                 uniqueId="buttonClose"/>
+     </gameObjects>
+  </notebook>
 </states>

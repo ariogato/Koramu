@@ -157,3 +157,32 @@ void Dialog::addMessage(std::string text)
 		m_message.push_back(tempString);
 
 }
+
+void Dialog::setSize(int width, int height)
+{
+	//	Höhe und Breite der Box festlegen
+	m_rect.width = width;
+	m_rect.height = height;
+
+
+	//	Die Attribute von m_rect für m_textBox übernehmen
+	m_textBox = m_rect;
+
+	//	Einen Rand von 20px in die Dialogbox einbauen
+	int margin = 20;
+	m_textBox.height -= margin * 2;
+	m_textBox.width -= margin * 2;
+}
+
+void Dialog::setPosition(int x, int y)
+{
+	m_rect.positionVector.setX(x);
+	m_rect.positionVector.setY(y);
+
+	//	Die Attribute von m_rect für m_textBox übernehmen
+	m_textBox = m_rect;
+
+	//	Den Rand von 20px beibehalten
+	int margin = 20;
+	m_textBox.positionVector += Vector2D(static_cast<float>(margin), static_cast<float>(margin));
+}

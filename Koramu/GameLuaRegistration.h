@@ -32,5 +32,8 @@ namespace LuaRegistrations
 	int l_startNarrator(lua_State* pLuaState);
 	int l_enterMap(lua_State* pLuaState);
 	int l_exitMap(lua_State* pLuaState);
+	int l_openNotebook(lua_State* pLuaState);
+	int l_closeNotebook(lua_State* pLuaState);
+	int l_addNote(lua_State* pLuaState);
 }
 

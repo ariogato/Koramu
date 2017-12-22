@@ -32,5 +32,6 @@ public:
 
 	//	setter-Funktionen
 	void addMessage(std::string text);
-
+	void setSize(int width, int height);
+	void setPosition(int x, int y);
 };

@@ -102,6 +102,9 @@
     <Filter Include="Lua Skripts\Objects\NPCs">
       <UniqueIdentifier>{61d3914c-404c-4668-9c17-1522a2648a46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua Skripts\Quests">
+      <UniqueIdentifier>{a78b0db7-0f7c-4c41-a587-2ef025fe94b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -259,6 +262,15 @@
     </ClCompile>
     <ClCompile Include="ButtonLuaRegistration.cpp">
       <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
+    <ClCompile Include="NotebookState.cpp">
+      <Filter>Quelldateien\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Notebook.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Page.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -442,6 +454,15 @@
     <ClInclude Include="ButtonLuaRegistration.h">
       <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
     </ClInclude>
+    <ClInclude Include="NotebookState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Notebook.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Page.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -506,6 +527,9 @@
     </None>
     <None Include="Scripts\test\npc1.lua">
       <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Quests\tutorial1.lua">
+      <Filter>Lua Skripts\Quests</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -22,4 +22,9 @@
       <map id="pauseMap" path="../assets/testMap2.tmx" />
     </maps>
   </pause>
+  <notebook>
+    <maps>
+      <map id="notebookMap" path="../assets/testMap2.tmx" />
+    </maps>
+  </notebook>
 </states>

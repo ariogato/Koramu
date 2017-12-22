@@ -29,6 +29,10 @@ public:
 	void drawText(std::string text, int x, int y);					//	Rendert einen Text
 	void drawTextBox(std::string text, ObjectRectangle textBox);	//	Rendert Text, der sich in einer Box befindet
 
+	//	getter-Funktionen
+	int getCharWidth() { return m_width; }
+	int getCharHeight() { return m_height; }
+
 	//	Wichtig für singleton
 	static FontManager* Instance();
 	static void destroy();	

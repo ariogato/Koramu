@@ -7,6 +7,8 @@
 #include "CollisionRectParser.h"
 #include "Camera.h"
 #include "StoryParser.h"
+#include "NotebookState.h"
+#include "Notebook.h"
 
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
@@ -104,8 +106,18 @@ void FiniteStateMachine::PlayState::update()
 		{
 			TheInputHandler::Instance()->handleInput();
 		}
-
+		// "PauseState" aufstapeln
 		TheGame::Instance()->pushState(new PauseState());
+	}
+	//	Wir wollen in den NotebookState wechseln, sobald 'N' gedrückt wurde
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_N))
+	{
+		while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_N))
+		{
+			TheInputHandler::Instance()->handleInput();
+		}
+		//	"NotebookState" aufstapeln
+		TheGame::Instance()->pushState(new NotebookState());
 	}
 
 	//	Die Dialogbox updaten
