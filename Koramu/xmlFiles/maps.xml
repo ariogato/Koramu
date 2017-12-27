@@ -22,4 +22,9 @@
       <map id="pauseMap" path="../assets/testMap2.tmx" />
     </maps>
   </pause>
+  <inventory>
+    <maps>
+      <map id="inventoryMap" path="../assets/testMap2.tmx" />
+    </maps>
+  </inventory>
 </states>

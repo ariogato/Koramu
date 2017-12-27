@@ -53,7 +53,8 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 		//	Aufrufen der Methode zum Laden der Texturen und überprüfen, ob das Laden erfolgreich war.
 		if (!loadTextures(pStateRoot->FirstChildElement("textures")))
 		{
-			TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen fehlgeschlagen." << std::endl << std::endl;
+			TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": laden der Texturen beim State "
+			<< FiniteStateMachine::s_stateNames[stateID] << " fehlgeschlagen." << std::endl << std::endl;
 
 			//	Wir können nicht mit dem Parsen fortfahren. Wir geben "false" zurück.
 			return false;
@@ -65,7 +66,8 @@ bool StateParser::parse(std::string filename, std::vector<GameObject*>* pObjects
 	 */
 	if (!loadGameObjects(pStateRoot->FirstChildElement(FiniteStateMachine::s_stateNames[stateID]), pObjects))
 	{
-		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": Laden der 'GameObjects' fehlgeschlagen" << std::endl << std::endl;
+		TheGame::Instance()->logError() << "StateParser::parse(): \n\t" << filename << ": Laden der 'GameObjects' beim State " 
+			<< FiniteStateMachine::s_stateNames[stateID] << " fehlgeschlagen" << std::endl << std::endl;
 
 		//	Das Parsen war nicht erfolgreich. Wir geben "false" zurück.
 		return false;
@@ -155,8 +157,9 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	//	Wir schauen ob die Liste von GameObjects vorhanden sind
 	if (pCurrentStateNode->NoChildren())
 	{
-		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObject-Liste" << std::endl << std::endl;
-		return false;
+		//	TODO: Ist es ein Fehler, wenn ein State keine Objekte hat?
+		//TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObject-Liste" << std::endl << std::endl;
+		return true;
 	}
 
 	/*	Aufgrund der Struktur der XML-Datei 
@@ -168,8 +171,9 @@ bool StateParser::loadGameObjects(XMLElement* pCurrentStateNode, std::vector<Gam
 	//	Wir schauen ob überhaupt Objekte vorhanden sind
 	if (pObjectNode->NoChildren() || !pObjectNode)
 	{
-		TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObjects" << std::endl << std::endl;
-		return false;
+		//	TODO: Ist es ein Fehler, wenn ein State keine Objekte hat?
+		//TheGame::Instance()->logError() << "StateParser::loadGameObjects(): \n\tState ohne GameObjects: " << std::endl << std::endl;
+		return true;
 	}
 
 	//	Hier werden alle Daten des GameObjects gespeichert

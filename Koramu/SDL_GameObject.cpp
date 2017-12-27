@@ -111,13 +111,13 @@ void SDL_GameObject::collision()
 	m_currentCol = 0;
 
 	//	Die Funktion im Script aufrufen
-	TheScriptManager::Instance()->getScriptFromId(m_uniqueId).callFunction("onCollision");
+	TheScriptManager::Instance()->getScriptById(m_uniqueId).callFunction("onCollision");
 }
 
 void SDL_GameObject::onCreate()
 {
 	//	Die Funktion im Script aufrufen
-	TheScriptManager::Instance()->getScriptFromId(m_uniqueId).callFunction("onCreate");
+	TheScriptManager::Instance()->getScriptById(m_uniqueId).callFunction("onCreate");
 }
 
 void SDL_GameObject::interact(Player* pPlayer)
@@ -167,7 +167,7 @@ void SDL_GameObject::onCommandDone(const char* commandType)
 
 	//	Das Skript wird zwischengespeichert
 	Script s =
-		TheScriptManager::Instance()->getScriptFromId(m_uniqueId);
+		TheScriptManager::Instance()->getScriptById(m_uniqueId);
 
 	//	self wird gepusht (das muss einfach so sein)
 	s.pushTable();

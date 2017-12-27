@@ -32,6 +32,9 @@
     <texture id="Pause" path="../assets/Pause.png"/>
     <texture id="keyN" path="../assets/N.png"/>
     <texture id="Notizblock" path="../assets/Notizbuch.png"/>
+    
+    <!--Items-->
+    <texture id="topHat" path="../assets/topHat.png"/>
   </textures>
 
   <menu>
@@ -113,4 +116,6 @@
                   uniqueId="buttonMainMenu"/>
     </gameObjects>
 	</pause>
+  <inventory>
+  </inventory>
 </states>

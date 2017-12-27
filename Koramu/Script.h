@@ -37,6 +37,7 @@ public:
 
 	//	getter-Funktionen
 	std::string getScriptId() const { return m_scriptId; }
+	int getTableReference() const { return m_tableReference; }
 	std::string getStringFromTable(const char* name);				//	Gibt einen leeren String zurück, falls ein Fehler auftritt
 	int getIntFromTable(const char* name);							//	Gibt 0 zurück, falls ein Fehler auftritt
 	bool getBoolFromTable(const char* name);						//	Gibt false zurück, falls ein Fehler auftritt

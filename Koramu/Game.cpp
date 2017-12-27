@@ -18,6 +18,7 @@
 #include "Button.h"
 #include "NPC.h"
 #include "Door.h"
+#include "ItemList.h"
 
 #include "PlayerLuaRegistration.h"
 #include "ButtonLuaRegistration.h"
@@ -51,6 +52,9 @@ Game::Game()									//	Konstruktor
 
 	//	Story Objekt erstellen
 	m_pStory = new Story();
+
+	//	Inventar erstellen
+	m_pItemList = new ItemList();
 }
 
 /*	!! WICHTIG !!
@@ -74,6 +78,7 @@ Game::~Game()									//	Destruktor
 	delete m_pStateMachine;
 	delete m_pCamera;
 	delete m_pStory;
+	delete m_pItemList;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören
@@ -366,7 +371,7 @@ void Game::resize(bool changeSize)
 		//	Die Buttons müssen wieder an ihre relative Position gebracht werden
 		for (auto g : *m_pStateMachine->getCurrentState()->getCurrentMap()->getObjectLayer()->getGameObjects())
 		{
-			TheScriptManager::Instance()->getScriptFromId(g->getUniqueId()).callFunction("align");
+			TheScriptManager::Instance()->getScriptById(g->getUniqueId()).callFunction("align");
 		}
 
 	}

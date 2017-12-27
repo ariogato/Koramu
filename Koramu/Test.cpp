@@ -11,6 +11,7 @@
 #include "ScriptLoader.h"
 #include "FontManager.h"
 #include "Story.h"
+#include "InventoryState.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -70,6 +71,7 @@ backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 	//std::cout << s.getStringFromTable("str") << std::endl;
 	//std::cout << s.getIntFromTable("health") << std::endl;
 	//std::cout << s.getBoolFromTable("isNPC") << std::endl;
+	//TheScriptManager::Instance()->removeScriptFromMap("koramu1");
 
 #pragma endregion 
 
@@ -93,6 +95,11 @@ backgroundMusic = Mix_LoadMUS("../assets/heart_and_soul1.wav");
 		s.nextQuest();
 	}*/
 #pragma endregion
+
+#pragma region InventoryTest
+
+	//TheGame::Instance()->pushState(new FiniteStateMachine::InventoryState());
+#pragma endregion 
 }
 
 Test::~Test()						//	Destruktor

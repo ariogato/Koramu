@@ -31,7 +31,8 @@ private:
 public:
 
 	bool init();																	//	Initialisiert all das, was für Lua gebraucht wird (i.e. luaL_newstate(), etc.)
-	Script& getScriptFromId(std::string id) const;									//	Gibt das der übergebenen id zugehörigen Script zurück
+	Script& getScriptById(std::string id) const;									//	Gibt das der übergebenen id zugehörigen Script zurück
+	void removeScriptFromMap(std::string id);										//	Entfernt ein Skript (die Lua Referenz & das Objekt) 
 	void callFunction(const char* table, const char* func);							//	Ruft eine Funktion 'func' aus der globalen Tabelle 'table' auf
 	void addRegistration(LuaRegistrations::BaseLuaRegistration* reg);				//	Fügt dem Vektor aus Registrierungen ein weiteres Element hinzu
 

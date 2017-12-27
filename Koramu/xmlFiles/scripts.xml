@@ -25,7 +25,11 @@
   
   <!--Quests-->
   <script id="tutorial1" path="Scripts/Quests/tutorial1.lua"/>
+  
+  <!--Items-->
+  
 
   <!--Misc-->
   <script id="koramu" path="Scripts/Misc/koramu.lua"/>
+  
 </scripts>

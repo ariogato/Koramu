@@ -66,8 +66,8 @@ void Story::nextQuest()
 	}
 
 	//	Die Scripts legen fest, was beim Questübergang passiert
-	TheScriptManager::Instance()->getScriptFromId(partQuest).callFunction("onDone");
-	TheScriptManager::Instance()->getScriptFromId(m_currentPartQuest).callFunction("onStart");
+	TheScriptManager::Instance()->getScriptById(partQuest).callFunction("onDone");
+	TheScriptManager::Instance()->getScriptById(m_currentPartQuest).callFunction("onStart");
 }
 
 void Story::setQuest(std::string mainQuest, std::string partQuest)

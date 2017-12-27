@@ -21,13 +21,13 @@ namespace FiniteStateMachine
 		*	Wir können im Menü unseren Spiels sein (MenuState), das Spiel tatsächlich spielen (PlayState),
 		*	eine Pause machen (PauseState) oder aus dem Menu eine Spielanleitung (HowToPlayState) aufrufen.
 		*/
-		menuState = 0, playState, pauseState, howToPlayState
+		menuState = 0, playState, pauseState, howToPlayState, inventoryState,
 	};
 
 	/*	!!! Bei einer Erweiterung der Enumeration, muss der neue Spielzustand auch in dieses Array aufgenommen werden. !!! 	
 	 *	Ein statisches Array zur Zuordnung der GameStateID (sonst kann der Parser nichts damit anfangen).
 	 */
-	static const char* s_stateNames[] = { "menu", "play", "pause", "howToPlay" };
+	static const char* s_stateNames[] = { "menu", "play", "pause", "howToPlay", "inventory" };
 
 	/*	Diese Klasse ist Basis für alle Zustände, die 
 	*	man in unserem Spiel erreichen kann.
@@ -46,7 +46,7 @@ namespace FiniteStateMachine
 		DataStructure::Stack<Environment::Map*> m_maps;												//	Stapel aus Maps (für weitere Infos: siehe Klassendiagramm)
 		Dialog m_dialog;																			//	Die Dialogbox
 		std::map<std::string, void(*)()> m_callbackFunctions;										//	'std::map' aus allen für das jeweilige Menü relevanten Callback Funktionen
-
+		
 		void deleteMaps();																			//	Hilfsfunktion, die den Speicherplatz für alle Maps freigibt
 
 	public:
@@ -84,6 +84,8 @@ namespace FiniteStateMachine
 		{
 			if (it->second)
 				delete it->second;
+				it->second = nullptr;
 		}
+		m_mapDict.clear();
 	}
 };

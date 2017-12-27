@@ -66,7 +66,7 @@ void NPC::interact(Player* pPlayer)
 	 *	3. der player
 	 */
 	Script s =
-		TheScriptManager::Instance()->getScriptFromId(m_uniqueId);
+		TheScriptManager::Instance()->getScriptById(m_uniqueId);
 
 	s.pushTable();
 	s.pushArgumentMetatable(this, NPC_TYPE);

@@ -157,7 +157,10 @@
     <ClCompile Include="GameLuaRegistration.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="HowToPlayState.cpp" />
+    <ClCompile Include="IngameState.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="InventoryState.cpp" />
+    <ClCompile Include="ItemList.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
@@ -217,6 +220,10 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Dialog.h" />
+    <ClInclude Include="IngameState.h" />
+    <ClInclude Include="InventoryState.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemList.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="NPCLuaRegistration.h" />
     <ClInclude Include="SDL_ObjectLuaRegistration.h" />

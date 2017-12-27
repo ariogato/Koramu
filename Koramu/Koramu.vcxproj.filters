@@ -102,6 +102,18 @@
     <Filter Include="Lua Skripts\Objects\NPCs">
       <UniqueIdentifier>{61d3914c-404c-4668-9c17-1522a2648a46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\GameObjects\Inventory">
+      <UniqueIdentifier>{bd1110fb-c537-4340-b690-51f2a12c1c6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\GameObjects\Inventory">
+      <UniqueIdentifier>{800c10d7-b683-478d-9a1a-5e0b32c32544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts\Inventory">
+      <UniqueIdentifier>{530c8537-a4f8-420a-b197-d25f29a34bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts\Inventory\ItemList">
+      <UniqueIdentifier>{4478a63c-07c3-4f72-afe8-6d5126517e1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -259,6 +271,15 @@
     </ClCompile>
     <ClCompile Include="ButtonLuaRegistration.cpp">
       <Filter>Quelldateien\Scripting\LuaRegistrations</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemList.cpp">
+      <Filter>Quelldateien\GameObjects\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="IngameState.cpp">
+      <Filter>Quelldateien\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryState.cpp">
+      <Filter>Quelldateien\StateMachine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -441,6 +462,18 @@
     </ClInclude>
     <ClInclude Include="ButtonLuaRegistration.h">
       <Filter>Headerdateien\Scripting\LuaRegistrations</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Headerdateien\GameObjects\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemList.h">
+      <Filter>Headerdateien\GameObjects\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="IngameState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

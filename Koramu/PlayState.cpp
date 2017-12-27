@@ -7,6 +7,7 @@
 #include "CollisionRectParser.h"
 #include "Camera.h"
 #include "StoryParser.h"
+#include "InventoryState.h"
 
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
@@ -106,6 +107,15 @@ void FiniteStateMachine::PlayState::update()
 		}
 
 		TheGame::Instance()->pushState(new PauseState());
+	}
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_I))
+	{
+		while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_I))
+		{
+			TheInputHandler::Instance()->handleInput();
+		}
+
+		TheGame::Instance()->pushState(new InventoryState());
 	}
 
 	//	Die Dialogbox updaten

@@ -2,6 +2,7 @@
 #include <lua.hpp>
 #include <vector>
 #include <iterator>
+#include <algorithm>
 #include "ScriptLoader.h"
 #include "BaseLuaRegistration.h"
 #include "Game.h"
@@ -101,7 +102,7 @@ bool ScriptManager::init()
 	//	Alle Chunks (Dateien) laden
 	for (std::map<std::string, std::string>::iterator it = pScriptNameMap->begin(); it != pScriptNameMap->end(); ++it)
 	{
-		/*	Hier wird die Lua Datei ausgeführt. Nach dem ausführen befinden sich sämtliche Tabellen, 
+		/*	Hier wird die Lua Datei ausgeführt. Nach dem Ausführen befinden sich sämtliche Tabellen, 
 		 *	die im Script returnt wurden auf dem Stack. In ihnen befinden sich sämtliche Methoden, Attribute, etc.
 		 *	
 		 *	Mit 'if' wird gecheckt, ob beim ausführen alles glatt lief.
@@ -115,7 +116,6 @@ bool ScriptManager::init()
 
 		//	Checken, ob tatsächlich eine Tabelle vom Script zurückgegeben wurde
 		if (!lua_istable(m_pLuaState, -1))
-			//	Todo: evtl. Fehlermeldung einbauen
 			continue;
 
 		/*	Hier wird die Tabelle, die vom ausgeführten Skript auf den Stack gepusht wurde, abgerufen.
@@ -154,7 +154,7 @@ bool ScriptManager::init()
 	return true;
 }
 
-Script& ScriptManager::getScriptFromId(std::string id) const
+Script& ScriptManager::getScriptById(std::string id) const
 {
 	//	Checken, ob das Script mit der gegebenen ID existiert
 	if (m_pScriptMap->find(id) == m_pScriptMap->end())
@@ -167,6 +167,61 @@ Script& ScriptManager::getScriptFromId(std::string id) const
 
 	//	Eine Referenz auf das Script zurückgeben
 	return (*(*m_pScriptMap)[id]);
+}
+
+void ScriptManager::removeScriptFromMap(std::string id)
+{
+	//	Checken, ob das Skript mit gegebener Id existiert
+	if (m_pScriptMap->count(id) == 0)
+	{
+		return;
+	}
+
+	/*	Beim Löschen muss ebenfalls gecheckt werden, ob die Referenz auf die Lua 
+	 *	Tabelle noch von einem anderen Skript verwendet wird 
+	 *	(mit der momentanen Implementation kann das theoretisch nie passieren).
+	 *	
+	 *	Zuerst muss das Skript-Objekt selber gelöscht werden, damit es bei der Suche 
+	 *	später nicht mehr auftaucht.
+	 *	
+	 *	Danach muss 'm_pScriptMap' nach einem Skript (mit derselben Tabellenreferenz wie das
+	 *	glöschte Objekt) durchsucht werden. 
+	 *	
+	 *	Falls die Tabelle nur von dem zu löschenden Skript benutzt wird (die Suche also erfolglos ist), 
+	 *	muss diese dereferenziert werden. 
+	 */
+
+	//	Die Referenz auf die Tabelle des Objektes wird gespeichert und das Objekt selber wird gelöscht.
+	Script* pScript = m_pScriptMap->at(id);
+	int tempReference = pScript->getTableReference();
+	
+	/*	Checken, ob das Skript ein nullptr ist
+	 *	Falls ja muss der Speicherplatz nicht freigegeben werden. 
+	 *	Die Tabelle muss eventuell trotzdem dereferenziert werden, weshalb an die Methode 
+	 *	an dieser Stelle nicht verlassen wird.
+	 */
+	if (pScript)
+	{
+		delete pScript;
+		m_pScriptMap->at(id) = nullptr;
+	}
+
+	//	Den Eintrag des Skriptes aus dem Dictionary entferen
+	m_pScriptMap->erase(id);
+
+	//	Ein Element mit der gleichen Tabellen Referenz wird gesucht
+	std::map<std::string, Script*>::iterator it = std::find_if(m_pScriptMap->begin(), m_pScriptMap->end(), 
+		[tempReference](std::pair<std::string, Script*> elem) -> bool
+	{
+		return elem.second->getTableReference() == tempReference;
+	});
+
+	//	Falls die Suche nicht erfolgreich war, soll die Tabelle dereferenziert werden.
+	if (it == m_pScriptMap->end())
+	{
+		luaL_unref(m_pLuaState, LUA_REGISTRYINDEX, tempReference);
+	}
+
 }
 
 void ScriptManager::callFunction(const char* table, const char* func)
