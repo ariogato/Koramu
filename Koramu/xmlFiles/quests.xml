@@ -2,6 +2,7 @@
 
 <quests>
   <mainQuest id="tutorial">
+    <partQuest id="tutorial0"/>
     <partQuest id="tutorial1"/>
     <partQuest id="tutorial2"/>
     <partQuest id="tutorial3"/>

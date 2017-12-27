@@ -6,6 +6,8 @@
 #include "NPCLuaRegistration.h"
 #include "PlayerLuaRegistration.h"
 #include "DialogCommand.h"
+#include "NotebookState.h"
+#include "Notebook.h"
 
 using namespace LuaRegistrations;
 
@@ -31,6 +33,9 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "startNarrator", l_startNarrator },
 		{ "enterMap", l_enterMap },
 		{ "exitMap", l_exitMap },
+		{ "openNotebook", l_openNotebook},
+		{ "closeNotebook", l_closeNotebook},
+		{ "addNote", l_addNote},
 		{nullptr, nullptr}
 	};
 
@@ -169,6 +174,43 @@ int LuaRegistrations::l_exitMap(lua_State* pLuaState)
 	//	Aktuelle Map abstapeln
 	TheGame::Instance()->getCurrentState()->popMap();
 
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_openNotebook(lua_State * pLuaState)
+{
+	//	"NotebookState" aufstapeln
+	TheGame::Instance()->pushState(new FiniteStateMachine::NotebookState());
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_closeNotebook(lua_State * pLuaState)
+{
+	//	"NotebookState" abstapeln
+	TheGame::Instance()->popState();
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_addNote(lua_State * pLuaState)
+{
+	//	Den übergebenen string speichern 
+	const char* note = luaL_checkstring(pLuaState, 2);
+
+	//	Checken, ob das übergebene Argument ein string ist (wenn nicht wäre nullptr übergeben worden)
+	if (!note)
+	{
+		TheGame::Instance()->logError() << "LuaRegistrations::l_addNote():\n\t1. Argument ist kein string." << std::endl << std::endl;
+		return 0;
+	}
+
+	//	Übergebenen Text zum Notizbuch hinzufügen
+	TheGame::Instance()->getNotebook()->addNote(note);
+	
 	//	Es gibt keinen Rückgabewert
 	return 0;
 }

@@ -114,6 +114,9 @@
     <Filter Include="Lua Skripts\Inventory\ItemList">
       <UniqueIdentifier>{4478a63c-07c3-4f72-afe8-6d5126517e1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua Skripts\Quests">
+      <UniqueIdentifier>{a78b0db7-0f7c-4c41-a587-2ef025fe94b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -280,6 +283,15 @@
     </ClCompile>
     <ClCompile Include="InventoryState.cpp">
       <Filter>Quelldateien\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="NotebookState.cpp">
+      <Filter>Quelldateien\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Notebook.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Page.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -475,6 +487,15 @@
     <ClInclude Include="InventoryState.h">
       <Filter>Headerdateien\StateMachine</Filter>
     </ClInclude>
+    <ClInclude Include="NotebookState.h">
+      <Filter>Headerdateien\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Notebook.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Page.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -539,6 +560,9 @@
     </None>
     <None Include="Scripts\test\npc1.lua">
       <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Quests\tutorial1.lua">
+      <Filter>Lua Skripts\Quests</Filter>
     </None>
   </ItemGroup>
 </Project>

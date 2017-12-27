@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <saveState>
-    <questState mainQuest="tutorial" partQuest="tutorial1"/>
+    <questState mainQuest="tutorial" partQuest="tutorial0"/>
     <mapStack>
         <activeMap mapId="mainMap"/>
     </mapStack>
@@ -13,12 +13,27 @@
         <mainMap>
             <centerObject id="player"/>
             <object id="door1" xPos="704" yPos="320"/>
+            <object id="player" xPos="922" yPos="441"/>
             <object id="tree1" xPos="1088" yPos="384"/>
-            <object id="player" xPos="794" yPos="537"/>
-            <object id="test" xPos="810" yPos="690"/>
+            <object id="test" xPos="2310" yPos="690"/>
             <object id="door3" xPos="368" yPos="752"/>
             <object id="johann" xPos="595" yPos="583"/>
             <object id="tree2" xPos="576" yPos="1045"/>
         </mainMap>
     </objectState>
+    <notebookState>
+        <page>
+            <line>01.08.1920:</line>
+            <line>Whoooop whoop</line>
+        </page>
+        <page/>
+        <page/>
+        <page/>
+        <page/>
+        <page/>
+        <page/>
+        <page/>
+        <page/>
+        <page/>
+    </notebookState>
 </saveState>

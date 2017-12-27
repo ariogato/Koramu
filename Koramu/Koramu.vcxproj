@@ -169,10 +169,13 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="NodeDefinitions.cpp" />
+    <ClCompile Include="Notebook.cpp" />
+    <ClCompile Include="NotebookState.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="NPCLuaRegistration.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectRectangle.cpp" />
+    <ClCompile Include="Page.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerLuaRegistration.cpp" />
@@ -225,7 +228,10 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemList.h" />
     <ClInclude Include="MoveCommand.h" />
+    <ClInclude Include="Notebook.h" />
+    <ClInclude Include="NotebookState.h" />
     <ClInclude Include="NPCLuaRegistration.h" />
+    <ClInclude Include="Page.h" />
     <ClInclude Include="SDL_ObjectLuaRegistration.h" />
     <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
@@ -296,6 +302,7 @@
     <None Include="Scripts\Doors\door2.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
     <None Include="Scripts\Objects\player.lua" />
+    <None Include="Scripts\Quests\tutorial1.lua" />
     <None Include="Scripts\test\npc1.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

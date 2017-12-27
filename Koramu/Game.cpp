@@ -11,6 +11,7 @@
 #include "InputHandler.h"
 #include "Story.h"
 #include "StoryParser.h"
+#include "Notebook.h"
 
 #include "GameObjectFactory.h"
 #include "Player.h"
@@ -55,6 +56,9 @@ Game::Game()									//	Konstruktor
 
 	//	Inventar erstellen
 	m_pItemList = new ItemList();
+
+	//	Notizbuch erstellen
+	m_pNotebook = new Notebook(10);
 }
 
 /*	!! WICHTIG !!
@@ -184,6 +188,9 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	m_gameXPos = xPos;
 	m_gameYPos = yPos;
 
+	//	Notizbuch zentrieren
+	m_pNotebook->align();
+
 #pragma region registerType
 	TheGameObjectFactory::Instance()->registerType("button", new ButtonCreator());
 	TheGameObjectFactory::Instance()->registerType("animation", new AnimationCreator());
@@ -301,7 +308,7 @@ void Game::saveGame()
 				
 				//	"GameObject" zu einem "Button" casten
 				Button* saveButton = dynamic_cast<Button*>(o);
-				//	Textur des Buttons auf die zweite (0-indexed) Spalte setzen und weiter Interaktion verhindern.
+				//	Textur des Buttons auf die dritte (0-indexed) Spalte setzen und weiter Interaktion verhindern.
 				saveButton->lockOnCol(2);
 			}
 		}
@@ -374,6 +381,8 @@ void Game::resize(bool changeSize)
 			TheScriptManager::Instance()->getScriptById(g->getUniqueId()).callFunction("align");
 		}
 
+		//	Notizbuch zentrieren
+		m_pNotebook->align();
 	}
 }
 

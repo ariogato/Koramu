@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "Story.h"
 #include "Camera.h"
+#include "Notebook.h"
+#include "Page.h"
 
 StoryParser::StoryParser()
 {
@@ -179,6 +181,28 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 		}
 	}
 
+	//	Notizen des Notizbuchs speichern
+	//	Element für den aktuellen Zustand des Notizbuches
+	XMLElement* pNotebookState = pDocument->NewElement("notebookState");
+	pRoot->InsertEndChild(pNotebookState);
+
+	//	Über die Seiten des Notizbuches iterieren
+	for(auto const &page : TheGame::Instance()->getNotebook()->getPages())
+	{
+		//	Element für die aktuell betrachtete Seite
+		XMLElement* pPage = pDocument->NewElement("page");
+		pNotebookState->InsertEndChild(pPage);
+		//	Über die Zeilen der Seite iterieren
+		for (auto const &line : page.getLines())
+		{
+			//	Element für die aktuell betrachtete Zeile
+			XMLElement* pLine = pDocument->NewElement("line");
+			//	Text der Zeile des Notizbuches is das "line"-Elment einbetten
+			pLine->SetText(line.c_str());
+			pPage->InsertEndChild(pLine);
+		}
+	}
+
 	//	Zu guter Letzt muss die Datei gespeichert werden, damit die Neuerungen erhalten bleiben
 	pDocument->SaveFile(filename);
 
@@ -310,6 +334,20 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 					pSDLGameObject->setPosition(xPos, yPos);
 				}
 			}
+		}
+	}
+
+	//	Alte Notizen entfernen, da nur die gespeicherten Notizen erscheinen sollen
+	TheGame::Instance()->getNotebook()->clear();
+	//	Notizen laden
+	//	Über alle "page"-Elemente (Kinder des "notebookState"-Elements) iterieren
+	for (XMLElement* pPage = pRoot->FirstChildElement("notebookState")->FirstChildElement("page"); pPage != nullptr; pPage = pPage->NextSiblingElement("page"))
+	{
+		//	Über alle "line"-Elemente der aktuelle betrachteten "Seite" iterieren
+		for (XMLElement* pLine = pPage->FirstChildElement("line"); pLine != nullptr; pLine = pLine->NextSiblingElement("line"))
+		{
+			//	Text aus dem "line"-Element auslesen und zum Notizbuch hinzufügen
+			TheGame::Instance()->getNotebook()->addNote(pLine->GetText());
 		}
 	}
 

@@ -2,7 +2,7 @@
 
 #include "GameState.h"
 
-/*	Dieser Spielzustand/"GameState" ist "aktiv", wenn wir im Menu unseres Spiels sind.
+/*	Dieser Spielzustand/"GameState" ist "aktiv", wenn aus dem "PlayState" das Spiel pausiert wird. 
 *
 *	Diese Klasse erbt von "GameState"
 */

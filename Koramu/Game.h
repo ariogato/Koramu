@@ -13,6 +13,7 @@ namespace FiniteStateMachine
 class Camera;
 class Story;
 class ItemList;
+class Notebook;
 
 /*	Konstruktor und Destruktor wurden aus folgendem Grund 'private' gesetzt:
 *
@@ -71,6 +72,9 @@ private:
 	//	Inventar
 	ItemList* m_pItemList;
 
+	//	Notizbuch
+	Notebook* m_pNotebook;
+
 	//	Logger Variablen
 	Logger* m_pStandardLog;
 	Logger* m_pErrorLog;
@@ -117,6 +121,7 @@ public:
 	FiniteStateMachine::GameState* getCurrentState() const;
 	Story* getStory() const { return m_pStory; }
 	ItemList* getItemList() const { return m_pItemList; }
+	Notebook* getNotebook() { return m_pNotebook; }
 
 	/*	Log Objekte werden zurückgegeben, damit man mit einem
 	*	Stream Operator auf sie zugreifen kann.
