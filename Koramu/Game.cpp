@@ -83,6 +83,7 @@ Game::~Game()									//	Destruktor
 	delete m_pCamera;
 	delete m_pStory;
 	delete m_pItemList;
+	delete m_pNotebook;
 
 	SDL_DestroyRenderer(m_pRenderer);			//	Den Renderer zerstören
 	SDL_DestroyWindow(m_pWindow);				//	Das Fenster zerstören

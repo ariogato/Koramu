@@ -1,5 +1,5 @@
 #pragma once
-#include "GameState.h"
+#include "IngameState.h"
 
 /*	Dieser Spielzustand/"GameState" ist "aktiv", wenn der Benutzer das "Notizbuch" einsehen möchte. 
 *
@@ -7,7 +7,7 @@
 */
 namespace FiniteStateMachine
 {
-	class NotebookState : public GameState
+	class NotebookState : public IngameState
 	{
 	public:
 		NotebookState();			//	Konstruktor

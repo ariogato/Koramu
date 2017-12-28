@@ -157,6 +157,7 @@
     <ClCompile Include="GameLuaRegistration.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="HowToPlayState.cpp" />
+    <ClCompile Include="ImageProcessing.cpp" />
     <ClCompile Include="IngameState.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="InventoryState.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Dialog.h" />
+    <ClInclude Include="ImageProcessing.h" />
     <ClInclude Include="IngameState.h" />
     <ClInclude Include="InventoryState.h" />
     <ClInclude Include="Item.h" />

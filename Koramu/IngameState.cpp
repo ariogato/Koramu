@@ -3,10 +3,56 @@
 #include "InputHandler.h"
 #include "StateParser.h"
 #include "MapParser.h"
+#include "ParamLoader.h"
+#include "TextureManager.h"
+#include "ImageProcessing.h"
+
+GameObject* FiniteStateMachine::IngameState::takeScreenshot()
+{
+	/*	Hier wird das Objekt für den Screenshot, der im Hintergrund
+	*	des Pausemenüs angezeigt wird, hardgecodet.
+	*	Gleichzeitig wird der Grauschleier, der drüber gerendert wird hardgecodet
+	*/
+	SDL_GameObject* pScreenshot = new SDL_GameObject();
+
+	//	Die Attribute für den Screenshot werden hier gesetzt
+	ParamLoader params;
+	params.setX(0.0f);
+	params.setX(0.0f);
+	params.setWidth(TheGame::Instance()->getGameWidth());
+	params.setHeight(TheGame::Instance()->getGameHeight());
+	params.setNumRows(1);
+	params.setNumCols(1);
+	params.setAnimSpeed(100);
+	params.setMapId(m_mapId);
+	params.setUniqueId("screenshot");
+	params.setTextureId("screenshot");
+
+	//	Das Objekt wird geladen
+	pScreenshot->load(params);
+
+	//	Hier wird eine Speicherstruktur erstellt, die den Screenshot speichern kann
+	SDL_Surface* screenshot = SDL_CreateRGBSurface(0, TheGame::Instance()->getGameWidth(), TheGame::Instance()->getGameHeight(), 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+
+	//Der Screenshot wird erstellt und anschließend als BMP-Datei gespeichert
+	SDL_RenderReadPixels(TheGame::Instance()->getRenderer(), nullptr, SDL_PIXELFORMAT_ARGB8888, screenshot->pixels, screenshot->pitch);
+	
+	ImageProcessing::gaussianBlur(screenshot);
+
+	SDL_SaveBMP(screenshot, "../assets/screenshot.bmp");
+
+	//	Der Speicher der zuvor erstellten Datenstruktur wird wieder freigegeben
+	SDL_FreeSurface(screenshot);
+
+	//	Den alten Screenshot löschen und dafür den neuen hinzufügen
+	TheTextureManager::Instance()->clearFromTextureMap("screenshot");
+	TheTextureManager::Instance()->load("screenshot", "../assets/screenshot.bmp", TheGame::Instance()->getRenderer());
+
+	return pScreenshot;
+}
 
 FiniteStateMachine::IngameState::IngameState()
 {
-	
 }
 
 FiniteStateMachine::IngameState::~IngameState()
@@ -31,6 +77,9 @@ void FiniteStateMachine::IngameState::onEnter()
 		//	Hier macht es keinen Sinn mehr das Spiel fortzusetzen
 		TheGame::Instance()->emergencyExit(("Fehler beim Parsen des " + stateId + "!").c_str());
 	}
+
+	//	Einen Screenshot aufnehmen und ihn in die Liste aus Objekten aufnehmen
+	pObjects->push_back(takeScreenshot());
 
 	//	Überprüfen, ob die Maps erfolgreich geparst wurden
 	if (!MapParser::parse("xmlFiles/maps.xml", m_mapDict, m_maps, pObjects, this->getStateID()))
@@ -74,6 +123,8 @@ void FiniteStateMachine::IngameState::handleInput()
 
 void FiniteStateMachine::IngameState::update()
 {
+	//	Die aktuelle Map wird geupdatet
+	m_maps.getTopNodeData()->update();
 }
 
 void FiniteStateMachine::IngameState::render()

@@ -32,6 +32,8 @@ void FiniteStateMachine::InventoryState::handleInput()
 
 void FiniteStateMachine::InventoryState::update()
 {
+	IngameState::update();
+
 	//	Der InventoryState soll verlassen werden, sobald 'I' gedrückt wird
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_I))
 	{
@@ -42,8 +44,6 @@ void FiniteStateMachine::InventoryState::update()
 
 		TheGame::Instance()->popState();
 	}
-
-	IngameState::update();
 
 	//	update() von der ItemList aufrufen
 	TheGame::Instance()->getItemList()->update();

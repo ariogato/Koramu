@@ -293,6 +293,9 @@
     <ClCompile Include="Page.cpp">
       <Filter>Quelldateien\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="ImageProcessing.cpp">
+      <Filter>Quelldateien\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -495,6 +498,9 @@
     </ClInclude>
     <ClInclude Include="Page.h">
       <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageProcessing.h">
+      <Filter>Headerdateien\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
