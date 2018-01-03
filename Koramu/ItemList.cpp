@@ -209,3 +209,21 @@ bool ItemList::isInList(std::string id)
 	//	Wenn wir hier ankommen, dann wurde kein Item mit der id gefunden
 	return false;
 }
+
+int ItemList::getItemCount(std::string id)
+{
+	//	Den Eintrag mit dem Element mit id finden
+	std::vector<std::pair<Item*, int>>::iterator it = std::find_if(m_items.begin(), m_items.end(), [id](std::pair<Item*, int>& elem)
+	{
+		return elem.first->getId() == id;
+	});
+
+	//	Falls der Eintrag nicht gefunden wurde, soll 0 zurückgegeben werden
+	if (it == m_items.end())
+	{
+		return 0;
+	}
+
+	//	Falls der Eintrag vorhanden ist, soll der zweite Wert im Tupel zurückgegeben werden
+	return it->second;
+}

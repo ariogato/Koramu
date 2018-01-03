@@ -43,5 +43,5 @@ public:
 	//	getter-Funktionen
 	std::vector<std::pair<Item*, int>> getItems() const { return m_items; }
 	bool isInList(std::string id);
-
+	int getItemCount(std::string id);
 };

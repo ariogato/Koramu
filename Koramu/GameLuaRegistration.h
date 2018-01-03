@@ -37,5 +37,6 @@ namespace LuaRegistrations
 	int l_addNote(lua_State* pLuaState);
 	int l_addItem(lua_State* pLuaState);
 	int l_removeItem(lua_State* pLuaState);
+	int l_getItemCount(lua_State* pLuaState);
 }
 

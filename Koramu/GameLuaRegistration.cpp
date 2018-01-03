@@ -39,6 +39,7 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "addNote", l_addNote },
 		{ "addItem", l_addItem },
 		{ "removeItem", l_removeItem },
+		{ "getItemCount", l_getItemCount },
 		{nullptr, nullptr}
 	};
 
@@ -254,4 +255,28 @@ int LuaRegistrations::l_removeItem(lua_State* pLuaState)
 
 	//	Es gibt keinen Rückgabewert
 	return 0;
+}
+
+int LuaRegistrations::l_getItemCount(lua_State* pLuaState)
+{
+	/*	Diese Funktion nimmt einen string id entgegen und gibt 
+	 *	die Anzahl der Items mit der id im INventar des Spielers zurück.
+	 */
+	 //	Es gibt einen Parameter: id
+	const char* id = luaL_checkstring(pLuaState, 2);
+
+	if (!id)
+	{
+		TheGame::Instance()->logError() << "LuaRegistrations::l_getItemCount():\n\t1. Argument ist kein string." << std::endl << std::endl;
+		return 0;
+	}
+
+	//	Die Anzahl der Items speichern
+	int count = TheGame::Instance()->getItemList()->getItemCount(id);
+
+	//	Die Zahl auf den Stack pushen, damit lua ihn als Rückgabewert annimmt
+	lua_pushinteger(pLuaState, count);
+
+	//	Die Anzahl wird zurück gegeben
+	return 1;
 }
