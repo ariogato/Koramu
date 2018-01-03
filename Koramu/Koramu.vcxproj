@@ -283,9 +283,7 @@
     <Xml Include="xmlFiles\save.xml">
       <SubType>Designer</SubType>
     </Xml>
-    <Xml Include="xmlFiles\scripts.xml">
-      <SubType>Designer</SubType>
-    </Xml>
+    <Xml Include="xmlFiles\scripts.xml" />
     <Xml Include="xmlFiles\states.xml">
       <SubType>Designer</SubType>
     </Xml>
@@ -301,14 +299,10 @@
     <None Include="Scripts\Buttons\buttonResume.lua" />
     <None Include="Scripts\Buttons\buttonSave.lua" />
     <None Include="Scripts\default.lua" />
-    <None Include="Scripts\Doors\door1.lua" />
-    <None Include="Scripts\Doors\door2.lua" />
     <None Include="Scripts\Inventory\itemList.lua" />
     <None Include="Scripts\Inventory\Items\topHat.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
     <None Include="Scripts\Objects\player.lua" />
-    <None Include="Scripts\Quests\prologue\firstDoNothingQuest.lua" />
-    <None Include="Scripts\Quests\prologue\notebookEntry1.lua" />
     <None Include="Scripts\test\npc1.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,7 +2,6 @@
 
 <quests>
   <mainQuest id="prologue">
-    <partQuest id="firstDoNothingQuest"/>
-    <partQuest id="notebookEntry1"/>
+    <partQuest id="FirstDoNothingQuest"/>
   </mainQuest>
 </quests>

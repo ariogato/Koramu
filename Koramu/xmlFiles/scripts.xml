@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scripts>
+  <!--Ein Default Skript für GameObjects ohne eigenes Skript (wegen getScriptFromId)-->
+  <script id="default" path="Scripts/default.lua"/>
+
+  <!--Player-->
+  <script id="player" path="Scripts/Objects/player.lua"/>
+
+  <!--Objects-->
+  <script id="test" path="Scripts/test/npc1.lua"/>
+
+  <!--Buttons MenuState-->
+  <script id="buttonPlay" path="Scripts/Buttons/buttonPlay.lua"/>
+  <script id="buttonHowtoplay" path="Scripts/Buttons/buttonHowToPlay.lua"/>
+  <script id="buttonExit" path="Scripts/Buttons/buttonExit.lua"/>
+  <script id="buttonResize" path="Scripts/Buttons/buttonResize.lua"/>
+
+  <!--Buttons PauseState-->
+  <script id="buttonResume" path="Scripts/Buttons/buttonResume.lua"/>
+  <script id="buttonSave" path="Scripts/Buttons/buttonSave.lua"/>
+  <script id="buttonMainMenu" path="Scripts/Buttons/buttonMainMenu.lua"/>
+
+  <!--Quests-->
+  <!--mainQuest: prologue-->
+
+  <!--Items-->
+  <script id="itemList" path="Scripts/Inventory/itemList.lua"/>
+  <script id="topHat" path="Scripts/Inventory/Items/topHat.lua"/>
+
+  <!--Misc-->
+  <script id="koramu" path="Scripts/Misc/koramu.lua"/>
+
+</scripts>

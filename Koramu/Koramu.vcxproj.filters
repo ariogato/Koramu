@@ -522,13 +522,13 @@
     <Xml Include="xmlFiles\collisionRects.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
-    <Xml Include="xmlFiles\scripts.xml">
-      <Filter>xmlFiles</Filter>
-    </Xml>
     <Xml Include="xmlFiles\quests.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
     <Xml Include="xmlFiles\save.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
+    <Xml Include="xmlFiles\scripts.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
   </ItemGroup>
@@ -572,18 +572,6 @@
     </None>
     <None Include="Scripts\Inventory\itemList.lua">
       <Filter>Lua Skripts\Inventory</Filter>
-    </None>
-    <None Include="Scripts\Quests\prologue\notebookEntry1.lua">
-      <Filter>Lua Skripts\Quests\prologue</Filter>
-    </None>
-    <None Include="Scripts\Quests\prologue\firstDoNothingQuest.lua">
-      <Filter>Lua Skripts\Quests\prologue</Filter>
-    </None>
-    <None Include="Scripts\Doors\door2.lua">
-      <Filter>Lua Skripts\Doors</Filter>
-    </None>
-    <None Include="Scripts\Doors\door1.lua">
-      <Filter>Lua Skripts\Doors</Filter>
     </None>
   </ItemGroup>
 </Project>
