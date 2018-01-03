@@ -37,7 +37,7 @@ GameObject* FiniteStateMachine::IngameState::takeScreenshot()
 	//Der Screenshot wird erstellt und anschließend als BMP-Datei gespeichert
 	SDL_RenderReadPixels(TheGame::Instance()->getRenderer(), nullptr, SDL_PIXELFORMAT_ARGB8888, screenshot->pixels, screenshot->pitch);
 	
-	ImageProcessing::gaussianBlur(screenshot);
+	ImageProcessing::gaussianBlurFast(screenshot);
 
 	SDL_SaveBMP(screenshot, "../assets/screenshot.bmp");
 

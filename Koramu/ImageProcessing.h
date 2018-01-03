@@ -17,4 +17,5 @@ private:
 
 public:
 	static void gaussianBlur(SDL_Surface* pSurface);
+	static void gaussianBlurFast(SDL_Surface* pSurface);
 };
