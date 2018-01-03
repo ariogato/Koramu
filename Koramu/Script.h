@@ -34,6 +34,7 @@ public:
 	void pushArgumentMetatable(void* pObject, OBJECT_TYPE type);	//	Pusht eine Metatabelle des angegebenen Typs auf den Stack
 	void pushArgumentString(const char* arg);						//	Pusht einen (c-)string auf den Stack
 	void callVoidWithArgs(const char* func, int numArgs);			//	Ruft eine void Funktion mit 'numArgs' Argumenten vom Stack auf
+	std::string callString(const char* func);						//	Ruft eine Funktion mit Rückgabewert string ohne Argumente auf
 
 	//	getter-Funktionen
 	std::string getScriptId() const { return m_scriptId; }

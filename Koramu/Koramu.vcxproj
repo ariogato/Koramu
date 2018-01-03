@@ -161,6 +161,7 @@
     <ClCompile Include="IngameState.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="InventoryState.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemList.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
@@ -302,6 +303,8 @@
     <None Include="Scripts\default.lua" />
     <None Include="Scripts\Doors\door1.lua" />
     <None Include="Scripts\Doors\door2.lua" />
+    <None Include="Scripts\Inventory\itemList.lua" />
+    <None Include="Scripts\Inventory\Items\topHat.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
     <None Include="Scripts\Objects\player.lua" />
     <None Include="Scripts\Quests\tutorial1.lua" />

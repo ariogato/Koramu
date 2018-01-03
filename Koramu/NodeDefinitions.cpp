@@ -30,7 +30,7 @@ DataStructure::StackElement<T>* DataStructure::Node<T>::push(T pNewNodeData)
 }
 
 template <typename T>
-unsigned DataStructure::Node<T>::size()
+int DataStructure::Node<T>::size()
 {
 	/*	Der vom Nachfolger zurückgegebene Wert wird immer um 1 inkrementiert.
 	 *	Mit dem rekursiven Aufruf dieser Methode inkrementiert jeder Knoten (außer der Abschluss)

@@ -13,9 +13,9 @@
         <mainMap>
             <centerObject id="player"/>
             <object id="door1" xPos="704" yPos="320"/>
-            <object id="player" xPos="922" yPos="441"/>
             <object id="tree1" xPos="1088" yPos="384"/>
-            <object id="test" xPos="2310" yPos="690"/>
+            <object id="player" xPos="1274" yPos="549"/>
+            <object id="test" xPos="1326" yPos="690"/>
             <object id="door3" xPos="368" yPos="752"/>
             <object id="johann" xPos="595" yPos="583"/>
             <object id="tree2" xPos="576" yPos="1045"/>
@@ -36,4 +36,10 @@
         <page/>
         <page/>
     </notebookState>
+    <inventoryState>
+        <item>
+            <id>topHat</id>
+            <count>1</count>
+        </item>
+    </inventoryState>
 </saveState>

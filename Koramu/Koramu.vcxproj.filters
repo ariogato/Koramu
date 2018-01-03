@@ -111,11 +111,11 @@
     <Filter Include="Lua Skripts\Inventory">
       <UniqueIdentifier>{530c8537-a4f8-420a-b197-d25f29a34bb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lua Skripts\Inventory\ItemList">
-      <UniqueIdentifier>{4478a63c-07c3-4f72-afe8-6d5126517e1b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lua Skripts\Quests">
       <UniqueIdentifier>{a78b0db7-0f7c-4c41-a587-2ef025fe94b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua Skripts\Inventory\Items">
+      <UniqueIdentifier>{4478a63c-07c3-4f72-afe8-6d5126517e1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="ImageProcessing.cpp">
       <Filter>Quelldateien\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Quelldateien\GameObjects\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -569,6 +572,12 @@
     </None>
     <None Include="Scripts\Quests\tutorial1.lua">
       <Filter>Lua Skripts\Quests</Filter>
+    </None>
+    <None Include="Scripts\Inventory\Items\topHat.lua">
+      <Filter>Lua Skripts\Inventory\Items</Filter>
+    </None>
+    <None Include="Scripts\Inventory\itemList.lua">
+      <Filter>Lua Skripts\Inventory</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,29 +1,42 @@
 #pragma once
+#include <string>
+
+class Vector2D;
 
 /*	Ein Item ist ein Objekt, das so nicht in der Spielumgebung zu sehen ist.
  *	Es wird im Inventar des Spielers gespeichert und nur da ist es zu sehen. Mit Hilfe des Zustandes des Inventars
  *	wird ein voranschreiten in der Story erreicht.
+ *	
+ *	Die Textur eines jeden Items hat eine feste Größe von 50 x 50 Pixeln.
  */
 
-struct Item
+class Item
 {
 private:
-	const char* m_id;										//	Die Id des Items
-	const char* m_itemName;									//	Die Bezeichnung für das Item, welche dem Benutzer im Inventar angezeigt wird
-	const char* m_textureId;								//	Die Id der Textur für das Item
+	std::string m_id;										//	Die Id des Items
+	std::string m_itemName;									//	Die Bezeichnung für das Item, welche dem Benutzer im Inventar angezeigt wird
+	std::string m_textureId;								//	Die Id der Textur für das Item
+	std::string m_scriptId;									//	Die Id des Scripts für das Item
+	bool m_isActive;										//	Zeigt an, ob das Item in der Liste ausgewählt wurde (TODO: implementieren)
 
 public:
-	Item() 
-		: m_id(""), m_itemName(""), m_textureId("") {}		//	Konstruktor
+	Item()													//	Konstruktor
+		: m_id(""), m_itemName(""),
+		  m_textureId(""), m_scriptId(""), m_isActive(false)
+	{} 
+
+	void draw(Vector2D& v, int num);
 
 	//	getter-Funktionen
-	const char* getId() const { return m_id; }
-	const char* getItemName() const { return m_itemName; }
-	const char* getTextureId() const { return m_textureId; }
+	std::string getId() const { return m_id; }
+	std::string getItemName() const { return m_itemName; }
+	std::string getTextureId() const { return m_textureId; }
+	std::string getScriptId() const { return m_scriptId; }
 
 	//	setter-Funktionen
-	void setId(const char* id) { m_id = id; }
-	void setItemName(const char* itemName) { m_itemName = itemName; }
-	void setTextureId(const char* textureId) { m_textureId = textureId; }
+	void setId(std::string id) { m_id = id; }
+	void setItemName(std::string itemName) { m_itemName = itemName; }
+	void setTextureId(std::string textureId) { m_textureId = textureId; }
+	void setScriptId(std::string scriptId) { m_scriptId = scriptId; }
 
 };

@@ -27,7 +27,8 @@
   <script id="tutorial1" path="Scripts/Quests/tutorial1.lua"/>
   
   <!--Items-->
-  
+  <script id="itemList" path="Scripts/Inventory/itemList.lua"/>
+  <script id="topHat" path="Scripts/Inventory/Items/topHat.lua"/>
 
   <!--Misc-->
   <script id="koramu" path="Scripts/Misc/koramu.lua"/>

@@ -1,5 +1,6 @@
 #include "ItemList.h"
 #include <algorithm>
+#include <sstream>
 #include "ScriptManager.h"
 #include "Game.h"
 
@@ -17,18 +18,62 @@ ItemList::~ItemList()
 {
 }
 
+#ifndef SCRIPT_ID
+#define SCRIPT_ID "itemList"
+#endif
 void ItemList::loadItems()
 {
-
 	//	MUSS GEÄNDERT WERDEN
-	Item i;
+	/*Item i;
 	i.setId("topHat");
-	i.setItemName("Totally awesome Top Hat");
+	i.setItemName("Top Hat");
 	i.setTextureId("topHat");
+	i.setScriptId("topHat");
 
 	m_itemMap["topHat"] = i;
+	*/
 
-	m_items.push_back(std::pair<Item*, int>(&m_itemMap["topHat"], 1));
+	/*	Sämtliche Items haben ihr eigenes Skript mit mindestens diesen Feldern:
+	 *		id, name, textureId, scriptId
+	 *
+	 *	Es existiert ein Skript mit der id SCRIPT_ID, welches ein Feld in seiner Tabelle
+	 *	enthält. Dieses Feld liefert einen String mit sämtlichen Ids aller Items im Spiel
+	 *	diese Ids sind durch ein '\n' getrennt.
+	 *	
+	 *	Hier werden zuerst alle Ids alles Skripte extrahiert. Danach wird über alle Skripts iteriert
+	 *	wobei jedes Mal ein neues Item erstellt wird (Die Attribute werden mit o.g. Feldern befüllt).
+	 */
+
+	//	Das Skript wird vom ScriptManager geladen
+	Script& s = TheScriptManager::Instance()->getScriptById(SCRIPT_ID);
+
+	//	Das Feld mit allen Ids extrahieren
+	std::stringstream scriptIds(s.getStringFromTable("items"));
+
+	//	Über alle ids iterieren
+	std::string scriptId;
+	while (std::getline(scriptIds, scriptId, '\n'))
+	{
+		//	Item Objekt, welches der Map hinzugefügt wird
+		Item i;
+
+		//	Das Skript des Items wird extrahiert
+		Script& itemScript = TheScriptManager::Instance()->getScriptById(scriptId);
+
+		//	Attribute des Items setzen
+		i.setId(itemScript.getStringFromTable("id").c_str());
+		i.setItemName(itemScript.getStringFromTable("name").c_str());
+		i.setTextureId(itemScript.getStringFromTable("textureId").c_str());
+		i.setScriptId(scriptId.c_str());
+
+		//	Das Item in die Map einfügen, falls es noch nicht vorhanden ist
+		if (m_itemMap.count(i.getId()) > 0)
+		{
+			TheGame::Instance()->logError() << "ItemList::loadItems():\n\tItem mit der id " << i.getId() << " doppelt deklariert." << std::endl << std::endl;
+			return;
+		}
+		m_itemMap.insert(std::pair <std::string, Item>(i.getId(), i));
+	}
 }
 
 void ItemList::addItem(std::string id, int num)
@@ -94,14 +139,23 @@ void ItemList::removeItem(std::string id, int num)
 	}
 }
 
+void ItemList::clear()
+{
+	//	Der Vektor wird einfach geleert (Objekte dürfen nicht gelöscht werden)
+	m_items.clear();
+}
+
 void ItemList::align()
 {
 	/*	Das Inventar soll am rechten Rand des Bildschirmes zu sehen sein
 	 *	und nur einen kleinen Teil davon besetzen.
 	 */
 
-	m_rect.width = TheGame::Instance()->getGameWidth() / 3 - OFFSET_X;
+	m_rect.width = TheGame::Instance()->getGameWidth() * 0.45 - OFFSET_X;
 	m_rect.height = TheGame::Instance()->getGameHeight() - OFFSET_Y * 2;
+
+	//	Eine Notbremse für die Breite
+	m_rect.width = m_rect.width <= 500 ? 500 : m_rect.width;
 
 	m_rect.positionVector.setX(TheGame::Instance()->getGameWidth() - m_rect.width - OFFSET_X);
 	m_rect.positionVector.setY(OFFSET_Y);
@@ -116,9 +170,28 @@ void ItemList::update()
 	align();
 }
 
+#ifndef MARGIN_X
+#define MARGIN_X 10
+#endif
+
+#ifndef MARGIN_Y
+#define MARGIN_Y 10
+#endif
+
 void ItemList::draw()
 {
+	//	ObjectRect wird gemalt
 	m_rect.draw(Vector2D(0.0f, 0.0f));
+
+	//	Es wird über alle Items iteriert; Diese werden einzeln gerendert
+	for (int i = 0; i < m_items.size(); i++)
+	{
+		//	Der Vektor wandert mit jeder Iteration um 50 in positive Y-Richtung, also Zeile für Zeile nach unten
+		Vector2D v(m_rect.positionVector.getX() + MARGIN_X, m_rect.positionVector.getY() + MARGIN_Y + i * 55);
+
+		//	Der Render-Aufruf wird weitergegeben
+		m_items[i].first->draw(v, m_items[i].second);
+	}
 }
 
 bool ItemList::isInList(std::string id)

@@ -55,7 +55,7 @@ void DataStructure::Stack<T>::clear()
 }
 
 template <typename T>
-unsigned int DataStructure::Stack<T>::size()
+int DataStructure::Stack<T>::size()
 {
 	//	Rekursiver Aufruf der Methode
 	return m_pTopNode->size();

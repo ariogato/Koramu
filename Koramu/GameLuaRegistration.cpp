@@ -8,6 +8,7 @@
 #include "DialogCommand.h"
 #include "NotebookState.h"
 #include "Notebook.h"
+#include "ItemList.h"
 
 using namespace LuaRegistrations;
 
@@ -35,7 +36,9 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "exitMap", l_exitMap },
 		{ "openNotebook", l_openNotebook},
 		{ "closeNotebook", l_closeNotebook},
-		{ "addNote", l_addNote},
+		{ "addNote", l_addNote },
+		{ "addItem", l_addItem },
+		{ "removeItem", l_removeItem },
 		{nullptr, nullptr}
 	};
 
@@ -211,6 +214,44 @@ int LuaRegistrations::l_addNote(lua_State * pLuaState)
 	//	Übergebenen Text zum Notizbuch hinzufügen
 	TheGame::Instance()->getNotebook()->addNote(note);
 	
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_addItem(lua_State* pLuaState)
+{
+	//	Es gibt zwei Parameter: id & count
+	const char* id = luaL_checkstring(pLuaState, 2);
+	int count = luaL_checkinteger(pLuaState, 3);
+
+	if (!id)
+	{
+		TheGame::Instance()->logError() << "LuaRegistrations::l_addItem():\n\t1. Argument ist kein string." << std::endl << std::endl;
+		return 0;
+	}
+
+	//	Das Item hinzufügen
+	TheGame::Instance()->getItemList()->addItem(id, count);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_removeItem(lua_State* pLuaState)
+{
+	//	Es gibt einen Parameter: id
+	const char* id = luaL_checkstring(pLuaState, 2);
+	int count = luaL_checkinteger(pLuaState, 3);
+
+	if (!id)
+	{
+		TheGame::Instance()->logError() << "LuaRegistrations::l_removeItem():\n\t1. Argument ist kein string." << std::endl << std::endl;
+		return 0;
+	}
+
+	//	Das Item entfernen
+	TheGame::Instance()->getItemList()->removeItem(id, count);
+
 	//	Es gibt keinen Rückgabewert
 	return 0;
 }

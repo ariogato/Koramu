@@ -47,7 +47,7 @@ namespace DataStructure
 		void push(T newNodeData);					//	Um einen Knoten aufzustapeln (entspricht "einfügen" aus dem Infounterricht)			
 		void pop();									//	Um einen Knoten vom Stapel zu nehmen - Immer den ersten (entspricht "entfernen" aus dem Infounterricht)
 		void clear();								//	Jeden iterativ Knoten poppen (Datenelemente, die Pointer sind werden hiermit nicht glöscht!)
-		unsigned int size();						//	Gibt die Anzahl der auf dem Stack befindlichen Knoten zurück
+		int size();									//	Gibt die Anzahl der auf dem Stack befindlichen Knoten zurück
 		bool empty();								//	Zeigt an, ob der Stapel leer ist (ob sich ein Abschluss an erster Stelle befindet)
 
 		//	getter-Funktionen

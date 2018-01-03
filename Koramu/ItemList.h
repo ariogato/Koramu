@@ -34,6 +34,7 @@ public:
 	void loadItems();										//	Lädt alle Items aus einem Skript
 	void addItem(std::string id, int num);					//	Fügt dem Inventar (vector) ein Item aus dem dictionary hinzu
 	void removeItem(std::string id, int num);				//	Entfernt ein Item aus dem Inventar basierend auf der Id
+	void clear();											//	Leert die Liste
 
 	void align();											//	Zentriert die Liste auf dem Bildschirm
 	void update();											//	updatet die Liste

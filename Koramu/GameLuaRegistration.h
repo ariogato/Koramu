@@ -35,5 +35,7 @@ namespace LuaRegistrations
 	int l_openNotebook(lua_State* pLuaState);
 	int l_closeNotebook(lua_State* pLuaState);
 	int l_addNote(lua_State* pLuaState);
+	int l_addItem(lua_State* pLuaState);
+	int l_removeItem(lua_State* pLuaState);
 }
 

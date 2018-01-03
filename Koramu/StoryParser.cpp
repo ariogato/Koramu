@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Notebook.h"
 #include "Page.h"
+#include "ItemList.h"
 
 StoryParser::StoryParser()
 {
@@ -203,6 +204,28 @@ bool StoryParser::saveGame(const char* filename, FiniteStateMachine::GameState* 
 		}
 	}
 
+	//	Die Items im Inventar speichern
+	XMLElement* pInventoryState = pDocument->NewElement("inventoryState");
+	pRoot->InsertEndChild(pInventoryState);
+
+	//	Es wird über jedes Item iteriert
+	for (auto& itemPair : TheGame::Instance()->getItemList()->getItems())
+	{
+		//	Das Tag für das aktuelle Item
+		XMLElement* pItem = pDocument->NewElement("item");
+		pInventoryState->InsertEndChild(pItem);
+
+		//	Tag für den Namen des aktuellen Items
+		XMLElement* pId = pDocument->NewElement("id");
+		pId->SetText(itemPair.first->getId().c_str());
+		pItem->InsertEndChild(pId);
+
+		//	Tag für die Anzahl des Items
+		XMLElement* pCount = pDocument->NewElement("count");
+		pCount->SetText(itemPair.second);
+		pItem->InsertEndChild(pCount);
+	}
+
 	//	Zu guter Letzt muss die Datei gespeichert werden, damit die Neuerungen erhalten bleiben
 	pDocument->SaveFile(filename);
 
@@ -349,6 +372,19 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 			//	Text aus dem "line"-Element auslesen und zum Notizbuch hinzufügen
 			TheGame::Instance()->getNotebook()->addNote(pLine->GetText());
 		}
+	}
+
+	/*	Das Inventar wird geleert, da der Inhalt nicht abhängig vom GameState ist
+	 *	Außerdem wird die Map aus Items (mögliches Items) aktualisiert.
+	 */
+	TheGame::Instance()->getItemList()->clear();
+	TheGame::Instance()->getItemList()->loadItems();
+
+	//	Über alle "item" tags in "inventoryState" iterierens
+	for (XMLElement* e = pRoot->FirstChildElement("inventoryState")->FirstChildElement("item"); e != nullptr; e = e->NextSiblingElement("item"))
+	{
+		//	Das Item wird der Liste hinzugefügt
+ 		TheGame::Instance()->getItemList()->addItem(e->FirstChildElement("id")->GetText(), e->FirstChildElement("count")->IntText());
 	}
 
 	//	Der Spielstand wurde erfolgreich geladen

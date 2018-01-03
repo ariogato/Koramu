@@ -25,7 +25,7 @@ namespace DataStructure
 		~Node();												//	Destruktor
 
 		StackElement<T>* push(T) override;						//	Methode zum aufstapeln von neuen Knoten (entspricht "einfügen" aus dem Infounterricht)
-		unsigned int size() override;							//	Gibt die Anzahl der auf dem Stack befindlichen Knoten zurück
+		int size() override;							//	Gibt die Anzahl der auf dem Stack befindlichen Knoten zurück
 
 		//	getter-Funktionen
 		StackElement<T>* getElement(int index) override;		//	Gibt das Element an 'index' zurück, wobei 0 das erste und Stack<T>::size() das letzte Element ist

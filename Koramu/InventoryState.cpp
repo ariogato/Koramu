@@ -44,6 +44,16 @@ void FiniteStateMachine::InventoryState::update()
 
 		TheGame::Instance()->popState();
 	}
+	//	Der InventoryState soll verlassen werden, sobald 'ESC' gedrückt wird
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+		{
+			TheInputHandler::Instance()->handleInput();
+		}
+
+		TheGame::Instance()->popState();
+	}
 
 	//	update() von der ItemList aufrufen
 	TheGame::Instance()->getItemList()->update();

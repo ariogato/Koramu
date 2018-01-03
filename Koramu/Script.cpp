@@ -174,6 +174,37 @@ void Script::callVoidWithArgs(const char* func, int numArgs)
 	}
 }
 
+std::string Script::callString(const char* func)
+{
+	//	Die Tabelle auf den Stack pushen
+	if (!pushTable())
+		return "";
+
+	//	Die Funktion der Tabelle wird auf den Stack gepusht
+	lua_getfield(m_pLuaState, -1, func);
+
+	/*	Checken, ob tatsächlich eine Funktion gepusht wurde.
+	*	Falls nicht, soll das gepushte einfach wieder gepoppt werden.
+	*/
+	if (lua_isfunction(m_pLuaState, -1))
+	{
+		//	Funktion aufrufen
+		lua_pcall(m_pLuaState, 0, 0, -1);
+	}
+	else
+	{
+		lua_pop(m_pLuaState, 1);
+	}
+
+	//	Es wird gecheckt, ob ein String zurückgegeben wurde; Dieser wird danach in retString geladen
+	std::string retString = luaL_checkstring(m_pLuaState, -1);
+
+	//	Die Tabelle wieder vom Stack poppen
+	lua_pop(m_pLuaState, 1);
+
+	return retString;
+}
+
 std::string Script::getStringFromTable(const char* name)
 {
 	//	Der zurückzugebende String wird initialisiert
