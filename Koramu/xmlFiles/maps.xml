@@ -3,33 +3,32 @@
 <states>
   <menu>
     <maps>
-      <map id="mainMenuMap" path="../assets/testMap2.tmx" />
+      <map id="mainMenuMap" path="../assets/Maps/emptyMap.tmx" />
     </maps>
   </menu>
   <howToPlay>
     <maps>
-      <map id="howToPlayMap" path="../assets/testMap6.tmx" />
+      <map id="howToPlayMap" path="../assets/Maps/emptyMap.tmx" />
     </maps>
   </howToPlay>
   <play>
     <maps>
-      <map id="mainMap" path="../assets/testMap3.tmx" />
-      <map id="houseMap1" path="../assets/houseMap1.tmx" />
+      <map id="mainMap" path="../assets/Maps/mainMap.tmx" />
     </maps>
   </play>
   <pause>
     <maps>
-      <map id="pauseMap" path="../assets/testMap2.tmx" />
+      <map id="pauseMap" path="../assets/Maps/emptyMap.tmx" />
     </maps>
   </pause>
   <inventory>
     <maps>
-      <map id="inventoryMap" path="../assets/testMap2.tmx" />
+      <map id="inventoryMap" path="../assets/Maps/emptyMap.tmx" />
     </maps>
   </inventory>
   <notebook>
     <maps>
-      <map id="notebookMap" path="../assets/testMap2.tmx" />
+      <map id="notebookMap" path="../assets/Maps/emptyMap.tmx" />
     </maps>
   </notebook>
 </states>
