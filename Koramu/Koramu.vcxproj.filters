@@ -117,6 +117,9 @@
     <Filter Include="Lua Skripts\Inventory\Items">
       <UniqueIdentifier>{4478a63c-07c3-4f72-afe8-6d5126517e1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua Skripts\Quests\prologue">
+      <UniqueIdentifier>{3a6c60b8-2f92-4942-ac03-53c15cae6a8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -555,12 +558,6 @@
     <None Include="Scripts\Buttons\buttonSave.lua">
       <Filter>Lua Skripts\Buttons</Filter>
     </None>
-    <None Include="Scripts\Doors\door1.lua">
-      <Filter>Lua Skripts\Doors</Filter>
-    </None>
-    <None Include="Scripts\Doors\door2.lua">
-      <Filter>Lua Skripts\Doors</Filter>
-    </None>
     <None Include="Scripts\Misc\koramu.lua">
       <Filter>Lua Skripts\Misc</Filter>
     </None>
@@ -570,14 +567,23 @@
     <None Include="Scripts\test\npc1.lua">
       <Filter>Lua Skripts\Objects\NPCs</Filter>
     </None>
-    <None Include="Scripts\Quests\tutorial1.lua">
-      <Filter>Lua Skripts\Quests</Filter>
-    </None>
     <None Include="Scripts\Inventory\Items\topHat.lua">
       <Filter>Lua Skripts\Inventory\Items</Filter>
     </None>
     <None Include="Scripts\Inventory\itemList.lua">
       <Filter>Lua Skripts\Inventory</Filter>
+    </None>
+    <None Include="Scripts\Quests\prologue\notebookEntry1.lua">
+      <Filter>Lua Skripts\Quests\prologue</Filter>
+    </None>
+    <None Include="Scripts\Quests\prologue\firstDoNothingQuest.lua">
+      <Filter>Lua Skripts\Quests\prologue</Filter>
+    </None>
+    <None Include="Scripts\Doors\door2.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Doors\door1.lua">
+      <Filter>Lua Skripts\Doors</Filter>
     </None>
   </ItemGroup>
 </Project>

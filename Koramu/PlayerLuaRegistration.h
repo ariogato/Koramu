@@ -30,4 +30,5 @@ namespace LuaRegistrations
 	int l_playerMoveToPosition(lua_State* pLuaState);
 	int l_playerMoveRelative(lua_State* pLuaState);
 	int l_PlayerStun(lua_State* pLuaState);
+	int l_PlayerSetPosition(lua_State* pLuaState);
 }

@@ -24,7 +24,9 @@
   <script id="buttonMainMenu" path="Scripts/Buttons/buttonMainMenu.lua"/>
   
   <!--Quests-->
-  <script id="tutorial1" path="Scripts/Quests/tutorial1.lua"/>
+  <!--mainQuest: prologue-->
+  <script id="firstDoNothingQuest" path="Scripts/Quests/prologue/firstDoNothingQuest.lua"/>
+  <script id="notebookEntry1" path="Scripts/Quests/prologue/notebookEntry1.lua"/>
   
   <!--Items-->
   <script id="itemList" path="Scripts/Inventory/itemList.lua"/>

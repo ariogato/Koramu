@@ -27,12 +27,18 @@ private:
 						std::string>>> m_questList;		
 	std::string m_currentMainQuest;					//	Die id der momentanen main quest
 	std::string m_currentPartQuest;					//	Die id der momentanen part quest
+
+	int m_delay;									//	Dieser Wert muss 0 sein, damit die nächste Quest eingeleitet werden kann
+	bool m_requestNextQuest;						//	Diese flag wird in Kombination mit m_delay gesetzt, wenn die nächste Quest eingeleitet werden soll
+	void nextQuestExecute();						//	Diese Methode macht die tatsächliche Arbeit (nextQuest, nextQuestDelay) setzen nur die flag
 public:
 	Story();										//	Konstruktor
 	~Story();										//	Destruktor
 
 	void init();									//	Lädt die Quests
-	void nextQuest();								//	Leitet die nächste part quest ein; bzw main quest, falls die letzte part quest erledigt wurde
+	void update();									//	Wird z.B. für einen delay gebraucht
+	void nextQuest();								//	Leitet die nächste quest ein 
+	void nextQuestDelay(int delay);					//	Leitet die nächste quest nach einer bestimmten Zeit (delay) ein
 
 	//	getter-Funktionen
 	std::string getMainQuest() const { return m_currentMainQuest; }

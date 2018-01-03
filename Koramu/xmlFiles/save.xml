@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <saveState>
-    <questState mainQuest="tutorial" partQuest="tutorial0"/>
+    <questState mainQuest="prologue" partQuest="firstDoNothingQuest"/>
     <mapStack>
         <activeMap mapId="mainMap"/>
     </mapStack>

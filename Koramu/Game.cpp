@@ -254,6 +254,9 @@ void Game::update()
 	*	interessiert die Klasse 'Game' nicht.
 	*/
 	m_pStateMachine->update();
+
+	//	Die Story wird aktualisiert
+	m_pStory->update();
 }
 
 void Game::render()

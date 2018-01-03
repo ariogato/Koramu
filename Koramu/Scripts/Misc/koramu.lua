@@ -4,7 +4,7 @@ local koramu = {}
 
 function koramu:onCreate ()
 
-	koramu.instance = GameObject.getInstance ("koramu")
+	koramu.instance = SDL_GameObject:getInstance ("koramu")
 	
 	koramu:align ()
 end

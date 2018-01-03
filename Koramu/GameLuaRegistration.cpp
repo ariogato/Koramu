@@ -30,6 +30,7 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "getMainQuestId", l_getMainQuestId },
 		{ "getPartQuestId", l_getPartQuestId },
 		{ "nextQuest", l_nextQuest },
+		{ "nextQuestDelay", l_nextQuestDelay },
 		{ "startDialog", l_startDialog },
 		{ "startNarrator", l_startNarrator },
 		{ "enterMap", l_enterMap },
@@ -95,6 +96,18 @@ int LuaRegistrations::l_nextQuest(lua_State* pLuaState)
 {
 	//	Die nächste Quest einleiten
 	TheGame::Instance()->getStory()->nextQuest();
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_nextQuestDelay(lua_State* pLuaState)
+{
+	//	Den übergebenen int speichern
+	int delay = luaL_checkinteger(pLuaState, 2);
+
+	//	Den Funktionsaufruf tätigen
+	TheGame::Instance()->getStory()->nextQuestDelay(delay);
 
 	//	Es gibt keinen Rückgabewert
 	return 0;

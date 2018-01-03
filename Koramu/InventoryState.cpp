@@ -7,6 +7,7 @@ FiniteStateMachine::InventoryState::InventoryState()
 {
 	m_stateID = inventoryState;
 	m_mapId = "inventoryMap";
+	m_scriptId = "inventoryState";
 }
 
 FiniteStateMachine::InventoryState::~InventoryState()

@@ -2,8 +2,10 @@
 #include <algorithm>
 #include "StoryParser.h"
 #include "ScriptManager.h"
+#include "Game.h"
 
 Story::Story()
+	: m_delay(0), m_requestNextQuest(false)
 {
 }
 
@@ -20,7 +22,7 @@ void Story::init()
 	m_currentPartQuest = m_questList[0].second[0];
 }
 
-void Story::nextQuest()
+void Story::nextQuestExecute()
 {
 	//	Eine Kopie der Quest id member anlegen, da die Lambda Funktionen sie brauchen
 	std::string mainQuest = m_currentMainQuest;
@@ -66,8 +68,46 @@ void Story::nextQuest()
 	}
 
 	//	Die Scripts legen fest, was beim Questübergang passiert
+	//	Des Weiteren wird die Funktion onGameStart() einer partQuest bei Eintritt in den PlayState aufgerufen
 	TheScriptManager::Instance()->getScriptById(partQuest).callFunction("onDone");
 	TheScriptManager::Instance()->getScriptById(m_currentPartQuest).callFunction("onStart");
+
+	//	Ereignis protokollieren
+	TheGame::Instance()->logStandard() << "Quest " << partQuest << " wurde verlassen." << std::endl <<
+		"Quest " << m_currentPartQuest << " wurde betreten." << std::endl << std::endl;
+}
+
+void Story::update()
+{
+	//	Falls die nächste Quest eingeleitet werden soll, muss außerdem gewartet werden, bis delay 0 ist
+	if (m_requestNextQuest)
+	{
+		//	delay zählt herunter auf 0; bei 0 wird die nächste Quest eingeleitet
+		if (m_delay <= 0)
+		{
+			m_requestNextQuest = false;
+			nextQuestExecute();
+		}
+		else
+		{
+			m_delay--;
+		}
+	}
+}
+
+void Story::nextQuest()
+{
+	//	Hier wird nur die flag gesetzt. update() regelt den Rest
+	m_requestNextQuest = true;
+	m_delay = 0;
+}
+
+void Story::nextQuestDelay(int delay)
+{
+	//	Hier wird nur die flag gesetzt. update() regelt den Rest
+	//	delay in Millisekunden
+	m_requestNextQuest = true;
+	m_delay = static_cast<int>(static_cast<double>(delay) / 1000.0 * 60.0);
 }
 
 void Story::setQuest(std::string mainQuest, std::string partQuest)

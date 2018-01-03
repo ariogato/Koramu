@@ -1,18 +1,13 @@
 #include "NotebookState.h"
 #include "InputHandler.h"
 #include "Game.h"
-#include "StateParser.h"
-#include "Animation.h"
-#include "ParamLoader.h"
-#include "TextureManager.h"
-#include "Button.h"
-#include "MapParser.h"
 #include "Notebook.h"
 
 FiniteStateMachine::NotebookState::NotebookState()
 {
 	m_stateID = notebookState;
 	m_mapId = "notebookMap";
+	m_scriptId = "notebookState";
 }
 
 FiniteStateMachine::NotebookState::~NotebookState()

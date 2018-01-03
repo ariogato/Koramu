@@ -307,7 +307,8 @@
     <None Include="Scripts\Inventory\Items\topHat.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
     <None Include="Scripts\Objects\player.lua" />
-    <None Include="Scripts\Quests\tutorial1.lua" />
+    <None Include="Scripts\Quests\prologue\firstDoNothingQuest.lua" />
+    <None Include="Scripts\Quests\prologue\notebookEntry1.lua" />
     <None Include="Scripts\test\npc1.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <quests>
-  <mainQuest id="tutorial">
-    <partQuest id="tutorial0"/>
-    <partQuest id="tutorial1"/>
-    <partQuest id="tutorial2"/>
-    <partQuest id="tutorial3"/>
-  </mainQuest>
-  <mainQuest id="lorem">
-    <partQuest id="lorem1"/>
-    <partQuest id="lorem2"/>
+  <mainQuest id="prologue">
+    <partQuest id="firstDoNothingQuest"/>
+    <partQuest id="notebookEntry1"/>
   </mainQuest>
 </quests>

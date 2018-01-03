@@ -10,6 +10,8 @@
 #include "NotebookState.h"
 #include "Notebook.h"
 #include "InventoryState.h"
+#include "ScriptManager.h"
+#include "Story.h"
 
 FiniteStateMachine::PlayState::PlayState()		//	Konstruktor
 {
@@ -76,6 +78,9 @@ void FiniteStateMachine::PlayState::onEnter()
 	{
 		i->onCreate();
 	}
+
+	//	Die Funktion onGameStart der Quest wird aufgerufen (es wird nicht empfohlen onGameStart tatsächlich für eine QUest zu implementieren)
+	TheScriptManager::Instance()->getScriptById(TheGame::Instance()->getStory()->getPartQuest()).callFunction("onGameStart");
 
 	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
 }

@@ -6,6 +6,7 @@
 #include "ParamLoader.h"
 #include "TextureManager.h"
 #include "ImageProcessing.h"
+#include "ScriptManager.h"
 
 GameObject* FiniteStateMachine::IngameState::takeScreenshot()
 {
@@ -100,6 +101,9 @@ void FiniteStateMachine::IngameState::onEnter()
 		object->onCreate();
 	}
 
+	//	Die entsprechende Skript Methode wird aufgerufen
+	TheScriptManager::Instance()->getScriptById(m_scriptId).callFunction("onEnter");
+
 	TheGame::Instance()->logStandard() << "Der '" << stateId << "' wurde betreten." << std::endl << std::endl;
 }
 
@@ -108,6 +112,9 @@ void FiniteStateMachine::IngameState::onExit()
 	/*	Hier muss nichts weiteres gemacht werden,
 	*	denn der Zustand wird schon über die Zustandsmaschine gelöscht.
 	*/
+
+	//	Die entsprechende Skript Methode wird aufgerufen
+	TheScriptManager::Instance()->getScriptById(m_scriptId).callFunction("onEnter");
 
 	//	Der Name des Zustandes wird für die Log-Messages gespeichert
 	std::string stateId(s_stateNames[m_stateID]);

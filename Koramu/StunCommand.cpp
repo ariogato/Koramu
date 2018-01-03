@@ -8,7 +8,7 @@ StunCommand::StunCommand(float sec)
 	m_type = COMMAND_STUN;
 
 	//	Die Zeit setzen (das Spiel läuft auf 120 FPS)
-	m_time = sec * 120;
+	m_time = sec * 60;
 }
 
 

@@ -28,6 +28,7 @@ namespace LuaRegistrations
 	int l_getMainQuestId(lua_State* pLuaState);
 	int l_getPartQuestId(lua_State* pLuaState);
 	int l_nextQuest(lua_State* pLuaState);
+	int l_nextQuestDelay(lua_State* pLuaState);
 	int l_startDialog(lua_State* pLuaState);
 	int l_startNarrator(lua_State* pLuaState);
 	int l_enterMap(lua_State* pLuaState);

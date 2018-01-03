@@ -13,6 +13,7 @@ namespace FiniteStateMachine {
 	{
 	protected:
 		const char* m_mapId;
+		const char* m_scriptId;
 
 		GameObject* takeScreenshot();			//	Nimmt einen Screenshot auf und erstellt ein 'GameObject' mit dem Screenshot als Textur
 	public:
