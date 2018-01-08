@@ -573,5 +573,14 @@
     <None Include="Scripts\Inventory\itemList.lua">
       <Filter>Lua Skripts\Inventory</Filter>
     </None>
+    <None Include="Scripts\Objects\Doors\ownHouseDoorEntry.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Objects\Doors\ownHouseDoorExit.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\littleGirl.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -342,7 +342,7 @@ bool MapParser::parseMap(std::string path, Environment::Map* pMap)
 		/*	Der "TextureManager" lädt die Textur des Tilesets
 		 *	basierend auf dem Namen "name" und der Quelle "tilesetSource".
 		 */
-		TheTextureManager::Instance()->load((tempTileset.name), "../assets/" + tilesetSource, TheGame::Instance()->getRenderer());
+		TheTextureManager::Instance()->load((tempTileset.name), "../assets/Tilesets/" + tilesetSource, TheGame::Instance()->getRenderer());
 
 		/*	Falls Tiles des aktuellen Tilesets "e" Kollisionsboxen
 		 *	(wir verwenden diese für die Collision Detection) besitzen,

@@ -63,6 +63,9 @@ void Environment::Map::render()
 	if (m_layerMap.count("Collisionlayer"))
 		m_layerMap["Collisionlayer"]->render(); 
 	
+	if (m_layerMap.count("Windowlayer"))
+		m_layerMap["Windowlayer"]->render();
+
 	if (m_layerMap.count("Bridgelayer"))
 		m_layerMap["Bridgelayer"]->render();
 

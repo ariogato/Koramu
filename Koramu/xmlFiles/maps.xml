@@ -14,6 +14,9 @@
   <play>
     <maps>
       <map id="mainMap" path="../assets/Maps/mainMap.tmx" />
+      
+      <!--Das Haus der Hauptcharakters-->
+      <map id="ownHouse" path="../assets/Maps/ownHouse.tmx" />
     </maps>
   </play>
   <pause>

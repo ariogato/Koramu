@@ -384,7 +384,7 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 	for (XMLElement* e = pRoot->FirstChildElement("inventoryState")->FirstChildElement("item"); e != nullptr; e = e->NextSiblingElement("item"))
 	{
 		//	Das Item wird der Liste hinzugefügt
- 		TheGame::Instance()->getItemList()->addItem(e->FirstChildElement("id")->GetText(), e->FirstChildElement("count")->IntText());
+		TheGame::Instance()->getItemList()->addItem(e->FirstChildElement("id")->GetText(), e->FirstChildElement("count")->IntText());
 	}
 
 	//	Der Spielstand wurde erfolgreich geladen

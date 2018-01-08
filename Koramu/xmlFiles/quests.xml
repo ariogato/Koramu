@@ -2,6 +2,6 @@
 
 <quests>
   <mainQuest id="prologue">
-    <partQuest id="FirstDoNothingQuest"/>
+    <partQuest id="firstDoNothingQuest"/>
   </mainQuest>
 </quests>

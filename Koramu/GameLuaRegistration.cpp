@@ -131,6 +131,9 @@ int LuaRegistrations::l_startDialog(lua_State* pLuaState)
 	//	Referenz auf den Player (nicht zu löschen)
 	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(pLuaState, 4);
 
+	//	Der NPC wendet sich zum Player
+	pNPCInstance->turnToObject(pPlayerInstance);
+
 	//	Der Text wird in die Dialogbox geladen
 	TheGame::Instance()->getCurrentState()->getDialog()->addMessage(text);
 

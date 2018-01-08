@@ -179,7 +179,7 @@ int LuaRegistrations::l_NPCStun(lua_State* pLuaState)
 	NPC* pNPCInstance = NPCLuaRegistration::checkAndGetNPC(pLuaState, 1);
 
 	//	Das Argument der Zeit vom Stack holen
-	int sec = lua_tointeger(pLuaState, 2);
+	float sec = luaL_checknumber(pLuaState, 2);
 
 	//	Den NPC stunnen
 	pNPCInstance->stun(sec);

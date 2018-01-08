@@ -16,6 +16,7 @@
     <!--GameObjects-->
     <texture id="player" path="../assets/Objects/Player.png"/>
     <texture id="test" path="../assets/Objects/test.png"/>
+    <texture id="littleGirl" path="../assets/Objects/LittleGirl.png"/>
     
     <!--Miscellaneous-->
     <texture id="koramu" path="../assets/Koramu.png"/>
@@ -90,13 +91,18 @@
       <gameObject type="player" textureId="player"
                   xPos="1000" yPos="545" width="70" height="180"
                   numRows="4" numCols="4"
-                  mapId="houseMap1" animSpeed="200"
+                  mapId="ownHouse" animSpeed="200"
                   uniqueId="player"/>
       <gameObject type="npc" textureId="test"
                   xPos="1000" yPos="690" width="128" height="82"
                   numRows="1" numCols="6"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="test"/>
+      <gameObject type="npc" textureId="littleGirl"
+                  xPos="800" yPos="690" width="52" height="88"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="littleGirl"/>
     </gameObjects>
 	</play>
 	
