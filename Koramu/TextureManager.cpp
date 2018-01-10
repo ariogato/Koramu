@@ -100,6 +100,36 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height)
 	SDL_RenderCopy(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect);
 }
 
+void TextureManager::draw(std::string id, int x, int y, int width, int height, int rotCenterX, int rotCenterY, const double angle)
+{
+	//	Weitere Kommentare siehe draw() oben
+
+	//	Zuerst werden rotCenterX/Y in einem SDL_Point gespeichert
+	SDL_Point rotCenter = { rotCenterX, rotCenterY };
+
+	/*	Da wir nie Stauchen oder Strecken wollen,
+	*	sind Höhe und Breite immer gleich
+	*/
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+
+	srcRect.w = destRect.w = width;
+	srcRect.h = destRect.h = height;
+
+	/*	Die Position auf der Textur ist hier (0|0), weil
+	*	wir immer beim Aufruf dieser Funktion das ganze Bild rendern wollen.
+	*	Falls mal nicht das ganze Bild gerendert werden soll, muss hier was geändert werden.
+	*/
+	srcRect.x = srcRect.y = 0;
+
+	//	Hier wird die Postition im Fenster gesetzt
+	destRect.x = x;
+	destRect.y = y;
+
+	//	Jetzt müssen wir die gewünschte Textur noch in den Renderer stecken
+	SDL_RenderCopyEx(TheGame::Instance()->getRenderer(), m_textureMap[id], &srcRect, &destRect, angle, &rotCenter, SDL_FLIP_NONE);
+}
+
 void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int frameRow, int frameCol)
 {
 	//	Für mehr Info siehe Kommentare in TextureManager::draw

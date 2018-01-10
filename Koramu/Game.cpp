@@ -12,6 +12,7 @@
 #include "Story.h"
 #include "StoryParser.h"
 #include "Notebook.h"
+#include "Clock.h"
 
 #include "GameObjectFactory.h"
 #include "Player.h"
@@ -41,11 +42,11 @@ Game* Game::s_pInstance = nullptr;
 
 Game::Game()									//	Konstruktor
 	: m_running(false),
-	m_gameWidth(0), m_gameHeight(0),
-	m_gameXPos(0), m_gameYPos(0),
-	m_pStateMachine(nullptr), m_pCurrentState(nullptr),
-	m_pWindow(nullptr), m_pRenderer(nullptr), 
-	m_pCamera(nullptr)
+	  m_gameWidth(0), m_gameHeight(0),
+	  m_gameXPos(0), m_gameYPos(0),
+	  m_pStateMachine(nullptr), m_pCurrentState(nullptr),
+	  m_pWindow(nullptr), m_pRenderer(nullptr),
+	  m_pCamera(nullptr)
 {
 	//	Die Logger initialisieren
 	m_pStandardLog = new Logger();
@@ -59,6 +60,9 @@ Game::Game()									//	Konstruktor
 
 	//	Notizbuch erstellen
 	m_pNotebook = new Notebook(10);
+
+	//	Uhr erstellen
+	m_pClock = new Clock();
 }
 
 /*	!! WICHTIG !!
@@ -183,6 +187,9 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	//	Story initialisieren
 	m_pStory->init();
 
+	//	Die Uhr initialisieren
+	m_pClock->init();
+
 	//	Informationen über das Fenster speichern
 	m_gameWidth = width;
 	m_gameHeight = height;
@@ -257,6 +264,9 @@ void Game::update()
 
 	//	Die Story wird aktualisiert
 	m_pStory->update();
+
+	//	Die Uhr wird aktualisiert
+	m_pClock->update();
 }
 
 void Game::render()
@@ -277,6 +287,9 @@ void Game::render()
 #pragma region testStuff
 	TheTester::Instance()->testFunctions();
 #pragma endregion
+
+	//	Die Uhr wird gerendert
+	m_pClock->draw();
 
 	//	Jetzt wird alles auf den Bildschirm geschmissen
 	SDL_RenderPresent(m_pRenderer);

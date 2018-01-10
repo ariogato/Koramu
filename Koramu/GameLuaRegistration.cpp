@@ -9,6 +9,7 @@
 #include "NotebookState.h"
 #include "Notebook.h"
 #include "ItemList.h"
+#include "Clock.h"
 
 using namespace LuaRegistrations;
 
@@ -41,6 +42,11 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "addItem", l_addItem },
 		{ "removeItem", l_removeItem },
 		{ "getItemCount", l_getItemCount },
+		{ "getClockTimeSeconds", l_getClockTimeSeconds },
+		{ "setClockTimeSeconds", l_setClockTimeSeconds },
+		{ "addClockTimeSeconds", l_addClockTimeSeconds },
+		{ "showClock", l_showClock },
+		{ "hideClock", l_hideClock },
 		{nullptr, nullptr}
 	};
 
@@ -295,4 +301,58 @@ int LuaRegistrations::l_getItemCount(lua_State* pLuaState)
 
 	//	Die Anzahl wird zurück gegeben
 	return 1;
+}
+
+int LuaRegistrations::l_getClockTimeSeconds(lua_State* pLuaState)
+{
+	//	Die Variable auf den Stack pushen
+	lua_pushinteger(pLuaState, TheGame::Instance()->getClock()->getTimeInSeconds());
+
+	//	Die Zeit in Sekunden wird zurückgegeben
+	return 1;
+}
+
+int LuaRegistrations::l_setClockTimeSeconds(lua_State* pLuaState)
+{
+	//	Die Zahl vom Stack poppen
+	int seconds = luaL_checkinteger(pLuaState, 2);
+
+	//	Die Zeit setzen
+	TheGame::Instance()->getClock()->setTime(seconds);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_addClockTimeSeconds(lua_State* pLuaState)
+{
+	//	Die Zeit vom Stack poppen
+	int seconds = luaL_checkinteger(pLuaState, 2);
+
+	//	Die Geschwindigkeit vom Stack poppen
+	int velocity = luaL_checkinteger(pLuaState, 3);
+
+	//	Die Zeit addieren
+	TheGame::Instance()->getClock()->addTime(seconds, velocity);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_showClock(lua_State* pLuaState)
+{
+	//	Die flag setzen
+	TheGame::Instance()->getClock()->setVisible(true);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_hideClock(lua_State* pLuaState)
+{
+	//	Die flag setzen
+	TheGame::Instance()->getClock()->setVisible(false);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
 }

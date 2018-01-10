@@ -302,6 +302,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Quelldateien\GameObjects\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -507,6 +510,9 @@
     </ClInclude>
     <ClInclude Include="ImageProcessing.h">
       <Filter>Headerdateien\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

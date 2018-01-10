@@ -12,6 +12,7 @@
 #include "FontManager.h"
 #include "Story.h"
 #include "InventoryState.h"
+#include "Clock.h"
 
 /* 
 *	!!!Bitte die Aufrufe in dieser Datei kommentieren oder beim nächsten Treffen erklären!!!
@@ -235,6 +236,18 @@ void Test::testFunctions()
 	//TheFontManager::Instance()->drawTextBox("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam", testRectangle);
 	//testRectangle.draw(Vector2D ());
 #pragma endregion 
+
+#pragma region ClockTest
+	/*static bool b = true;
+	if (b)
+	{
+		TheGame::Instance()->getClock()->addTime(3600, 2);
+		b = false;
+	}
+
+	TheGame::Instance()->getClock()->update();
+	TheGame::Instance()->getClock()->draw();*/
+#pragma endregion
 }
 
 

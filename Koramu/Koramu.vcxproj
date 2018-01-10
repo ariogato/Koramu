@@ -146,6 +146,7 @@
     <ClCompile Include="BaseLuaRegistration.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="CollisionRectParser.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLuaRegistration.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
     <ClInclude Include="CollisionRectParser.h" />

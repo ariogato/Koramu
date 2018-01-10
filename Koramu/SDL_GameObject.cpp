@@ -117,7 +117,7 @@ void SDL_GameObject::collision()
 	//	Falls gerade ein Move Befehl vorliegt, soll dieser gelöscht werden, da bei einer Kollision Schluss ist
 	if (!m_pCommands->isEmpty())
 		if (m_pCommands->getCurrentCommand()->getType() == COMMAND_MOVE)
-			m_pCommands->popCommand();
+			m_pCommands->getCurrentCommand()->setDone();
 
 	/*	Der Geschwindigkeitsvektor wird wieder vom Ortsvektor subtrahiert,
 	 *	damit die Bewegung aus 'update()' wieder rückgängig gemacht wird.

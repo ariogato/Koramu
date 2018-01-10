@@ -39,5 +39,10 @@ namespace LuaRegistrations
 	int l_addItem(lua_State* pLuaState);
 	int l_removeItem(lua_State* pLuaState);
 	int l_getItemCount(lua_State* pLuaState);
+	int l_getClockTimeSeconds(lua_State* pLuaState);
+	int l_setClockTimeSeconds(lua_State* pLuaState);
+	int l_addClockTimeSeconds(lua_State* pLuaState);
+	int l_showClock(lua_State* pLuaState);
+	int l_hideClock(lua_State* pLuaState);
 }
 

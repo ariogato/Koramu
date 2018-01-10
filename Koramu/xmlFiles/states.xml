@@ -24,6 +24,13 @@
     <texture id="transparent" path="../assets/Misc/Transparent.png"/>
     <texture id="greyLayer" path="../assets/Misc/Grey_Layer.png"/>
     
+    <!--Clock-->
+    <texture id="clockFace" path="../assets/Misc/clockFace.png"/>
+    <texture id="clockHandSeconds" path="../assets/Misc/clockHandSec.png"/>
+    <texture id="clockHandMinutes" path="../assets/Misc/clockHandBig.png"/>
+    <texture id="clockHandHours" path="../assets/Misc/clockHandSmall.png"/>
+
+
     <!--HowToPlay-->
     <texture id="keyM" path="../assets/HowToPlay/M.png"/>
     <texture id="Dp" path="../assets/HowToPlay/Doppelpunkt.png"/>
