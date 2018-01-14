@@ -120,6 +120,9 @@
     <Filter Include="Lua Skripts\Quests\prologue">
       <UniqueIdentifier>{3a6c60b8-2f92-4942-ac03-53c15cae6a8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua Skripts\Quests\fixWatch">
+      <UniqueIdentifier>{066a35a5-68c4-4a1a-9cbe-90fc3d172797}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -587,6 +590,12 @@
     </None>
     <None Include="Scripts\Objects\NPCs\littleGirl.lua">
       <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Quests\prologue\prologue.lua">
+      <Filter>Lua Skripts\Quests\prologue</Filter>
+    </None>
+    <None Include="Scripts\Quests\prologue\startGame.lua">
+      <Filter>Lua Skripts\Quests\prologue</Filter>
     </None>
   </ItemGroup>
 </Project>

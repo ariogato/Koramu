@@ -2,6 +2,10 @@
 
 <quests>
   <mainQuest id="prologue">
-    <partQuest id="firstDoNothingQuest"/>
+    <partQuest id="startGame"/>
+    <partQuest id="prologue"/>
+  </mainQuest>
+  <mainQuest id="fixWatch">
+    <partQuest id="findClockMaker1"/>
   </mainQuest>
 </quests>

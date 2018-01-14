@@ -308,6 +308,8 @@
     <None Include="Scripts\Objects\Doors\ownHouseDoorExit.lua" />
     <None Include="Scripts\Objects\NPCs\littleGirl.lua" />
     <None Include="Scripts\Objects\player.lua" />
+    <None Include="Scripts\Quests\prologue\prologue.lua" />
+    <None Include="Scripts\Quests\prologue\startGame.lua" />
     <None Include="Scripts\test\npc1.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

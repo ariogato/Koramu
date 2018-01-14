@@ -28,6 +28,8 @@
 
   <!--Quests-->
   <!--mainQuest: prologue-->
+  <script id="startGame" path="Scripts/Quests/prologue/startGame.lua"/>
+  <script id="prologue" path="Scripts/Quests/prologue/prologue.lua"/>
 
   <!--Items-->
   <script id="itemList" path="Scripts/Inventory/itemList.lua"/>
