@@ -17,6 +17,7 @@
     <texture id="player" path="../assets/Objects/Player.png"/>
     <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="littleGirl" path="../assets/Objects/LittleGirl.png"/>
+    <texture id="tree" path="../assets/TreeNew.png"/>
     
     <!--Miscellaneous-->
     <texture id="koramu" path="../assets/Koramu.png"/>

@@ -64,7 +64,7 @@ void Page::addText(std::string text)
 			ObjectRectangle lineRect;
 			lineRect.width = m_rect.getWidth();
 			lineRect.height = TheFontManager::Instance()->getCharHeight() + 10;			//	"+ 10" --> 10px Zeilenabstand
-			//	Seitenrand hinzufügen (inks: 20px)
+			//	Seitenrand hinzufügen (links: 20px)
 			lineRect.positionVector.setX(m_rect.getX() + 20);
 			if (m_lineRects.size())
 				//	Rechteck genau unter der letzten beschríebenen Zeile platzieren

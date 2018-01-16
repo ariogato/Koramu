@@ -60,25 +60,23 @@ void Environment::Map::render()
 	if (m_layerMap.count("Backgroundlayer"))
 		m_layerMap["Backgroundlayer"]->render();
 
+	if (m_layerMap.count("Roadlayer"))
+		m_layerMap["Roadlayer"]->render();
+
 	if (m_layerMap.count("Collisionlayer"))
 		m_layerMap["Collisionlayer"]->render(); 
-	
-	if (m_layerMap.count("Windowlayer"))
-		m_layerMap["Windowlayer"]->render();
 
-	if (m_layerMap.count("Bridgelayer"))
-		m_layerMap["Bridgelayer"]->render();
-
-	if (m_layerMap.count("Interactionlayer"))
-		m_layerMap["Interactionlayer"]->render();
-
+	if (m_layerMap.count("Decorationlayer"))
+		m_layerMap["Decorationlayer"]->render();
 	
 	if (m_layerMap.count("Objectlayer"))
 		m_layerMap["Objectlayer"]->render();
 
-
 	if (m_layerMap.count("Foregroundlayer"))
 		m_layerMap["Foregroundlayer"]->render();
+
+	if (m_layerMap.count("Windowlayer"))
+		m_layerMap["Windowlayer"]->render();
 }
 
 void Environment::Map::addLayer(std::string name, Layer* pNewLayer)
