@@ -5,6 +5,9 @@
     <collisionRect xPos="0" yPos="192" width="192" height="37" />
     <collisionRect xPos="81" yPos="229" width="22" height="14" />
   </objectType>
+  <objectType name="clockmaker">
+    <collisionRect xPos="5" yPos="150" width="60" height="30" />
+  </objectType>
   <objectType name="test">
     <collisionRect xPos="0" yPos="40" width="80" height="20" />
   </objectType>

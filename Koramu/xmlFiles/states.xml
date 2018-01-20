@@ -15,9 +15,11 @@
 
     <!--GameObjects-->
     <texture id="player" path="../assets/Objects/Player.png"/>
+    <texture id="clockmaker" path="../assets/Objects/Clockmaker.png"/>
     <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="littleGirl" path="../assets/Objects/LittleGirl.png"/>
     <texture id="tree" path="../assets/TreeNew.png"/>
+    <texture id="notebook" path="../assets/Notizbuch.png"/>
     
     <!--Miscellaneous-->
     <texture id="koramu" path="../assets/Koramu.png"/>
@@ -101,6 +103,16 @@
                   numRows="4" numCols="4"
                   mapId="ownHouse" animSpeed="200"
                   uniqueId="player"/>
+      <gameObject type="player" textureId="player"
+                  xPos="604" yPos="1006" width="70" height="180"
+                  numRows="4" numCols="4"
+                  mapId="clockmakerHouse" animSpeed="200"
+                  uniqueId="player"/>
+      <gameObject type="npc" textureId="clockmaker"
+                  xPos="262" yPos="382" width="70" height="180"
+                  numRows="4" numCols="4"
+                  mapId="clockmakerHouse" animSpeed="200"
+                  uniqueId="clockmaker"/>
       <gameObject type="npc" textureId="test"
                   xPos="1000" yPos="690" width="128" height="82"
                   numRows="1" numCols="6"

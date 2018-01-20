@@ -17,6 +17,9 @@
       
       <!--Das Haus der Hauptcharakters-->
       <map id="ownHouse" path="../assets/Maps/ownHouse.tmx" />
+      
+      <!--Das Haus des Uhrmachers-->
+      <map id="clockmakerHouse" path="../assets/Maps/clockmakerHouse.tmx" />
     </maps>
   </play>
   <pause>

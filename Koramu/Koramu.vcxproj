@@ -285,7 +285,9 @@
     <Xml Include="xmlFiles\save.xml">
       <SubType>Designer</SubType>
     </Xml>
-    <Xml Include="xmlFiles\scripts.xml" />
+    <Xml Include="xmlFiles\scripts.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="xmlFiles\states.xml">
       <SubType>Designer</SubType>
     </Xml>
@@ -304,10 +306,14 @@
     <None Include="Scripts\Inventory\itemList.lua" />
     <None Include="Scripts\Inventory\Items\topHat.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
+    <None Include="Scripts\Objects\Doors\clockmakerHouseEntry.lua" />
+    <None Include="Scripts\Objects\Doors\clockmakerHouseExit.lua" />
     <None Include="Scripts\Objects\Doors\ownHouseDoorEntry.lua" />
     <None Include="Scripts\Objects\Doors\ownHouseDoorExit.lua" />
+    <None Include="Scripts\Objects\NPCs\clockmaker.lua" />
     <None Include="Scripts\Objects\NPCs\littleGirl.lua" />
     <None Include="Scripts\Objects\player.lua" />
+    <None Include="Scripts\Quests\fixWatch\findClockmaker.lua" />
     <None Include="Scripts\Quests\prologue\prologue.lua" />
     <None Include="Scripts\Quests\prologue\startGame.lua" />
     <None Include="Scripts\test\npc1.lua" />

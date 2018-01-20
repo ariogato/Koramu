@@ -4,7 +4,10 @@ local ownHouseDoorExit = {}
 
 function ownHouseDoorExit:onCollision()
 	TheGame:exitMap()
-end
 
+	if TheGame:getPartQuestId() == "prologue" then
+		TheGame:nextQuest()
+	end
+end
 
 return ownHouseDoorExit

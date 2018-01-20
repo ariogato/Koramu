@@ -1,9 +1,13 @@
 #include "Notebook.h"
 #include "Game.h"
+#include "TextureManager.h"
 
 Notebook::Notebook(int pages)
 	: m_currentLeftPage(0)
 {
+	//	Id der Textur gehardcodet
+	m_textureId = "notebook";
+
 	//	Seitenzahl setzen und sicherstellen, dass es immmer eine gerade Anzahl an Seiten gibt (linke und rechte Seite)
 	int pageNumber = pages + (pages % 2) * 1;
 
@@ -45,9 +49,15 @@ void Notebook::update()
 
 void Notebook::draw()
 {
-	//	Ess sollen immer die aktuelle linke Seite und die dazugehörige rechte Seite gezeichnet werden
+	//	Textur des Notizbuches zeichnen
+	TheTextureManager::Instance()->draw(m_textureId,
+		m_rect.positionVector.getX(), m_rect.positionVector.getY(),
+		m_rect.width, m_rect.height);
+
+	//	Es sollen immer die aktuelle linke Seite und die dazugehörige rechte Seite gezeichnet werden (hier wird der Text gezeichnet(
 	m_pages[m_currentLeftPage].draw();
 	m_pages[m_currentLeftPage + 1].draw();
+
 }
 
 void Notebook::browseRight()

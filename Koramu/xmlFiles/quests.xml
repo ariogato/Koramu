@@ -6,6 +6,6 @@
     <partQuest id="prologue"/>
   </mainQuest>
   <mainQuest id="fixWatch">
-    <partQuest id="findClockMaker1"/>
+    <partQuest id="findClockmaker"/>
   </mainQuest>
 </quests>

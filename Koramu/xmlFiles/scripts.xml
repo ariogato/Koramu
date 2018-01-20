@@ -10,10 +10,13 @@
   <!--Objects-->
   <script id="test" path="Scripts/test/npc1.lua"/>
   <script id="littleGirl" path="Scripts/Objects/NPCs/littleGirl.lua"/>
+  <script id="clockmaker" path="Scripts/Objects/NPCs/clockmaker.lua"/>
   
   <!--Doors-->
   <script id="ownHouseDoorEntry" path="Scripts/Objects/Doors/ownHouseDoorEntry.lua"/>
   <script id="ownHouseDoorExit" path="Scripts/Objects/Doors/ownHouseDoorExit.lua"/>
+  <script id="clockmakerHouseEntry" path="Scripts/Objects/Doors/clockmakerHouseEntry.lua"/>
+  <script id="clockmakerHouseExit" path="Scripts/Objects/Doors/clockmakerHouseExit.lua"/>
 
   <!--Buttons MenuState-->
   <script id="buttonPlay" path="Scripts/Buttons/buttonPlay.lua"/>
@@ -30,6 +33,8 @@
   <!--mainQuest: prologue-->
   <script id="startGame" path="Scripts/Quests/prologue/startGame.lua"/>
   <script id="prologue" path="Scripts/Quests/prologue/prologue.lua"/>
+  <!--mainQuest: fixWatch-->
+  <script id="findClockmaker" path="Scripts/Quests/fixWatch/findClockmaker.lua"/>
 
   <!--Items-->
   <script id="itemList" path="Scripts/Inventory/itemList.lua"/>

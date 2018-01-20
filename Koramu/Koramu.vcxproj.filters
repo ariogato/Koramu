@@ -597,5 +597,17 @@
     <None Include="Scripts\Quests\prologue\startGame.lua">
       <Filter>Lua Skripts\Quests\prologue</Filter>
     </None>
+    <None Include="Scripts\Objects\Doors\clockmakerHouseEntry.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Objects\Doors\clockmakerHouseExit.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\clockmaker.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Quests\fixWatch\findClockmaker.lua">
+      <Filter>Lua Skripts\Quests\fixWatch</Filter>
+    </None>
   </ItemGroup>
 </Project>
