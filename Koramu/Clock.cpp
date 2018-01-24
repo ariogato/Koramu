@@ -1,5 +1,6 @@
 ﻿#include "Clock.h"
 #include "TextureManager.h"
+#include "FontManager.h"
 
 void Clock::init()
 {
@@ -29,19 +30,53 @@ void Clock::init()
 	m_rect.setShowText(false);
 	m_rect.setColor(255, 130, 28, 255);
 	m_rect.setVisible(true);
+
+	//	Attribute der kleinen Anzeige leider auch...
+	m_tinyDispayTextureId = "clockTinyDisplay";
+	m_tinyDisplayRect.width = 96;
+	m_tinyDisplayRect.height = 16;
+	m_tinyDisplayRect.positionVector.setX(m_rect.width / 2 - m_tinyDisplayRect.width / 2 + 10);
+	m_tinyDisplayRect.positionVector.setY(m_rect.height / 2 + 32);
+	m_tinyDisplay = 999999;
+
+	m_tinyDisplayRect.setShowText(false);
+	m_tinyDisplayRect.setColor(255, 130, 28, 255);
+	m_tinyDisplayRect.setVisible(true);
 }
 
 void Clock::update()
 {
-	//	Bei einer 'm_velocity' > 1 kann es sein, dass über den Wert hinausgeschossen wird.
-	if (m_desiredTimeInSeconds < m_timeInSeconds)
+	//	Wenn eine andere Zeit angezeigt werden soll, werden die Zeiger entsprechend bewegt
+	if (m_desiredTimeInSeconds != m_timeInSeconds)
 	{
-		m_desiredTimeInSeconds = m_desiredTimeInSeconds;
+		//	Herausfinden, ob der Zähler inkrementiert oder dekrementiert werden muss
+		int signum = (m_desiredTimeInSeconds - m_timeInSeconds < 0) ? -1 : 1;
+
+		/*	Hier soll die Zählervariable so oft um 'm_handVelocity' inkrementiert werden, bis die Werte gleich sind.
+		 *	Bzw. dekrementiert, wenn die Different negativ ist.
+		 */
+		m_timeInSeconds += signum * m_handVelocity;
+
+		//	Hier wird nach einem overshoot gecheckt (kann passieren, da m_handVelocity > 1 sein kann)
+		if (signum < 0 && m_timeInSeconds < m_desiredTimeInSeconds || signum > 0 && m_timeInSeconds > m_desiredTimeInSeconds)
+		{
+			m_timeInSeconds = m_desiredTimeInSeconds;
+		}
 	}
-	else if (m_desiredTimeInSeconds > m_timeInSeconds)
+
+	//	Eine Änderung in der kleinen Anzeige
+	if (m_desiredTinyDisplay != m_tinyDisplay)
 	{
-		//	Hier soll die Zählervariable so oft um 'm_handVelocity' inkrementiert werden, bis die Werte gleich sind 
-		m_timeInSeconds += m_handVelocity;
+		//	Beschreibung siehe oben
+
+		int signum = (m_desiredTinyDisplay - m_tinyDisplay < 0) ? -1 : 1;
+
+		m_tinyDisplay += signum * m_displayVelocity;
+
+		if (signum < 0 && m_tinyDisplay < m_desiredTinyDisplay || signum > 0 && m_tinyDisplay > m_desiredTinyDisplay)
+		{
+			m_tinyDisplay = m_desiredTinyDisplay;
+		}
 	}
 	
 
@@ -73,11 +108,22 @@ void Clock::draw()
 	int centerX = m_rect.getX() + m_rect.getWidth() / 2;
 	int centerY = m_rect.getY() + m_rect.getHeight() / 2;
 
-	//	Der TextureManager braucht außerdem
+	//	Die Position, an der die kleinere Anzeige gezeichnet werden soll
 
 	//	Ziffernblatt zeichnen
 	TheTextureManager::Instance()->draw(m_textureId, m_rect.getX(), m_rect.getY(), m_rect.getWidth(), m_rect.getHeight());
+
+	//	Kleine Anzeige zeichnen
+	TheTextureManager::Instance()->draw(m_tinyDispayTextureId, m_tinyDisplayRect.getX(), m_tinyDisplayRect.getY() - 2, m_tinyDisplayRect.width, m_tinyDisplayRect.height);
 	
+	//	Die Zahl wir in einen String umgewandelt und dann mit dem Fontmanager gezeichnet
+	std::string tinyDis = std::to_string(static_cast<int>(m_tinyDisplay));
+
+	//	Der String wird gepaddet (d.h. Es werden Nullen hinzugefügt bis eine Ziffernanzahl von 6 erreicht wird)
+	tinyDis.insert(0, 6 - tinyDis.length(), '0');
+
+	TheFontManager::Instance()->drawText(tinyDis, m_tinyDisplayRect.getX(), m_tinyDisplayRect.getY(), 16);
+
 	//	Stundenzeiger zeichnen
 	TheTextureManager::Instance()->draw(
 		m_hoursHand.textureId,
@@ -103,11 +149,19 @@ void Clock::draw()
 		m_secondsHand.rotationAngle);
 
 	//	Das ObjectRectangle zeichnen
-	m_rect.draw(Vector2D(0.0f, 0.0f));
+	//m_rect.draw(Vector2D(0.0f, 0.0f));
+	//m_tinyDisplayRect.draw(Vector2D(0.0f, 0.0f));
 }
 
-void Clock::addTime(int seconds, int velocity)
+void Clock::addTime(int seconds, double velocity)
 {
 	m_desiredTimeInSeconds = m_timeInSeconds + seconds;
 	m_handVelocity = velocity;
 }
+
+void Clock::addTinyDisplayTime(int hours, double velocity)
+{
+	m_desiredTinyDisplay = m_tinyDisplay + hours;
+	m_displayVelocity = velocity;
+}
+

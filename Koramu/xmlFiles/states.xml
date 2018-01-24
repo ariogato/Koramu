@@ -32,6 +32,7 @@
     <texture id="clockHandSeconds" path="../assets/Misc/clockHandSec.png"/>
     <texture id="clockHandMinutes" path="../assets/Misc/clockHandBig.png"/>
     <texture id="clockHandHours" path="../assets/Misc/clockHandSmall.png"/>
+    <texture id="clockTinyDisplay" path="../assets/Misc/tinyDisplay.png"/>
 
 
     <!--HowToPlay-->
