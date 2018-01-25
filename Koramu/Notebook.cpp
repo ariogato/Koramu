@@ -1,6 +1,7 @@
 #include "Notebook.h"
 #include "Game.h"
 #include "TextureManager.h"
+#include <algorithm>
 
 Notebook::Notebook(int pages)
 	: m_currentLeftPage(0)
@@ -127,4 +128,13 @@ void Notebook::addNote(std::string text)
 
 	//	Wenn wir hier landen, ist bereits jede Seite des Notizbuches voll
 	TheGame::Instance()->logError() << "Notizbuch ist voll!" << std::endl << std::endl;
+}
+
+void Notebook::cornelius(bool b)
+{
+	std::for_each(m_pages.begin(), m_pages.end(), [b](Page& page)
+	{
+		page.setIsFull(b);
+		page.setLineNumber(0);
+	});
 }

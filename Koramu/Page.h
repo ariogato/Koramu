@@ -30,6 +30,8 @@ public:
 	//	setter-Funktionen
 	void addText(std::string text);
 	void setPosition(int x, int y) { m_rect.positionVector.setX(x); m_rect.positionVector.setY(y); }
-	void setSize(int width, int height) { m_rect.width = width; m_rect.height = height; m_lineNumber = height / (TheFontManager::Instance()->getCharHeight() + 20); }	
+	void setSize(int width, int height) { m_rect.width = width; m_rect.height = height; m_lineNumber = height / (TheFontManager::Instance()->getCharHeight() + 20); }
 	//	Die Zeilenanzahl wird im letzten Teil in Abhängigkeit von Seitenhöhe und der Zeichenhöhe ermittelt
+	void setIsFull(bool b) { m_isFull = b; }
+	void setLineNumber(int line) { m_lineNumber = line; }
 };
