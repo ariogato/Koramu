@@ -42,6 +42,9 @@ namespace LuaRegistrations
 	int l_getClockTimeSeconds(lua_State* pLuaState);
 	int l_setClockTimeSeconds(lua_State* pLuaState);
 	int l_addClockTimeSeconds(lua_State* pLuaState);
+	int l_getClockTinyDisplayHours(lua_State* pLuaState);
+	int l_setClockTinyDisplayHours(lua_State* pLuaState);
+	int l_addClockTinyDisplayHours(lua_State* pLuaState);
 	int l_showClock(lua_State* pLuaState);
 	int l_hideClock(lua_State* pLuaState);
 }

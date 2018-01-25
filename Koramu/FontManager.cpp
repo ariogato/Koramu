@@ -46,20 +46,21 @@ void FontManager::parseFont()
 	
 }
 
-void FontManager::drawCharacter(char character, int x, int y)
+void FontManager::drawCharacter(char character, int x, int y, int charSize)
 {
 	//	Checken, ob Zeichen mit dem die Methode aufgerufen wird im Alphabet enthalten ist
 	if (m_texturePositionMap.count(character) == 0)
 	{
 		return;
 	}
+	//	TODO: hardgecodete 8 & 16
 	//	Eine bestimmte Textur zeichnen
-	TheTextureManager::Instance()->drawFrame("font",															
-		x, y, m_width, m_height,
-		m_texturePositionMap[character].getX(), m_texturePositionMap[character].getY());
+	TheTextureManager::Instance()->drawScaledFrame("font",															
+		x, y, charSize, charSize,
+		m_texturePositionMap[character].getX(), m_texturePositionMap[character].getY(), 8, 16);
 }
 
-void FontManager::drawText(std::string text, int x, int y)
+void FontManager::drawText(std::string text, int x, int y, int charSize)
 {
 	//	Durchlaufen bis das ganze Wort gerendert ist
 	for (int i = 0; i < text.size(); i++)
@@ -67,13 +68,13 @@ void FontManager::drawText(std::string text, int x, int y)
 		//	Buchstabe mit der Position i innerhalb des Wortes
 		char currentChar = text.at(i);
 		//	Rendern eines Buchstaben
-		drawCharacter(currentChar, x, y);
-		//	Verschieben der x-Position um +32, um das Rendern vieler Buchstaben auf einer Position zu verhindern
-		x = x + m_width; 
+		drawCharacter(currentChar, x, y, charSize);
+		//	Verschieben der x-Position um +charSize, um das Rendern vieler Buchstaben auf einer Position zu verhindern
+		x = x + charSize; 
 	}
 }
 
-void FontManager::drawTextBox(std::string text, ObjectRectangle textBox)
+void FontManager::drawTextBox(std::string text, ObjectRectangle textBox, int charSize)
 {
 	//	Rausfinden der x-Position, y-Position, Breite und Höhe der Box
 	int x = textBox.getX();			
@@ -117,7 +118,7 @@ void FontManager::drawTextBox(std::string text, ObjectRectangle textBox)
 		if (wordX + m_width * word.size() < x + width)
 		{
 			//	Rendern eines Wortes
-			drawText(word, wordX, wordY);
+			drawText(word, wordX, wordY, charSize);
 		}
 		else
 		{
@@ -125,12 +126,12 @@ void FontManager::drawTextBox(std::string text, ObjectRectangle textBox)
 			wordY = wordY + m_height + 10;
 			wordX = x;
 			//	Rendern eines Wortes
-			drawText(word, wordX, wordY);
+			drawText(word, wordX, wordY, charSize);
 		}
 		//	Verschieben der x-Position um die Länge eines Wortes, um das Rendern vieler Wörter auf einer Position zu verhindern
 		wordX = wordX + m_width * word.size();
 		//	Rendern eines Leerzeichens nach jedem Wort
-		drawCharacter(' ', wordX, wordY);
+		drawCharacter(' ', wordX, wordY, charSize);
 		//	Verschieben des nächsten Wortes um es nicht auf dem Leerzeichen zu rendern
 		wordX = wordX + m_width;
 	}	

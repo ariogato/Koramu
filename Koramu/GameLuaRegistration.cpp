@@ -45,6 +45,9 @@ void GameLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "getClockTimeSeconds", l_getClockTimeSeconds },
 		{ "setClockTimeSeconds", l_setClockTimeSeconds },
 		{ "addClockTimeSeconds", l_addClockTimeSeconds },
+		{ "getClockTinyDisplayHours", l_getClockTinyDisplayHours },
+		{ "setClockTinyDisplayHours", l_setClockTinyDisplayHours },
+		{ "addClockTinyDisplayHours", l_addClockTinyDisplayHours },
 		{ "showClock", l_showClock },
 		{ "hideClock", l_hideClock },
 		{nullptr, nullptr}
@@ -330,10 +333,46 @@ int LuaRegistrations::l_addClockTimeSeconds(lua_State* pLuaState)
 	int seconds = luaL_checkinteger(pLuaState, 2);
 
 	//	Die Geschwindigkeit vom Stack poppen
-	int velocity = luaL_checkinteger(pLuaState, 3);
+	double velocity = luaL_checknumber(pLuaState, 3);
 
 	//	Die Zeit addieren
 	TheGame::Instance()->getClock()->addTime(seconds, velocity);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_getClockTinyDisplayHours(lua_State* pLuaState)
+{
+	//	Die Variable auf den Stack pushen
+	lua_pushinteger(pLuaState, TheGame::Instance()->getClock()->getTinyDisplayTimeInHours());
+
+	//	Die Zeit der kleinen Anzeige in Stunden wird zurückgegeben
+	return 1;
+}
+
+int LuaRegistrations::l_setClockTinyDisplayHours(lua_State* pLuaState)
+{
+	//	Die Zahl vom Stack poppen
+	int hours = luaL_checkinteger(pLuaState, 2);
+
+	//	Die Zeit setzen
+	TheGame::Instance()->getClock()->setTinyDisplayTime(hours);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_addClockTinyDisplayHours(lua_State* pLuaState)
+{
+	//	Die Zeit vom Stack poppen
+	int hours = luaL_checkinteger(pLuaState, 2);
+
+	//	Die Geschwindigkeit vom Stack poppen
+	double velocity = luaL_checknumber(pLuaState, 3);
+
+	//	Die Zeit addieren
+	TheGame::Instance()->getClock()->addTinyDisplayTime(hours, velocity);
 
 	//	Es gibt keinen Rückgabewert
 	return 0;
