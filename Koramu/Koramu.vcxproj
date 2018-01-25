@@ -311,7 +311,9 @@
     <None Include="Scripts\Objects\Doors\ownHouseDoorEntry.lua" />
     <None Include="Scripts\Objects\Doors\ownHouseDoorExit.lua" />
     <None Include="Scripts\Objects\NPCs\clockmaker.lua" />
+    <None Include="Scripts\Objects\NPCs\jenny.lua" />
     <None Include="Scripts\Objects\NPCs\littleGirl.lua" />
+    <None Include="Scripts\Objects\NPCs\policeman.lua" />
     <None Include="Scripts\Objects\player.lua" />
     <None Include="Scripts\Quests\fixWatch\findClockmaker.lua" />
     <None Include="Scripts\Quests\prologue\prologue.lua" />

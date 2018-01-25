@@ -609,5 +609,11 @@
     <None Include="Scripts\Quests\fixWatch\findClockmaker.lua">
       <Filter>Lua Skripts\Quests\fixWatch</Filter>
     </None>
+    <None Include="Scripts\Objects\NPCs\jenny.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\policeman.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
   </ItemGroup>
 </Project>

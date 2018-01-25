@@ -11,6 +11,8 @@
   <script id="test" path="Scripts/test/npc1.lua"/>
   <script id="littleGirl" path="Scripts/Objects/NPCs/littleGirl.lua"/>
   <script id="clockmaker" path="Scripts/Objects/NPCs/clockmaker.lua"/>
+  <script id="policeman" path="Scripts/Objects/NPCs/policeman.lua"/>
+  <script id="jenny" path="Scripts/Objects/NPCs/jenny.lua"/>
   
   <!--Doors-->
   <script id="ownHouseDoorEntry" path="Scripts/Objects/Doors/ownHouseDoorEntry.lua"/>

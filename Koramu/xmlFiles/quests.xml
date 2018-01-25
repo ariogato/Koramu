@@ -7,5 +7,7 @@
   </mainQuest>
   <mainQuest id="fixWatch">
     <partQuest id="findClockmaker"/>
+    <partQuest id="talkToJenny"/>
+    <partQuest id="pickUpWatch"/>
   </mainQuest>
 </quests>
