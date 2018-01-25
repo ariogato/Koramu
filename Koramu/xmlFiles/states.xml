@@ -18,6 +18,8 @@
     <texture id="clockmaker" path="../assets/Objects/Clockmaker.png"/>
     <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="littleGirl" path="../assets/Objects/LittleGirl.png"/>
+    <texture id="priest" path="../assets/Objects/Priest.png"/>
+    <texture id="policeman" path="../assets/Objects/Policeman.png"/>
     <texture id="tree" path="../assets/TreeNew.png"/>
     <texture id="notebook" path="../assets/Notizbuch.png"/>
     
@@ -113,8 +115,18 @@
                   numRows="4" numCols="4"
                   mapId="clockmakerHouse" animSpeed="200"
                   uniqueId="clockmaker"/>
+      <gameObject type="npc" textureId="policeman"
+                  xPos="1500" yPos="690" width="63" height="125"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="policeman"/>
       <gameObject type="npc" textureId="test"
                   xPos="1000" yPos="690" width="128" height="82"
+                  numRows="1" numCols="6"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="test"/>
+      <gameObject type="npc" textureId="priest"
+                  xPos="1300" yPos="690" width="125" height="124"
                   numRows="1" numCols="6"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="test"/>
