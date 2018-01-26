@@ -19,7 +19,7 @@ function jenny:onCollision ()
 		TheGame:startDialog ("May I show you around the town?\nCornelius: I'd be glad to have a guide but I have to pick up my clock now, I'm afraid.\nWhat time is it actually?\nJenny: Just have a look at the church clock on the tower.",
 		characters.jenny, characters.player)
 		-- Todo: Fokus auf Kirchturmuhr setzen
-		TheGame:startDialog ("Jenny: We could meeet in front of the church, if you like.\nCornelius: I will hurry up, thank you very much.",
+		TheGame:startDialog ("Jenny: We could meet in front of the church, if you like.\nCornelius: I will hurry up, thank you very much.",
 		characters.jenny, characters.player)
 		characters.jenny:moveRelative (1100, 0)
 		TheGame:nextQuest()

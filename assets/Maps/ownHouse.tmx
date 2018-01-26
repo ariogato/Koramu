@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="19" height="18" tilewidth="64" tileheight="64" nextobjectid="11">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="19" height="18" tilewidth="64" tileheight="64" nextobjectid="11">
  <tileset firstgid="1" name="Indoorset" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../Tilesets/Indoorset.png" width="128" height="64"/>
  </tileset>
@@ -472,7 +472,7 @@
 4213,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5001,5002,4216,
 4245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5003,5033,5034,4248,
 4277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5065,5066,4280,
-4277,2303,2303,2303,2303,2303,2303,2303,2303,0,0,3327,3327,3327,3327,3327,3327,3327,4280
+4277,2303,2303,2303,2303,2303,2303,2303,2303,0,0,2303,2303,2303,2303,2303,2303,2303,4280
 </data>
  </layer>
  <layer name="Decorationlayer" width="19" height="18">
