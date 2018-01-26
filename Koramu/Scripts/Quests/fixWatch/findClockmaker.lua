@@ -10,6 +10,8 @@ end
 
 
 function findClockmakerShop:onDone ()
+
+	--	Jenny wird bewegt. Das ist der Startimpuls für das Auf-und-Ab-Gehen
 	jenny = NPC.getInstance ("jenny")
 	jenny:moveRelative(100, 0)
 end

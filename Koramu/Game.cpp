@@ -49,7 +49,7 @@ Game::Game()									//	Konstruktor
 	  m_pCamera(nullptr)
 {
 	//	Die Logger initialisieren
-	m_pStandardLog = new Logger();
+	m_pStandardLog = new Logger("../logs/standard.txt");
 	m_pErrorLog = new Logger("../logs/errors.txt");
 
 	//	Story Objekt erstellen

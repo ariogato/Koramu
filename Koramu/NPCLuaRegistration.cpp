@@ -63,7 +63,6 @@ int LuaRegistrations::l_getNPCInstance(lua_State* pLuaState)
 		return 1;
 	}
 
-	printStack(pLuaState);
 	//	Die GameObjects des ObjectLayers werden geholt (Objekt nicht löschen)
 	std::vector<GameObject*> gameObjects = TheGame::Instance()->getCurrentState()->getAllObjects();
 
