@@ -7,7 +7,7 @@
 
 local startGame = {}
 
-function startGame:onGameStart ()
+function startGame:onStart ()
 	TheGame:enterMap ("ownHouse")
 	TheGame:nextQuest ()
 end

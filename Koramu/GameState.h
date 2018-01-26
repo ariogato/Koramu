@@ -1,6 +1,8 @@
 #pragma once
 
 #include <map>
+#include <vector>
+#include "GameObject.h"
 #include "Stack.h"
 #include "Map.h"
 #include "Dialog.h"
@@ -73,6 +75,7 @@ namespace FiniteStateMachine
 		std::map<std::string, Environment::Map*> getMapDict() const { return m_mapDict; }
 		Dialog* getDialog() { return &m_dialog; }
 		DataStructure::Stack<Environment::Map*>* getMapStack() { return &m_maps; }
+		std::vector<GameObject*> getAllObjects() const;
 
 		//	setter-Funktionen
 		void pushMap(std::string mapId) { m_maps.push(m_mapDict[mapId]); }					//	Eine Map anhand ihrer Id aufstapeln
@@ -89,4 +92,17 @@ namespace FiniteStateMachine
 		}
 		m_mapDict.clear();
 	}
+
+	inline std::vector<GameObject*> GameState::getAllObjects() const
+	{
+		std::vector<GameObject*> result;
+
+		for (auto& m : m_mapDict)
+		{
+			result.insert(result.end(), m.second->getObjectLayer()->getGameObjects()->begin(), m.second->getObjectLayer()->getGameObjects()->end());
+		}
+
+		return result;
+	}
+
 };

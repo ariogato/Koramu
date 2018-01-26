@@ -65,16 +65,16 @@ int LuaRegistrations::l_getNPCInstance(lua_State* pLuaState)
 
 	printStack(pLuaState);
 	//	Die GameObjects des ObjectLayers werden geholt (Objekt nicht löschen)
-	std::vector<GameObject*>* pGameObjects = TheGame::Instance()->getCurrentState()->getCurrentMap()->getObjectLayer()->getGameObjects();
+	std::vector<GameObject*> gameObjects = TheGame::Instance()->getCurrentState()->getAllObjects();
 
 	//	Das entsprechende Objekt mit der id heraussuchen
-	std::vector<GameObject*>::iterator it = std::find_if(pGameObjects->begin(), pGameObjects->end(), [uniqueId](GameObject* gO)
+	std::vector<GameObject*>::iterator it = std::find_if(gameObjects.begin(), gameObjects.end(), [uniqueId](GameObject* gO)
 	{
 		return gO->getUniqueId() == uniqueId;
 	});
 
 	//	Checken, ob das Objekt gefunden wurde
-	if (it == pGameObjects->end())
+	if (it == gameObjects.end())
 	{
 		TheGame::Instance()->logError() << "LuaRegistrations::l_getNPCInstance():\n\tKein Objekt mit der ID: " << uniqueId << std::endl << std::endl;
 		lua_pushnil(pLuaState);

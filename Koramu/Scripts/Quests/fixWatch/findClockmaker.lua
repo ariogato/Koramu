@@ -10,6 +10,8 @@ end
 
 
 function findClockmakerShop:onDone ()
+	jenny = NPC.getInstance ("jenny")
+	jenny:moveRelative(100, 0)
 end
 
 return findClockmakerShop
