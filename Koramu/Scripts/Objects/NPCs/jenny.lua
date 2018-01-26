@@ -20,7 +20,8 @@ function jenny:onCollision ()
 		-- Todo: Fokus auf Kirchturmuhr setzen
 		TheGame:startDialog ("Jenny: We could meeet in front of the church, if you like.\nCornelius: I will hurry up, thank you very much.",
 		characters.jenny, characters.player)
-		characters.jenny:moveRelative(2000, 0)
+		characters.jenny:moveRelative (2000, 0)
+		TheGame:nextQuest()
 	end
 end
 
