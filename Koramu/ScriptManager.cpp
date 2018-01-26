@@ -72,13 +72,15 @@ bool ScriptManager::init()
 	static const luaL_Reg s_luaLibs[] =
 	{
 		{ "base", luaopen_base },
+		{ "math", luaopen_math },
+		{ "os", luaopen_os },
 		{ nullptr, nullptr }
 	};
 
 	//	Nun wird über jede angegebene Library iteriert, wobei ihre Lade Funktion aufgerufen wird
 	for (const luaL_Reg* lib = s_luaLibs; lib->func != nullptr; lib++)
 	{
-		lib->func(m_pLuaState);
+		luaL_requiref(m_pLuaState, lib->name, lib->func, true);
 		lua_settop(m_pLuaState, 0);
 	}
 
