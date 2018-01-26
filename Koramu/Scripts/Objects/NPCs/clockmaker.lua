@@ -11,6 +11,12 @@ function clockmaker:interact (n, p)
 		interact.np, interact.pl)
 		TheGame:nextQuest()
 	end
+	if TheGame:getPartQuestId () == "pickUpWatch" then
+		TheGame:startDialog ("Clockmaker: There it is. Your watch works perfectly again. Take care not to ruin it again!\nAnd you should not be too curious, no good will come of it!",
+		interact.np, interact.pl)
+		TheGame:startDialog ("Cornelius: What do you mean?\nClockmaker: I don't have time for such talk. Off with you! And don't be late...",
+		interact.np, interact.pl)
+	end
 end
 
 function clockmaker:onCollision ()
