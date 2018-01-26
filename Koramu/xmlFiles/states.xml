@@ -123,7 +123,7 @@
                   mapId="mainMap" animSpeed="200"
                   uniqueId="policeman"/>
       <gameObject type="npc" textureId="priest"
-                  xPos="1000" yPos="690" width="117" height="160"
+                  xPos="3100" yPos="2400" width="117" height="160"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="priest"/>
@@ -138,7 +138,7 @@
                   mapId="mainMap" animSpeed="200"
                   uniqueId="test"/>
       <gameObject type="npc" textureId="littleGirl"
-                  xPos="800" yPos="690" width="52" height="88"
+                  xPos="2560" yPos="3340" width="52" height="88"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="littleGirl"/>
