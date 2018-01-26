@@ -149,6 +149,11 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 		*m_pErrorLog << "Could not create window: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
+
+	//	Icon für die obere linke Ecke des Fensters hinzugefügt
+	SDL_Surface* pIcon = IMG_Load("../assets/tophat_icon.ico");
+	SDL_SetWindowIcon(m_pWindow, pIcon);
+
 	//	Das Fenster wurde erfolgreich erstellt
 	*m_pStandardLog << "Fenster wurde erfolgreich erstellt!" << std::endl;
 

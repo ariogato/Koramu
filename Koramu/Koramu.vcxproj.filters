@@ -517,6 +517,9 @@
     <ClInclude Include="Clock.h">
       <Filter>Headerdateien\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -621,5 +624,11 @@
     <None Include="Scripts\Inventory\Items\watch.lua">
       <Filter>Lua Skripts\Inventory\Items</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Koramu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\tophat_icon.ico" />
   </ItemGroup>
 </Project>

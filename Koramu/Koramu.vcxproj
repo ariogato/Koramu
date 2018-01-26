@@ -237,6 +237,7 @@
     <ClInclude Include="NotebookState.h" />
     <ClInclude Include="NPCLuaRegistration.h" />
     <ClInclude Include="Page.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SDL_ObjectLuaRegistration.h" />
     <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
@@ -321,6 +322,12 @@
     <None Include="Scripts\Quests\prologue\prologue.lua" />
     <None Include="Scripts\Quests\prologue\startGame.lua" />
     <None Include="Scripts\test\npc1.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Koramu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\tophat_icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
