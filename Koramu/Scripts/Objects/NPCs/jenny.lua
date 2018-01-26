@@ -1,8 +1,9 @@
 -- jenny.lua
 
-local jenny = {}
+local jenny = {dir = false}
 
-function jenny:interact (n, p)end
+function jenny:interact (n, p)
+end
 
 function jenny:onCollision ()
 	characters = {}
@@ -20,8 +21,28 @@ function jenny:onCollision ()
 		-- Todo: Fokus auf Kirchturmuhr setzen
 		TheGame:startDialog ("Jenny: We could meeet in front of the church, if you like.\nCornelius: I will hurry up, thank you very much.",
 		characters.jenny, characters.player)
-		characters.jenny:moveRelative (2000, 0)
+		characters.jenny:moveRelative (1100, 0)
 		TheGame:nextQuest()
+	end
+end
+
+function jenny:onCommandDone (command)
+
+	--	Bei der Quest "talkToJenny" soll Jenny auf und ab laufen (der Startimpuls wird bei findClockmakerShop:onDone gegeben
+	if TheGame:getPartQuestId () == "talkToJenny" and command == "COMMAND_MOVE" then
+
+		--	Der NPC mit der ID "jenny" wird gespeichert
+		jen = NPC.getInstance ("jenny")
+
+		--	Abwechselnd nach links und nach rechts gehen
+		if jenny.dir then
+			jen:moveRelative ((-200), 0)
+		else
+			jen:moveRelative (200, 0)
+		end
+
+		--	Die flag dir muss geändert werden, damit die Richtung beim nächsten command geändert wird
+		jenny.dir = (not jenny.dir)
 	end
 end
 

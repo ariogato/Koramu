@@ -76,6 +76,6 @@ int main(int argc, char** argv)
 #endif
 
 	// Damit man lesen kann, was ausgegeben wird und das Fenster nicht sofort verschwindet.
-	system("PAUSE"); 
+	//system("PAUSE"); 
 	return 0;
 }

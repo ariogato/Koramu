@@ -49,7 +49,7 @@ Game::Game()									//	Konstruktor
 	  m_pCamera(nullptr)
 {
 	//	Die Logger initialisieren
-	m_pStandardLog = new Logger();
+	m_pStandardLog = new Logger("../logs/standard.txt");
 	m_pErrorLog = new Logger("../logs/errors.txt");
 
 	//	Story Objekt erstellen
@@ -102,7 +102,7 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
 	{
 		//	Die Initialisierung von SDL ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben.
-		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
+		*m_pErrorLog << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
@@ -113,20 +113,20 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 		*/
 
 		//	Falls wir hier ankommen, ist etwas kaputt gegangen
-		std::cerr << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
+		*m_pErrorLog << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
 		return false;
 	}
 	if (TTF_Init() < 0)
 	{
 		//	Falls wir hier ankommen, ist etwas kaputt gegangen
-		std::cerr << "TTF_Init failed: \n" << TTF_GetError() << std::endl;
+		*m_pErrorLog << "TTF_Init failed: \n" << TTF_GetError() << std::endl;
 		return false;
 	}
 
 	//	Die initialisierung von SDL & SDL_image war erfolgreich!
-	std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
-					"SDL_image wurde erfolgreich initialisiert!" << std::endl << 
-					"SDL_ttf wurde erfolgreich initialisiert!" << std::endl;
+	*m_pStandardLog <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
+						"SDL_image wurde erfolgreich initialisiert!" << std::endl << 
+						"SDL_ttf wurde erfolgreich initialisiert!" << std::endl;
 
 
 	//	Die Breite und Höhe des Bildschirms speichern, um basierend darauf die Maße des Fensters zu setzen
@@ -146,11 +146,16 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	if (!m_pWindow) 
 	{
 		//	Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-		std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
+		*m_pErrorLog << "Could not create window: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
+
+	//	Icon für die obere linke Ecke des Fensters hinzugefügt
+	SDL_Surface* pIcon = IMG_Load("../assets/tophat_icon.ico");
+	SDL_SetWindowIcon(m_pWindow, pIcon);
+
 	//	Das Fenster wurde erfolgreich erstellt
-	std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
+	*m_pStandardLog << "Fenster wurde erfolgreich erstellt!" << std::endl;
 
 
 	//	Renderer erstellen.
@@ -160,11 +165,11 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	if (!m_pRenderer)
 	{
 		//	Die Erstellung des Renderers ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-		std::cerr << "Could not create renderer: \n" << SDL_GetError() << std::endl;
+		*m_pErrorLog << "Could not create renderer: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
 	//	Der Renderer wurde erfolgreich erstellt
-	std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
+	*m_pStandardLog << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
 #pragma region ScriptRegistration
 	//	Alles für die Lua Scripts bereitstellen

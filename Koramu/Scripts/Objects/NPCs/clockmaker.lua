@@ -9,6 +9,7 @@ function clockmaker:interact (n, p)
 	if TheGame:getPartQuestId() == "findClockmaker" then
 		TheGame:startDialog ("Cornelius: Excuse me Sir ...\nClockmaker: You don't belong here, that's clear to see. What is it you want?\nCornelius: Well my watch has stopped and I came to ask you to fix it for me.\nClockmaker: Is that so? Mmh... that is a wonderful watch. I guarantee it will work better than ever before if you give it to me.\nBut it will take some time to fix it. You can come back in half an hour at the earliest.\nAnd now don't disturb me any longer, I will go to work immediately.",
 		interact.np, interact.pl)
+		TheGame:removeItem("watch", 1)
 		TheGame:nextQuest()
 	end
 	if TheGame:getPartQuestId () == "pickUpWatch" then
@@ -16,6 +17,8 @@ function clockmaker:interact (n, p)
 		interact.np, interact.pl)
 		TheGame:startDialog ("Cornelius: What do you mean?\nClockmaker: I don't have time for such talk. Off with you! And don't be late...",
 		interact.np, interact.pl)
+		
+		TheGame:addItem ("watch", 1)
 	end
 end
 
