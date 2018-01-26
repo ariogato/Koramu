@@ -35,7 +35,7 @@ Dialog::Dialog()
 	m_textBox.width -= margin * 2;
 		
 	//	Die textureId setzen
-	m_boxTextureId = "greyLayer";
+	m_boxTextureId = "dialogBox";
 }
 
 Dialog::~Dialog()

@@ -43,6 +43,7 @@
   <script id="itemList" path="Scripts/Inventory/itemList.lua"/>
   <script id="topHat" path="Scripts/Inventory/Items/topHat.lua"/>
   <script id="watch" path="Scripts/Inventory/Items/watch.lua"/>
+  <script id="watchBroken" path="Scripts/Inventory/Items/watchBroken.lua"/>
 
   <!--Misc-->
   <script id="koramu" path="Scripts/Misc/koramu.lua"/>

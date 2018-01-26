@@ -23,6 +23,7 @@ void LuaRegistrations::NPCLuaRegistration::registerToLua(lua_State* pLuaState)
 		{ "getInstance", l_getNPCInstance },
 		{ "sayhi", sayhiNPC },
 		{ "setCurrentCol", l_setCurrentCol },
+		{ "setPosition", l_NPCSetPosition },
 		{ "moveToPosition", l_NPCMoveToPosition },
 		{ "moveRelative", l_NPCMoveRelative },
 		{ "stun", l_NPCStun },
@@ -123,6 +124,25 @@ int LuaRegistrations::l_setCurrentCol(lua_State* pLuaState)
 
 	//	Die currentRow setzen
 	pNPCInstance->setCurrentCol(col);
+
+	//	Es gibt keinen Rückgabewert
+	return 0;
+}
+
+int LuaRegistrations::l_NPCSetPosition(lua_State* pLuaState)
+{
+	//	Die Anzahl der Argumente muss 3 sein (x, y) + userdata
+	if (lua_gettop(pLuaState) < 3)
+	{
+		lua_settop(pLuaState, 0);
+		return 0;
+	}
+
+	//	Referenz auf den NPC aus den Argumenten holen (nicht zu löschen)
+	NPC* pNPCInstance = NPCLuaRegistration::checkAndGetNPC(pLuaState, 1);
+
+	//	Die Funktion des NPC aufrufen
+	pNPCInstance->setPosition(lua_tointeger(pLuaState, -2), lua_tointeger(pLuaState, -1));
 
 	//	Es gibt keinen Rückgabewert
 	return 0;

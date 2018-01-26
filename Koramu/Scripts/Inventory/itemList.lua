@@ -2,6 +2,6 @@
 
 local itemList = {}
 
-itemList["items"] = "topHat\nwatch\n"
+itemList["items"] = "topHat\nwatch\nwatchBroken\n"
 
 return itemList

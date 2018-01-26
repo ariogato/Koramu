@@ -3,6 +3,7 @@
 #include <sstream>
 #include "ScriptManager.h"
 #include "Game.h"
+#include "TextureManager.h"
 
 //	Offset vom Rand in Pixeln
 #define OFFSET_X 25.0f
@@ -12,6 +13,7 @@ ItemList::ItemList()
 {
 	m_rect.setVisible(true);
 	m_rect.setColor(66, 206, 244, 255);
+	m_textureId = "inventory";
 }
 
 ItemList::~ItemList()
@@ -180,6 +182,9 @@ void ItemList::update()
 
 void ItemList::draw()
 {
+	//	Der Hintergrund wird gemalt
+	TheTextureManager::Instance()->drawScaledFrame(m_textureId, m_rect.getX(), m_rect.getY(), m_rect.getWidth(), m_rect.getHeight(), 0, 0, 1, 1);
+
 	//	ObjectRect wird gemalt
 	m_rect.draw(Vector2D(0.0f, 0.0f));
 

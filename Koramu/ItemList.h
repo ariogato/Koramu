@@ -24,6 +24,7 @@ class ItemList
 {
 private:
 	ObjectRectangle m_rect;									//	Position und Maﬂe der Item-Liste
+	const char* m_textureId;								//	TextureId des Hintergrunds
 	std::map<std::string, Item>	m_itemMap;					//	S‰mtliche Itemtypen, die es gibt
 	std::vector<std::pair<Item*, int>> m_items;				//	Alle im Inventar befindlichen Items (mit der Anzahl)
 

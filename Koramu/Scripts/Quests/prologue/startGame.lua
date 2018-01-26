@@ -9,7 +9,7 @@ local startGame = {}
 
 function startGame:onStart ()
 	TheGame:enterMap ("ownHouse")
-	TheGame:addItem ("watch", 1)
+	TheGame:addItem ("watchBroken", 1)
 	TheGame:nextQuest ()
 end
 

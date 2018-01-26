@@ -14,22 +14,26 @@
     <texture id="buttonResize" path="../assets/Buttons/Button_Resize.png"/>
 
     <!--GameObjects-->
-    <texture id="player" path="../assets/Objects/Player.png"/>
-    <texture id="clockmaker" path="../assets/Objects/Clockmaker.png"/>
-    <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="littleGirl" path="../assets/Objects/LittleGirl.png"/>
+    <texture id="clockmaker" path="../assets/Objects/Clockmaker.png"/>
     <texture id="priest" path="../assets/Objects/Priest.png"/>
     <texture id="policeman" path="../assets/Objects/Policeman.png"/>
-    <texture id="jenny" path="../assets/Misc/Grey_Layer.png"/>
+    <texture id="jenny" path="../assets/Objects/Jenny2.png"/>
+    <texture id="player" path="../assets/Objects/Player.png"/>
+    <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="tree" path="../assets/TreeNew.png"/>
     <texture id="notebook" path="../assets/Notizbuch.png"/>
-    
+
+
     <!--Miscellaneous-->
     <texture id="koramu" path="../assets/Koramu.png"/>
     <texture id="font" path="../assets/Fonts/pixelFont.png"/>
     <texture id="transparent" path="../assets/Misc/Transparent.png"/>
     <texture id="greyLayer" path="../assets/Misc/Grey_Layer.png"/>
-    
+    <texture id="inventory" path="../assets/Misc/Inventory.png"/>
+    <texture id="dialogBox" path="../assets/Misc/Dialogbox.png"/>
+
+
     <!--Clock-->
     <texture id="clockFace" path="../assets/Misc/clockFace.png"/>
     <texture id="clockHandSeconds" path="../assets/Misc/clockHandSec.png"/>
@@ -53,6 +57,8 @@
     
     <!--Items-->
     <texture id="topHat" path="../assets/Items/topHat.png"/>
+    <texture id="watch" path="../assets/Items/watch.png"/>
+    <texture id="watchBroken" path="../assets/Items/watchBroken.png"/>
   </textures>
 
   <menu>
@@ -128,7 +134,7 @@
                   mapId="mainMap" animSpeed="200"
                   uniqueId="priest"/>
       <gameObject type="npc" textureId="jenny"
-                  xPos="1600" yPos="2380" width="70" height="150"
+                  xPos="4150" yPos="3300" width="76" height="130"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="jenny"/>

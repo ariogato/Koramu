@@ -307,6 +307,7 @@
     <None Include="Scripts\Inventory\itemList.lua" />
     <None Include="Scripts\Inventory\Items\topHat.lua" />
     <None Include="Scripts\Inventory\Items\watch.lua" />
+    <None Include="Scripts\Inventory\Items\watchBroken.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
     <None Include="Scripts\Objects\Doors\clockmakerHouseEntry.lua" />
     <None Include="Scripts\Objects\Doors\clockmakerHouseExit.lua" />
