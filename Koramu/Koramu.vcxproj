@@ -93,7 +93,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>liblua53.a;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -105,7 +105,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>liblua53.a;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,7 +121,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>liblua53.a;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,7 +137,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>liblua53.a;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -146,6 +146,7 @@
     <ClCompile Include="BaseLuaRegistration.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="ClosureDefinitions.cpp" />
     <ClCompile Include="CollisionRectParser.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLuaRegistration.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Closure.h" />
     <ClInclude Include="ClosureDeclarations.h" />
     <ClInclude Include="CollisionRectParser.h" />
@@ -235,6 +237,7 @@
     <ClInclude Include="NotebookState.h" />
     <ClInclude Include="NPCLuaRegistration.h" />
     <ClInclude Include="Page.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SDL_ObjectLuaRegistration.h" />
     <ClInclude Include="Story.h" />
     <ClInclude Include="HowToPlayState.h" />
@@ -301,15 +304,31 @@
     <None Include="Scripts\Buttons\buttonResume.lua" />
     <None Include="Scripts\Buttons\buttonSave.lua" />
     <None Include="Scripts\default.lua" />
-    <None Include="Scripts\Doors\door1.lua" />
-    <None Include="Scripts\Doors\door2.lua" />
     <None Include="Scripts\Inventory\itemList.lua" />
     <None Include="Scripts\Inventory\Items\topHat.lua" />
+    <None Include="Scripts\Inventory\Items\watch.lua" />
+    <None Include="Scripts\Inventory\Items\watchBroken.lua" />
     <None Include="Scripts\Misc\koramu.lua" />
+    <None Include="Scripts\Objects\Doors\clockmakerHouseEntry.lua" />
+    <None Include="Scripts\Objects\Doors\clockmakerHouseExit.lua" />
+    <None Include="Scripts\Objects\Doors\ownHouseDoorEntry.lua" />
+    <None Include="Scripts\Objects\Doors\ownHouseDoorExit.lua" />
+    <None Include="Scripts\Objects\NPCs\clockmaker.lua" />
+    <None Include="Scripts\Objects\NPCs\jenny.lua" />
+    <None Include="Scripts\Objects\NPCs\littleGirl.lua" />
+    <None Include="Scripts\Objects\NPCs\policeman.lua" />
+    <None Include="Scripts\Objects\NPCs\priest.lua" />
     <None Include="Scripts\Objects\player.lua" />
-    <None Include="Scripts\Quests\prologue\firstDoNothingQuest.lua" />
-    <None Include="Scripts\Quests\prologue\notebookEntry1.lua" />
+    <None Include="Scripts\Quests\fixWatch\findClockmaker.lua" />
+    <None Include="Scripts\Quests\prologue\prologue.lua" />
+    <None Include="Scripts\Quests\prologue\startGame.lua" />
     <None Include="Scripts\test\npc1.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Koramu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\tophat_icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

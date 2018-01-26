@@ -35,7 +35,7 @@ Dialog::Dialog()
 	m_textBox.width -= margin * 2;
 		
 	//	Die textureId setzen
-	m_boxTextureId = "greyLayer";
+	m_boxTextureId = "dialogBox";
 }
 
 Dialog::~Dialog()
@@ -102,7 +102,7 @@ void Dialog::draw()
 	static unsigned int part = 0;
 	
 	//	Die Schnelligkeit, in der der Text geschrieben wird (kleiner = schneller)
-	unsigned int charPerSec = 2;
+	unsigned int charPerSec = 1;
 
 	//	Teil der Zeile, der gerendert werden soll  (falls die Animation abgeschlossen ist, einfach alles rendern)
 	std::string text = (m_lineFinished) ? (m_message[0]) : m_message[0].substr(0, (part / charPerSec));

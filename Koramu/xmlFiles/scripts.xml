@@ -3,15 +3,24 @@
 <scripts>
   <!--Ein Default Skript für GameObjects ohne eigenes Skript (wegen getScriptFromId)-->
   <script id="default" path="Scripts/default.lua"/>
-  
+
   <!--Player-->
   <script id="player" path="Scripts/Objects/player.lua"/>
+
+  <!--Objects-->
+  <script id="test" path="Scripts/test/npc1.lua"/>
+  <script id="littleGirl" path="Scripts/Objects/NPCs/littleGirl.lua"/>
+  <script id="clockmaker" path="Scripts/Objects/NPCs/clockmaker.lua"/>
+  <script id="policeman" path="Scripts/Objects/NPCs/policeman.lua"/>
+  <script id="jenny" path="Scripts/Objects/NPCs/jenny.lua"/>
+  <script id="priest" path="Scripts/Objects/NPCs/priest.lua"/>
   
   <!--Doors-->
-  <script id="test" path="Scripts/test/npc1.lua"/>
-  <script id="door1" path="Scripts/Doors/door1.lua"/>
-  <script id="door2" path="Scripts/Doors/door2.lua"/>
-  
+  <script id="ownHouseDoorEntry" path="Scripts/Objects/Doors/ownHouseDoorEntry.lua"/>
+  <script id="ownHouseDoorExit" path="Scripts/Objects/Doors/ownHouseDoorExit.lua"/>
+  <script id="clockmakerHouseEntry" path="Scripts/Objects/Doors/clockmakerHouseEntry.lua"/>
+  <script id="clockmakerHouseExit" path="Scripts/Objects/Doors/clockmakerHouseExit.lua"/>
+
   <!--Buttons MenuState-->
   <script id="buttonPlay" path="Scripts/Buttons/buttonPlay.lua"/>
   <script id="buttonHowtoplay" path="Scripts/Buttons/buttonHowToPlay.lua"/>
@@ -22,17 +31,21 @@
   <script id="buttonResume" path="Scripts/Buttons/buttonResume.lua"/>
   <script id="buttonSave" path="Scripts/Buttons/buttonSave.lua"/>
   <script id="buttonMainMenu" path="Scripts/Buttons/buttonMainMenu.lua"/>
-  
+
   <!--Quests-->
   <!--mainQuest: prologue-->
-  <script id="firstDoNothingQuest" path="Scripts/Quests/prologue/firstDoNothingQuest.lua"/>
-  <script id="notebookEntry1" path="Scripts/Quests/prologue/notebookEntry1.lua"/>
-  
+  <script id="startGame" path="Scripts/Quests/prologue/startGame.lua"/>
+  <script id="prologue" path="Scripts/Quests/prologue/prologue.lua"/>
+  <!--mainQuest: fixWatch-->
+  <script id="findClockmaker" path="Scripts/Quests/fixWatch/findClockmaker.lua"/>
+
   <!--Items-->
   <script id="itemList" path="Scripts/Inventory/itemList.lua"/>
   <script id="topHat" path="Scripts/Inventory/Items/topHat.lua"/>
+  <script id="watch" path="Scripts/Inventory/Items/watch.lua"/>
+  <script id="watchBroken" path="Scripts/Inventory/Items/watchBroken.lua"/>
 
   <!--Misc-->
   <script id="koramu" path="Scripts/Misc/koramu.lua"/>
-  
+
 </scripts>

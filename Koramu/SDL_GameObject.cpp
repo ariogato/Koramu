@@ -52,6 +52,40 @@ void SDL_GameObject::load(const ParamLoader& parameters)
 
 void SDL_GameObject::update()
 {
+	//	Die Zeile wird basierend auf dem Geschwindigkeitsvektor errechnet
+	if (m_velocity.getLength() > 0)
+	{
+		//	Bewegung nach unten
+		if (m_velocity.getY() > 0)
+		{
+
+			if (m_numRows > 0)
+				m_currentRow = 0;
+		}
+		//	Bewegung nach oben
+		else if (m_velocity.getY() < 0)
+		{
+
+			if (m_numRows > 1)
+				m_currentRow = 1;
+
+		}
+		//	Bewegung nach rechts
+		else if (m_velocity.getX() > 0) 
+		{
+			if (m_numRows > 2)
+				m_currentRow = 2;
+		}
+
+		//	Bewegung nach links
+		else
+		{
+			if (m_numRows > 3)
+				m_currentRow = 3;
+		}
+	
+	}
+
 	//	Der anzuzeigende Frame wird berechnet
 	m_currentCol = (int)(SDL_GetTicks() / m_animSpeed) % m_numCols;
 
@@ -96,7 +130,7 @@ void SDL_GameObject::collision()
 	//	Falls gerade ein Move Befehl vorliegt, soll dieser gelöscht werden, da bei einer Kollision Schluss ist
 	if (!m_pCommands->isEmpty())
 		if (m_pCommands->getCurrentCommand()->getType() == COMMAND_MOVE)
-			m_pCommands->popCommand();
+			m_pCommands->getCurrentCommand()->setDone();
 
 	/*	Der Geschwindigkeitsvektor wird wieder vom Ortsvektor subtrahiert,
 	 *	damit die Bewegung aus 'update()' wieder rückgängig gemacht wird.

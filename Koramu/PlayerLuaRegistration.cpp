@@ -138,7 +138,7 @@ int LuaRegistrations::l_PlayerStun(lua_State* pLuaState)
 	Player* pPlayerInstance = PlayerLuaRegistration::checkAndGetPlayer(pLuaState, 1);
 
 	//	Das Argument der Zeit vom Stack holen
-	int sec = lua_tointeger(pLuaState, 2);
+	float sec = luaL_checknumber(pLuaState, 2);
 
 	//	Den Player stunnen
 	pPlayerInstance->stun(sec);

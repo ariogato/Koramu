@@ -14,6 +14,7 @@ class Camera;
 class Story;
 class ItemList;
 class Notebook;
+class Clock;
 
 /*	Konstruktor und Destruktor wurden aus folgendem Grund 'private' gesetzt:
 *
@@ -75,6 +76,9 @@ private:
 	//	Notizbuch
 	Notebook* m_pNotebook;
 
+	//	Uhr
+	Clock* m_pClock;
+
 	//	Logger Variablen
 	Logger* m_pStandardLog;
 	Logger* m_pErrorLog;
@@ -121,7 +125,8 @@ public:
 	FiniteStateMachine::GameState* getCurrentState() const;
 	Story* getStory() const { return m_pStory; }
 	ItemList* getItemList() const { return m_pItemList; }
-	Notebook* getNotebook() { return m_pNotebook; }
+	Notebook* getNotebook() const { return m_pNotebook; }
+	Clock* getClock() const { return m_pClock; }
 
 	/*	Log Objekte werden zurückgegeben, damit man mit einem
 	*	Stream Operator auf sie zugreifen kann.

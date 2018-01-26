@@ -120,6 +120,9 @@
     <Filter Include="Lua Skripts\Quests\prologue">
       <UniqueIdentifier>{3a6c60b8-2f92-4942-ac03-53c15cae6a8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua Skripts\Quests\fixWatch">
+      <UniqueIdentifier>{066a35a5-68c4-4a1a-9cbe-90fc3d172797}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -301,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Quelldateien\GameObjects\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Quelldateien\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,6 +514,12 @@
     <ClInclude Include="ImageProcessing.h">
       <Filter>Headerdateien\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Headerdateien\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="xmlFiles\states.xml">
@@ -522,13 +534,13 @@
     <Xml Include="xmlFiles\collisionRects.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
-    <Xml Include="xmlFiles\scripts.xml">
-      <Filter>xmlFiles</Filter>
-    </Xml>
     <Xml Include="xmlFiles\quests.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
     <Xml Include="xmlFiles\save.xml">
+      <Filter>xmlFiles</Filter>
+    </Xml>
+    <Xml Include="xmlFiles\scripts.xml">
       <Filter>xmlFiles</Filter>
     </Xml>
   </ItemGroup>
@@ -573,17 +585,53 @@
     <None Include="Scripts\Inventory\itemList.lua">
       <Filter>Lua Skripts\Inventory</Filter>
     </None>
-    <None Include="Scripts\Quests\prologue\notebookEntry1.lua">
-      <Filter>Lua Skripts\Quests\prologue</Filter>
-    </None>
-    <None Include="Scripts\Quests\prologue\firstDoNothingQuest.lua">
-      <Filter>Lua Skripts\Quests\prologue</Filter>
-    </None>
-    <None Include="Scripts\Doors\door2.lua">
+    <None Include="Scripts\Objects\Doors\ownHouseDoorEntry.lua">
       <Filter>Lua Skripts\Doors</Filter>
     </None>
-    <None Include="Scripts\Doors\door1.lua">
+    <None Include="Scripts\Objects\Doors\ownHouseDoorExit.lua">
       <Filter>Lua Skripts\Doors</Filter>
     </None>
+    <None Include="Scripts\Objects\NPCs\littleGirl.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Quests\prologue\prologue.lua">
+      <Filter>Lua Skripts\Quests\prologue</Filter>
+    </None>
+    <None Include="Scripts\Quests\prologue\startGame.lua">
+      <Filter>Lua Skripts\Quests\prologue</Filter>
+    </None>
+    <None Include="Scripts\Objects\Doors\clockmakerHouseEntry.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Objects\Doors\clockmakerHouseExit.lua">
+      <Filter>Lua Skripts\Doors</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\clockmaker.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Quests\fixWatch\findClockmaker.lua">
+      <Filter>Lua Skripts\Quests\fixWatch</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\jenny.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\policeman.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Objects\NPCs\priest.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
+    <None Include="Scripts\Inventory\Items\watch.lua">
+      <Filter>Lua Skripts\Inventory\Items</Filter>
+    </None>
+    <None Include="Scripts\Inventory\Items\watchBroken.lua">
+      <Filter>Lua Skripts\Inventory\Items</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Koramu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\tophat_icon.ico" />
   </ItemGroup>
 </Project>

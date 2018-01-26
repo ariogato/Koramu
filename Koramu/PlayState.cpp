@@ -79,8 +79,11 @@ void FiniteStateMachine::PlayState::onEnter()
 		i->onCreate();
 	}
 
-	//	Die Funktion onGameStart der Quest wird aufgerufen (es wird nicht empfohlen onGameStart tatsächlich für eine QUest zu implementieren)
-	TheScriptManager::Instance()->getScriptById(TheGame::Instance()->getStory()->getPartQuest()).callFunction("onGameStart");
+	//	Die Funktion onGameStart der Quest wird aufgerufen (es wird nicht empfohlen onGameStart tatsächlich für eine Quest zu implementieren)
+	//TheScriptManager::Instance()->getScriptById(TheGame::Instance()->getStory()->getPartQuest()).callFunction("onGameStart");
+
+	//	Die Funktion onStart der Quest wird aufgerufen
+	TheScriptManager::Instance()->getScriptById(TheGame::Instance()->getStory()->getPartQuest()).callFunction("onStart");
 
 	TheGame::Instance()->logStandard() << "Der 'PlayState' wurde betreten." << std::endl << std::endl;
 }

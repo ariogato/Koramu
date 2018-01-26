@@ -42,4 +42,7 @@ public:
 	//	getter-Funktionen
 	COMMAND_TYPE getType() const { return m_type; }
 	bool isDone() const { return m_done; }
+
+	//	setter-Funktionen
+	void setDone() { m_done = true; }
 };

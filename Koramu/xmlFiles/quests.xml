@@ -2,7 +2,12 @@
 
 <quests>
   <mainQuest id="prologue">
-    <partQuest id="firstDoNothingQuest"/>
-    <partQuest id="notebookEntry1"/>
+    <partQuest id="startGame"/>
+    <partQuest id="prologue"/>
+  </mainQuest>
+  <mainQuest id="fixWatch">
+    <partQuest id="findClockmaker"/>
+    <partQuest id="talkToJenny"/>
+    <partQuest id="pickUpWatch"/>
   </mainQuest>
 </quests>

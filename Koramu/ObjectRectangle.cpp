@@ -10,7 +10,7 @@ ObjectRectangle::ObjectRectangle()
 	  m_visible(false), m_showText(false)
 {
 	if(!m_font)
-		m_font = TTF_OpenFont("../assets/consola.ttf", 12);
+		m_font = TTF_OpenFont("../assets/Fonts/consola.ttf", 12);
 
 
 	//	Default Farbe ist rot

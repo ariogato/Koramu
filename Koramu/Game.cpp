@@ -12,6 +12,7 @@
 #include "Story.h"
 #include "StoryParser.h"
 #include "Notebook.h"
+#include "Clock.h"
 
 #include "GameObjectFactory.h"
 #include "Player.h"
@@ -41,14 +42,14 @@ Game* Game::s_pInstance = nullptr;
 
 Game::Game()									//	Konstruktor
 	: m_running(false),
-	m_gameWidth(0), m_gameHeight(0),
-	m_gameXPos(0), m_gameYPos(0),
-	m_pStateMachine(nullptr), m_pCurrentState(nullptr),
-	m_pWindow(nullptr), m_pRenderer(nullptr), 
-	m_pCamera(nullptr)
+	  m_gameWidth(0), m_gameHeight(0),
+	  m_gameXPos(0), m_gameYPos(0),
+	  m_pStateMachine(nullptr), m_pCurrentState(nullptr),
+	  m_pWindow(nullptr), m_pRenderer(nullptr),
+	  m_pCamera(nullptr)
 {
 	//	Die Logger initialisieren
-	m_pStandardLog = new Logger();
+	m_pStandardLog = new Logger("../logs/standard.txt");
 	m_pErrorLog = new Logger("../logs/errors.txt");
 
 	//	Story Objekt erstellen
@@ -59,6 +60,9 @@ Game::Game()									//	Konstruktor
 
 	//	Notizbuch erstellen
 	m_pNotebook = new Notebook(10);
+
+	//	Uhr erstellen
+	m_pClock = new Clock();
 }
 
 /*	!! WICHTIG !!
@@ -98,7 +102,7 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
 	{
 		//	Die Initialisierung von SDL ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben.
-		std::cerr << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
+		*m_pErrorLog << "SDL_Init failed: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
@@ -109,20 +113,20 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 		*/
 
 		//	Falls wir hier ankommen, ist etwas kaputt gegangen
-		std::cerr << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
+		*m_pErrorLog << "IMG_Init failed: \n" << IMG_GetError() << std::endl;
 		return false;
 	}
 	if (TTF_Init() < 0)
 	{
 		//	Falls wir hier ankommen, ist etwas kaputt gegangen
-		std::cerr << "TTF_Init failed: \n" << TTF_GetError() << std::endl;
+		*m_pErrorLog << "TTF_Init failed: \n" << TTF_GetError() << std::endl;
 		return false;
 	}
 
 	//	Die initialisierung von SDL & SDL_image war erfolgreich!
-	std::cout <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
-					"SDL_image wurde erfolgreich initialisiert!" << std::endl << 
-					"SDL_ttf wurde erfolgreich initialisiert!" << std::endl;
+	*m_pStandardLog <<	"SDL wurde erfolgreich initialisiert!" << std::endl <<
+						"SDL_image wurde erfolgreich initialisiert!" << std::endl << 
+						"SDL_ttf wurde erfolgreich initialisiert!" << std::endl;
 
 
 	//	Die Breite und Höhe des Bildschirms speichern, um basierend darauf die Maße des Fensters zu setzen
@@ -142,11 +146,16 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	if (!m_pWindow) 
 	{
 		//	Die Erstellung des Fensters ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-		std::cerr << "Could not create window: \n" << SDL_GetError() << std::endl;
+		*m_pErrorLog << "Could not create window: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
+
+	//	Icon für die obere linke Ecke des Fensters hinzugefügt
+	SDL_Surface* pIcon = IMG_Load("../assets/tophat_icon.ico");
+	SDL_SetWindowIcon(m_pWindow, pIcon);
+
 	//	Das Fenster wurde erfolgreich erstellt
-	std::cout << "Fenster wurde erfolgreich erstellt!" << std::endl;
+	*m_pStandardLog << "Fenster wurde erfolgreich erstellt!" << std::endl;
 
 
 	//	Renderer erstellen.
@@ -156,11 +165,11 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 	if (!m_pRenderer)
 	{
 		//	Die Erstellung des Renderers ist fehlgeschlagen! Fehlermeldung ausgeben und false zurückgeben:
-		std::cerr << "Could not create renderer: \n" << SDL_GetError() << std::endl;
+		*m_pErrorLog << "Could not create renderer: \n" << SDL_GetError() << std::endl;
 		return false;
 	}
 	//	Der Renderer wurde erfolgreich erstellt
-	std::cout << "Renderer wurde erfolgreich erstellt!" << std::endl;
+	*m_pStandardLog << "Renderer wurde erfolgreich erstellt!" << std::endl;
 
 #pragma region ScriptRegistration
 	//	Alles für die Lua Scripts bereitstellen
@@ -182,6 +191,9 @@ bool Game::init(std::string title, int xPos, int yPos, int flags)
 
 	//	Story initialisieren
 	m_pStory->init();
+
+	//	Die Uhr initialisieren
+	m_pClock->init();
 
 	//	Informationen über das Fenster speichern
 	m_gameWidth = width;
@@ -257,6 +269,9 @@ void Game::update()
 
 	//	Die Story wird aktualisiert
 	m_pStory->update();
+
+	//	Die Uhr wird aktualisiert
+	m_pClock->update();
 }
 
 void Game::render()
@@ -277,6 +292,9 @@ void Game::render()
 #pragma region testStuff
 	TheTester::Instance()->testFunctions();
 #pragma endregion
+
+	//	Die Uhr wird gerendert
+	m_pClock->draw();
 
 	//	Jetzt wird alles auf den Bildschirm geschmissen
 	SDL_RenderPresent(m_pRenderer);

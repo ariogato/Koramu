@@ -26,6 +26,8 @@ public:
 	void onCreate() override;
 	void interact(Player* pPlayer) override;
 
+	void turnToObject(SDL_GameObject* pObject);						//	Setzt das currentRow abhängig von Richtung, in der pObject liegt
+
 	//	setter-Funktionen
 	void setTextureId(std::string id) { m_textureId = id; }
 };

@@ -33,6 +33,9 @@ public:
 
 	void draw(std::string id,															//	Eine bestimmte Textur zeichnen
 		int x, int y, int width, int height);
+	void draw(std::string id,															//	Eine bestimmmte Textur mit einem Rotationswinkel zeichnen
+		int x, int y, int width, int height,
+		int rotCenterX, int rotCenterY, const double angle);
 	void drawFrame(std::string id,														//	Einen Teil einer Textur zeichnen
 		int x, int y, int width, int height,
 		int frameRow, int frameCol);

@@ -4,37 +4,61 @@
   <!-- Texturen werden seperat geladen (unabhängig vom Spielzustand)-->
   <textures>
     <!-- Buttons-->
-    <texture id="buttonPlay" path="../assets/Button_Play.png"/>
-    <texture id="buttonHowtoplay" path="../assets/Button_Howtoplay.png"/>
-    <texture id="buttonExit" path="../assets/Button_Exit.png"/>
-    <texture id="buttonResume" path="../assets/Button_Resume.png"/>
-    <texture id="buttonSave" path="../assets/Button_Save.png"/>
-    <texture id="buttonMainMenu" path="../assets/Button_MainMenu.png"/>
-    <texture id="buttonBack" path="../assets/Button_Back.png"/>
-    <texture id="buttonResize" path="../assets/Button_Resize.png"/>
+    <texture id="buttonPlay" path="../assets/Buttons/Button_Play.png"/>
+    <texture id="buttonHowtoplay" path="../assets/Buttons/Button_Howtoplay.png"/>
+    <texture id="buttonExit" path="../assets/Buttons/Button_Exit.png"/>
+    <texture id="buttonResume" path="../assets/Buttons/Button_Resume.png"/>
+    <texture id="buttonSave" path="../assets/Buttons/Button_Save.png"/>
+    <texture id="buttonMainMenu" path="../assets/Buttons/Button_MainMenu.png"/>
+    <texture id="buttonBack" path="../assets/Buttons/Button_Back.png"/>
+    <texture id="buttonResize" path="../assets/Buttons/Button_Resize.png"/>
 
-    <!-- keine Buttons-->
-    <texture id="koramu" path="../assets/Koramu.png"/>
-    <texture id="player" path="../assets/Player.png"/>
-    <texture id="greyLayer" path="../assets/Grey_Layer.png"/>
+    <!--GameObjects-->
+    <texture id="littleGirl" path="../assets/Objects/LittleGirl.png"/>
+    <texture id="clockmaker" path="../assets/Objects/Clockmaker.png"/>
+    <texture id="priest" path="../assets/Objects/Priest.png"/>
+    <texture id="policeman" path="../assets/Objects/Policeman.png"/>
+    <texture id="jenny" path="../assets/Objects/Jenny2.png"/>
+    <texture id="player" path="../assets/Objects/Player.png"/>
+    <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="tree" path="../assets/TreeNew.png"/>
+    <texture id="notebook" path="../assets/Notizbuch.png"/>
+
+
+    <!--Miscellaneous-->
+    <texture id="koramu" path="../assets/Koramu.png"/>
     <texture id="font" path="../assets/Fonts/pixelFont.png"/>
-    <texture id="test" path="../assets/test.png"/>
-    <texture id="door" path="../assets/Transparent.png"/>
-    <texture id="keyM" path="../assets/M.png"/>
-    <texture id="Dp" path="../assets/Doppelpunkt.png"/>
-    <texture id="chart" path="../assets/Chart.png"/>
-    <texture id="Esc" path="../assets/esc.png"/>
-    <texture id="Walking" path="../assets/Gehen.png"/>
-    <texture id="Space" path="../assets/Leertaste.png"/>
-    <texture id="Interaction" path="../assets/Interaktion.png"/>
-    <texture id="Pfeiltasten" path="../assets/Pfeiltasten.png"/>
-    <texture id="Pause" path="../assets/Pause.png"/>
-    <texture id="keyN" path="../assets/N.png"/>
-    <texture id="Notizblock" path="../assets/Notizbuch.png"/>
+    <texture id="transparent" path="../assets/Misc/Transparent.png"/>
+    <texture id="greyLayer" path="../assets/Misc/Grey_Layer.png"/>
+    <texture id="inventory" path="../assets/Misc/Inventory.png"/>
+    <texture id="dialogBox" path="../assets/Misc/Dialogbox.png"/>
+
+
+    <!--Clock-->
+    <texture id="clockFace" path="../assets/Misc/clockFace.png"/>
+    <texture id="clockHandSeconds" path="../assets/Misc/clockHandSec.png"/>
+    <texture id="clockHandMinutes" path="../assets/Misc/clockHandBig.png"/>
+    <texture id="clockHandHours" path="../assets/Misc/clockHandSmall.png"/>
+    <texture id="clockTinyDisplay" path="../assets/Misc/tinyDisplay.png"/>
+
+
+    <!--HowToPlay-->
+    <texture id="keyM" path="../assets/HowToPlay/M.png"/>
+    <texture id="Dp" path="../assets/HowToPlay/Doppelpunkt.png"/>
+    <texture id="chart" path="../assets/HowToPlay/Chart.png"/>
+    <texture id="Esc" path="../assets/HowToPlay/esc.png"/>
+    <texture id="Walking" path="../assets/HowToPlay/Gehen.png"/>
+    <texture id="Space" path="../assets/HowToPlay/Leertaste.png"/>
+    <texture id="Interaction" path="../assets/HowToPlay/Interaktion.png"/>
+    <texture id="Pfeiltasten" path="../assets/HowToPlay/Pfeiltasten.png"/>
+    <texture id="Pause" path="../assets/HowToPlay/Pause.png"/>
+    <texture id="keyN" path="../assets/HowToPlay/N.png"/>
+    <texture id="Notizblock" path="../assets/HowToPlay/Notizbuch.png"/>
     
     <!--Items-->
-    <texture id="topHat" path="../assets/topHat.png"/>
+    <texture id="topHat" path="../assets/Items/topHat.png"/>
+    <texture id="watch" path="../assets/Items/watch.png"/>
+    <texture id="watchBroken" path="../assets/Items/watchBroken.png"/>
   </textures>
 
   <menu>
@@ -80,20 +104,50 @@
 	<play>
     <gameObjects>
       <gameObject type="player" textureId="player"
-                  xPos="1000" yPos="545" width="70" height="180"
+                  xPos="1472" yPos="441" width="70" height="180"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="player"/>
       <gameObject type="player" textureId="player"
                   xPos="1000" yPos="545" width="70" height="180"
                   numRows="4" numCols="4"
-                  mapId="houseMap1" animSpeed="200"
+                  mapId="ownHouse" animSpeed="200"
                   uniqueId="player"/>
+      <gameObject type="player" textureId="player"
+                  xPos="604" yPos="1006" width="70" height="180"
+                  numRows="4" numCols="4"
+                  mapId="clockmakerHouse" animSpeed="200"
+                  uniqueId="player"/>
+      <gameObject type="npc" textureId="clockmaker"
+                  xPos="262" yPos="382" width="70" height="180"
+                  numRows="4" numCols="4"
+                  mapId="clockmakerHouse" animSpeed="200"
+                  uniqueId="clockmaker"/>
+      <gameObject type="npc" textureId="policeman"
+                  xPos="3844" yPos="2620" width="75" height="150"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="policeman"/>
+      <gameObject type="npc" textureId="priest"
+                  xPos="3100" yPos="2400" width="117" height="160"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="priest"/>
+      <gameObject type="npc" textureId="jenny"
+                  xPos="4150" yPos="3300" width="76" height="130"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="jenny"/>
       <gameObject type="npc" textureId="test"
-                  xPos="1000" yPos="690" width="128" height="82"
+                  xPos="2768" yPos="190" width="128" height="82"
                   numRows="1" numCols="6"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="test"/>
+      <gameObject type="npc" textureId="littleGirl"
+                  xPos="2560" yPos="3340" width="52" height="88"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="littleGirl"/>
     </gameObjects>
 	</play>
 	

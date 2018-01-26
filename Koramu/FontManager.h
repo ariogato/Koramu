@@ -11,23 +11,23 @@
 class FontManager
 {
 private:
-	FontManager();													//	Konstruktor
-	~FontManager();													//	Destruktor
+	FontManager();																	//	Konstruktor
+	~FontManager();																	//	Destruktor
 
 	//	Notwendig für Singleton-Klasse
 	static FontManager* s_pInstance;
 
 
-	std::map<char, Vector2D> m_texturePositionMap;					//	Dictionary, in dem jedem Zeichen eine Position zugeordnet ist
+	std::map<char, Vector2D> m_texturePositionMap;									//	Dictionary, in dem jedem Zeichen eine Position zugeordnet ist
 
-	int m_height;													//	Höhe eines Zeichens auf dem Bild
-	int m_width;													//	Breite eines Zeichens auf dem Bild
+	int m_height;																	//	Höhe eines Zeichens auf dem Bild
+	int m_width;																	//	Breite eines Zeichens auf dem Bild
 
 public:
-	void parseFont();												//	Weist jedem Zeichen eine Position zu
-	void drawCharacter(char character, int x, int y);				//	Rendert ein Zeichen
-	void drawText(std::string text, int x, int y);					//	Rendert einen Text
-	void drawTextBox(std::string text, ObjectRectangle textBox);	//	Rendert Text, der sich in einer Box befindet
+	void parseFont();																//	Weist jedem Zeichen eine Position zu
+	void drawCharacter(char character, int x, int y, int charSize = 32);			//	Rendert ein Zeichen
+	void drawText(std::string text, int x, int y, int charSize = 32);				//	Rendert einen Text
+	void drawTextBox(std::string text, ObjectRectangle textBox, int charSize = 32);	//	Rendert Text, der sich in einer Box befindet
 
 	//	getter-Funktionen
 	int getCharWidth() { return m_width; }

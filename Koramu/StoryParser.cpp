@@ -362,6 +362,8 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 
 	//	Alte Notizen entfernen, da nur die gespeicherten Notizen erscheinen sollen
 	TheGame::Instance()->getNotebook()->clear();
+	TheGame::Instance()->getNotebook()->cornelius(false);
+
 	//	Notizen laden
 	//	Über alle "page"-Elemente (Kinder des "notebookState"-Elements) iterieren
 	for (XMLElement* pPage = pRoot->FirstChildElement("notebookState")->FirstChildElement("page"); pPage != nullptr; pPage = pPage->NextSiblingElement("page"))
@@ -384,7 +386,7 @@ bool StoryParser::loadGame(const char* filename, FiniteStateMachine::GameState* 
 	for (XMLElement* e = pRoot->FirstChildElement("inventoryState")->FirstChildElement("item"); e != nullptr; e = e->NextSiblingElement("item"))
 	{
 		//	Das Item wird der Liste hinzugefügt
- 		TheGame::Instance()->getItemList()->addItem(e->FirstChildElement("id")->GetText(), e->FirstChildElement("count")->IntText());
+		TheGame::Instance()->getItemList()->addItem(e->FirstChildElement("id")->GetText(), e->FirstChildElement("count")->IntText());
 	}
 
 	//	Der Spielstand wurde erfolgreich geladen

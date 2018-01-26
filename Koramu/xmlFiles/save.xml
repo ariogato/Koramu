@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <saveState>
-    <questState mainQuest="prologue" partQuest="firstDoNothingQuest"/>
+    <questState mainQuest="prologue" partQuest="startGame"/>
     <mapStack>
         <activeMap mapId="mainMap"/>
     </mapStack>
     <objectState>
-        <houseMap1>
-            <centerObject id="player"/>
-            <object id="player" xPos="584" yPos="697"/>
-            <object id="door2" xPos="560" yPos="880"/>
-        </houseMap1>
-        <mainMap>
-            <centerObject id="player"/>
-            <object id="door1" xPos="704" yPos="320"/>
-            <object id="tree1" xPos="1088" yPos="384"/>
-            <object id="player" xPos="998" yPos="549"/>
-            <object id="test" xPos="1000" yPos="690"/>
-            <object id="door3" xPos="368" yPos="752"/>
-            <object id="johann" xPos="595" yPos="583"/>
-            <object id="tree2" xPos="576" yPos="1045"/>
-        </mainMap>
     </objectState>
     <notebookState>
-        <page>
-            <line>01.08.1920:</line>
-            <line>Whoooop whoop</line>
-        </page>
+        <page/>
         <page/>
         <page/>
         <page/>
@@ -36,10 +18,7 @@
         <page/>
         <page/>
     </notebookState>
+  
     <inventoryState>
-        <item>
-            <id>topHat</id>
-            <count>1</count>
-        </item>
     </inventoryState>
 </saveState>

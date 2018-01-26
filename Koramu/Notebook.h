@@ -32,4 +32,5 @@ public:
 	//	setter-Funktionen
 	void align();							//	Zentrieren
 	void addNote(std::string text);			//	Notiz hinzuügen
+	void cornelius(bool b);					//	aka setAllIsFull & setAllLineNumberZero
 };
