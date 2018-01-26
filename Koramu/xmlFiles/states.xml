@@ -118,10 +118,15 @@
                   mapId="clockmakerHouse" animSpeed="200"
                   uniqueId="clockmaker"/>
       <gameObject type="npc" textureId="policeman"
-                  xPos="3844" yPos="2620" width="63" height="125"
+                  xPos="3844" yPos="2620" width="75" height="150"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="policeman"/>
+      <gameObject type="npc" textureId="priest"
+                  xPos="1000" yPos="690" width="117" height="160"
+                  numRows="4" numCols="4"
+                  mapId="mainMap" animSpeed="200"
+                  uniqueId="priest"/>
       <gameObject type="npc" textureId="jenny"
                   xPos="1600" yPos="2380" width="70" height="150"
                   numRows="4" numCols="4"

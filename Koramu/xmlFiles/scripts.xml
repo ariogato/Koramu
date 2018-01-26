@@ -13,6 +13,7 @@
   <script id="clockmaker" path="Scripts/Objects/NPCs/clockmaker.lua"/>
   <script id="policeman" path="Scripts/Objects/NPCs/policeman.lua"/>
   <script id="jenny" path="Scripts/Objects/NPCs/jenny.lua"/>
+  <script id="priest" path="Scripts/Objects/NPCs/priest.lua"/>
   
   <!--Doors-->
   <script id="ownHouseDoorEntry" path="Scripts/Objects/Doors/ownHouseDoorEntry.lua"/>

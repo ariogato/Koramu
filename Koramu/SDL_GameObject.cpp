@@ -57,20 +57,33 @@ void SDL_GameObject::update()
 	{
 		//	Bewegung nach unten
 		if (m_velocity.getY() > 0)
+		{
+
 			if (m_numRows > 0)
 				m_currentRow = 0;
+		}
 		//	Bewegung nach oben
 		else if (m_velocity.getY() < 0)
+		{
+
 			if (m_numRows > 1)
 				m_currentRow = 1;
+
+		}
 		//	Bewegung nach rechts
-			else if (m_velocity.getX() > 0)
-				if (m_numRows > 2)
-					m_currentRow = 2;
+		else if (m_velocity.getX() > 0) 
+		{
+			if (m_numRows > 2)
+				m_currentRow = 2;
+		}
+
 		//	Bewegung nach links
-				else 
-					if (m_numRows > 3)
-						m_currentRow = 3;
+		else
+		{
+			if (m_numRows > 3)
+				m_currentRow = 3;
+		}
+	
 	}
 
 	//	Der anzuzeigende Frame wird berechnet

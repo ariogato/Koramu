@@ -615,5 +615,8 @@
     <None Include="Scripts\Objects\NPCs\policeman.lua">
       <Filter>Lua Skripts\Objects\NPCs</Filter>
     </None>
+    <None Include="Scripts\Objects\NPCs\priest.lua">
+      <Filter>Lua Skripts\Objects\NPCs</Filter>
+    </None>
   </ItemGroup>
 </Project>

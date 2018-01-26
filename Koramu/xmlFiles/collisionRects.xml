@@ -12,7 +12,7 @@
     <collisionRect xPos="5" yPos="120" width="60" height="30" />
   </objectType>
   <objectType name="policeman">
-    <collisionRect xPos="7" yPos="104" width="50" height="20" />
+    <collisionRect xPos="7" yPos="120" width="60" height="30" />
   </objectType>
   <objectType name="test">
     <collisionRect xPos="0" yPos="40" width="80" height="20" />
@@ -20,5 +20,7 @@
   <objectType name="littleGirl">
     <collisionRect xPos="0" yPos="70" width="52" height="18" />
   </objectType>
-  
+  <objectType name="priest">
+    <collisionRect xPos="20" yPos="140" width="77" height="20" />
+  </objectType>
 </objects>
