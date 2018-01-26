@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="100" height="80" tilewidth="64" tileheight="64" nextobjectid="204">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="100" height="80" tilewidth="64" tileheight="64" nextobjectid="214">
  <tileset firstgid="1" name="Tileset1" tilewidth="64" tileheight="64" tilecount="133" columns="19">
   <image source="../Tilesets/Tileset1.png" width="1216" height="448"/>
  </tileset>
@@ -67,28 +67,152 @@
   <tile id="338" terrain=",4,,"/>
   <tile id="339" terrain="4,4,,"/>
   <tile id="340" terrain="4,,,"/>
-  <tile id="374" terrain="0,0,0,"/>
-  <tile id="375" terrain="0,0,,0"/>
-  <tile id="406" terrain="0,,0,0"/>
-  <tile id="407" terrain=",0,0,0"/>
-  <tile id="437" terrain=",,,0"/>
-  <tile id="438" terrain=",,0,0"/>
-  <tile id="439" terrain=",,0,"/>
-  <tile id="469" terrain=",0,,0"/>
+  <tile id="374" terrain="0,0,0,">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="64" height="28"/>
+    <object id="2" x="0" y="0" width="37" height="64"/>
+   </objectgroup>
+  </tile>
+  <tile id="375" terrain="0,0,,0">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="1" width="64" height="32"/>
+    <object id="2" x="29" y="0" width="36" height="64"/>
+   </objectgroup>
+  </tile>
+  <tile id="406" terrain="0,,0,0">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="34" height="64"/>
+    <object id="2" x="0" y="26" width="64" height="37"/>
+   </objectgroup>
+  </tile>
+  <tile id="407" terrain=",0,0,0">
+   <objectgroup draworder="index">
+    <object id="1" x="31" y="0" width="33" height="64"/>
+    <object id="2" x="0" y="28" width="64" height="36"/>
+   </objectgroup>
+  </tile>
+  <tile id="437" terrain=",,,0">
+   <objectgroup draworder="index">
+    <object id="1" x="34" y="25" width="29" height="38"/>
+   </objectgroup>
+  </tile>
+  <tile id="438" terrain=",,0,0">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="21" width="64" height="42"/>
+   </objectgroup>
+  </tile>
+  <tile id="439" terrain=",,0,">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="26" width="33" height="37"/>
+   </objectgroup>
+  </tile>
+  <tile id="469" terrain=",0,,0">
+   <objectgroup draworder="index">
+    <object id="1" x="32" y="0" width="31" height="64"/>
+   </objectgroup>
+  </tile>
   <tile id="470" terrain="0,0,0,0"/>
-  <tile id="471" terrain="0,,0,"/>
-  <tile id="501" terrain=",0,,"/>
-  <tile id="502" terrain="0,0,,"/>
-  <tile id="503" terrain="0,,,"/>
+  <tile id="471" terrain="0,,0,">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="41" height="64"/>
+   </objectgroup>
+  </tile>
+  <tile id="501" terrain=",0,,">
+   <objectgroup draworder="index">
+    <object id="1" x="29" y="0" width="36" height="30"/>
+   </objectgroup>
+  </tile>
+  <tile id="502" terrain="0,0,,">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="64" height="28"/>
+   </objectgroup>
+  </tile>
+  <tile id="503" terrain="0,,,">
+   <objectgroup draworder="index">
+    <object id="1" x="-1" y="-1" width="31" height="31"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="1169" name="basictiles-sheet" tilewidth="64" tileheight="64" tilecount="120" columns="8">
   <image source="../Tilesets/basictiles-sheet.png" width="512" height="960"/>
  </tileset>
  <tileset firstgid="1289" name="hyptosis_til-art-batch-2-sheet" tilewidth="64" tileheight="64" tilecount="900" columns="30">
   <image source="../Tilesets/hyptosis_til-art-batch-2-sheet.png" width="1920" height="1920"/>
+  <tile id="664">
+   <objectgroup draworder="index">
+    <object id="1" x="4" y="16" width="54" height="47"/>
+   </objectgroup>
+  </tile>
+  <tile id="669">
+   <objectgroup draworder="index">
+    <object id="1" x="9" y="11" width="46" height="52"/>
+   </objectgroup>
+  </tile>
+  <tile id="670">
+   <objectgroup draworder="index">
+    <object id="1" x="47" y="3" width="17" height="62"/>
+    <object id="2" x="-1" y="34" width="65" height="30"/>
+   </objectgroup>
+  </tile>
+  <tile id="671">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="-1" width="23" height="65"/>
+    <object id="2" x="-1" y="30" width="60" height="34"/>
+   </objectgroup>
+  </tile>
+  <tile id="694">
+   <objectgroup draworder="index">
+    <object id="1" x="10" y="-2" width="47" height="65"/>
+   </objectgroup>
+  </tile>
+  <tile id="699">
+   <objectgroup draworder="index">
+    <object id="1" x="9" y="1" width="48" height="59"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="2189" name="hyptosis_tile-art-batch-3-sheet" tilewidth="64" tileheight="64" tilecount="900" columns="30">
   <image source="../Tilesets/hyptosis_tile-art-batch-3-sheet.png" width="1920" height="1920"/>
+  <tile id="95">
+   <objectgroup draworder="index">
+    <object id="1" x="7" y="28" width="49" height="33"/>
+   </objectgroup>
+  </tile>
+  <tile id="125">
+   <objectgroup draworder="index">
+    <object id="1" x="6" y="-1" width="53" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="284">
+   <objectgroup draworder="index">
+    <object id="1" x="57" y="26" width="7" height="37"/>
+   </objectgroup>
+  </tile>
+  <tile id="285">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="15" width="60" height="48"/>
+   </objectgroup>
+  </tile>
+  <tile id="314">
+   <objectgroup draworder="index">
+    <object id="1" x="25" y="2" width="38" height="61"/>
+   </objectgroup>
+  </tile>
+  <tile id="315">
+   <objectgroup draworder="index">
+    <object id="1" x="-1" y="-1" width="46" height="64"/>
+   </objectgroup>
+  </tile>
+  <tile id="344">
+   <objectgroup draworder="index">
+    <object id="1" x="28" y="-2" width="34" height="15"/>
+   </objectgroup>
+  </tile>
+  <tile id="345">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="1" width="32" height="13"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="3089" name="Indoorset" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../Tilesets/Indoorset.png" width="128" height="64"/>
@@ -98,6 +222,26 @@
   <terraintypes>
    <terrain name="Neues Terrain" tile="582"/>
   </terraintypes>
+  <tile id="396">
+   <objectgroup draworder="index">
+    <object id="1" x="33" y="20" width="31" height="44"/>
+   </objectgroup>
+  </tile>
+  <tile id="397">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="20" width="34" height="43"/>
+   </objectgroup>
+  </tile>
+  <tile id="428">
+   <objectgroup draworder="index">
+    <object id="1" x="18" y="-2" width="45" height="40"/>
+   </objectgroup>
+  </tile>
+  <tile id="429">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="49" height="32"/>
+   </objectgroup>
+  </tile>
   <tile id="486" terrain="0,0,0,"/>
   <tile id="487" terrain="0,0,,0"/>
   <tile id="518" terrain="0,,0,0"/>
@@ -585,6 +729,10 @@
   <object id="172" name="treeX" type="tree" x="2816" y="1536" width="192" height="256"/>
   <object id="202" name="ownHouseDoorEntry" type="door" x="1472" y="552" width="64" height="24"/>
   <object id="203" name="clockmakerHouseEntry" type="door" x="1792" y="2152" width="128" height="24"/>
+  <object id="206" name="townhallEntry" type="door" x="3648" y="1670" width="192" height="56"/>
+  <object id="208" name="policeStationEntry" type="door" x="5056" y="2714" width="64" height="36"/>
+  <object id="211" name="townHouse1Entry" type="door" x="1666" y="1556" width="64" height="42"/>
+  <object id="212" name="churchEntry" type="door" x="2882" y="2454" width="66" height="40"/>
  </objectgroup>
  <layer name="Foregroundlayer" width="100" height="80">
   <data encoding="csv">
