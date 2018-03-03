@@ -18,7 +18,7 @@
     <texture id="clockmaker" path="../assets/Objects/Clockmaker.png"/>
     <texture id="priest" path="../assets/Objects/Priest.png"/>
     <texture id="policeman" path="../assets/Objects/Policeman.png"/>
-    <texture id="jenny" path="../assets/Objects/Jenny2.png"/>
+    <texture id="jenny" path="../assets/Objects/Jenny3.png"/>
     <texture id="player" path="../assets/Objects/Player.png"/>
     <texture id="test" path="../assets/Objects/test.png"/>
     <texture id="tree" path="../assets/TreeNew.png"/>
@@ -134,7 +134,7 @@
                   mapId="mainMap" animSpeed="200"
                   uniqueId="priest"/>
       <gameObject type="npc" textureId="jenny"
-                  xPos="4150" yPos="3300" width="76" height="130"
+                  xPos="4150" yPos="3300" width="91" height="160"
                   numRows="4" numCols="4"
                   mapId="mainMap" animSpeed="200"
                   uniqueId="jenny"/>

@@ -1,16 +1,18 @@
 #include "ObjectRectangle.h"
 #include "ParamLoader.h"
 #include "Game.h"
+#include "InputHandler.h"
 
-TTF_Font* ObjectRectangle::m_font = nullptr;
+bool ObjectRectangle::s_visible = true;
+TTF_Font* ObjectRectangle::s_font = nullptr;
 
 ObjectRectangle::ObjectRectangle()
 	: positionVector(0.0f, 0.0f),
 	  width(0), height(0), 
 	  m_visible(false), m_showText(false)
 {
-	if(!m_font)
-		m_font = TTF_OpenFont("../assets/Fonts/consola.ttf", 12);
+	if(!s_font)
+		s_font = TTF_OpenFont("../assets/Fonts/consola.ttf", 12);
 
 
 	//	Default Farbe ist rot
@@ -41,6 +43,22 @@ void ObjectRectangle::load(const ParamLoader& params)
 
 void ObjectRectangle::update()
 {
+	//	Alle ObjectRectangles sollen (mit der Taste F1) getoggelt werden können
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F1)) {
+		//	Warten, bis die Taste losgelassen wurde
+		while (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F1))
+		{
+			//	Diese Lösung ist nicht ansatzweise elegant, aber es funktioniert
+			TheInputHandler::Instance()->handleInput();
+			TheGame::Instance()->render();
+			SDL_Delay(20);
+		}
+
+		//	Die flag setzen
+		s_visible = !s_visible;
+	}
+
+	//	Die Attribute sollen nur geupdatet werden, wenn sie denn auch angezeigt werden sollen
 	if (m_showText)
 	{
 		//	Alles was hier gespeichert wird kommt im Debugmodus auf den Schirm.
@@ -54,13 +72,13 @@ void ObjectRectangle::update()
 void ObjectRectangle::draw(const Vector2D& layerPosition)
 {
 	//	Falls das Rechteck nicht sichtbar sein soll, muss an dieser Stelle die Methode beendet werden
-	if (!m_visible)
+	if (!m_visible || !s_visible)
 		return;
 
 	if (m_showText)
 	{
 		//	Wir bitten SDL uns eine 'SDL_Surface' aus unseren 'm_rectAttributes' zu erstellen
-		SDL_Surface* pTempSurface = TTF_RenderText_Blended_Wrapped(m_font, m_rectAttributes.c_str(), m_color, 100);
+		SDL_Surface* pTempSurface = TTF_RenderText_Blended_Wrapped(s_font, m_rectAttributes.c_str(), m_color, 100);
 
 		//	Die Surface wird zur Textur gemacht
 		SDL_Texture* pMessage = SDL_CreateTextureFromSurface(TheGame::Instance()->getRenderer(), pTempSurface);

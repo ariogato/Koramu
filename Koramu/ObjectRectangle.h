@@ -19,13 +19,14 @@ public:
 	int height;							//	Die Höhe des Rechtecks
 
 private:
-	bool m_visible;						//	Indikator, ob gerendert/geupdatet werden soll
+	bool m_visible;						//	Indikator, ob gerendert werden soll
+	static bool s_visible;				//	Globaler Indikator (für alle Instanzen), ob gerendert werden soll
 
 	SDL_Color m_color;					//	Farbe des Rechtecks
 
 	std::string m_rectAttributes;		//	Attribute, die unter dem Rechteck gerendert werden.
 	bool m_showText;					//	Indikator ob die 'rectAttributes' gerendert werden sollen
-	static TTF_Font* m_font;			//	Vorläufige Speicherung der Schriftart (bis TextureManager auch Schriftarten händeln kann - vorläufig "static" aufgrung eines Workarounds)
+	static TTF_Font* s_font;			//	Vorläufige Speicherung der Schriftart (bis TextureManager auch Schriftarten händeln kann - vorläufig "static" aufgrung eines Workarounds)
 
 public:
 	ObjectRectangle();

@@ -9,7 +9,7 @@
     <collisionRect xPos="5" yPos="150" width="60" height="30" />
   </objectType>
   <objectType name="jenny">
-    <collisionRect xPos="8" yPos="104" width="59" height="26" />
+    <collisionRect xPos="5" yPos="130" width="80" height="30" />
   </objectType>
   <objectType name="policeman">
     <collisionRect xPos="7" yPos="120" width="60" height="30" />
