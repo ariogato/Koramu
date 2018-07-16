@@ -113,7 +113,7 @@ int Environment::TileLayer::getTileIdAtPosition(const Vector2D& positionVector) 
 {
 	//	Überprüfen, ob der 'positionVector' die Grenzen der Matrix nicht überschreitet
 	if (positionVector.getY() / 64 < 0 || positionVector.getY() / 64 > m_tiles.size() ||
-		positionVector.getX() / 64 < 0 || positionVector.getX() / 64 > (*m_tiles.begin()).size() - 1)
+		positionVector.getX() / 64 < 0 || positionVector.getX() / 64 > (*m_tiles.begin()).size() )
 		return 0;
 
 	//	TileId des Tiles an der gewünschten Position ermitteln und zurückgeben

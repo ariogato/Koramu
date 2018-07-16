@@ -59,9 +59,9 @@ void Environment::ObjectLayer::update()
 	//	Die Objekte in Bewegung ("movingObjects") werden auf Kollision mit anderen Objekten überprüft
 	objectObjectCollison(&movingObjects);
 	//	Die Objeke in Bewegung werden auf Kollision mit Tiles überprüft
-	for(auto &g : movingObjects)
+	for(auto &o : movingObjects)
 	{
-		objectTileCollision(g);
+		objectTileCollision(o);
 	}
 
 	/*	Der nachfolgende Code ist für das sogenannte "Z-ordering" zuständig.
