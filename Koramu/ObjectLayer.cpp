@@ -52,8 +52,9 @@ void Environment::ObjectLayer::update()
 		//	Es wird gecheckt, ob das Objekt in Bewegung ist
 		if(g->getVelocity().getLength())
 		{
-			//	Das Objekt bewegt sich und wird daher in "movingObjects" eingetragen
-			movingObjects.push_back(g);
+			//	Das Objekt bewegt sich und wird daher in "movingObjects" eingetragen, wenn sie sich auf der aktuellen Map befinden
+			if(!TheGame::Instance()->getCurrentState()->getCurrentMapId().compare(g->getMapId()) || g->getMapId().empty())
+				movingObjects.push_back(g);
 		}
 	}
 	//	Die Objekte in Bewegung ("movingObjects") werden auf Kollision mit anderen Objekten überprüft

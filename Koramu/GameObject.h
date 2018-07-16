@@ -45,6 +45,7 @@ public:
 	virtual int getHeight() const = 0;
 	virtual std::string getTextureId() const = 0;
 	virtual std::vector<ObjectRectangle> getCollisionRects() const = 0;
+	virtual std::string getMapId() const = 0;
 	
 	//	getter-Funktionen
 	std::string getUniqueId() const { return m_uniqueId; }

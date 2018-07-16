@@ -5,6 +5,7 @@
 #include "CommandQueue.h"
 #include "MoveCommand.h"
 #include "StunCommand.h"
+#include "Game.h"
 
 
 SDL_GameObject::SDL_GameObject()
@@ -144,8 +145,9 @@ void SDL_GameObject::collision()
 	//	Die Animation des Spielobjekts wird auf Stillstand mit Blick in die selbe Richtung gesetzt
 	m_currentCol = 0;
 
-	//	Die Funktion im Script aufrufen
-	TheScriptManager::Instance()->getScriptById(m_uniqueId).callFunction("onCollision");
+	//	Die Funktion im Script aufrufen, wenn sich das Objekt auf der selben Map wie der Spieler befindet
+ 	if (!TheGame::Instance()->getCurrentState()->getCurrentMapId().compare(this->getMapId()) || this->getMapId().empty())
+		TheScriptManager::Instance()->getScriptById(m_uniqueId).callFunction("onCollision");
 }
 
 void SDL_GameObject::onCreate()

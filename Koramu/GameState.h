@@ -76,6 +76,7 @@ namespace FiniteStateMachine
 		Dialog* getDialog() { return &m_dialog; }
 		DataStructure::Stack<Environment::Map*>* getMapStack() { return &m_maps; }
 		std::vector<GameObject*> getAllObjects() const;
+		std::string getCurrentMapId(); 
 
 		//	setter-Funktionen
 		void pushMap(std::string mapId) { m_maps.push(m_mapDict[mapId]); }					//	Eine Map anhand ihrer Id aufstapeln
@@ -103,6 +104,15 @@ namespace FiniteStateMachine
 		}
 
 		return result;
+	}
+
+	inline std::string GameState::getCurrentMapId()
+	{
+		for (std::map<std::string, Environment::Map*>::iterator it = m_mapDict.begin(); it != m_mapDict.end(); ++it)
+		{
+			if (it->second == getCurrentMap())
+				return it->first;
+		}
 	}
 
 };
