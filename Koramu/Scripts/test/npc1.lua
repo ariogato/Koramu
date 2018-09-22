@@ -2,6 +2,8 @@
 
 local npc1 = {}
 
+-- Zum Testen 
+
 function npc1:interact (n, p)
 	interact = {}
 	interact.pl = p

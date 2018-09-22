@@ -5,11 +5,16 @@ local jenny = {dir = false}
 function jenny:interact (n, p)
 end
 
+-- Legt fest, was bei einer Kollision des NPCs passiert
 function jenny:onCollision ()
 	characters = {}
+	-- Instanz des Objektes mit der Id "jenny" holen
 	characters.jenny = NPC.getInstance ("jenny")
+	-- Instanz des Spielerobjektes holen
 	characters.player = Player.getInstance ()
+	-- Abhängig von der aktuellen Quest werden bei der Kollision unterschiedliche Aktionen ausgelöst
 	if TheGame:getPartQuestId () == "talkToJenny" then
+		-- Dialogboxen mit dem jeweils übergebenen Text nacheinander öffnen
 		TheGame:startDialog ("Girl: I am sorry for bumping into you, Sir.\nI was deeply in thought, my mother is very ill and I am worried about her so I decided to take a walk and...\nCornelius: Never mind. I am so glad to finally meet somebody who is less grumpy than that old clockmaker whom I left my watch for repair.",
 		characters.jenny, characters.player)
 		TheGame:startDialog ("Girl: He is not grumpy, he just doesn't like strangers. Don't take it personally.\nBy the way, his watches are very popular in town. Nearly everyone here owns at least one piece of his making.\nI wish I could afford one myself. ... Oh, I think I haven't introduced myself yet: I am Jenny.",
@@ -21,16 +26,18 @@ function jenny:onCollision ()
 		-- Todo: Fokus auf Kirchturmuhr setzen
 		TheGame:startDialog ("Jenny: We could meet in front of the church, if you like.\nCornelius: I will hurry up, thank you very much.",
 		characters.jenny, characters.player)
+		
+		-- "jenny" nach rechts (zum Treffpunt) bewegen
 		characters.jenny:moveRelative (1100, 0)
+		-- Zur nächsten Quest schalten
 		TheGame:nextQuest()
 	end
 end
 
+-- Legt fest, was nach Abschluss eines bestimmten Commands passieren soll
 function jenny:onCommandDone (command)
-
-	--	Bei der Quest "talkToJenny" soll Jenny auf und ab laufen (der Startimpuls wird bei findClockmakerShop:onDone gegeben
+	--	Bei der Quest "talkToJenny" soll Jenny auf und ab laufen (der Startimpuls wird bei "findClockmakerShop:onDone" gegeben
 	if TheGame:getPartQuestId () == "talkToJenny" and command == "COMMAND_MOVE" then
-
 		--	Der NPC mit der ID "jenny" wird gespeichert
 		jen = NPC.getInstance ("jenny")
 
@@ -41,7 +48,7 @@ function jenny:onCommandDone (command)
 			jen:moveRelative (200, 0)
 		end
 
-		--	Die flag dir muss geändert werden, damit die Richtung beim nächsten command geändert wird
+		--	Die flag "dir" muss geändert werden, damit die Richtung beim nächsten Command geändert wird
 		jenny.dir = (not jenny.dir)
 	end
 end

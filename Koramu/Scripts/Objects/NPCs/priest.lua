@@ -2,6 +2,7 @@
 
 local priest = {}
 
+-- Einige wunderbare Sätze auf Latein, die den "Wortschatz" unseres ehrwürdigen Priesters bilden
 priest.quotes = {
 	"A cane non magno saepe tenetur aper.",
 	"Aio, quantitas magna frumentorum est.",
@@ -10,7 +11,6 @@ priest.quotes = {
 	"Imus ad magum Ozi videndum, magum Ozi mirum mirissimum.",
 	"Ne auderis delere orbem rigidum meum!",
 	"Tua mater tam antiqua ut linguam latinam loquatur",
-
 }
 
 function priest:interact (np, pl)
