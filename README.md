@@ -1,7 +1,7 @@
 # Koramu
 Project: Story-based 2D-RPG for the P-Seminar at LFG in the 11th & 12th grade<br/>
 Participants: Tobias Mahler, Roman Mayr, Ario Dastmaltschi<br/>
-Technology: Built from scratch using C++ by implementing a simple game enige based on the state machine pattern<br/>
+Technology: Built from scratch using C++ & Lua by implementing a simple game engine based on the state machine pattern any by building a tile map using Tiled<br/>
 Submission: Januar 2018<br/>
 
 # Documentation
