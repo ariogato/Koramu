@@ -10,3 +10,7 @@ Submission: Januar 2018<br/>
 * [Benutzerdokumentation.pdf](https://github.com/ariogato/Koramu/files/7498011/Benutzerdokumentation.pdf)
 
 ![Klassendiagramm_all](https://user-images.githubusercontent.com/23716586/140767691-d0673c86-241c-455c-886b-61fedde8e94c.png)
+
+
+# Screenshots
+![image](https://user-images.githubusercontent.com/23716586/140770116-6f8acc84-56ce-426b-b5fe-7ee7afdd9eca.png)
