@@ -6,7 +6,7 @@ Submission: Januar 2018<br/>
 
 # Documentation
 * [Entwurfsspezifikation.pdf](https://github.com/ariogato/Koramu/files/7498010/Entwurfsspezifikation.pdf)
-* [Entwicklerdokumentation.pdf](https://github.com/ariogato/Koramu/files/7498003/Entwicklerdokumentation.pdf)
+* [Concepts](https://github.com/ariogato/Koramu/wiki/Unsere-Spielkonzepte)
 * [Benutzerdokumentation.pdf](https://github.com/ariogato/Koramu/files/7498011/Benutzerdokumentation.pdf)
 
 ![Klassendiagramm_all](https://user-images.githubusercontent.com/23716586/140767691-d0673c86-241c-455c-886b-61fedde8e94c.png)
